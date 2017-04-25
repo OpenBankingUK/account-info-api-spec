@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "$ref": "../accounts/account_id.json"
+    },
+    "BeneficiaryType": {
+      "$ref": "beneficiary_type.json"
+    },
+    "UKBankSortCode": {
+      "$ref": "../common/uk_domestic_sort_code_identifier.json"
+    },
+    "Identification": {
+      "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+      "$ref": "../common/max_35_text.json"
+    },
+    "Name": {
+      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+      "$ref": "../common/max_70_text.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "BeneficiaryType"
+  ]
+}

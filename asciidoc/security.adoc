@@ -1,0 +1,40 @@
+
+[[_securityscheme]]
+== Security
+
+[[_tppoauth2security]]
+=== TPPOAuth2Security
+TPP client credential authorisation flow with the ASPSP
+
+[%hardbreaks]
+__Type__ : oauth2
+__Flow__ : application
+__Token URL__ : /token
+
+
+[options="header", cols=".^3,.^17"]
+|===
+|Name|Description
+|tpp_client_credential|TPP Client Credential Scope
+|===
+
+
+[[_psuoauth2security]]
+=== PSUOAuth2Security
+OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU
+
+[%hardbreaks]
+__Type__ : oauth2
+__Flow__ : accessCode
+__Token URL__ : /authorization
+__Token URL__ : /token
+
+
+[options="header", cols=".^3,.^17"]
+|===
+|Name|Description
+|accounts|Generic Account scope
+|===
+
+
+

@@ -1,0 +1,30 @@
+{
+  "title": "Balances GET response",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "TotalResults": {
+          "type": "integer"
+        }
+      }
+    },
+    "data": {
+      "description": "Array of Balances",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/accounts/balance.json"
+      },
+      "minItems": 0
+    },
+    "links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "data"
+  ]
+}

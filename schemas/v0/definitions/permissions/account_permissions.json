@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "readAll": {
+      "type": "boolean",
+      "description": "Allow read permission on all accounts resources for one or more accounts"
+    },
+    "readIdentities": {
+      "type": "boolean",
+      "description": "Allow read permission on sort-code, account number and name for one or more accounts"
+    },
+    "readBalances": {
+      "type": "boolean",
+      "description": "Allow read access to balances for one or more accounts"
+    },
+    "readProducts": {
+      "type": "boolean",
+      "description": "Allow read access to product details for one or more accounts"
+    },
+    "readBeneficiaries": {
+      "type": "boolean",
+      "description": "Allow read access to beneficiaries for one or more accounts"
+    }
+  },
+  "minProperties": 1,
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Account Request POST request",
+  "description": "Allows setup of an account access request",
+  "type": "object",
+  "properties": {
+    "Permissions": {
+      "type": "object",
+      "properties": {
+        "Account": {
+          "$ref": "../definitions/account_request/account_permissions.json"
+        },
+        "Transactions": {
+          "$ref": "../definitions/account_request/transactions_permissions.json"
+        }
+      },
+      "minProperties": 1
+    },
+    "ExpiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date time when the access to the account information will expire"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Permissions",
+    "ExpiresAt"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "account-info-api-spec",
+  "version": "0.0.1",
+  "description": "Tools to compile and flatten JSON schemas, and generate Swagger Docs",
+  "main": "index.js",
+  "scripts": {
+    "flatten-schemas": "cd build && ./flatten-schemas.sh v0",
+    "compile-swagger": "cd build && node compile-swagger.js",
+    "build:swagger": "npm run flatten-schemas && npm run compile-swagger",
+    "build": "npm run build:swagger && npm run build:spectacle",
+    "build:all": "npm run build && npm run build:wsd && npm run swagger2markdown && npm run swagger2asciidoc && npm run asciidoc2html && npm run asciidoc2pdf",
+    "build:spectacle": "spectacle ./dist/account-info-swagger.json -t ./dist/public",
+    "build:wsd": "node build/generate-wsd.js",
+    "swagger2markdown": "java -jar swagger2markup-cli-1.3.1.jar convert -i dist/account-info-swagger.yaml -f dist/account-info-swagger -c build/swagger2markup/markdown.properties",
+    "swagger2html": "npm run swagger2asciidoc && npm run asciidoc2html",
+    "swagger2asciidoc": "java -jar swagger2markup-cli-1.3.1.jar convert -i dist/account-info-swagger.yaml -d ./asciidoc -c build/swagger2markup/asciidoc.properties",
+    "swagger2pdf": "npm run swagger2asciidoc && npm run asciidoc2pdf",
+    "asciidoc2html": "asciidoctor asciidoc/index.adoc -a toc=left -a toclevels=4 -a numbered='' -o dist/account-info-swagger.html",
+    "asciidoc2pdf": "asciidoctor -r asciidoctor-pdf -b pdf asciidoc/index.adoc -a toc=left -a toclevels=4 -a numbered='' -o dist/account-info-swagger.pdf",
+    "watch:swagger": "spectacle -d ./dist/account-info-swagger.json -t ./dist/public",
+    "open-localhost": "node -e 'require(\"open\")(\"http://localhost:8080\")'",
+    "serve": "npm run open-localhost && spectacle -s ./dist/account-info-swagger.json -t ./dist/public -p 8080 ",
+    "test": "mocha test",
+    "start": "npm run build && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenBankingUK/account-info-api-spec.git"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/OpenBankingUK/account-info-api-spec-build/issues"
+  },
+  "homepage": "https://github.com/OpenBankingUK/account-info-api-spec-build#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "mkdirp": "*",
+    "ajv": "^4.10.0",
+    "ajv-cli": "1.1.1",
+    "chai": "^3.5.0",
+    "js-beautify": "*",
+    "js-yaml": "3.7.0",
+    "json-schema-ref-parser": "3.1.2",
+    "mocha": "^3.2.0",
+    "mocha-junit-reporter": "^1.12.1",
+    "supertest": "^2.0.1",
+    "glob": "^7.1.1",
+    "json2yaml": "*",
+    "swagger-parser": "beta",
+    "spectacle-docs": "*",
+    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams",
+    "open": "*"
+  }
+}

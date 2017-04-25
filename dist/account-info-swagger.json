@@ -1,0 +1,2038 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Account Information APIs",
+    "description": "Draft Swagger specification for Account Information APIs",
+    "termsOfService": "https://www.openbanking.org.uk/terms",
+    "contact": {
+      "name": "Claudio Viola",
+      "email": "claudio.viola@openbanking.org.uk"
+    },
+    "license": {
+      "name": "open-licence",
+      "url": "https://www.openbanking.org.uk/open-licence"
+    },
+    "version": "v0.1"
+  },
+  "basePath": "/open-banking",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/accounts-requests": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Create an account request resource",
+        "description": "Create an account request  resource",
+        "operationId": "CreateAccountRequest",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Create an Account Request",
+            "required": true,
+            "schema": {
+              "title": "Account Request POST request",
+              "description": "Allows setup of an account access request",
+              "type": "object",
+              "properties": {
+                "Permissions": {
+                  "type": "object",
+                  "properties": {
+                    "Account": {
+                      "type": "object",
+                      "properties": {
+                        "readBasic": {
+                          "type": "boolean",
+                          "description": "Allow read permission on basic accounts information for authorised accounts"
+                        },
+                        "readIdentities": {
+                          "type": "boolean",
+                          "description": "Allow read permission on sort-code, account number and name for authorised accounts"
+                        },
+                        "readBalances": {
+                          "type": "boolean",
+                          "description": "Allow read access to balances for authorised accounts"
+                        },
+                        "readProducts": {
+                          "type": "boolean",
+                          "description": "Allow read access to product details for authorised accounts"
+                        },
+                        "readBeneficiaries": {
+                          "type": "boolean",
+                          "description": "Allow read access to beneficiaries for authorised accounts"
+                        },
+                        "readBeneficiariesIdentities": {
+                          "type": "boolean",
+                          "description": "Allow read access to beneficiaries identities (account number) for one or more accounts"
+                        }
+                      },
+                      "minProperties": 1,
+                      "additionalProperties": false
+                    },
+                    "Transactions": {
+                      "type": "object",
+                      "properties": {
+                        "readAll": {
+                          "type": "boolean",
+                          "description": "Allow read access on all transactions resources for one or more accounts"
+                        },
+                        "readDebits": {
+                          "type": "boolean",
+                          "description": "Allow read access to debit transactions for one or more accounts"
+                        },
+                        "readCredits": {
+                          "type": "boolean",
+                          "description": "Allow read access to credit transactions for one or more accounts"
+                        },
+                        "readDescriptions": {
+                          "type": "boolean",
+                          "description": "Allow read access to transactions descriptions for one or more accounts"
+                        },
+                        "readFromDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Allow read access to all transactions starting from the specified date"
+                        },
+                        "readToDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Allow read access to all transactions ending on the specified date, if not provided "
+                        }
+                      },
+                      "required": [
+                        "readFromDate",
+                        "readToDate"
+                      ],
+                      "minProperties": 3,
+                      "additionalProperties": false
+                    }
+                  },
+                  "minProperties": 1
+                },
+                "ExpiresAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date time when the access to the account information will expire"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "Permissions",
+                "ExpiresAt"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Account Request resource successfully created",
+            "schema": {
+              "title": "Account Request POST response",
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "enum": [
+                    "AwaitingAuthorisation",
+                    "Authorised",
+                    "NotAuthorised",
+                    "Expired"
+                  ]
+                },
+                "CreatedAt": {
+                  "description": "Date and time at which the resource was created.",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "AccountRequestId": {
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "Permissions": {
+                  "type": "object",
+                  "properties": {
+                    "Account": {
+                      "type": "object",
+                      "properties": {
+                        "readBasic": {
+                          "type": "boolean",
+                          "description": "Allow read permission on basic accounts information for authorised accounts"
+                        },
+                        "readIdentities": {
+                          "type": "boolean",
+                          "description": "Allow read permission on sort-code, account number and name for authorised accounts"
+                        },
+                        "readBalances": {
+                          "type": "boolean",
+                          "description": "Allow read access to balances for authorised accounts"
+                        },
+                        "readProducts": {
+                          "type": "boolean",
+                          "description": "Allow read access to product details for authorised accounts"
+                        },
+                        "readBeneficiaries": {
+                          "type": "boolean",
+                          "description": "Allow read access to beneficiaries for authorised accounts"
+                        },
+                        "readBeneficiariesIdentities": {
+                          "type": "boolean",
+                          "description": "Allow read access to beneficiaries identities (account number) for one or more accounts"
+                        }
+                      },
+                      "minProperties": 1,
+                      "additionalProperties": false
+                    },
+                    "Transactions": {
+                      "type": "object",
+                      "properties": {
+                        "readAll": {
+                          "type": "boolean",
+                          "description": "Allow read access on all transactions resources for one or more accounts"
+                        },
+                        "readDebits": {
+                          "type": "boolean",
+                          "description": "Allow read access to debit transactions for one or more accounts"
+                        },
+                        "readCredits": {
+                          "type": "boolean",
+                          "description": "Allow read access to credit transactions for one or more accounts"
+                        },
+                        "readDescriptions": {
+                          "type": "boolean",
+                          "description": "Allow read access to transactions descriptions for one or more accounts"
+                        },
+                        "readFromDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Allow read access to all transactions starting from the specified date"
+                        },
+                        "readToDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Allow read access to all transactions ending on the specified date, if not provided "
+                        }
+                      },
+                      "required": [
+                        "readFromDate",
+                        "readToDate"
+                      ],
+                      "minProperties": 3,
+                      "additionalProperties": false
+                    }
+                  },
+                  "minProperties": 1
+                },
+                "ExpiresAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date time when the access to the account information will expire"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "AccountRequestId",
+                "Status",
+                "CreatedAt",
+                "ExpiresAt",
+                "Permissions"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "TPPOAuth2Security": [
+              "tpp_client_credential"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts-requests/{AccountRequestId}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get an account request resource",
+        "description": "Get an account request  resource",
+        "operationId": "GetAccountRequest",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountRequestId",
+            "in": "path",
+            "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account Request resource successfully retrieved",
+            "schema": {
+              "title": "Account Request GET response",
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "enum": [
+                    "AwaitingAuthorisation",
+                    "Authorised",
+                    "NotAuthorised",
+                    "Expired"
+                  ]
+                },
+                "CreatedAt": {
+                  "description": "Date and time at which the resource was created.",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "AccountRequestId": {
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "Permissions": {
+                  "type": "object",
+                  "properties": {
+                    "Account": {
+                      "type": "object",
+                      "properties": {
+                        "readBasic": {
+                          "type": "boolean",
+                          "description": "Allow read permission on basic accounts information for authorised accounts"
+                        },
+                        "readIdentities": {
+                          "type": "boolean",
+                          "description": "Allow read permission on sort-code, account number and name for authorised accounts"
+                        },
+                        "readBalances": {
+                          "type": "boolean",
+                          "description": "Allow read access to balances for authorised accounts"
+                        },
+                        "readProducts": {
+                          "type": "boolean",
+                          "description": "Allow read access to product details for authorised accounts"
+                        },
+                        "readBeneficiaries": {
+                          "type": "boolean",
+                          "description": "Allow read access to beneficiaries for authorised accounts"
+                        },
+                        "readBeneficiariesIdentities": {
+                          "type": "boolean",
+                          "description": "Allow read access to beneficiaries identities (account number) for one or more accounts"
+                        }
+                      },
+                      "minProperties": 1,
+                      "additionalProperties": false
+                    },
+                    "Transactions": {
+                      "type": "object",
+                      "properties": {
+                        "readAll": {
+                          "type": "boolean",
+                          "description": "Allow read access on all transactions resources for one or more accounts"
+                        },
+                        "readDebits": {
+                          "type": "boolean",
+                          "description": "Allow read access to debit transactions for one or more accounts"
+                        },
+                        "readCredits": {
+                          "type": "boolean",
+                          "description": "Allow read access to credit transactions for one or more accounts"
+                        },
+                        "readDescriptions": {
+                          "type": "boolean",
+                          "description": "Allow read access to transactions descriptions for one or more accounts"
+                        },
+                        "readFromDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Allow read access to all transactions starting from the specified date"
+                        },
+                        "readToDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Allow read access to all transactions ending on the specified date, if not provided "
+                        }
+                      },
+                      "required": [
+                        "readFromDate",
+                        "readToDate"
+                      ],
+                      "minProperties": 3,
+                      "additionalProperties": false
+                    }
+                  },
+                  "minProperties": 1
+                },
+                "ExpiresAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date time when the access to the account information will expire"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "AccountRequestId",
+                "Status",
+                "CreatedAt",
+                "ExpiresAt",
+                "Permissions"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "TPPOAuth2Security": [
+              "tpp_client_credential"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Accounts",
+        "description": "Get a list of accounts",
+        "operationId": "GetAccounts",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Accounts successfully retrieved",
+            "schema": {
+              "title": "Accounts GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "UKBankSortCode": {
+                        "description": "UK Domestic Sort Code Identifier",
+                        "type": "string",
+                        "pattern": "^SC[0-9]{6,6}$"
+                      },
+                      "Identification": {
+                        "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Currency": {
+                        "description": "Identification of the currency in which the account is held.",
+                        "type": "string",
+                        "pattern": "^[A-Z]{3}$"
+                      },
+                      "Name": {
+                        "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 70
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Account",
+        "description": "Get an account",
+        "operationId": "GetAccount",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "A unique identifier used to identify the account resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account resource successfully retrieved",
+            "schema": {
+              "title": "Account GET response",
+              "type": "object",
+              "properties": {
+                "AccountId": {
+                  "description": "A unique identifier used to identify the account resource",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "UKBankSortCode": {
+                  "description": "UK Domestic Sort Code Identifier",
+                  "type": "string",
+                  "pattern": "^SC[0-9]{6,6}$"
+                },
+                "Identification": {
+                  "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "Currency": {
+                  "description": "Identification of the currency in which the account is held.",
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                },
+                "Name": {
+                  "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 70
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "AccountId"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/transactions": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Account Transactions",
+        "description": "Get transactions related to an account",
+        "operationId": "GetAccountTransactions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "A unique identifier used to identify the account resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account Transactions successfully retrieved",
+            "schema": {
+              "title": "Account Transactions GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Array of Transactions",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "EntryReference": {
+                        "description": "Unique reference for the entry.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Amount": {
+                        "description": "Amount of money in the cash entry.",
+                        "type": "object",
+                        "properties": {
+                          "Amount": {
+                            "type": "string",
+                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                          },
+                          "Currency": {
+                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                            "type": "string",
+                            "pattern": "^[A-Z]{3}$"
+                          }
+                        },
+                        "required": [
+                          "Amount",
+                          "Currency"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "CreditDebitIndicator": {
+                        "description": "Indicates whether the entry is a credit or a debit entry",
+                        "type": "string",
+                        "enum": [
+                          "Credit",
+                          "Debit"
+                        ]
+                      },
+                      "Status": {
+                        "description": "Status of an entry on the books of the account servicer",
+                        "type": "string",
+                        "enum": [
+                          "Booked",
+                          "Pending",
+                          "Information"
+                        ]
+                      },
+                      "AdditionalEntryInformation": {
+                        "description": "Further details of the entry.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500
+                      },
+                      "AddressLine": {
+                        "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 70
+                      },
+                      "BookingDate": {
+                        "description": "Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                        "type": "object",
+                        "properties": {
+                          "Date": {
+                            "description": "ISODate YYYY-MM-DD",
+                            "type": "string",
+                            "pattern": "^[0-9]{4}-(0[1-9]|(1[0|1|2]))-((0[1-9])|((1|2)[0-9])|(30|31))$"
+                          },
+                          "DateTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false
+                      },
+                      "ValueDate": {
+                        "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available  to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                        "type": "object",
+                        "properties": {
+                          "Date": {
+                            "description": "ISODate YYYY-MM-DD",
+                            "type": "string",
+                            "pattern": "^[0-9]{4}-(0[1-9]|(1[0|1|2]))-((0[1-9])|((1|2)[0-9])|(30|31))$"
+                          },
+                          "DateTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false
+                      },
+                      "BankTransactionCode": {
+                        "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+                        "type": "object",
+                        "properties": {
+                          "Family": {
+                            "description": "Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code",
+                                "type": "string"
+                              },
+                              "SubFamilyCode": {
+                                "description": "Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code",
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Code",
+                              "SubFamilyCode"
+                            ]
+                          },
+                          "Proprietary": {
+                            "description": "Bank transaction code in a proprietary form, as defined by the issuer.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              },
+                              "Issuer": {
+                                "description": "Identification of the issuer of the proprietary bank transaction code.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Code"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "Balance": {
+                        "type": "object",
+                        "properties": {
+                          "Amount": {
+                            "description": "Amount of money of the cash balance",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "CreditDebitIndicator": {
+                            "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+                            "type": "string",
+                            "enum": [
+                              "Credit",
+                              "Debit"
+                            ]
+                          },
+                          "Type": {
+                            "description": "Balance type, in a coded form",
+                            "type": "string",
+                            "enum": [
+                              "Interim",
+                              "Booked"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "Amount",
+                          "CreditDebitIndicator",
+                          "Type"
+                        ]
+                      },
+                      "MerchantDetails": {
+                        "type": "object",
+                        "properties": {
+                          "Name": {
+                            "description": "Name by which the party is known and which is usually used to identify that party.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 350
+                          },
+                          "MerchantCategoryCode": {
+                            "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 4
+                          }
+                        },
+                        "required": [
+                          "Name"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId",
+                      "Amount",
+                      "Currency",
+                      "CreditDebitIndicator",
+                      "Status",
+                      "BankTransactionCode",
+                      "Balance"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/beneficiaries": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Account Beneficiaries",
+        "description": "Get Beneficiaries related to an account",
+        "operationId": "GetAccountBeneficiaries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "A unique identifier used to identify the account resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account Beneficiaries  successfully retrieved",
+            "schema": {
+              "title": "Beneficiaries GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Array of Beneficiaries",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "BeneficiaryType": {
+                        "description": "Indicates whether the entry is a credit or a debit entry",
+                        "type": "string",
+                        "enum": [
+                          "DirectDebit",
+                          "StandingOrder"
+                        ]
+                      },
+                      "UKBankSortCode": {
+                        "description": "UK Domestic Sort Code Identifier",
+                        "type": "string",
+                        "pattern": "^SC[0-9]{6,6}$"
+                      },
+                      "Identification": {
+                        "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Name": {
+                        "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 70
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId",
+                      "BeneficiaryType"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/balances": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Account Balances",
+        "description": "Get Balances related to an account",
+        "operationId": "GetAccountBalances",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "A unique identifier used to identify the account resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account Beneficiaries  successfully retrieved",
+            "schema": {
+              "title": "Balances GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Array of Balances",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Amount": {
+                        "description": "Amount of money of the cash balance.",
+                        "type": "object",
+                        "properties": {
+                          "Amount": {
+                            "type": "string",
+                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                          },
+                          "Currency": {
+                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                            "type": "string",
+                            "pattern": "^[A-Z]{3}$"
+                          }
+                        },
+                        "required": [
+                          "Amount",
+                          "Currency"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "Date": {
+                        "description": "Indicates the date (and time) of the balance.",
+                        "type": "object",
+                        "properties": {
+                          "Date": {
+                            "description": "ISODate YYYY-MM-DD",
+                            "type": "string",
+                            "pattern": "^[0-9]{4}-(0[1-9]|(1[0|1|2]))-((0[1-9])|((1|2)[0-9])|(30|31))$"
+                          },
+                          "DateTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false
+                      },
+                      "Type": {
+                        "description": "Balance type, in a coded form.",
+                        "type": "string",
+                        "enum": [
+                          "ClosingAvailable",
+                          "ClosingBooked",
+                          "ForwardAvailable",
+                          "InterimAvailable",
+                          "InterimBooked",
+                          "OpeningAvailable",
+                          "OpeningBooked",
+                          "PreviouslyClosedBooked",
+                          "Expected"
+                        ]
+                      },
+                      "CreditLine": {
+                        "type": "object",
+                        "properties": {
+                          "Included": {
+                            "type": "boolean"
+                          },
+                          "Amount": {
+                            "description": "Active Or Historic Currency Code and Amount",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "Included"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId",
+                      "Amount",
+                      "Date",
+                      "Type"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/beneficiaries": {
+      "get": {
+        "tags": [
+          "Beneficiaries"
+        ],
+        "summary": "Get Beneficiaries",
+        "description": "Get Beneficiaries",
+        "operationId": "GetBeneficiaries",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Beneficiaries successfully retrieved",
+            "schema": {
+              "title": "Beneficiaries GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Array of Beneficiaries",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "BeneficiaryType": {
+                        "description": "Indicates whether the entry is a credit or a debit entry",
+                        "type": "string",
+                        "enum": [
+                          "DirectDebit",
+                          "StandingOrder"
+                        ]
+                      },
+                      "UKBankSortCode": {
+                        "description": "UK Domestic Sort Code Identifier",
+                        "type": "string",
+                        "pattern": "^SC[0-9]{6,6}$"
+                      },
+                      "Identification": {
+                        "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Name": {
+                        "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 70
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId",
+                      "BeneficiaryType"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions",
+        "description": "Get Transactions",
+        "operationId": "GetTransactions",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions successfully retrieved",
+            "schema": {
+              "title": "Account Transactions GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Array of Transactions",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "EntryReference": {
+                        "description": "Unique reference for the entry.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Amount": {
+                        "description": "Amount of money in the cash entry.",
+                        "type": "object",
+                        "properties": {
+                          "Amount": {
+                            "type": "string",
+                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                          },
+                          "Currency": {
+                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                            "type": "string",
+                            "pattern": "^[A-Z]{3}$"
+                          }
+                        },
+                        "required": [
+                          "Amount",
+                          "Currency"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "CreditDebitIndicator": {
+                        "description": "Indicates whether the entry is a credit or a debit entry",
+                        "type": "string",
+                        "enum": [
+                          "Credit",
+                          "Debit"
+                        ]
+                      },
+                      "Status": {
+                        "description": "Status of an entry on the books of the account servicer",
+                        "type": "string",
+                        "enum": [
+                          "Booked",
+                          "Pending",
+                          "Information"
+                        ]
+                      },
+                      "AdditionalEntryInformation": {
+                        "description": "Further details of the entry.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500
+                      },
+                      "AddressLine": {
+                        "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 70
+                      },
+                      "BookingDate": {
+                        "description": "Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                        "type": "object",
+                        "properties": {
+                          "Date": {
+                            "description": "ISODate YYYY-MM-DD",
+                            "type": "string",
+                            "pattern": "^[0-9]{4}-(0[1-9]|(1[0|1|2]))-((0[1-9])|((1|2)[0-9])|(30|31))$"
+                          },
+                          "DateTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false
+                      },
+                      "ValueDate": {
+                        "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available  to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                        "type": "object",
+                        "properties": {
+                          "Date": {
+                            "description": "ISODate YYYY-MM-DD",
+                            "type": "string",
+                            "pattern": "^[0-9]{4}-(0[1-9]|(1[0|1|2]))-((0[1-9])|((1|2)[0-9])|(30|31))$"
+                          },
+                          "DateTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false
+                      },
+                      "BankTransactionCode": {
+                        "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+                        "type": "object",
+                        "properties": {
+                          "Family": {
+                            "description": "Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code",
+                                "type": "string"
+                              },
+                              "SubFamilyCode": {
+                                "description": "Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code",
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Code",
+                              "SubFamilyCode"
+                            ]
+                          },
+                          "Proprietary": {
+                            "description": "Bank transaction code in a proprietary form, as defined by the issuer.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              },
+                              "Issuer": {
+                                "description": "Identification of the issuer of the proprietary bank transaction code.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Code"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "Balance": {
+                        "type": "object",
+                        "properties": {
+                          "Amount": {
+                            "description": "Amount of money of the cash balance",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "CreditDebitIndicator": {
+                            "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+                            "type": "string",
+                            "enum": [
+                              "Credit",
+                              "Debit"
+                            ]
+                          },
+                          "Type": {
+                            "description": "Balance type, in a coded form",
+                            "type": "string",
+                            "enum": [
+                              "Interim",
+                              "Booked"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "Amount",
+                          "CreditDebitIndicator",
+                          "Type"
+                        ]
+                      },
+                      "MerchantDetails": {
+                        "type": "object",
+                        "properties": {
+                          "Name": {
+                            "description": "Name by which the party is known and which is usually used to identify that party.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 350
+                          },
+                          "MerchantCategoryCode": {
+                            "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 4
+                          }
+                        },
+                        "required": [
+                          "Name"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId",
+                      "Amount",
+                      "Currency",
+                      "CreditDebitIndicator",
+                      "Status",
+                      "BankTransactionCode",
+                      "Balance"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/balances": {
+      "get": {
+        "tags": [
+          "Balances"
+        ],
+        "summary": "Get Balances",
+        "description": "Get Balances",
+        "operationId": "GetBalances",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Balances successfully retrieved",
+            "schema": {
+              "title": "Balances GET response",
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "TotalResults": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Array of Balances",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AccountId": {
+                        "description": "A unique identifier used to identify the account resource",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 35
+                      },
+                      "Amount": {
+                        "description": "Amount of money of the cash balance.",
+                        "type": "object",
+                        "properties": {
+                          "Amount": {
+                            "type": "string",
+                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                          },
+                          "Currency": {
+                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                            "type": "string",
+                            "pattern": "^[A-Z]{3}$"
+                          }
+                        },
+                        "required": [
+                          "Amount",
+                          "Currency"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "Date": {
+                        "description": "Indicates the date (and time) of the balance.",
+                        "type": "object",
+                        "properties": {
+                          "Date": {
+                            "description": "ISODate YYYY-MM-DD",
+                            "type": "string",
+                            "pattern": "^[0-9]{4}-(0[1-9]|(1[0|1|2]))-((0[1-9])|((1|2)[0-9])|(30|31))$"
+                          },
+                          "DateTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false
+                      },
+                      "Type": {
+                        "description": "Balance type, in a coded form.",
+                        "type": "string",
+                        "enum": [
+                          "ClosingAvailable",
+                          "ClosingBooked",
+                          "ForwardAvailable",
+                          "InterimAvailable",
+                          "InterimBooked",
+                          "OpeningAvailable",
+                          "OpeningBooked",
+                          "PreviouslyClosedBooked",
+                          "Expected"
+                        ]
+                      },
+                      "CreditLine": {
+                        "type": "object",
+                        "properties": {
+                          "Included": {
+                            "type": "boolean"
+                          },
+                          "Amount": {
+                            "description": "Active Or Historic Currency Code and Amount",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "Included"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "AccountId",
+                      "Amount",
+                      "Date",
+                      "Type"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "self"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "meta",
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "PSUOAuth2Security": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "tokenUrl": "/token",
+      "authorizationUrl": "/authorization",
+      "scopes": {
+        "accounts": "Generic Account scope"
+      },
+      "description": "OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU"
+    },
+    "TPPOAuth2Security": {
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "/token",
+      "scopes": {
+        "tpp_client_credential": "TPP Client Credential Scope"
+      },
+      "description": "TPP client credential authorisation flow with the ASPSP"
+    }
+  },
+  "tags": [
+    {
+      "name": "Accounts",
+      "description": "Account related endpoints"
+    }
+  ],
+  "responses": {
+    "400ErrorResponse": {
+      "description": "Bad Request"
+    },
+    "401ErrorResponse": {
+      "description": "Unauthorized"
+    },
+    "403ErrorResponse": {
+      "description": "Forbidden"
+    },
+    "404NotFound": {
+      "description": "Not Found"
+    },
+    "409ErrorResponse": {
+      "description": "Conflict"
+    },
+    "500ErrorResponse": {
+      "description": "Internal Server Error"
+    }
+  }
+}

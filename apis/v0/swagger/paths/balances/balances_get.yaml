@@ -1,0 +1,26 @@
+get:
+  tags:
+   - Balances
+  summary: Get Balances
+  description: Get Balances
+  operationId: GetBalances
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  responses:
+    200:
+      description: Balances successfully retrieved
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/balances/balances.get.200.response.schema.yaml
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      $ref: ../../index.yaml#/responses/403ErrorResponse
+    404:
+      $ref: ../../index.yaml#/responses/404NotFound
+    500:
+      $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - PSUOAuth2Security:
+      - accounts

@@ -1,0 +1,30 @@
+{
+  "title": "Beneficiaries GET response",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "TotalResults": {
+          "type": "integer"
+        }
+      }
+    },
+    "data": {
+      "description": "Array of Beneficiaries",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/beneficiaries/beneficiary.json"
+      },
+      "minItems": 0
+    },
+    "links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "data"
+  ]
+}

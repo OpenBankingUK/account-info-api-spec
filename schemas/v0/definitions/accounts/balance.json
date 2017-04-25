@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "$ref": "./account_id.json"
+    },
+    "Amount": {
+      "description": "Amount of money of the cash balance.",
+      "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "Date": {
+      "description": "Indicates the date (and time) of the balance.",
+      "$ref": "../common/date_and_date_time_choice.json"
+    },
+    "Type": {
+      "$ref": "./balances/balance_type_code.json"
+    },
+    "CreditLine": {
+      "$ref": "./balances/credit_line.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "Amount",
+    "Date",
+    "Type"
+  ]
+}

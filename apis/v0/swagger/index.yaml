@@ -1,0 +1,21 @@
+swagger: '2.0'
+info:
+   $ref: ./info/index.yaml
+# host: api.openbanking.xyz
+basePath: /open-banking
+schemes:
+  - https
+produces:
+  - $ref: ./definitions/mime_type.yaml
+# definitions:
+#  $ref: ./definitions/index.yaml
+paths:
+ $ref: ./paths/index.yaml
+securityDefinitions:
+  $ref: ./security/index.yaml
+#tags section, to organise endpoints
+tags:
+ - name: Accounts
+   description: Account related endpoints
+responses:
+  $ref: ./responses/index.yaml

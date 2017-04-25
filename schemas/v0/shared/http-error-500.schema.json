@@ -1,0 +1,24 @@
+{
+  "title": "HTTP 500 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "500" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "InternalServerError" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The server encountered an unexpected condition which prevented it from fulfilling the request." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

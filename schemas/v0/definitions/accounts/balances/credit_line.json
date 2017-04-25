@@ -1,0 +1,17 @@
+{
+  "type":"object",
+  "properties": {
+    "Included": {
+      "type": "boolean"
+    },
+    "Amount": {
+      "$ref": "../../common/active_or_historic_currency_code_and_amount.json"
+    }
+
+  },
+  "additionalProperties": false,
+  "required": [
+    "Included"
+  ]
+
+}

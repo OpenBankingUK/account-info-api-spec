@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "readAll": {
+      "type": "boolean",
+      "description": "Allow read access on all transactions resources for one or more accounts"
+    },
+    "readDebits": {
+      "type": "boolean",
+      "description": "Allow read access to debit transactions for one or more accounts"
+    },
+    "readCredits": {
+      "type": "boolean",
+      "description": "Allow read access to credit transactions for one or more accounts"
+    },
+    "readDescriptions": {
+      "type": "boolean",
+      "description": "Allow read access to transactions descriptions for one or more accounts"
+    },
+    "readFromDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Allow read access to all transactions starting from the specified date"
+    },
+    "readToDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Allow read access to all transactions ending on the specified date, if not provided "
+    }
+  },
+  "required": [
+    "readFromDate",
+    "readToDate"
+  ],
+  "minProperties": 3,
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "Amount": {
+      "description": "Amount of money of the cash balance",
+      "$ref": "../../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "CreditDebitIndicator": {
+      "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+      "$ref": "credit_debit_indicator.json"
+    },
+    "Type": {
+      "description": "Balance type, in a coded form",
+      "type": "string",
+      "enum": [ "Interim", "Booked" ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Amount",
+    "CreditDebitIndicator",
+    "Type"
+  ]
+}

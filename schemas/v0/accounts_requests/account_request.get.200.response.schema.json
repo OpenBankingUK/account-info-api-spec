@@ -1,0 +1,40 @@
+{
+  "title": "Account Request GET response",
+  "type": "object",
+  "properties": {
+    "Status": {
+      "$ref": "../definitions/account_request/account_request_status.json"
+    },
+    "CreatedAt": {
+      "$ref": "../definitions/common/created_at.json"
+    },
+    "AccountRequestId": {
+      "$ref": "../definitions/account_request/account_request_id.json"
+    },
+    "Permissions": {
+      "type": "object",
+      "properties": {
+        "Account": {
+          "$ref": "../definitions/account_request/account_permissions.json"
+        },
+        "Transactions": {
+          "$ref": "../definitions/account_request/transactions_permissions.json"
+        }
+      },
+      "minProperties": 1
+    },
+    "ExpiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date time when the access to the account information will expire"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountRequestId",
+    "Status",
+    "CreatedAt",
+    "ExpiresAt",
+    "Permissions"
+  ]
+}

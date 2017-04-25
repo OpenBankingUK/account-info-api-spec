@@ -1,0 +1,75 @@
+participant PSU
+participant AISP
+participant ASPSP Resource Server
+participant ASPSP Authorisation Server
+
+note over PSU, ASPSP Authorisation Server: Account Information Data Sharing
+PSU -> AISP: Opens Aggregation App
+note over AISP, ASPSP Authorisation Server: Client credentials - OAuth 2.0 Flow
+AISP -> ASPSP Authorisation Server: /token { client_id , client_secret }
+ASPSP Authorisation Server -> AISP: access token
+note over AISP, ASPSP Resource Server: Headers: x-idempotency-Key: AISP-guid-1, Authorisation: token
+AISP -> ASPSP Resource Server: POST /accounts-requests
+note right of ASPSP Resource Server: validates and stores account request consent payload
+ASPSP Resource Server --> AISP: HTTP 201 Created { AccountRequestId }
+AISP -> PSU: Redirect PSU to ASPSP for Auth
+
+note over PSU, ASPSP Authorisation Server: Authorise Consent - OAuth 2.0 Flow
+PSU -> ASPSP Authorisation Server: Sign-in to ASPSP web/mobile app
+ASPSP Authorisation Server --> PSU: View Consent details
+PSU -> ASPSP Authorisation Server: Select accounts to authorise access to
+PSU -> ASPSP Authorisation Server: Authorise consent for AISP access
+ASPSP Authorisation Server --> PSU: Redirect plus auth code
+PSU -> AISP: Redirect auth code
+AISP -> ASPSP Resource Server: /token
+ASPSP Resource Server --> AISP: access token
+
+
+note over PSU, ASPSP Authorisation Server: Retrieve Accounts list
+AISP -> ASPSP Resource Server: GET /accounts
+note right of ASPSP Resource Server: Check accounts permissions
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: 1, accountId 2 }
+
+note over PSU, ASPSP Authorisation Server: Retrieve Accounts Balances
+AISP -> ASPSP Resource Server: GET /accounts/1/balances
+note right of ASPSP Resource Server: Check balances permissions
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: 1, balance: 1 }
+
+opt: AISP can optionally retrieve balances using /balances resource
+AISP --> ASPSP Resource Server: GET /balances
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId:1 , balance: 1, accountId:2 , balance: 2 }
+end
+
+note over PSU, ASPSP Authorisation Server: Retrieve Accounts Beneficiaries
+AISP -> ASPSP Resource Server: GET /accounts/1/beneficiaries
+note right of ASPSP Resource Server: Check beneficiaries permissions
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: 1, beneficiaryName: "John" }
+
+opt: AISP can optionally retrieve beneficiaries using /beneficiaries resource
+AISP --> ASPSP Resource Server: GET /beneficiaries
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId:1 , beneficiaryName: "John", accountId:2 , beneficiaryName: "Doe" }
+end
+
+
+
+note over PSU, ASPSP Authorisation Server: Retrieve Accounts Transactions
+AISP -> ASPSP Resource Server: GET /accounts/1/transactions
+note right of ASPSP Resource Server: Check transactions permissions
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: 1, entryInformation: "Car" }
+
+opt: AISP can optionally retrieve transactions using /transactions resource
+AISP --> ASPSP Resource Server: GET /transactions
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId:1 , entryInformation: "Car", accountId:2 , entryInformation: "Hotel" }
+end
+
+
+note over PSU, ASPSP Authorisation Server: Retrieve Accounts Products
+AISP -> ASPSP Resource Server: GET /accounts/1/products
+note right of ASPSP Resource Server: Check products permissions
+
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: 1, productType: "PCA" }
+
+opt: AISP can optionally retrieve products using /products resource
+AISP --> ASPSP Resource Server: GET /products
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId:1 , productType: "PCA", accountId:2 , productType: "BCA" }
+end

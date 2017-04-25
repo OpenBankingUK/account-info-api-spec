@@ -1,0 +1,24 @@
+{
+  "title": "HTTP 403 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "403" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "Forbidden" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,1569 @@
+
+[[_paths]]
+== Paths
+
+<<<
+
+[[_getaccounts]]
+=== Get Accounts
+....
+GET /accounts
+....
+
+
+==== Description
+Get a list of accounts
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Accounts successfully retrieved|<<_accounts_get_response,Accounts GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_accounts_get_response]]
+**Accounts GET response**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**data** +
+__required__|< <<_accounts_get_data,data>> > array
+|**links** +
+__optional__|<<_accounts_get_links,links>>
+|**meta** +
+__required__|<<_accounts_get_meta,meta>>
+|===
+
+[[_accounts_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**Currency** +
+__optional__|Identification of the currency in which the account is held. +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|**Identification** +
+__optional__|Unique and unambiguous identification for the account between the account owner and the account servicer. +
+**Length** : `1 - 35`|string
+|**Name** +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. +
+**Length** : `1 - 70`|string
+|**UKBankSortCode** +
+__optional__|UK Domestic Sort Code Identifier +
+**Pattern** : `"^SC[0-9]{6,6}$"`|string
+|===
+
+[[_accounts_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_accounts_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_createaccountrequest]]
+=== Create an account request resource
+....
+POST /accounts-requests
+....
+
+
+==== Description
+Create an account request resource
+
+
+==== Body parameter
+Create an Account Request
+
+[%hardbreaks]
+__Name__ : body
+__Flags__ : required
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**ExpiresAt** +
+__required__|Date time when the access to the account information will expire|string (date-time)
+|**Permissions** +
+__required__||<<_createaccountrequest_permissions,Permissions>>
+|===
+
+[[_createaccountrequest_permissions]]
+**Permissions**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**Account** +
+__optional__|<<_accounts-requests_post_account,Account>>
+|**Transactions** +
+__optional__|<<_accounts-requests_post_transactions,Transactions>>
+|===
+
+[[_accounts-requests_post_account]]
+**Account**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**readBalances** +
+__optional__|Allow read access to balances for authorised accounts|boolean
+|**readBasic** +
+__optional__|Allow read permission on basic accounts information for authorised accounts|boolean
+|**readBeneficiaries** +
+__optional__|Allow read access to beneficiaries for authorised accounts|boolean
+|**readBeneficiariesIdentities** +
+__optional__|Allow read access to beneficiaries identities (account number) for one or more accounts|boolean
+|**readIdentities** +
+__optional__|Allow read permission on sort-code, account number and name for authorised accounts|boolean
+|**readProducts** +
+__optional__|Allow read access to product details for authorised accounts|boolean
+|===
+
+[[_accounts-requests_post_transactions]]
+**Transactions**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**readAll** +
+__optional__|Allow read access on all transactions resources for one or more accounts|boolean
+|**readCredits** +
+__optional__|Allow read access to credit transactions for one or more accounts|boolean
+|**readDebits** +
+__optional__|Allow read access to debit transactions for one or more accounts|boolean
+|**readDescriptions** +
+__optional__|Allow read access to transactions descriptions for one or more accounts|boolean
+|**readFromDate** +
+__required__|Allow read access to all transactions starting from the specified date|string (date-time)
+|**readToDate** +
+__required__|Allow read access to all transactions ending on the specified date, if not provided|string (date-time)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Account Request resource successfully created|<<_account_request_post_response,Account Request POST response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**409**|Conflict|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_request_post_response]]
+**Account Request POST response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountRequestId** +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource. +
+**Length** : `1 - 35`|string
+|**CreatedAt** +
+__required__|Date and time at which the resource was created.|string (date-time)
+|**ExpiresAt** +
+__required__|Date time when the access to the account information will expire|string (date-time)
+|**Permissions** +
+__required__||<<_accounts-requests_post_permissions,Permissions>>
+|**Status** +
+__required__||enum (AwaitingAuthorisation, Authorised, NotAuthorised, Expired)
+|===
+
+[[_accounts-requests_post_permissions]]
+**Permissions**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**Account** +
+__optional__|<<_accounts-requests_post_permissions_account,Account>>
+|**Transactions** +
+__optional__|<<_accounts-requests_post_permissions_transactions,Transactions>>
+|===
+
+[[_accounts-requests_post_permissions_account]]
+**Account**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**readBalances** +
+__optional__|Allow read access to balances for authorised accounts|boolean
+|**readBasic** +
+__optional__|Allow read permission on basic accounts information for authorised accounts|boolean
+|**readBeneficiaries** +
+__optional__|Allow read access to beneficiaries for authorised accounts|boolean
+|**readBeneficiariesIdentities** +
+__optional__|Allow read access to beneficiaries identities (account number) for one or more accounts|boolean
+|**readIdentities** +
+__optional__|Allow read permission on sort-code, account number and name for authorised accounts|boolean
+|**readProducts** +
+__optional__|Allow read access to product details for authorised accounts|boolean
+|===
+
+[[_accounts-requests_post_permissions_transactions]]
+**Transactions**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**readAll** +
+__optional__|Allow read access on all transactions resources for one or more accounts|boolean
+|**readCredits** +
+__optional__|Allow read access to credit transactions for one or more accounts|boolean
+|**readDebits** +
+__optional__|Allow read access to debit transactions for one or more accounts|boolean
+|**readDescriptions** +
+__optional__|Allow read access to transactions descriptions for one or more accounts|boolean
+|**readFromDate** +
+__required__|Allow read access to all transactions starting from the specified date|string (date-time)
+|**readToDate** +
+__required__|Allow read access to all transactions ending on the specified date, if not provided|string (date-time)
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|===
+
+
+<<<
+
+[[_getaccountrequest]]
+=== Get an account request resource
+....
+GET /accounts-requests/{AccountRequestId}
+....
+
+
+==== Description
+Get an account request resource
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountRequestId** +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account Request resource successfully retrieved|<<_account_request_get_response,Account Request GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_request_get_response]]
+**Account Request GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountRequestId** +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource. +
+**Length** : `1 - 35`|string
+|**CreatedAt** +
+__required__|Date and time at which the resource was created.|string (date-time)
+|**ExpiresAt** +
+__required__|Date time when the access to the account information will expire|string (date-time)
+|**Permissions** +
+__required__||<<_accounts-requests_accountrequestid_get_permissions,Permissions>>
+|**Status** +
+__required__||enum (AwaitingAuthorisation, Authorised, NotAuthorised, Expired)
+|===
+
+[[_accounts-requests_accountrequestid_get_permissions]]
+**Permissions**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**Account** +
+__optional__|<<_accounts-requests_accountrequestid_get_permissions_account,Account>>
+|**Transactions** +
+__optional__|<<_accounts-requests_accountrequestid_get_permissions_transactions,Transactions>>
+|===
+
+[[_accounts-requests_accountrequestid_get_permissions_account]]
+**Account**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**readBalances** +
+__optional__|Allow read access to balances for authorised accounts|boolean
+|**readBasic** +
+__optional__|Allow read permission on basic accounts information for authorised accounts|boolean
+|**readBeneficiaries** +
+__optional__|Allow read access to beneficiaries for authorised accounts|boolean
+|**readBeneficiariesIdentities** +
+__optional__|Allow read access to beneficiaries identities (account number) for one or more accounts|boolean
+|**readIdentities** +
+__optional__|Allow read permission on sort-code, account number and name for authorised accounts|boolean
+|**readProducts** +
+__optional__|Allow read access to product details for authorised accounts|boolean
+|===
+
+[[_accounts-requests_accountrequestid_get_permissions_transactions]]
+**Transactions**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**readAll** +
+__optional__|Allow read access on all transactions resources for one or more accounts|boolean
+|**readCredits** +
+__optional__|Allow read access to credit transactions for one or more accounts|boolean
+|**readDebits** +
+__optional__|Allow read access to debit transactions for one or more accounts|boolean
+|**readDescriptions** +
+__optional__|Allow read access to transactions descriptions for one or more accounts|boolean
+|**readFromDate** +
+__required__|Allow read access to all transactions starting from the specified date|string (date-time)
+|**readToDate** +
+__required__|Allow read access to all transactions ending on the specified date, if not provided|string (date-time)
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|===
+
+
+<<<
+
+[[_getaccount]]
+=== Get Account
+....
+GET /accounts/{AccountId}
+....
+
+
+==== Description
+Get an account
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountId** +
+__required__|A unique identifier used to identify the account resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account resource successfully retrieved|<<_account_get_response,Account GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_get_response]]
+**Account GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**Currency** +
+__optional__|Identification of the currency in which the account is held. +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|**Identification** +
+__optional__|Unique and unambiguous identification for the account between the account owner and the account servicer. +
+**Length** : `1 - 35`|string
+|**Name** +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. +
+**Length** : `1 - 70`|string
+|**UKBankSortCode** +
+__optional__|UK Domestic Sort Code Identifier +
+**Pattern** : `"^SC[0-9]{6,6}$"`|string
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_getaccountbalances]]
+=== Get Account Balances
+....
+GET /accounts/{AccountId}/balances
+....
+
+
+==== Description
+Get Balances related to an account
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountId** +
+__required__|A unique identifier used to identify the account resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account Beneficiaries successfully retrieved|<<_balances_get_response,Balances GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_balances_get_response]]
+**Balances GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**data** +
+__required__|Array of Balances|< <<_accounts_accountid_balances_get_data,data>> > array
+|**links** +
+__optional__||<<_accounts_accountid_balances_get_links,links>>
+|**meta** +
+__required__||<<_accounts_accountid_balances_get_meta,meta>>
+|===
+
+[[_accounts_accountid_balances_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**Amount** +
+__required__|Amount of money of the cash balance.|<<_accounts_accountid_balances_get_data_amount,Amount>>
+|**CreditLine** +
+__optional__||<<_accounts_accountid_balances_get_data_creditline,CreditLine>>
+|**Date** +
+__required__|Indicates the date (and time) of the balance.|<<_accounts_accountid_balances_get_data_date,Date>>
+|**Type** +
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+|===
+
+[[_accounts_accountid_balances_get_data_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_accounts_accountid_balances_get_data_creditline]]
+**CreditLine**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__optional__|Active Or Historic Currency Code and Amount|<<_accounts_accountid_balances_get_data_creditline_amount,Amount>>
+|**Included** +
+__required__||boolean
+|===
+
+[[_accounts_accountid_balances_get_data_creditline_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_accounts_accountid_balances_get_data_date]]
+**Date**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_accounts_accountid_balances_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_accounts_accountid_balances_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_getaccountbeneficiaries]]
+=== Get Account Beneficiaries
+....
+GET /accounts/{AccountId}/beneficiaries
+....
+
+
+==== Description
+Get Beneficiaries related to an account
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountId** +
+__required__|A unique identifier used to identify the account resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account Beneficiaries successfully retrieved|<<_beneficiaries_get_response,Beneficiaries GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_beneficiaries_get_response]]
+**Beneficiaries GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**data** +
+__required__|Array of Beneficiaries|< <<_accounts_accountid_beneficiaries_get_data,data>> > array
+|**links** +
+__optional__||<<_accounts_accountid_beneficiaries_get_links,links>>
+|**meta** +
+__required__||<<_accounts_accountid_beneficiaries_get_meta,meta>>
+|===
+
+[[_accounts_accountid_beneficiaries_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**BeneficiaryType** +
+__required__|Indicates whether the entry is a credit or a debit entry|enum (DirectDebit, StandingOrder)
+|**Identification** +
+__optional__|Unique and unambiguous identification for the account between the account owner and the account servicer. +
+**Length** : `1 - 35`|string
+|**Name** +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
+**Length** : `1 - 70`|string
+|**UKBankSortCode** +
+__optional__|UK Domestic Sort Code Identifier +
+**Pattern** : `"^SC[0-9]{6,6}$"`|string
+|===
+
+[[_accounts_accountid_beneficiaries_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_accounts_accountid_beneficiaries_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_getaccounttransactions]]
+=== Get Account Transactions
+....
+GET /accounts/{AccountId}/transactions
+....
+
+
+==== Description
+Get transactions related to an account
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountId** +
+__required__|A unique identifier used to identify the account resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account Transactions successfully retrieved|<<_account_transactions_get_response,Account Transactions GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_transactions_get_response]]
+**Account Transactions GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**data** +
+__required__|Array of Transactions|< <<_accounts_accountid_transactions_get_data,data>> > array
+|**links** +
+__optional__||<<_accounts_accountid_transactions_get_links,links>>
+|**meta** +
+__required__||<<_accounts_accountid_transactions_get_meta,meta>>
+|===
+
+[[_accounts_accountid_transactions_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**AdditionalEntryInformation** +
+__optional__|Further details of the entry. +
+**Length** : `1 - 500`|string
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
+**Length** : `1 - 70`|string
+|**Amount** +
+__required__|Amount of money in the cash entry.|<<_accounts_accountid_transactions_get_data_amount,Amount>>
+|**Balance** +
+__required__||<<_accounts_accountid_transactions_get_data_balance,Balance>>
+|**BankTransactionCode** +
+__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_accounts_accountid_transactions_get_data_banktransactioncode,BankTransactionCode>>
+|**BookingDate** +
+__optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_accounts_accountid_transactions_get_data_bookingdate,BookingDate>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)
+|**EntryReference** +
+__optional__|Unique reference for the entry. +
+**Length** : `1 - 35`|string
+|**MerchantDetails** +
+__optional__||<<_accounts_accountid_transactions_get_data_merchantdetails,MerchantDetails>>
+|**Status** +
+__required__|Status of an entry on the books of the account servicer|enum (Booked, Pending, Information)
+|**ValueDate** +
+__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|<<_accounts_accountid_transactions_get_data_valuedate,ValueDate>>
+|===
+
+[[_accounts_accountid_transactions_get_data_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_accounts_accountid_transactions_get_data_balance]]
+**Balance**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|Amount of money of the cash balance|<<_accounts_accountid_transactions_get_data_balance_amount,Amount>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
+|**Type** +
+__required__|Balance type, in a coded form|enum (Interim, Booked)
+|===
+
+[[_accounts_accountid_transactions_get_data_balance_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_accounts_accountid_transactions_get_data_banktransactioncode]]
+**BankTransactionCode**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Family** +
+__optional__|Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.|<<_accounts_accountid_transactions_get_data_banktransactioncode_family,Family>>
+|**Proprietary** +
+__optional__|Bank transaction code in a proprietary form, as defined by the issuer.|<<_accounts_accountid_transactions_get_data_banktransactioncode_proprietary,Proprietary>>
+|===
+
+[[_accounts_accountid_transactions_get_data_banktransactioncode_family]]
+**Family**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code|string
+|**SubFamilyCode** +
+__required__|Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code|string
+|===
+
+[[_accounts_accountid_transactions_get_data_banktransactioncode_proprietary]]
+**Proprietary**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Proprietary bank transaction code to identify the underlying transaction. +
+**Length** : `1 - 35`|string
+|**Issuer** +
+__optional__|Identification of the issuer of the proprietary bank transaction code. +
+**Length** : `1 - 35`|string
+|===
+
+[[_accounts_accountid_transactions_get_data_bookingdate]]
+**BookingDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_accounts_accountid_transactions_get_data_merchantdetails]]
+**MerchantDetails**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
+**Length** : `3 - 4`|string
+|**Name** +
+__required__|Name by which the party is known and which is usually used to identify that party. +
+**Length** : `1 - 350`|string
+|===
+
+[[_accounts_accountid_transactions_get_data_valuedate]]
+**ValueDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_accounts_accountid_transactions_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_accounts_accountid_transactions_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Accounts
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_getbalances]]
+=== Get Balances
+....
+GET /balances
+....
+
+
+==== Description
+Get Balances
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Balances successfully retrieved|<<_balances_get_response,Balances GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_balances_get_response]]
+**Balances GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**data** +
+__required__|Array of Balances|< <<_balances_get_data,data>> > array
+|**links** +
+__optional__||<<_balances_get_links,links>>
+|**meta** +
+__required__||<<_balances_get_meta,meta>>
+|===
+
+[[_balances_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**Amount** +
+__required__|Amount of money of the cash balance.|<<_balances_get_data_amount,Amount>>
+|**CreditLine** +
+__optional__||<<_balances_get_data_creditline,CreditLine>>
+|**Date** +
+__required__|Indicates the date (and time) of the balance.|<<_balances_get_data_date,Date>>
+|**Type** +
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+|===
+
+[[_balances_get_data_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_balances_get_data_creditline]]
+**CreditLine**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__optional__|Active Or Historic Currency Code and Amount|<<_balances_get_data_creditline_amount,Amount>>
+|**Included** +
+__required__||boolean
+|===
+
+[[_balances_get_data_creditline_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_balances_get_data_date]]
+**Date**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_balances_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_balances_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Balances
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_getbeneficiaries]]
+=== Get Beneficiaries
+....
+GET /beneficiaries
+....
+
+
+==== Description
+Get Beneficiaries
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Beneficiaries successfully retrieved|<<_beneficiaries_get_response,Beneficiaries GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_beneficiaries_get_response]]
+**Beneficiaries GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**data** +
+__required__|Array of Beneficiaries|< <<_beneficiaries_get_data,data>> > array
+|**links** +
+__optional__||<<_beneficiaries_get_links,links>>
+|**meta** +
+__required__||<<_beneficiaries_get_meta,meta>>
+|===
+
+[[_beneficiaries_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**BeneficiaryType** +
+__required__|Indicates whether the entry is a credit or a debit entry|enum (DirectDebit, StandingOrder)
+|**Identification** +
+__optional__|Unique and unambiguous identification for the account between the account owner and the account servicer. +
+**Length** : `1 - 35`|string
+|**Name** +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
+**Length** : `1 - 70`|string
+|**UKBankSortCode** +
+__optional__|UK Domestic Sort Code Identifier +
+**Pattern** : `"^SC[0-9]{6,6}$"`|string
+|===
+
+[[_beneficiaries_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_beneficiaries_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Beneficiaries
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+<<<
+
+[[_gettransactions]]
+=== Get Transactions
+....
+GET /transactions
+....
+
+
+==== Description
+Get Transactions
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Transactions successfully retrieved|<<_account_transactions_get_response,Account Transactions GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_transactions_get_response]]
+**Account Transactions GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**data** +
+__required__|Array of Transactions|< <<_transactions_get_data,data>> > array
+|**links** +
+__optional__||<<_transactions_get_links,links>>
+|**meta** +
+__required__||<<_transactions_get_meta,meta>>
+|===
+
+[[_transactions_get_data]]
+**data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource +
+**Length** : `1 - 35`|string
+|**AdditionalEntryInformation** +
+__optional__|Further details of the entry. +
+**Length** : `1 - 500`|string
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
+**Length** : `1 - 70`|string
+|**Amount** +
+__required__|Amount of money in the cash entry.|<<_transactions_get_data_amount,Amount>>
+|**Balance** +
+__required__||<<_transactions_get_data_balance,Balance>>
+|**BankTransactionCode** +
+__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_transactions_get_data_banktransactioncode,BankTransactionCode>>
+|**BookingDate** +
+__optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_transactions_get_data_bookingdate,BookingDate>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)
+|**EntryReference** +
+__optional__|Unique reference for the entry. +
+**Length** : `1 - 35`|string
+|**MerchantDetails** +
+__optional__||<<_transactions_get_data_merchantdetails,MerchantDetails>>
+|**Status** +
+__required__|Status of an entry on the books of the account servicer|enum (Booked, Pending, Information)
+|**ValueDate** +
+__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|<<_transactions_get_data_valuedate,ValueDate>>
+|===
+
+[[_transactions_get_data_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_transactions_get_data_balance]]
+**Balance**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|Amount of money of the cash balance|<<_transactions_get_data_balance_amount,Amount>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
+|**Type** +
+__required__|Balance type, in a coded form|enum (Interim, Booked)
+|===
+
+[[_transactions_get_data_balance_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_transactions_get_data_banktransactioncode]]
+**BankTransactionCode**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Family** +
+__optional__|Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.|<<_transactions_get_data_banktransactioncode_family,Family>>
+|**Proprietary** +
+__optional__|Bank transaction code in a proprietary form, as defined by the issuer.|<<_transactions_get_data_banktransactioncode_proprietary,Proprietary>>
+|===
+
+[[_transactions_get_data_banktransactioncode_family]]
+**Family**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code|string
+|**SubFamilyCode** +
+__required__|Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code|string
+|===
+
+[[_transactions_get_data_banktransactioncode_proprietary]]
+**Proprietary**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Proprietary bank transaction code to identify the underlying transaction. +
+**Length** : `1 - 35`|string
+|**Issuer** +
+__optional__|Identification of the issuer of the proprietary bank transaction code. +
+**Length** : `1 - 35`|string
+|===
+
+[[_transactions_get_data_bookingdate]]
+**BookingDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_transactions_get_data_merchantdetails]]
+**MerchantDetails**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
+**Length** : `3 - 4`|string
+|**Name** +
+__required__|Name by which the party is known and which is usually used to identify that party. +
+**Length** : `1 - 350`|string
+|===
+
+[[_transactions_get_data_valuedate]]
+**ValueDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_transactions_get_links]]
+**links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_transactions_get_meta]]
+**meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**TotalResults** +
+__optional__|integer
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Transactions
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|===
+
+
+

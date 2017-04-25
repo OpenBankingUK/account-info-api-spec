@@ -1,0 +1,28 @@
+get:
+  tags:
+   - Accounts
+  summary: Get an account request resource
+  description: Get an account request  resource
+  operationId: GetAccountRequest
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+   - $ref: "./parameters.yaml#/AccountRequestId"
+  responses:
+    200:
+      description: Account Request resource successfully retrieved
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/accounts_requests/account_request.get.200.response.schema.yaml
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      $ref: ../../index.yaml#/responses/403ErrorResponse
+    404:
+      $ref: ../../index.yaml#/responses/404NotFound
+    500:
+      $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - TPPOAuth2Security:
+      - tpp_client_credential

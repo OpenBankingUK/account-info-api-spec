@@ -1,0 +1,43 @@
+= Account Information APIs
+
+
+[[_overview]]
+== Overview
+Draft Swagger specification for Account Information APIs
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : v0.1
+
+
+=== Contact information
+[%hardbreaks]
+__Contact__ : Claudio Viola
+__Contact Email__ : claudio.viola@openbanking.org.uk
+
+
+=== License information
+[%hardbreaks]
+__License__ : open-licence
+__License URL__ : https://www.openbanking.org.uk/open-licence
+__Terms of service__ : https://www.openbanking.org.uk/terms
+
+
+=== URI scheme
+[%hardbreaks]
+__BasePath__ : /open-banking
+__Schemes__ : HTTPS
+
+
+=== Tags
+
+* Accounts : Account related endpoints
+
+
+=== Produces
+
+* `application/json`
+
+
+

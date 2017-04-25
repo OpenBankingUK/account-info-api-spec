@@ -1,0 +1,30 @@
+{
+  "title": "Account Transactions GET response",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "TotalResults": {
+          "type": "integer"
+        }
+      }
+    },
+    "data": {
+      "description": "Array of Transactions",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/accounts/transaction.json"
+      },
+      "minItems": 0
+    },
+    "links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "data"
+  ]
+}

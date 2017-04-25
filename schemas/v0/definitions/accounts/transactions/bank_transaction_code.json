@@ -1,0 +1,44 @@
+{
+    "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+    "type": "object",
+    "properties": {
+        "Family": {
+            "description": "Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.",
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "description": "Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code",
+                    "type": "string"
+                },
+                "SubFamilyCode": {
+                    "description": "Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "Code",
+                "SubFamilyCode"
+            ]
+        },
+        "Proprietary": {
+            "description": "Bank transaction code in a proprietary form, as defined by the issuer.",
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                    "$ref": "../../common/max_35_text.json"
+                },
+                "Issuer": {
+                    "description": "Identification of the issuer of the proprietary bank transaction code.",
+                    "$ref": "../../common/max_35_text.json"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "Code"
+            ]
+        }
+    },
+    "additionalProperties": false
+}

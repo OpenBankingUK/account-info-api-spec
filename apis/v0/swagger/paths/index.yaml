@@ -1,0 +1,20 @@
+/accounts-requests:
+  $ref: ./accounts_requests/accounts_request_post.yaml
+/accounts-requests/{AccountRequestId}:
+  $ref: ./accounts_requests/accounts_request_get.yaml
+/accounts:
+  $ref: ./accounts/accounts_get.yaml
+/accounts/{AccountId}:
+  $ref: ./accounts/account_get.yaml
+/accounts/{AccountId}/transactions:
+  $ref: ./accounts/accounts_transactions_get.yaml
+/accounts/{AccountId}/beneficiaries:
+  $ref: ./accounts/accounts_beneficiaries_get.yaml
+/accounts/{AccountId}/balances:
+  $ref: ./accounts/accounts_balances_get.yaml
+/beneficiaries:
+  $ref: ./beneficiaries/beneficiaries_get.yaml
+/transactions:
+  $ref: ./transactions/transactions_get.yaml
+/balances:
+  $ref: ./balances/balances_get.yaml

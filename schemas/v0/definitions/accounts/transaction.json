@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "$ref": "./account_id.json"
+    },
+    "EntryReference": {
+      "description": "Unique reference for the entry.",
+      "$ref": "../common/max_35_text.json"
+    },
+    "Amount": {
+      "description": "Amount of money in the cash entry.",
+      "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "CreditDebitIndicator": {
+      "$ref": "./transactions/credit_debit_indicator.json"
+    },
+    "Status": {
+      "$ref": "./transactions/status.json"
+    },
+    "AdditionalEntryInformation": {
+      "description": "Further details of the entry.",
+      "$ref": "../common/max_500_text.json"
+    },
+    "AddressLine": {
+      "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+      "$ref": "../common/max_70_text.json"
+    },
+    "BookingDate": {
+      "description": "Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+      "$ref": "../common/date_and_date_time_choice.json"
+    },
+    "ValueDate": {
+      "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available  to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+      "$ref": "../common/date_and_date_time_choice.json"
+    },
+    "BankTransactionCode": {
+      "$ref": "./transactions/bank_transaction_code.json"
+    },
+    "Balance": {
+      "$ref": "./transactions/cash_balance.json"
+    },
+    "MerchantDetails": {
+      "$ref": "./transactions/merchant_details.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "Amount",
+    "Currency",
+    "CreditDebitIndicator",
+    "Status",
+    "BankTransactionCode",
+    "Balance"
+  ]
+}

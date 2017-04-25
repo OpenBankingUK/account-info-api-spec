@@ -1,0 +1,4 @@
+{
+  "$ref": "../common/max_35_text.json",
+  "description": "A unique identifier used to identify the account resource"
+}
