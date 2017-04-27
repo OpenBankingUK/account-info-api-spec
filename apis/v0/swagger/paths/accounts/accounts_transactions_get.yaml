@@ -8,6 +8,7 @@ get:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
    - $ref: "./parameters.yaml#/AccountId"
+   - $ref: "./parameters_transactions.yaml#/filters"
   responses:
     200:
       description: Account Transactions successfully retrieved
