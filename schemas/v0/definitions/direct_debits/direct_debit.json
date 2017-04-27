@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "$ref": "../accounts/account_id.json"
+    },
+    "DirectDebitId": {
+     "$ref": "direct_debit_id.json"
+   },
+   "MandateIdentification": {
+     "description": "Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.",
+     "$ref": "../common/max_35_text.json"
+   },
+   "DirectDebitStatusCode": {
+     "$ref": "ob_external_direct_debit_status_code.json"
+   },
+   "Currency": {
+     "$ref": "../common/active_or_historic_currency_code.json"
+   },
+   "Name": {
+     "description": "Name of Service User",
+     "$ref": "../common/max_70_text.json"
+   },
+   "PreviousPaymentDate": {
+     "description": "Date of most recent direct debit collection.",
+     "$ref": "../common/iso_date.json"
+   },
+   "PreviousPaymentAmount": {
+     "description": "The amount of the most recent direct debit collection.",
+     "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+   }
+ },
+ "required": [
+   "AccountId",
+   "MandateIdentification",
+   "Name"
+ ],
+ "additionalProperties": false
+}

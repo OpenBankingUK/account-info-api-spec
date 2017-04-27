@@ -30,11 +30,6 @@ __BasePath__ : /open-banking
 __Schemes__ : HTTPS
 
 
-=== Tags
-
-* Accounts : Account related endpoints
-
-
 === Produces
 
 * `application/json`

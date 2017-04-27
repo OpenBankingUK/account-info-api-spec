@@ -1,8 +1,9 @@
 {
+  "description": "Details of the merchant involved in the transaction.",
   "type": "object",
   "properties": {
     "Name": {
-      "description": "Name by which the party is known and which is usually used to identify that party.",
+      "description": "Name by which the merchant is known.",
       "$ref": "../../common/max_350_text.json"
     },
     "MerchantCategoryCode": {

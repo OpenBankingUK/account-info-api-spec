@@ -4,26 +4,33 @@
   "type": "object",
   "properties": {
     "Permissions": {
-      "type": "object",
-      "properties": {
-        "Account": {
-          "$ref": "../definitions/account_request/account_permissions.json"
-        },
-        "Transactions": {
-          "$ref": "../definitions/account_request/transactions_permissions.json"
-        }
-      },
-      "minProperties": 1
+       "$ref": "../definitions/account_request/permissions.json"
     },
-    "ExpiresAt": {
+    "PermissionsExpirationDateTime": {
+      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
       "type": "string",
-      "format": "date-time",
-      "description": "Date time when the access to the account information will expire"
+      "format": "date-time"
+    },
+    "TransactionFromDateTime": {
+      "description": "Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionToDateTime": {
+      "description": "Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "SelectedAccounts": {
+      "description": "Provides the details to identify accounts in the account information request.",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/common/cash_account_and_branch_identification.json"
+      }
     }
   },
   "additionalProperties": false,
   "required": [
-    "Permissions",
-    "ExpiresAt"
+    "Permissions"
   ]
 }

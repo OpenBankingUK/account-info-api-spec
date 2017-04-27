@@ -1,8 +1,6 @@
 post:
-  tags:
-   - Accounts
-  summary: Create an account request resource
-  description: Create an account request  resource
+  summary: Create an account request
+  description: Create an account request 
   operationId: CreateAccountRequest
   consumes:
     - $ref: ../../definitions/mime_type.yaml

@@ -6,8 +6,10 @@
     },
     "Amount": {
       "$ref": "../../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "Type": {
+      "$ref": "external_limit_type_code.json"
     }
-
   },
   "additionalProperties": false,
   "required": [

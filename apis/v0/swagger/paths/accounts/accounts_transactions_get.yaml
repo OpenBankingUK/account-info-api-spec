@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Accounts
   summary: Get Account Transactions
   description: Get transactions related to an account
   operationId: GetAccountTransactions

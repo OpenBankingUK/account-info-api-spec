@@ -12,6 +12,14 @@
   $ref: ./accounts/accounts_beneficiaries_get.yaml
 /accounts/{AccountId}/balances:
   $ref: ./accounts/accounts_balances_get.yaml
+/accounts/{AccountId}/direct-debits:
+  $ref: ./accounts/accounts_direct_debits_get.yaml
+/accounts/{AccountId}/standing-orders:
+  $ref: ./accounts/accounts_standing_orders_get.yaml
+/standing-orders:
+  $ref: ./standing_orders/standing_orders_get.yaml
+/direct-debits:
+  $ref: ./direct_debits/direct_debits_get.yaml
 /beneficiaries:
   $ref: ./beneficiaries/beneficiaries_get.yaml
 /transactions:

@@ -1,7 +1,5 @@
 get:
-  tags:
-   - Accounts
-  summary: Get Account 
+  summary: Get Account
   description: Get an account
   operationId: GetAccount
   produces:

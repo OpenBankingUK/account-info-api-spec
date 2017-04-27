@@ -4,8 +4,11 @@
     "AccountId": {
       "$ref": "./account_id.json"
     },
-    "EntryReference": {
-      "description": "Unique reference for the entry.",
+    "TransactionId": {
+      "$ref": "../common/max_40_text.json"
+    },
+    "TransactionReference": {
+      "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
       "$ref": "../common/max_35_text.json"
     },
     "Amount": {
@@ -18,8 +21,8 @@
     "Status": {
       "$ref": "./transactions/status.json"
     },
-    "AdditionalEntryInformation": {
-      "description": "Further details of the entry.",
+    "TransactionInformation": {
+      "description": "Further details of the transaction. This is the transaction narrative, which in unstructured text.",
       "$ref": "../common/max_500_text.json"
     },
     "AddressLine": {
@@ -36,6 +39,9 @@
     },
     "BankTransactionCode": {
       "$ref": "./transactions/bank_transaction_code.json"
+    },
+    "ProprietaryBankTransactionCode": {
+      "$ref": "./transactions/proprietary_bank_transaction_code_structure.json"
     },
     "Balance": {
       "$ref": "./transactions/cash_balance.json"

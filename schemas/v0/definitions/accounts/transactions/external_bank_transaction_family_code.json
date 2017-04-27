@@ -1,0 +1,4 @@
+{
+  "description": "Specifies the family within a domain.",
+  "type": "string"
+}

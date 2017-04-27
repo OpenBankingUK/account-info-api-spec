@@ -1,0 +1,7 @@
+{
+  "description": "Specifies the status of the account request resource in code form.",
+  "type": "string",
+  "enum": [
+    "TBD"
+  ]
+}

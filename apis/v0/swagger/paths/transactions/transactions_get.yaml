@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Transactions
   summary: Get Transactions
   description: Get Transactions
   operationId: GetTransactions

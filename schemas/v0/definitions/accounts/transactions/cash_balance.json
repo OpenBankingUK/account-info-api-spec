@@ -1,18 +1,17 @@
 {
+  "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
   "type": "object",
   "properties": {
     "Amount": {
-      "description": "Amount of money of the cash balance",
+      "description": "Amount of money of the cash balance after a transaction entry is applied to the account..",
       "$ref": "../../common/active_or_historic_currency_code_and_amount.json"
     },
     "CreditDebitIndicator": {
       "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
-      "$ref": "credit_debit_indicator.json"
+      "$ref": "../balances/credit_debit_code.json"
     },
     "Type": {
-      "description": "Balance type, in a coded form",
-      "type": "string",
-      "enum": [ "Interim", "Booked" ]
+      "$ref": "../balances/balance_type_code.json"
     }
   },
   "additionalProperties": false,

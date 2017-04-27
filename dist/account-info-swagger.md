@@ -26,11 +26,6 @@ Draft Swagger specification for Account Information APIs
 *Schemes* : HTTPS
 
 
-### Tags
-
-* Accounts : Account related endpoints
-
-
 ### Produces
 
 * `application/json`
@@ -79,11 +74,29 @@ Get a list of accounts
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
-|**Currency**  <br>*optional*|Identification of the currency in which the account is held.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
-|**Identification**  <br>*optional*|Unique and unambiguous identification for the account between the account owner and the account servicer.  <br>**Length** : `1 - 35`|string|
-|**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
-|**UKBankSortCode**  <br>*optional*|UK Domestic Sort Code Identifier  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**Account**  <br>*required*|Provides the details to identify an account.|[Account](#accounts-get-data-account)|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#accounts-get-data-servicer)|
+
+<a name="accounts-get-data-account"></a>
+**Account**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
+
+<a name="accounts-get-data-servicer"></a>
+**Servicer**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 <a name="accounts-get-links"></a>
 **links**
@@ -109,11 +122,6 @@ Get a list of accounts
 * `application/json`
 
 
-#### Tags
-
-* Accounts
-
-
 #### Security
 
 |Type|Name|Scopes|
@@ -124,14 +132,14 @@ Get a list of accounts
 ***
 
 <a name="createaccountrequest"></a>
-### Create an account request resource
+### Create an account request
 ```
 POST /accounts-requests
 ```
 
 
 #### Description
-Create an account request  resource
+Create an account request
 
 
 #### Body parameter
@@ -143,95 +151,89 @@ Create an Account Request
 
 |Name|Description|Schema|
 |---|---|---|
-|**ExpiresAt**  <br>*required*|Date time when the access to the account information will expire|string (date-time)|
-|**Permissions**  <br>*required*||[Permissions](#createaccountrequest-permissions)|
+|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< object > array|
+|**PermissionsExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**SelectedAccounts**  <br>*optional*|Provides the details to identify accounts in the account information request.|< [SelectedAccounts](#createaccountrequest-selectedaccounts) > array|
+|**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
+|**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 
-<a name="createaccountrequest-permissions"></a>
-**Permissions**
+<a name="createaccountrequest-selectedaccounts"></a>
+**SelectedAccounts**
 
-|Name|Schema|
-|---|---|
-|**Account**  <br>*optional*|[Account](#accounts-requests-post-account)|
-|**Transactions**  <br>*optional*|[Transactions](#accounts-requests-post-transactions)|
+|Name|Description|Schema|
+|---|---|---|
+|**Account**  <br>*required*||[Account](#accounts-requests-post-account)|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-requests-post-servicer)|
 
 <a name="accounts-requests-post-account"></a>
 **Account**
 
 |Name|Description|Schema|
 |---|---|---|
-|**readBalances**  <br>*optional*|Allow read access to balances for authorised accounts|boolean|
-|**readBasic**  <br>*optional*|Allow read permission on basic accounts information for authorised accounts|boolean|
-|**readBeneficiaries**  <br>*optional*|Allow read access to beneficiaries for authorised accounts|boolean|
-|**readBeneficiariesIdentities**  <br>*optional*|Allow read access to beneficiaries identities (account number) for one or more accounts|boolean|
-|**readIdentities**  <br>*optional*|Allow read permission on sort-code, account number and name for authorised accounts|boolean|
-|**readProducts**  <br>*optional*|Allow read access to product details for authorised accounts|boolean|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-requests-post-transactions"></a>
-**Transactions**
+<a name="accounts-requests-post-servicer"></a>
+**Servicer**
 
 |Name|Description|Schema|
 |---|---|---|
-|**readAll**  <br>*optional*|Allow read access on all transactions resources for one or more accounts|boolean|
-|**readCredits**  <br>*optional*|Allow read access to credit transactions for one or more accounts|boolean|
-|**readDebits**  <br>*optional*|Allow read access to debit transactions for one or more accounts|boolean|
-|**readDescriptions**  <br>*optional*|Allow read access to transactions descriptions for one or more accounts|boolean|
-|**readFromDate**  <br>*required*|Allow read access to all transactions starting from the specified date|string (date-time)|
-|**readToDate**  <br>*required*|Allow read access to all transactions ending on the specified date, if not provided|string (date-time)|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Account Request resource successfully created|[Account Request POST response](#account-request-post-response)|
+|**201**|Account Request resource successfully created|[Account Request POST request](#account-request-post-request)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
 |**409**|Conflict|No Content|
 |**500**|Internal Server Error|No Content|
 
-<a name="account-request-post-response"></a>
-**Account Request POST response**
+<a name="account-request-post-request"></a>
+**Account Request POST request**
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountRequestId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.  <br>**Length** : `1 - 35`|string|
-|**CreatedAt**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
-|**ExpiresAt**  <br>*required*|Date time when the access to the account information will expire|string (date-time)|
-|**Permissions**  <br>*required*||[Permissions](#accounts-requests-post-permissions)|
-|**Status**  <br>*required*||enum (AwaitingAuthorisation, Authorised, NotAuthorised, Expired)|
+|**AccountIds**  <br>*optional*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.|< string > array|
+|**AccountRequestId**  <br>*optional*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
+|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< object > array|
+|**PermissionsExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**SelectedAccounts**  <br>*optional*|Provides the details to identify accounts in the account information request.|< [SelectedAccounts](#accounts-requests-post-selectedaccounts) > array|
+|**Status**  <br>*optional*|Specifies the status of the account request resource in code form.|enum (TBD)|
+|**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
+|**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 
-<a name="accounts-requests-post-permissions"></a>
-**Permissions**
+<a name="accounts-requests-post-selectedaccounts"></a>
+**SelectedAccounts**
 
-|Name|Schema|
-|---|---|
-|**Account**  <br>*optional*|[Account](#accounts-requests-post-permissions-account)|
-|**Transactions**  <br>*optional*|[Transactions](#accounts-requests-post-permissions-transactions)|
+|Name|Description|Schema|
+|---|---|---|
+|**Account**  <br>*required*||[Account](#accounts-requests-post-selectedaccounts-account)|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-requests-post-selectedaccounts-servicer)|
 
-<a name="accounts-requests-post-permissions-account"></a>
+<a name="accounts-requests-post-selectedaccounts-account"></a>
 **Account**
 
 |Name|Description|Schema|
 |---|---|---|
-|**readBalances**  <br>*optional*|Allow read access to balances for authorised accounts|boolean|
-|**readBasic**  <br>*optional*|Allow read permission on basic accounts information for authorised accounts|boolean|
-|**readBeneficiaries**  <br>*optional*|Allow read access to beneficiaries for authorised accounts|boolean|
-|**readBeneficiariesIdentities**  <br>*optional*|Allow read access to beneficiaries identities (account number) for one or more accounts|boolean|
-|**readIdentities**  <br>*optional*|Allow read permission on sort-code, account number and name for authorised accounts|boolean|
-|**readProducts**  <br>*optional*|Allow read access to product details for authorised accounts|boolean|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-requests-post-permissions-transactions"></a>
-**Transactions**
+<a name="accounts-requests-post-selectedaccounts-servicer"></a>
+**Servicer**
 
 |Name|Description|Schema|
 |---|---|---|
-|**readAll**  <br>*optional*|Allow read access on all transactions resources for one or more accounts|boolean|
-|**readCredits**  <br>*optional*|Allow read access to credit transactions for one or more accounts|boolean|
-|**readDebits**  <br>*optional*|Allow read access to debit transactions for one or more accounts|boolean|
-|**readDescriptions**  <br>*optional*|Allow read access to transactions descriptions for one or more accounts|boolean|
-|**readFromDate**  <br>*required*|Allow read access to all transactions starting from the specified date|string (date-time)|
-|**readToDate**  <br>*required*|Allow read access to all transactions ending on the specified date, if not provided|string (date-time)|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 
 #### Consumes
@@ -244,11 +246,6 @@ Create an Account Request
 * `application/json`
 
 
-#### Tags
-
-* Accounts
-
-
 #### Security
 
 |Type|Name|Scopes|
@@ -259,14 +256,14 @@ Create an Account Request
 ***
 
 <a name="getaccountrequest"></a>
-### Get an account request resource
+### Get an account request
 ```
 GET /accounts-requests/{AccountRequestId}
 ```
 
 
 #### Description
-Get an account request  resource
+Get an account request
 
 
 #### Parameters
@@ -292,53 +289,45 @@ Get an account request  resource
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountRequestId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.  <br>**Length** : `1 - 35`|string|
-|**CreatedAt**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
-|**ExpiresAt**  <br>*required*|Date time when the access to the account information will expire|string (date-time)|
-|**Permissions**  <br>*required*||[Permissions](#accounts-requests-accountrequestid-get-permissions)|
-|**Status**  <br>*required*||enum (AwaitingAuthorisation, Authorised, NotAuthorised, Expired)|
+|**AccountIds**  <br>*optional*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.|< string > array|
+|**AccountRequestId**  <br>*optional*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
+|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< object > array|
+|**PermissionsExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**SelectedAccounts**  <br>*optional*|Provides the details to identify accounts in the account information request.|< [SelectedAccounts](#accounts-requests-accountrequestid-get-selectedaccounts) > array|
+|**Status**  <br>*optional*|Specifies the status of the account request resource in code form.|enum (TBD)|
+|**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
+|**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 
-<a name="accounts-requests-accountrequestid-get-permissions"></a>
-**Permissions**
+<a name="accounts-requests-accountrequestid-get-selectedaccounts"></a>
+**SelectedAccounts**
 
-|Name|Schema|
-|---|---|
-|**Account**  <br>*optional*|[Account](#accounts-requests-accountrequestid-get-permissions-account)|
-|**Transactions**  <br>*optional*|[Transactions](#accounts-requests-accountrequestid-get-permissions-transactions)|
+|Name|Description|Schema|
+|---|---|---|
+|**Account**  <br>*required*||[Account](#accounts-requests-accountrequestid-get-selectedaccounts-account)|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-requests-accountrequestid-get-selectedaccounts-servicer)|
 
-<a name="accounts-requests-accountrequestid-get-permissions-account"></a>
+<a name="accounts-requests-accountrequestid-get-selectedaccounts-account"></a>
 **Account**
 
 |Name|Description|Schema|
 |---|---|---|
-|**readBalances**  <br>*optional*|Allow read access to balances for authorised accounts|boolean|
-|**readBasic**  <br>*optional*|Allow read permission on basic accounts information for authorised accounts|boolean|
-|**readBeneficiaries**  <br>*optional*|Allow read access to beneficiaries for authorised accounts|boolean|
-|**readBeneficiariesIdentities**  <br>*optional*|Allow read access to beneficiaries identities (account number) for one or more accounts|boolean|
-|**readIdentities**  <br>*optional*|Allow read permission on sort-code, account number and name for authorised accounts|boolean|
-|**readProducts**  <br>*optional*|Allow read access to product details for authorised accounts|boolean|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-requests-accountrequestid-get-permissions-transactions"></a>
-**Transactions**
+<a name="accounts-requests-accountrequestid-get-selectedaccounts-servicer"></a>
+**Servicer**
 
 |Name|Description|Schema|
 |---|---|---|
-|**readAll**  <br>*optional*|Allow read access on all transactions resources for one or more accounts|boolean|
-|**readCredits**  <br>*optional*|Allow read access to credit transactions for one or more accounts|boolean|
-|**readDebits**  <br>*optional*|Allow read access to debit transactions for one or more accounts|boolean|
-|**readDescriptions**  <br>*optional*|Allow read access to transactions descriptions for one or more accounts|boolean|
-|**readFromDate**  <br>*required*|Allow read access to all transactions starting from the specified date|string (date-time)|
-|**readToDate**  <br>*required*|Allow read access to all transactions ending on the specified date, if not provided|string (date-time)|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 
 #### Produces
 
 * `application/json`
-
-
-#### Tags
-
-* Accounts
 
 
 #### Security
@@ -384,21 +373,34 @@ Get an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
-|**Currency**  <br>*optional*|Identification of the currency in which the account is held.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
-|**Identification**  <br>*optional*|Unique and unambiguous identification for the account between the account owner and the account servicer.  <br>**Length** : `1 - 35`|string|
-|**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
-|**UKBankSortCode**  <br>*optional*|UK Domestic Sort Code Identifier  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**Account**  <br>*required*|Provides the details to identify an account.|[Account](#accounts-accountid-get-account)|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#accounts-accountid-get-servicer)|
+
+<a name="accounts-accountid-get-account"></a>
+**Account**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
+
+<a name="accounts-accountid-get-servicer"></a>
+**Servicer**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 
 #### Produces
 
 * `application/json`
-
-
-#### Tags
-
-* Accounts
 
 
 #### Security
@@ -453,8 +455,9 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#accounts-accountid-balances-get-data-amount)|
+|**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#accounts-accountid-balances-get-data-creditline)|
 |**Date**  <br>*required*|Indicates the date (and time) of the balance.|[Date](#accounts-accountid-balances-get-data-date)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
@@ -474,6 +477,7 @@ Get Balances related to an account
 |---|---|---|
 |**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#accounts-accountid-balances-get-data-creditline-amount)|
 |**Included**  <br>*required*||boolean|
+|**Type**  <br>*optional*|Limit type, in a coded form.|string|
 
 <a name="accounts-accountid-balances-get-data-creditline-amount"></a>
 **Amount**
@@ -513,11 +517,6 @@ Get Balances related to an account
 #### Produces
 
 * `application/json`
-
-
-#### Tags
-
-* Accounts
 
 
 #### Security
@@ -572,11 +571,29 @@ Get Beneficiaries related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
-|**BeneficiaryType**  <br>*required*|Indicates whether the entry is a credit or a debit entry|enum (DirectDebit, StandingOrder)|
-|**Identification**  <br>*optional*|Unique and unambiguous identification for the account between the account owner and the account servicer.  <br>**Length** : `1 - 35`|string|
-|**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**UKBankSortCode**  <br>*optional*|UK Domestic Sort Code Identifier  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**CreditorAccount**  <br>*required*||[CreditorAccount](#accounts-accountid-beneficiaries-get-data-creditoraccount)|
+|**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-accountid-beneficiaries-get-data-servicer)|
+
+<a name="accounts-accountid-beneficiaries-get-data-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
+
+<a name="accounts-accountid-beneficiaries-get-data-servicer"></a>
+**Servicer**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 <a name="accounts-accountid-beneficiaries-get-links"></a>
 **links**
@@ -602,9 +619,228 @@ Get Beneficiaries related to an account
 * `application/json`
 
 
-#### Tags
+#### Security
 
-* Accounts
+|Type|Name|Scopes|
+|---|---|---|
+|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
+
+
+***
+
+<a name="getaccountdirectdebits"></a>
+### Get Account Direct Debits
+```
+GET /accounts/{AccountId}/direct-debits
+```
+
+
+#### Description
+Get Direct Debits related to an account
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|
+|---|---|---|---|
+|**Path**|**AccountId**  <br>*required*|A unique identifier used to identify the account resource.|string|
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Account Direct Debits successfully retrieved|[Direct Debits GET response](#direct-debits-get-response)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**404**|Not Found|No Content|
+|**500**|Internal Server Error|No Content|
+
+<a name="direct-debits-get-response"></a>
+**Direct Debits GET response**
+
+|Name|Description|Schema|
+|---|---|---|
+|**data**  <br>*required*|Array of Direct Debits|< [data](#accounts-accountid-direct-debits-get-data) > array|
+|**links**  <br>*optional*||[links](#accounts-accountid-direct-debits-get-links)|
+|**meta**  <br>*required*||[meta](#accounts-accountid-direct-debits-get-meta)|
+
+<a name="accounts-accountid-direct-debits-get-data"></a>
+**data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**Currency**  <br>*optional*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**DirectDebitId**  <br>*optional*|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
+|**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
+|**Name**  <br>*required*|Name of Service User  <br>**Length** : `1 - 70`|string|
+|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#accounts-accountid-direct-debits-get-data-previouspaymentamount)|
+|**PreviousPaymentDate**  <br>*optional*|Date of most recent direct debit collection.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+
+<a name="accounts-accountid-direct-debits-get-data-previouspaymentamount"></a>
+**PreviousPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="accounts-accountid-direct-debits-get-links"></a>
+**links**
+
+|Name|Schema|
+|---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
+|**self**  <br>*required*|string (uri)|
+
+<a name="accounts-accountid-direct-debits-get-meta"></a>
+**meta**
+
+|Name|Schema|
+|---|---|
+|**TotalResults**  <br>*optional*|integer|
+
+
+#### Produces
+
+* `application/json`
+
+
+#### Security
+
+|Type|Name|Scopes|
+|---|---|---|
+|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
+
+
+***
+
+<a name="getaccountstandingorders"></a>
+### Get Account Standing Orders
+```
+GET /accounts/{AccountId}/standing-orders
+```
+
+
+#### Description
+Get Standing Orders related to an account
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|
+|---|---|---|---|
+|**Path**|**AccountId**  <br>*required*|A unique identifier used to identify the account resource.|string|
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Account Standing Orders successfully retrieved|[Standing Orders GET response](#standing-orders-get-response)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**404**|Not Found|No Content|
+|**500**|Internal Server Error|No Content|
+
+<a name="standing-orders-get-response"></a>
+**Standing Orders GET response**
+
+|Name|Description|Schema|
+|---|---|---|
+|**data**  <br>*required*|Array of Standing Orders|< [data](#accounts-accountid-standing-orders-get-data) > array|
+|**links**  <br>*optional*||[links](#accounts-accountid-standing-orders-get-links)|
+|**meta**  <br>*required*||[meta](#accounts-accountid-standing-orders-get-meta)|
+
+<a name="accounts-accountid-standing-orders-get-data"></a>
+**data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**CreditorAccount**  <br>*required*|Provides the details to identify the beneficiary account.|[CreditorAccount](#accounts-accountid-standing-orders-get-data-creditoraccount)|
+|**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#accounts-accountid-standing-orders-get-data-finalpaymentamount)|
+|**FinalPaymentDate**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#accounts-accountid-standing-orders-get-data-firstpaymentamount)|
+|**FirstPaymentDate**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+|**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
+|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#accounts-accountid-standing-orders-get-data-nextpaymentamount)|
+|**NextPaymentDate**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-accountid-standing-orders-get-data-servicer)|
+|**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+
+<a name="accounts-accountid-standing-orders-get-data-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
+
+<a name="accounts-accountid-standing-orders-get-data-finalpaymentamount"></a>
+**FinalPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="accounts-accountid-standing-orders-get-data-firstpaymentamount"></a>
+**FirstPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="accounts-accountid-standing-orders-get-data-nextpaymentamount"></a>
+**NextPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="accounts-accountid-standing-orders-get-data-servicer"></a>
+**Servicer**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+
+<a name="accounts-accountid-standing-orders-get-links"></a>
+**links**
+
+|Name|Schema|
+|---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
+|**self**  <br>*required*|string (uri)|
+
+<a name="accounts-accountid-standing-orders-get-meta"></a>
+**meta**
+
+|Name|Schema|
+|---|---|
+|**TotalResults**  <br>*optional*|integer|
+
+
+#### Produces
+
+* `application/json`
 
 
 #### Security
@@ -659,17 +895,19 @@ Get transactions related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
-|**AdditionalEntryInformation**  <br>*optional*|Further details of the entry.  <br>**Length** : `1 - 500`|string|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
 |**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#accounts-accountid-transactions-get-data-amount)|
-|**Balance**  <br>*required*||[Balance](#accounts-accountid-transactions-get-data-balance)|
+|**Balance**  <br>*required*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#accounts-accountid-transactions-get-data-balance)|
 |**BankTransactionCode**  <br>*required*|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|[BankTransactionCode](#accounts-accountid-transactions-get-data-banktransactioncode)|
 |**BookingDate**  <br>*optional*|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|[BookingDate](#accounts-accountid-transactions-get-data-bookingdate)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)|
-|**EntryReference**  <br>*optional*|Unique reference for the entry.  <br>**Length** : `1 - 35`|string|
-|**MerchantDetails**  <br>*optional*||[MerchantDetails](#accounts-accountid-transactions-get-data-merchantdetails)|
-|**Status**  <br>*required*|Status of an entry on the books of the account servicer|enum (Booked, Pending, Information)|
+|**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#accounts-accountid-transactions-get-data-merchantdetails)|
+|**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#accounts-accountid-transactions-get-data-proprietarybanktransactioncode)|
+|**Status**  <br>*required*|Status of an entry on the books of the account servicer|enum (Booked, Pending)|
+|**TransactionId**  <br>*optional*|maxLength 40 text  <br>**Length** : `1 - 40`|string|
+|**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which in unstructured text.  <br>**Length** : `1 - 500`|string|
+|**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDate**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available  to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|[ValueDate](#accounts-accountid-transactions-get-data-valuedate)|
 
 <a name="accounts-accountid-transactions-get-data-amount"></a>
@@ -685,9 +923,9 @@ Get transactions related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|Amount of money of the cash balance|[Amount](#accounts-accountid-transactions-get-data-balance-amount)|
+|**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#accounts-accountid-transactions-get-data-balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**Type**  <br>*required*|Balance type, in a coded form|enum (Interim, Booked)|
+|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
 
 <a name="accounts-accountid-transactions-get-data-balance-amount"></a>
 **Amount**
@@ -702,24 +940,8 @@ Get transactions related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Family**  <br>*optional*|Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.|[Family](#accounts-accountid-transactions-get-data-banktransactioncode-family)|
-|**Proprietary**  <br>*optional*|Bank transaction code in a proprietary form, as defined by the issuer.|[Proprietary](#accounts-accountid-transactions-get-data-banktransactioncode-proprietary)|
-
-<a name="accounts-accountid-transactions-get-data-banktransactioncode-family"></a>
-**Family**
-
-|Name|Description|Schema|
-|---|---|---|
-|**Code**  <br>*required*|Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code|string|
-|**SubFamilyCode**  <br>*required*|Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code|string|
-
-<a name="accounts-accountid-transactions-get-data-banktransactioncode-proprietary"></a>
-**Proprietary**
-
-|Name|Description|Schema|
-|---|---|---|
-|**Code**  <br>*required*|Proprietary bank transaction code to identify the underlying transaction.  <br>**Length** : `1 - 35`|string|
-|**Issuer**  <br>*optional*|Identification of the issuer of the proprietary bank transaction code.  <br>**Length** : `1 - 35`|string|
+|**Code**  <br>*required*|Specifies the family within a domain.|string|
+|**SubCode**  <br>*optional*|Specifies the sub-product family within a specific family.|string|
 
 <a name="accounts-accountid-transactions-get-data-bookingdate"></a>
 **BookingDate**
@@ -735,7 +957,15 @@ Get transactions related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**Name**  <br>*required*|Name by which the party is known and which is usually used to identify that party.  <br>**Length** : `1 - 350`|string|
+|**Name**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+
+<a name="accounts-accountid-transactions-get-data-proprietarybanktransactioncode"></a>
+**ProprietaryBankTransactionCode**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Code**  <br>*required*|Proprietary bank transaction code to identify the underlying transaction.  <br>**Length** : `1 - 35`|string|
+|**Issuer**  <br>*optional*|Identification of the issuer of the proprietary bank transaction code.  <br>**Length** : `1 - 35`|string|
 
 <a name="accounts-accountid-transactions-get-data-valuedate"></a>
 **ValueDate**
@@ -767,11 +997,6 @@ Get transactions related to an account
 #### Produces
 
 * `application/json`
-
-
-#### Tags
-
-* Accounts
 
 
 #### Security
@@ -819,8 +1044,9 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balances-get-data-amount)|
+|**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#balances-get-data-creditline)|
 |**Date**  <br>*required*|Indicates the date (and time) of the balance.|[Date](#balances-get-data-date)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
@@ -840,6 +1066,7 @@ Get Balances
 |---|---|---|
 |**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balances-get-data-creditline-amount)|
 |**Included**  <br>*required*||boolean|
+|**Type**  <br>*optional*|Limit type, in a coded form.|string|
 
 <a name="balances-get-data-creditline-amount"></a>
 **Amount**
@@ -879,11 +1106,6 @@ Get Balances
 #### Produces
 
 * `application/json`
-
-
-#### Tags
-
-* Balances
 
 
 #### Security
@@ -931,11 +1153,29 @@ Get Beneficiaries
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
-|**BeneficiaryType**  <br>*required*|Indicates whether the entry is a credit or a debit entry|enum (DirectDebit, StandingOrder)|
-|**Identification**  <br>*optional*|Unique and unambiguous identification for the account between the account owner and the account servicer.  <br>**Length** : `1 - 35`|string|
-|**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**UKBankSortCode**  <br>*optional*|UK Domestic Sort Code Identifier  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**CreditorAccount**  <br>*required*||[CreditorAccount](#beneficiaries-get-data-creditoraccount)|
+|**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#beneficiaries-get-data-servicer)|
+
+<a name="beneficiaries-get-data-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
+
+<a name="beneficiaries-get-data-servicer"></a>
+**Servicer**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
 <a name="beneficiaries-get-links"></a>
 **links**
@@ -961,9 +1201,214 @@ Get Beneficiaries
 * `application/json`
 
 
-#### Tags
+#### Security
 
-* Beneficiaries
+|Type|Name|Scopes|
+|---|---|---|
+|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
+
+
+***
+
+<a name="getdirectdebits"></a>
+### Get Direct Debits
+```
+GET /direct-debits
+```
+
+
+#### Description
+Get Direct Debits
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Direct Debits successfully retrieved|[Direct Debits GET response](#direct-debits-get-response)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**404**|Not Found|No Content|
+|**500**|Internal Server Error|No Content|
+
+<a name="direct-debits-get-response"></a>
+**Direct Debits GET response**
+
+|Name|Description|Schema|
+|---|---|---|
+|**data**  <br>*required*|Array of Direct Debits|< [data](#direct-debits-get-data) > array|
+|**links**  <br>*optional*||[links](#direct-debits-get-links)|
+|**meta**  <br>*required*||[meta](#direct-debits-get-meta)|
+
+<a name="direct-debits-get-data"></a>
+**data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**Currency**  <br>*optional*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**DirectDebitId**  <br>*optional*|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
+|**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
+|**Name**  <br>*required*|Name of Service User  <br>**Length** : `1 - 70`|string|
+|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#direct-debits-get-data-previouspaymentamount)|
+|**PreviousPaymentDate**  <br>*optional*|Date of most recent direct debit collection.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+
+<a name="direct-debits-get-data-previouspaymentamount"></a>
+**PreviousPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="direct-debits-get-links"></a>
+**links**
+
+|Name|Schema|
+|---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
+|**self**  <br>*required*|string (uri)|
+
+<a name="direct-debits-get-meta"></a>
+**meta**
+
+|Name|Schema|
+|---|---|
+|**TotalResults**  <br>*optional*|integer|
+
+
+#### Produces
+
+* `application/json`
+
+
+#### Security
+
+|Type|Name|Scopes|
+|---|---|---|
+|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
+
+
+***
+
+<a name="getstandingorders"></a>
+### Get Standing Orders
+```
+GET /standing-orders
+```
+
+
+#### Description
+Get Standing Orders
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Standing Orders successfully retrieved|[Standing Orders GET response](#standing-orders-get-response)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**404**|Not Found|No Content|
+|**500**|Internal Server Error|No Content|
+
+<a name="standing-orders-get-response"></a>
+**Standing Orders GET response**
+
+|Name|Description|Schema|
+|---|---|---|
+|**data**  <br>*required*|Array of Standing Orders|< [data](#standing-orders-get-data) > array|
+|**links**  <br>*optional*||[links](#standing-orders-get-links)|
+|**meta**  <br>*required*||[meta](#standing-orders-get-meta)|
+
+<a name="standing-orders-get-data"></a>
+**data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**CreditorAccount**  <br>*required*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-orders-get-data-creditoraccount)|
+|**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-orders-get-data-finalpaymentamount)|
+|**FinalPaymentDate**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-orders-get-data-firstpaymentamount)|
+|**FirstPaymentDate**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+|**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
+|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-orders-get-data-nextpaymentamount)|
+|**NextPaymentDate**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
+|**Servicer**  <br>*required*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-orders-get-data-servicer)|
+|**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+
+<a name="standing-orders-get-data-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
+
+<a name="standing-orders-get-data-finalpaymentamount"></a>
+**FinalPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="standing-orders-get-data-firstpaymentamount"></a>
+**FirstPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="standing-orders-get-data-nextpaymentamount"></a>
+**NextPaymentAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="standing-orders-get-data-servicer"></a>
+**Servicer**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+
+<a name="standing-orders-get-links"></a>
+**links**
+
+|Name|Schema|
+|---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
+|**self**  <br>*required*|string (uri)|
+
+<a name="standing-orders-get-meta"></a>
+**meta**
+
+|Name|Schema|
+|---|---|
+|**TotalResults**  <br>*optional*|integer|
+
+
+#### Produces
+
+* `application/json`
 
 
 #### Security
@@ -1011,17 +1456,19 @@ Get Transactions
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource  <br>**Length** : `1 - 35`|string|
-|**AdditionalEntryInformation**  <br>*optional*|Further details of the entry.  <br>**Length** : `1 - 500`|string|
+|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
 |**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#transactions-get-data-amount)|
-|**Balance**  <br>*required*||[Balance](#transactions-get-data-balance)|
+|**Balance**  <br>*required*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#transactions-get-data-balance)|
 |**BankTransactionCode**  <br>*required*|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|[BankTransactionCode](#transactions-get-data-banktransactioncode)|
 |**BookingDate**  <br>*optional*|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|[BookingDate](#transactions-get-data-bookingdate)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)|
-|**EntryReference**  <br>*optional*|Unique reference for the entry.  <br>**Length** : `1 - 35`|string|
-|**MerchantDetails**  <br>*optional*||[MerchantDetails](#transactions-get-data-merchantdetails)|
-|**Status**  <br>*required*|Status of an entry on the books of the account servicer|enum (Booked, Pending, Information)|
+|**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#transactions-get-data-merchantdetails)|
+|**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#transactions-get-data-proprietarybanktransactioncode)|
+|**Status**  <br>*required*|Status of an entry on the books of the account servicer|enum (Booked, Pending)|
+|**TransactionId**  <br>*optional*|maxLength 40 text  <br>**Length** : `1 - 40`|string|
+|**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which in unstructured text.  <br>**Length** : `1 - 500`|string|
+|**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDate**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available  to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|[ValueDate](#transactions-get-data-valuedate)|
 
 <a name="transactions-get-data-amount"></a>
@@ -1037,9 +1484,9 @@ Get Transactions
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|Amount of money of the cash balance|[Amount](#transactions-get-data-balance-amount)|
+|**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#transactions-get-data-balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**Type**  <br>*required*|Balance type, in a coded form|enum (Interim, Booked)|
+|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
 
 <a name="transactions-get-data-balance-amount"></a>
 **Amount**
@@ -1054,24 +1501,8 @@ Get Transactions
 
 |Name|Description|Schema|
 |---|---|---|
-|**Family**  <br>*optional*|Set of elements used to provide the domain, the family and the sub-family of the bank transaction code, in a structured and hierarchical format. Usage: If a specific family or sub-family code cannot be provided, the generic family code defined for the domain or the generic sub-family code defined for the family should be provided.|[Family](#transactions-get-data-banktransactioncode-family)|
-|**Proprietary**  <br>*optional*|Bank transaction code in a proprietary form, as defined by the issuer.|[Proprietary](#transactions-get-data-banktransactioncode-proprietary)|
-
-<a name="transactions-get-data-banktransactioncode-family"></a>
-**Family**
-
-|Name|Description|Schema|
-|---|---|---|
-|**Code**  <br>*required*|Specifies the family within a domain. Type: ExternalBankTransactionFamily1Code|string|
-|**SubFamilyCode**  <br>*required*|Specifies the sub-product family within a specific family. Type ExternalBankTransactionSubFamily1Code|string|
-
-<a name="transactions-get-data-banktransactioncode-proprietary"></a>
-**Proprietary**
-
-|Name|Description|Schema|
-|---|---|---|
-|**Code**  <br>*required*|Proprietary bank transaction code to identify the underlying transaction.  <br>**Length** : `1 - 35`|string|
-|**Issuer**  <br>*optional*|Identification of the issuer of the proprietary bank transaction code.  <br>**Length** : `1 - 35`|string|
+|**Code**  <br>*required*|Specifies the family within a domain.|string|
+|**SubCode**  <br>*optional*|Specifies the sub-product family within a specific family.|string|
 
 <a name="transactions-get-data-bookingdate"></a>
 **BookingDate**
@@ -1087,7 +1518,15 @@ Get Transactions
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**Name**  <br>*required*|Name by which the party is known and which is usually used to identify that party.  <br>**Length** : `1 - 350`|string|
+|**Name**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+
+<a name="transactions-get-data-proprietarybanktransactioncode"></a>
+**ProprietaryBankTransactionCode**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Code**  <br>*required*|Proprietary bank transaction code to identify the underlying transaction.  <br>**Length** : `1 - 35`|string|
+|**Issuer**  <br>*optional*|Identification of the issuer of the proprietary bank transaction code.  <br>**Length** : `1 - 35`|string|
 
 <a name="transactions-get-data-valuedate"></a>
 **ValueDate**
@@ -1124,11 +1563,6 @@ Get Transactions
 #### Produces
 
 * `application/json`
-
-
-#### Tags
-
-* Transactions
 
 
 #### Security

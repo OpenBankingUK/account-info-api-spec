@@ -1,0 +1,17 @@
+{
+  "type": "string",
+  "enum": [
+    "ReadAccounts",
+    "ReadAccountsSensitive",
+    "ReadBalances",
+    "ReadBeneficiaries",
+    "ReadBeneficiariesSensitive",
+    "ReadDirectDebits",
+    "ReadStandingOrders",
+    "ReadStandingOrdersSensitive",
+    "ReadTransactions",
+    "ReadTransactionsCredits",
+    "ReadTransactionsDebits",
+    "ReadTransactionsSensitive"
+  ]
+}

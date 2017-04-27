@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Beneficiaries
   summary: Get Beneficiaries
   description: Get Beneficiaries
   operationId: GetBeneficiaries

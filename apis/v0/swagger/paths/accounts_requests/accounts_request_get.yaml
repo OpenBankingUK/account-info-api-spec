@@ -1,8 +1,6 @@
 get:
-  tags:
-   - Accounts
-  summary: Get an account request resource
-  description: Get an account request  resource
+  summary: Get an account request
+  description: Get an account request
   operationId: GetAccountRequest
   produces:
     - $ref: ../../definitions/mime_type.yaml

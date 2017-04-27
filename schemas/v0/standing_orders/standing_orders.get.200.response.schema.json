@@ -1,0 +1,30 @@
+{
+  "title": "Standing Orders GET response",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "TotalResults": {
+          "type": "integer"
+        }
+      }
+    },
+    "data": {
+      "description": "Array of Standing Orders",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/standing_orders/standing_order.json"
+      },
+      "minItems": 0
+    },
+    "links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "data"
+  ]
+}

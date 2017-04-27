@@ -4,24 +4,28 @@
    "AccountId": {
      "$ref": "./account_id.json"
    },
-   "UKBankSortCode": {
-     "$ref": "../common/uk_domestic_sort_code_identifier.json"
-   },
-   "Identification": {
-     "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
-     "$ref": "../common/max_35_text.json"
-   },
    "Currency": {
-     "description": "Identification of the currency in which the account is held.",
+     "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
      "$ref": "../common/active_or_historic_currency_code.json"
    },
-   "Name": {
-     "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.",
+   "Nickname": {
+     "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
      "$ref": "../common/max_70_text.json"
+   },
+   "Account": {
+     "description": "Provides the details to identify an account.",
+     "$ref": "../common/creditor_cash_account.json"
+   },
+   "Servicer": {
+     "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
+     "$ref": "../common/ob_branch_and_financial_institution_identification.json"
    }
  },
  "additionalProperties": false,
  "required": [
-   "AccountId"
+   "AccountId",
+   "Currency",
+   "Account",
+   "Servicer"
  ]
 }

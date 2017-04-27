@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Balances
   summary: Get Balances
   description: Get Balances
   operationId: GetBalances

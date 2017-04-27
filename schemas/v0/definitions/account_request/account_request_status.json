@@ -1,9 +1,0 @@
-{
-  "type": "string",
-  "enum": [
-    "AwaitingAuthorisation",
-    "Authorised",
-    "NotAuthorised",
-    "Expired"
-  ]
-}

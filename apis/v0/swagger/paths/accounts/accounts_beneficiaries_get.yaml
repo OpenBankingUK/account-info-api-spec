@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Accounts
   summary: Get Account Beneficiaries
   description: Get Beneficiaries related to an account
   operationId: GetAccountBeneficiaries

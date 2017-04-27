@@ -4,24 +4,25 @@
     "AccountId": {
       "$ref": "../accounts/account_id.json"
     },
-    "BeneficiaryType": {
-      "$ref": "beneficiary_type.json"
+    "BeneficiaryId": {
+      "$ref": "beneficiary_id.json"
     },
-    "UKBankSortCode": {
-      "$ref": "../common/uk_domestic_sort_code_identifier.json"
-    },
-    "Identification": {
-      "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+    "CreditorReferenceInformation": {
+      "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
       "$ref": "../common/max_35_text.json"
     },
-    "Name": {
-      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
-      "$ref": "../common/max_70_text.json"
+    "Servicer": {
+      "$ref": "../common/ob_branch_and_financial_institution_identification.json"
+    },
+    "CreditorAccount": {
+      "$ref": "../common/creditor_cash_account.json"
     }
   },
   "additionalProperties": false,
   "required": [
     "AccountId",
-    "BeneficiaryType"
+    "BeneficiaryType",
+    "Servicer",
+    "CreditorAccount"
   ]
 }

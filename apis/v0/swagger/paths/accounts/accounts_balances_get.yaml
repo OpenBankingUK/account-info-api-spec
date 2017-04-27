@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Accounts
   summary: Get Account Balances
   description: Get Balances related to an account
   operationId: GetAccountBalances

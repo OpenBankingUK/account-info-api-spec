@@ -1,0 +1,26 @@
+get:
+  summary: Get Account Standing Orders
+  description: Get Standing Orders related to an account
+  operationId: GetAccountStandingOrders
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+   - $ref: "./parameters.yaml#/AccountId"
+  responses:
+    200:
+      description: Account Standing Orders successfully retrieved
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/standing_orders/standing_orders.get.200.response.schema.yaml
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      $ref: ../../index.yaml#/responses/403ErrorResponse
+    404:
+      $ref: ../../index.yaml#/responses/404NotFound
+    500:
+      $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - PSUOAuth2Security:
+      - accounts

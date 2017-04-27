@@ -3,7 +3,6 @@
   "type": "string",
   "enum": [
     "Booked",
-    "Pending",
-    "Information"
+    "Pending"
   ]
 }

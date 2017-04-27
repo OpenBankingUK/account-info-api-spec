@@ -1,6 +1,4 @@
 get:
-  tags:
-   - Accounts
   summary: Get Accounts
   description: Get a list of accounts
   operationId: GetAccounts

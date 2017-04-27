@@ -14,8 +14,5 @@ paths:
 securityDefinitions:
   $ref: ./security/index.yaml
 #tags section, to organise endpoints
-tags:
- - name: Accounts
-   description: Account related endpoints
 responses:
   $ref: ./responses/index.yaml
