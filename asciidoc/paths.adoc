@@ -238,7 +238,7 @@ __optional__|Specified date and time the permissions will expire. If this is not
 |**SelectedAccounts** +
 __optional__|Provides the details to identify accounts in the account information request.|< <<_accounts-requests_post_selectedaccounts,SelectedAccounts>> > array
 |**Status** +
-__optional__|Specifies the status of the account request resource in code form.|enum (TBD)
+__optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
 |**TransactionFromDateTime** +
 __optional__|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
 |**TransactionToDateTime** +
@@ -363,7 +363,7 @@ __optional__|Specified date and time the permissions will expire. If this is not
 |**SelectedAccounts** +
 __optional__|Provides the details to identify accounts in the account information request.|< <<_accounts-requests_accountrequestid_get_selectedaccounts,SelectedAccounts>> > array
 |**Status** +
-__optional__|Specifies the status of the account request resource in code form.|enum (TBD)
+__optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
 |**TransactionFromDateTime** +
 __optional__|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
 |**TransactionToDateTime** +

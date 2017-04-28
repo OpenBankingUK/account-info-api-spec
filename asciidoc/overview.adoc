@@ -3,7 +3,7 @@
 
 [[_overview]]
 == Overview
-Draft Swagger specification for Account Information APIs
+Swagger specification for Account Information APIs
 
 
 === Version information

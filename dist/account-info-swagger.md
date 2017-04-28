@@ -3,7 +3,7 @@
 
 <a name="overview"></a>
 ## Overview
-Draft Swagger specification for Account Information APIs
+Swagger specification for Account Information APIs
 
 
 ### Version information
@@ -197,7 +197,7 @@ Create an Account Request
 |**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array|
 |**PermissionsExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**SelectedAccounts**  <br>*optional*|Provides the details to identify accounts in the account information request.|< [SelectedAccounts](#accounts-requests-post-selectedaccounts) > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource in code form.|enum (TBD)|
+|**Status**  <br>*optional*|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 
@@ -286,7 +286,7 @@ Get an account request
 |**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array|
 |**PermissionsExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**SelectedAccounts**  <br>*optional*|Provides the details to identify accounts in the account information request.|< [SelectedAccounts](#accounts-requests-accountrequestid-get-selectedaccounts) > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource in code form.|enum (TBD)|
+|**Status**  <br>*optional*|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)|
 

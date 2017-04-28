@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Account Information APIs",
-    "description": "Draft Swagger specification for Account Information APIs",
+    "description": "Swagger specification for Account Information APIs",
     "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
       "name": "Claudio Viola",
@@ -185,7 +185,9 @@
                   "description": "Specifies the status of the account request resource in code form.",
                   "type": "string",
                   "enum": [
-                    "TBD"
+                    "AwaitingAuthorisation",
+                    "Authenticated",
+                    "Rejected"
                   ]
                 },
                 "AccountIds": {
@@ -380,7 +382,9 @@
                   "description": "Specifies the status of the account request resource in code form.",
                   "type": "string",
                   "enum": [
-                    "TBD"
+                    "AwaitingAuthorisation",
+                    "Authenticated",
+                    "Rejected"
                   ]
                 },
                 "AccountIds": {
