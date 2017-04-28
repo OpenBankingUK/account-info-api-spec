@@ -33,7 +33,14 @@ __Token URL__ : /token
 [options="header", cols=".^3,.^17"]
 |===
 |Name|Description
-|accounts|Generic Account scope
+|account_request:read|Ability to read account-request information
+|accounts:read|Ability to read basic account information
+|balances:read|Ability to read balance information
+|beneficiaries:read|Ability to read basic beneficiary details
+|direct_debits:read|Ability to read direct debit information
+|standing_orders:read|Ability to read standing order information
+|transactions:read|Ability to read basic transaction information
+|product:read|Ability to read product information relating to the account
 |===
 
 

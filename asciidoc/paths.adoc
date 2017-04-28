@@ -34,22 +34,20 @@ Get a list of accounts
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**data** +
-__required__|< <<_accounts_get_data,data>> > array
-|**links** +
-__optional__|<<_accounts_get_links,links>>
-|**meta** +
-__required__|<<_accounts_get_meta,meta>>
+|**Accounts** +
+__required__|< <<_accounts_get_accounts,Accounts>> > array
+|**Links** +
+__optional__|<<_accounts_get_links,Links>>
 |===
 
-[[_accounts_get_data]]
-**data**
+[[_accounts_get_accounts]]
+**Accounts**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Account** +
-__required__|Provides the details to identify an account.|<<_accounts_get_data_account,Account>>
+__required__|Provides the details to identify an account.|<<_accounts_get_accounts_account,Account>>
 |**AccountId** +
 __required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
@@ -60,10 +58,10 @@ __required__|Identification of the currency in which the account is held. Usage:
 __optional__|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account. +
 **Length** : `1 - 70`|string
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|<<_accounts_get_data_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|<<_accounts_get_accounts_servicer,Servicer>>
 |===
 
-[[_accounts_get_data_account]]
+[[_accounts_get_accounts_account]]
 **Account**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -82,7 +80,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_accounts_get_data_servicer]]
+[[_accounts_get_accounts_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -96,7 +94,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 
 [[_accounts_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -113,16 +111,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_accounts_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -134,7 +122,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts:read
 |===
 
 
@@ -163,7 +151,7 @@ __Flags__ : required
 |===
 |Name|Description|Schema
 |**Permissions** +
-__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< object > array
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array
 |**PermissionsExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**SelectedAccounts** +
@@ -224,7 +212,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**201**|Account Request resource successfully created|<<_account_request_post_request,Account Request POST request>>
+|**201**|Account Request resource successfully created|<<_account_request_post_response,Account Request POST response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -232,8 +220,8 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |**500**|Internal Server Error|No Content
 |===
 
-[[_account_request_post_request]]
-**Account Request POST request**
+[[_account_request_post_response]]
+**Account Request POST response**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -244,7 +232,7 @@ __optional__|A unique and immutable identifier used to identify the account reso
 __optional__|Unique identification as assigned to identify the account request resource. +
 **Length** : `1 - 40`|string
 |**Permissions** +
-__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< object > array
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array
 |**PermissionsExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**SelectedAccounts** +
@@ -369,7 +357,7 @@ __optional__|A unique and immutable identifier used to identify the account reso
 __optional__|Unique identification as assigned to identify the account request resource. +
 **Length** : `1 - 40`|string
 |**Permissions** +
-__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< object > array
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array
 |**PermissionsExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**SelectedAccounts** +
@@ -438,6 +426,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 |Type|Name|Scopes
 |**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|account_request:read
 |===
 
 
@@ -541,7 +530,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts:read
 |===
 
 
@@ -587,16 +576,14 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Balances|< <<_accounts_accountid_balances_get_data,data>> > array
-|**links** +
-__optional__||<<_accounts_accountid_balances_get_links,links>>
-|**meta** +
-__required__||<<_accounts_accountid_balances_get_meta,meta>>
+|**Balances** +
+__required__|Array of Balances|< <<_accounts_accountid_balances_get_balances,Balances>> > array
+|**Links** +
+__optional__||<<_accounts_accountid_balances_get_links,Links>>
 |===
 
-[[_accounts_accountid_balances_get_data]]
-**data**
+[[_accounts_accountid_balances_get_balances]]
+**Balances**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -605,18 +592,18 @@ __required__||<<_accounts_accountid_balances_get_meta,meta>>
 __required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**Amount** +
-__required__|Amount of money of the cash balance.|<<_accounts_accountid_balances_get_data_amount,Amount>>
+__required__|Amount of money of the cash balance.|<<_accounts_accountid_balances_get_balances_amount,Amount>>
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**CreditLine** +
-__optional__||<<_accounts_accountid_balances_get_data_creditline,CreditLine>>
+__optional__||<<_accounts_accountid_balances_get_balances_creditline,CreditLine>>
 |**Date** +
-__required__|Indicates the date (and time) of the balance.|<<_accounts_accountid_balances_get_data_date,Date>>
+__required__|Indicates the date (and time) of the balance.|<<_accounts_accountid_balances_get_balances_date,Date>>
 |**Type** +
 __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
 |===
 
-[[_accounts_accountid_balances_get_data_amount]]
+[[_accounts_accountid_balances_get_balances_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -629,21 +616,21 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_balances_get_data_creditline]]
+[[_accounts_accountid_balances_get_balances_creditline]]
 **CreditLine**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__optional__|Active Or Historic Currency Code and Amount|<<_accounts_accountid_balances_get_data_creditline_amount,Amount>>
+__optional__|Active Or Historic Currency Code and Amount|<<_accounts_accountid_balances_get_balances_creditline_amount,Amount>>
 |**Included** +
 __required__||boolean
 |**Type** +
 __optional__|Limit type, in a coded form.|string
 |===
 
-[[_accounts_accountid_balances_get_data_creditline_amount]]
+[[_accounts_accountid_balances_get_balances_creditline_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -656,7 +643,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_balances_get_data_date]]
+[[_accounts_accountid_balances_get_balances_date]]
 **Date**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -670,7 +657,7 @@ __optional__||string (date-time)
 |===
 
 [[_accounts_accountid_balances_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -687,16 +674,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_accounts_accountid_balances_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -708,7 +685,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|balances:read
 |===
 
 
@@ -754,16 +731,14 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Beneficiaries|< <<_accounts_accountid_beneficiaries_get_data,data>> > array
-|**links** +
-__optional__||<<_accounts_accountid_beneficiaries_get_links,links>>
-|**meta** +
-__required__||<<_accounts_accountid_beneficiaries_get_meta,meta>>
+|**Beneficiaries** +
+__required__|Array of Beneficiaries|< <<_accounts_accountid_beneficiaries_get_beneficiaries,Beneficiaries>> > array
+|**Links** +
+__optional__||<<_accounts_accountid_beneficiaries_get_links,Links>>
 |===
 
-[[_accounts_accountid_beneficiaries_get_data]]
-**data**
+[[_accounts_accountid_beneficiaries_get_beneficiaries]]
+**Beneficiaries**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -775,15 +750,15 @@ __required__|A unique identifier used to identify the account resource. This ide
 __optional__|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**CreditorAccount** +
-__required__||<<_accounts_accountid_beneficiaries_get_data_creditoraccount,CreditorAccount>>
+__required__||<<_accounts_accountid_beneficiaries_get_beneficiaries_creditoraccount,CreditorAccount>>
 |**CreditorReferenceInformation** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts_accountid_beneficiaries_get_data_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts_accountid_beneficiaries_get_beneficiaries_servicer,Servicer>>
 |===
 
-[[_accounts_accountid_beneficiaries_get_data_creditoraccount]]
+[[_accounts_accountid_beneficiaries_get_beneficiaries_creditoraccount]]
 **CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -802,7 +777,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_accounts_accountid_beneficiaries_get_data_servicer]]
+[[_accounts_accountid_beneficiaries_get_beneficiaries_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -816,7 +791,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 
 [[_accounts_accountid_beneficiaries_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -833,16 +808,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_accounts_accountid_beneficiaries_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -854,7 +819,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|beneficiaries:read
 |===
 
 
@@ -900,16 +865,14 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Direct Debits|< <<_accounts_accountid_direct-debits_get_data,data>> > array
-|**links** +
-__optional__||<<_accounts_accountid_direct-debits_get_links,links>>
-|**meta** +
-__required__||<<_accounts_accountid_direct-debits_get_meta,meta>>
+|**DirectDebits** +
+__required__|Array of Direct Debits|< <<_accounts_accountid_direct-debits_get_directdebits,DirectDebits>> > array
+|**Links** +
+__optional__||<<_accounts_accountid_direct-debits_get_links,Links>>
 |===
 
-[[_accounts_accountid_direct-debits_get_data]]
-**data**
+[[_accounts_accountid_direct-debits_get_directdebits]]
+**DirectDebits**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -932,13 +895,13 @@ __required__|Direct Debit reference. For AUDDIS service users provide Core Refer
 __required__|Name of Service User +
 **Length** : `1 - 70`|string
 |**PreviousPaymentAmount** +
-__optional__|The amount of the most recent direct debit collection.|<<_accounts_accountid_direct-debits_get_data_previouspaymentamount,PreviousPaymentAmount>>
+__optional__|The amount of the most recent direct debit collection.|<<_accounts_accountid_direct-debits_get_directdebits_previouspaymentamount,PreviousPaymentAmount>>
 |**PreviousPaymentDate** +
 __optional__|Date of most recent direct debit collection. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
 |===
 
-[[_accounts_accountid_direct-debits_get_data_previouspaymentamount]]
+[[_accounts_accountid_direct-debits_get_directdebits_previouspaymentamount]]
 **PreviousPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -952,7 +915,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 
 [[_accounts_accountid_direct-debits_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -969,16 +932,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_accounts_accountid_direct-debits_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -990,7 +943,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|direct_debits:read
 |===
 
 
@@ -1036,16 +989,32 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Standing Orders|< <<_accounts_accountid_standing-orders_get_data,data>> > array
-|**links** +
-__optional__||<<_accounts_accountid_standing-orders_get_links,links>>
-|**meta** +
-__required__||<<_accounts_accountid_standing-orders_get_meta,meta>>
+|**Links** +
+__optional__||<<_accounts_accountid_standing-orders_get_links,Links>>
+|**StandingOrders** +
+__required__|Array of Standing Orders|< <<_accounts_accountid_standing-orders_get_standingorders,StandingOrders>> > array
 |===
 
-[[_accounts_accountid_standing-orders_get_data]]
-**data**
+[[_accounts_accountid_standing-orders_get_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_accounts_accountid_standing-orders_get_standingorders]]
+**StandingOrders**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1054,17 +1023,17 @@ __required__||<<_accounts_accountid_standing-orders_get_meta,meta>>
 __required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**CreditorAccount** +
-__required__|Provides the details to identify the beneficiary account.|<<_accounts_accountid_standing-orders_get_data_creditoraccount,CreditorAccount>>
+__required__|Provides the details to identify the beneficiary account.|<<_accounts_accountid_standing-orders_get_standingorders_creditoraccount,CreditorAccount>>
 |**CreditorReferenceInformation** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
 |**FinalPaymentAmount** +
-__optional__|The amount of the final Standing Order|<<_accounts_accountid_standing-orders_get_data_finalpaymentamount,FinalPaymentAmount>>
+__optional__|The amount of the final Standing Order|<<_accounts_accountid_standing-orders_get_standingorders_finalpaymentamount,FinalPaymentAmount>>
 |**FinalPaymentDate** +
 __optional__|The date on which the final payment for a Standing Order schedule will be made. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
 |**FirstPaymentAmount** +
-__optional__|The amount of the first Standing Order|<<_accounts_accountid_standing-orders_get_data_firstpaymentamount,FirstPaymentAmount>>
+__optional__|The amount of the first Standing Order|<<_accounts_accountid_standing-orders_get_standingorders_firstpaymentamount,FirstPaymentAmount>>
 |**FirstPaymentDate** +
 __optional__|The date on which the first payment for a Standing Order schedule will be made. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
@@ -1072,18 +1041,18 @@ __optional__|The date on which the first payment for a Standing Order schedule w
 __required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)) +
 **Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string
 |**NextPaymentAmount** +
-__required__|The amount of the next Standing Order|<<_accounts_accountid_standing-orders_get_data_nextpaymentamount,NextPaymentAmount>>
+__required__|The amount of the next Standing Order|<<_accounts_accountid_standing-orders_get_standingorders_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDate** +
 __required__|The date on which the next payment for a Standing Order schedule will be made. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts_accountid_standing-orders_get_data_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts_accountid_standing-orders_get_standingorders_servicer,Servicer>>
 |**StandingOrderId** +
 __optional__|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |===
 
-[[_accounts_accountid_standing-orders_get_data_creditoraccount]]
+[[_accounts_accountid_standing-orders_get_standingorders_creditoraccount]]
 **CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1102,7 +1071,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_accounts_accountid_standing-orders_get_data_finalpaymentamount]]
+[[_accounts_accountid_standing-orders_get_standingorders_finalpaymentamount]]
 **FinalPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1115,7 +1084,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_standing-orders_get_data_firstpaymentamount]]
+[[_accounts_accountid_standing-orders_get_standingorders_firstpaymentamount]]
 **FirstPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1128,7 +1097,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_standing-orders_get_data_nextpaymentamount]]
+[[_accounts_accountid_standing-orders_get_standingorders_nextpaymentamount]]
 **NextPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1141,7 +1110,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_standing-orders_get_data_servicer]]
+[[_accounts_accountid_standing-orders_get_standingorders_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1152,34 +1121,6 @@ __required__|Unique and unambiguous identification of the servicing institution.
 **Length** : `1 - 35`|string
 |**SchemeName** +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
-|===
-
-[[_accounts_accountid_standing-orders_get_links]]
-**links**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**first** +
-__optional__|string (uri)
-|**last** +
-__optional__|string (uri)
-|**next** +
-__optional__|string (uri)
-|**prev** +
-__optional__|string (uri)
-|**self** +
-__required__|string (uri)
-|===
-
-[[_accounts_accountid_standing-orders_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
 |===
 
 
@@ -1193,7 +1134,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|standing_orders:read
 |===
 
 
@@ -1239,163 +1180,14 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Transactions|< <<_accounts_accountid_transactions_get_data,data>> > array
-|**links** +
-__optional__||<<_accounts_accountid_transactions_get_links,links>>
-|**meta** +
-__required__||<<_accounts_accountid_transactions_get_meta,meta>>
-|===
-
-[[_accounts_accountid_transactions_get_data]]
-**data**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
-**Length** : `1 - 40`|string
-|**AddressLine** +
-__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
-**Length** : `1 - 70`|string
-|**Amount** +
-__required__|Amount of money in the cash entry.|<<_accounts_accountid_transactions_get_data_amount,Amount>>
-|**Balance** +
-__required__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_accounts_accountid_transactions_get_data_balance,Balance>>
-|**BankTransactionCode** +
-__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_accounts_accountid_transactions_get_data_banktransactioncode,BankTransactionCode>>
-|**BookingDate** +
-__optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_accounts_accountid_transactions_get_data_bookingdate,BookingDate>>
-|**CreditDebitIndicator** +
-__required__|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)
-|**MerchantDetails** +
-__optional__|Details of the merchant involved in the transaction.|<<_accounts_accountid_transactions_get_data_merchantdetails,MerchantDetails>>
-|**ProprietaryBankTransactionCode** +
-__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_accounts_accountid_transactions_get_data_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
-|**Status** +
-__required__|Status of an entry on the books of the account servicer|enum (Booked, Pending)
-|**TransactionId** +
-__optional__|maxLength 40 text +
-**Length** : `1 - 40`|string
-|**TransactionInformation** +
-__optional__|Further details of the transaction. This is the transaction narrative, which in unstructured text. +
-**Length** : `1 - 500`|string
-|**TransactionReference** +
-__optional__|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context. +
-**Length** : `1 - 35`|string
-|**ValueDate** +
-__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|<<_accounts_accountid_transactions_get_data_valuedate,ValueDate>>
-|===
-
-[[_accounts_accountid_transactions_get_data_amount]]
-**Amount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
-|**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
-|===
-
-[[_accounts_accountid_transactions_get_data_balance]]
-**Balance**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_accounts_accountid_transactions_get_data_balance_amount,Amount>>
-|**CreditDebitIndicator** +
-__required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
-|**Type** +
-__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
-|===
-
-[[_accounts_accountid_transactions_get_data_balance_amount]]
-**Amount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
-|**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
-|===
-
-[[_accounts_accountid_transactions_get_data_banktransactioncode]]
-**BankTransactionCode**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Code** +
-__required__|Specifies the family within a domain.|string
-|**SubCode** +
-__optional__|Specifies the sub-product family within a specific family.|string
-|===
-
-[[_accounts_accountid_transactions_get_data_bookingdate]]
-**BookingDate**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Date** +
-__optional__|ISODate YYYY-MM-DD +
-**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
-|**DateTime** +
-__optional__||string (date-time)
-|===
-
-[[_accounts_accountid_transactions_get_data_merchantdetails]]
-**MerchantDetails**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
-**Length** : `3 - 4`|string
-|**Name** +
-__required__|Name by which the merchant is known. +
-**Length** : `1 - 350`|string
-|===
-
-[[_accounts_accountid_transactions_get_data_proprietarybanktransactioncode]]
-**ProprietaryBankTransactionCode**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Code** +
-__required__|Proprietary bank transaction code to identify the underlying transaction. +
-**Length** : `1 - 35`|string
-|**Issuer** +
-__optional__|Identification of the issuer of the proprietary bank transaction code. +
-**Length** : `1 - 35`|string
-|===
-
-[[_accounts_accountid_transactions_get_data_valuedate]]
-**ValueDate**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Date** +
-__optional__|ISODate YYYY-MM-DD +
-**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
-|**DateTime** +
-__optional__||string (date-time)
+|**Links** +
+__optional__||<<_accounts_accountid_transactions_get_links,Links>>
+|**Transactions** +
+__required__|Array of Transactions|< <<_accounts_accountid_transactions_get_transactions,Transactions>> > array
 |===
 
 [[_accounts_accountid_transactions_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1412,14 +1204,151 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_accounts_accountid_transactions_get_meta]]
-**meta**
+[[_accounts_accountid_transactions_get_transactions]]
+**Transactions**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+**Length** : `1 - 40`|string
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
+**Length** : `1 - 70`|string
+|**Amount** +
+__required__|Amount of money in the cash entry.|<<_accounts_accountid_transactions_get_transactions_amount,Amount>>
+|**Balance** +
+__required__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_accounts_accountid_transactions_get_transactions_balance,Balance>>
+|**BankTransactionCode** +
+__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_accounts_accountid_transactions_get_transactions_banktransactioncode,BankTransactionCode>>
+|**BookingDate** +
+__optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_accounts_accountid_transactions_get_transactions_bookingdate,BookingDate>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)
+|**MerchantDetails** +
+__optional__|Details of the merchant involved in the transaction.|<<_accounts_accountid_transactions_get_transactions_merchantdetails,MerchantDetails>>
+|**ProprietaryBankTransactionCode** +
+__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_accounts_accountid_transactions_get_transactions_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
+|**Status** +
+__required__|Status of an entry on the books of the account servicer|enum (Booked, Pending)
+|**TransactionId** +
+__optional__|maxLength 40 text +
+**Length** : `1 - 40`|string
+|**TransactionInformation** +
+__optional__|Further details of the transaction. This is the transaction narrative, which in unstructured text. +
+**Length** : `1 - 500`|string
+|**TransactionReference** +
+__optional__|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context. +
+**Length** : `1 - 35`|string
+|**ValueDate** +
+__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|<<_accounts_accountid_transactions_get_transactions_valuedate,ValueDate>>
+|===
+
+[[_accounts_accountid_transactions_get_transactions_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_accounts_accountid_transactions_get_transactions_balance]]
+**Balance**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_accounts_accountid_transactions_get_transactions_balance_amount,Amount>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
+|**Type** +
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+|===
+
+[[_accounts_accountid_transactions_get_transactions_balance_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_accounts_accountid_transactions_get_transactions_banktransactioncode]]
+**BankTransactionCode**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Specifies the family within a domain.|string
+|**SubCode** +
+__optional__|Specifies the sub-product family within a specific family.|string
+|===
+
+[[_accounts_accountid_transactions_get_transactions_bookingdate]]
+**BookingDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_accounts_accountid_transactions_get_transactions_merchantdetails]]
+**MerchantDetails**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
+**Length** : `3 - 4`|string
+|**Name** +
+__required__|Name by which the merchant is known. +
+**Length** : `1 - 350`|string
+|===
+
+[[_accounts_accountid_transactions_get_transactions_proprietarybanktransactioncode]]
+**ProprietaryBankTransactionCode**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Proprietary bank transaction code to identify the underlying transaction. +
+**Length** : `1 - 35`|string
+|**Issuer** +
+__optional__|Identification of the issuer of the proprietary bank transaction code. +
+**Length** : `1 - 35`|string
+|===
+
+[[_accounts_accountid_transactions_get_transactions_valuedate]]
+**ValueDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
 |===
 
 
@@ -1433,7 +1362,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|transactions:read
 |===
 
 
@@ -1469,16 +1398,14 @@ Get Balances
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Balances|< <<_balances_get_data,data>> > array
-|**links** +
-__optional__||<<_balances_get_links,links>>
-|**meta** +
-__required__||<<_balances_get_meta,meta>>
+|**Balances** +
+__required__|Array of Balances|< <<_balances_get_balances,Balances>> > array
+|**Links** +
+__optional__||<<_balances_get_links,Links>>
 |===
 
-[[_balances_get_data]]
-**data**
+[[_balances_get_balances]]
+**Balances**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1487,18 +1414,18 @@ __required__||<<_balances_get_meta,meta>>
 __required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**Amount** +
-__required__|Amount of money of the cash balance.|<<_balances_get_data_amount,Amount>>
+__required__|Amount of money of the cash balance.|<<_balances_get_balances_amount,Amount>>
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**CreditLine** +
-__optional__||<<_balances_get_data_creditline,CreditLine>>
+__optional__||<<_balances_get_balances_creditline,CreditLine>>
 |**Date** +
-__required__|Indicates the date (and time) of the balance.|<<_balances_get_data_date,Date>>
+__required__|Indicates the date (and time) of the balance.|<<_balances_get_balances_date,Date>>
 |**Type** +
 __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
 |===
 
-[[_balances_get_data_amount]]
+[[_balances_get_balances_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1511,21 +1438,21 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_balances_get_data_creditline]]
+[[_balances_get_balances_creditline]]
 **CreditLine**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__optional__|Active Or Historic Currency Code and Amount|<<_balances_get_data_creditline_amount,Amount>>
+__optional__|Active Or Historic Currency Code and Amount|<<_balances_get_balances_creditline_amount,Amount>>
 |**Included** +
 __required__||boolean
 |**Type** +
 __optional__|Limit type, in a coded form.|string
 |===
 
-[[_balances_get_data_creditline_amount]]
+[[_balances_get_balances_creditline_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1538,7 +1465,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_balances_get_data_date]]
+[[_balances_get_balances_date]]
 **Date**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1552,7 +1479,7 @@ __optional__||string (date-time)
 |===
 
 [[_balances_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1569,16 +1496,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_balances_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -1590,7 +1507,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|balances:read
 |===
 
 
@@ -1626,16 +1543,14 @@ Get Beneficiaries
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Beneficiaries|< <<_beneficiaries_get_data,data>> > array
-|**links** +
-__optional__||<<_beneficiaries_get_links,links>>
-|**meta** +
-__required__||<<_beneficiaries_get_meta,meta>>
+|**Beneficiaries** +
+__required__|Array of Beneficiaries|< <<_beneficiaries_get_beneficiaries,Beneficiaries>> > array
+|**Links** +
+__optional__||<<_beneficiaries_get_links,Links>>
 |===
 
-[[_beneficiaries_get_data]]
-**data**
+[[_beneficiaries_get_beneficiaries]]
+**Beneficiaries**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1647,15 +1562,15 @@ __required__|A unique identifier used to identify the account resource. This ide
 __optional__|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**CreditorAccount** +
-__required__||<<_beneficiaries_get_data_creditoraccount,CreditorAccount>>
+__required__||<<_beneficiaries_get_beneficiaries_creditoraccount,CreditorAccount>>
 |**CreditorReferenceInformation** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_beneficiaries_get_data_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_beneficiaries_get_beneficiaries_servicer,Servicer>>
 |===
 
-[[_beneficiaries_get_data_creditoraccount]]
+[[_beneficiaries_get_beneficiaries_creditoraccount]]
 **CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1674,7 +1589,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_beneficiaries_get_data_servicer]]
+[[_beneficiaries_get_beneficiaries_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1688,7 +1603,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 
 [[_beneficiaries_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1705,16 +1620,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_beneficiaries_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -1726,7 +1631,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|beneficiaries:read
 |===
 
 
@@ -1762,16 +1667,14 @@ Get Direct Debits
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Direct Debits|< <<_direct-debits_get_data,data>> > array
-|**links** +
-__optional__||<<_direct-debits_get_links,links>>
-|**meta** +
-__required__||<<_direct-debits_get_meta,meta>>
+|**DirectDebits** +
+__required__|Array of Direct Debits|< <<_direct-debits_get_directdebits,DirectDebits>> > array
+|**Links** +
+__optional__||<<_direct-debits_get_links,Links>>
 |===
 
-[[_direct-debits_get_data]]
-**data**
+[[_direct-debits_get_directdebits]]
+**DirectDebits**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1794,13 +1697,13 @@ __required__|Direct Debit reference. For AUDDIS service users provide Core Refer
 __required__|Name of Service User +
 **Length** : `1 - 70`|string
 |**PreviousPaymentAmount** +
-__optional__|The amount of the most recent direct debit collection.|<<_direct-debits_get_data_previouspaymentamount,PreviousPaymentAmount>>
+__optional__|The amount of the most recent direct debit collection.|<<_direct-debits_get_directdebits_previouspaymentamount,PreviousPaymentAmount>>
 |**PreviousPaymentDate** +
 __optional__|Date of most recent direct debit collection. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
 |===
 
-[[_direct-debits_get_data_previouspaymentamount]]
+[[_direct-debits_get_directdebits_previouspaymentamount]]
 **PreviousPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1814,7 +1717,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 
 [[_direct-debits_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1831,16 +1734,6 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_direct-debits_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
-|===
-
 
 ==== Produces
 
@@ -1852,7 +1745,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|direct_debits:read
 |===
 
 
@@ -1888,16 +1781,32 @@ Get Standing Orders
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Standing Orders|< <<_standing-orders_get_data,data>> > array
-|**links** +
-__optional__||<<_standing-orders_get_links,links>>
-|**meta** +
-__required__||<<_standing-orders_get_meta,meta>>
+|**Links** +
+__optional__||<<_standing-orders_get_links,Links>>
+|**StandingOrders** +
+__required__|Array of Standing Orders|< <<_standing-orders_get_standingorders,StandingOrders>> > array
 |===
 
-[[_standing-orders_get_data]]
-**data**
+[[_standing-orders_get_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_standing-orders_get_standingorders]]
+**StandingOrders**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1906,17 +1815,17 @@ __required__||<<_standing-orders_get_meta,meta>>
 __required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**CreditorAccount** +
-__required__|Provides the details to identify the beneficiary account.|<<_standing-orders_get_data_creditoraccount,CreditorAccount>>
+__required__|Provides the details to identify the beneficiary account.|<<_standing-orders_get_standingorders_creditoraccount,CreditorAccount>>
 |**CreditorReferenceInformation** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
 |**FinalPaymentAmount** +
-__optional__|The amount of the final Standing Order|<<_standing-orders_get_data_finalpaymentamount,FinalPaymentAmount>>
+__optional__|The amount of the final Standing Order|<<_standing-orders_get_standingorders_finalpaymentamount,FinalPaymentAmount>>
 |**FinalPaymentDate** +
 __optional__|The date on which the final payment for a Standing Order schedule will be made. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
 |**FirstPaymentAmount** +
-__optional__|The amount of the first Standing Order|<<_standing-orders_get_data_firstpaymentamount,FirstPaymentAmount>>
+__optional__|The amount of the first Standing Order|<<_standing-orders_get_standingorders_firstpaymentamount,FirstPaymentAmount>>
 |**FirstPaymentDate** +
 __optional__|The date on which the first payment for a Standing Order schedule will be made. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
@@ -1924,18 +1833,18 @@ __optional__|The date on which the first payment for a Standing Order schedule w
 __required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)) +
 **Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string
 |**NextPaymentAmount** +
-__required__|The amount of the next Standing Order|<<_standing-orders_get_data_nextpaymentamount,NextPaymentAmount>>
+__required__|The amount of the next Standing Order|<<_standing-orders_get_standingorders_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDate** +
 __required__|The date on which the next payment for a Standing Order schedule will be made. +
 **Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_standing-orders_get_data_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_standing-orders_get_standingorders_servicer,Servicer>>
 |**StandingOrderId** +
 __optional__|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |===
 
-[[_standing-orders_get_data_creditoraccount]]
+[[_standing-orders_get_standingorders_creditoraccount]]
 **CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1954,7 +1863,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_standing-orders_get_data_finalpaymentamount]]
+[[_standing-orders_get_standingorders_finalpaymentamount]]
 **FinalPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1967,7 +1876,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing-orders_get_data_firstpaymentamount]]
+[[_standing-orders_get_standingorders_firstpaymentamount]]
 **FirstPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1980,7 +1889,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing-orders_get_data_nextpaymentamount]]
+[[_standing-orders_get_standingorders_nextpaymentamount]]
 **NextPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1993,7 +1902,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing-orders_get_data_servicer]]
+[[_standing-orders_get_standingorders_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2004,34 +1913,6 @@ __required__|Unique and unambiguous identification of the servicing institution.
 **Length** : `1 - 35`|string
 |**SchemeName** +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
-|===
-
-[[_standing-orders_get_links]]
-**links**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**first** +
-__optional__|string (uri)
-|**last** +
-__optional__|string (uri)
-|**next** +
-__optional__|string (uri)
-|**prev** +
-__optional__|string (uri)
-|**self** +
-__required__|string (uri)
-|===
-
-[[_standing-orders_get_meta]]
-**meta**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
 |===
 
 
@@ -2045,7 +1926,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|standing_orders:read
 |===
 
 
@@ -2081,163 +1962,14 @@ Get Transactions
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**data** +
-__required__|Array of Transactions|< <<_transactions_get_data,data>> > array
-|**links** +
-__optional__||<<_transactions_get_links,links>>
-|**meta** +
-__required__||<<_transactions_get_meta,meta>>
-|===
-
-[[_transactions_get_data]]
-**data**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
-**Length** : `1 - 40`|string
-|**AddressLine** +
-__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
-**Length** : `1 - 70`|string
-|**Amount** +
-__required__|Amount of money in the cash entry.|<<_transactions_get_data_amount,Amount>>
-|**Balance** +
-__required__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_transactions_get_data_balance,Balance>>
-|**BankTransactionCode** +
-__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_transactions_get_data_banktransactioncode,BankTransactionCode>>
-|**BookingDate** +
-__optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_transactions_get_data_bookingdate,BookingDate>>
-|**CreditDebitIndicator** +
-__required__|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)
-|**MerchantDetails** +
-__optional__|Details of the merchant involved in the transaction.|<<_transactions_get_data_merchantdetails,MerchantDetails>>
-|**ProprietaryBankTransactionCode** +
-__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_transactions_get_data_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
-|**Status** +
-__required__|Status of an entry on the books of the account servicer|enum (Booked, Pending)
-|**TransactionId** +
-__optional__|maxLength 40 text +
-**Length** : `1 - 40`|string
-|**TransactionInformation** +
-__optional__|Further details of the transaction. This is the transaction narrative, which in unstructured text. +
-**Length** : `1 - 500`|string
-|**TransactionReference** +
-__optional__|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context. +
-**Length** : `1 - 35`|string
-|**ValueDate** +
-__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|<<_transactions_get_data_valuedate,ValueDate>>
-|===
-
-[[_transactions_get_data_amount]]
-**Amount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
-|**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
-|===
-
-[[_transactions_get_data_balance]]
-**Balance**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_transactions_get_data_balance_amount,Amount>>
-|**CreditDebitIndicator** +
-__required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
-|**Type** +
-__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
-|===
-
-[[_transactions_get_data_balance_amount]]
-**Amount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
-|**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
-|===
-
-[[_transactions_get_data_banktransactioncode]]
-**BankTransactionCode**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Code** +
-__required__|Specifies the family within a domain.|string
-|**SubCode** +
-__optional__|Specifies the sub-product family within a specific family.|string
-|===
-
-[[_transactions_get_data_bookingdate]]
-**BookingDate**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Date** +
-__optional__|ISODate YYYY-MM-DD +
-**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
-|**DateTime** +
-__optional__||string (date-time)
-|===
-
-[[_transactions_get_data_merchantdetails]]
-**MerchantDetails**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
-**Length** : `3 - 4`|string
-|**Name** +
-__required__|Name by which the merchant is known. +
-**Length** : `1 - 350`|string
-|===
-
-[[_transactions_get_data_proprietarybanktransactioncode]]
-**ProprietaryBankTransactionCode**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Code** +
-__required__|Proprietary bank transaction code to identify the underlying transaction. +
-**Length** : `1 - 35`|string
-|**Issuer** +
-__optional__|Identification of the issuer of the proprietary bank transaction code. +
-**Length** : `1 - 35`|string
-|===
-
-[[_transactions_get_data_valuedate]]
-**ValueDate**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Date** +
-__optional__|ISODate YYYY-MM-DD +
-**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
-|**DateTime** +
-__optional__||string (date-time)
+|**Links** +
+__optional__||<<_transactions_get_links,Links>>
+|**Transactions** +
+__required__|Array of Transactions|< <<_transactions_get_transactions,Transactions>> > array
 |===
 
 [[_transactions_get_links]]
-**links**
+**Links**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2254,14 +1986,151 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_transactions_get_meta]]
-**meta**
+[[_transactions_get_transactions]]
+**Transactions**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
-|**TotalResults** +
-__optional__|integer
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+**Length** : `1 - 40`|string
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
+**Length** : `1 - 70`|string
+|**Amount** +
+__required__|Amount of money in the cash entry.|<<_transactions_get_transactions_amount,Amount>>
+|**Balance** +
+__required__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_transactions_get_transactions_balance,Balance>>
+|**BankTransactionCode** +
+__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_transactions_get_transactions_banktransactioncode,BankTransactionCode>>
+|**BookingDate** +
+__optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_transactions_get_transactions_bookingdate,BookingDate>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the entry is a credit or a debit entry|enum (Credit, Debit)
+|**MerchantDetails** +
+__optional__|Details of the merchant involved in the transaction.|<<_transactions_get_transactions_merchantdetails,MerchantDetails>>
+|**ProprietaryBankTransactionCode** +
+__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_transactions_get_transactions_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
+|**Status** +
+__required__|Status of an entry on the books of the account servicer|enum (Booked, Pending)
+|**TransactionId** +
+__optional__|maxLength 40 text +
+**Length** : `1 - 40`|string
+|**TransactionInformation** +
+__optional__|Further details of the transaction. This is the transaction narrative, which in unstructured text. +
+**Length** : `1 - 500`|string
+|**TransactionReference** +
+__optional__|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context. +
+**Length** : `1 - 35`|string
+|**ValueDate** +
+__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|<<_transactions_get_transactions_valuedate,ValueDate>>
+|===
+
+[[_transactions_get_transactions_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_transactions_get_transactions_balance]]
+**Balance**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_transactions_get_transactions_balance_amount,Amount>>
+|**CreditDebitIndicator** +
+__required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
+|**Type** +
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+|===
+
+[[_transactions_get_transactions_balance_amount]]
+**Amount**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Amount** +
+__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+|**Currency** +
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
+**Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_transactions_get_transactions_banktransactioncode]]
+**BankTransactionCode**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Specifies the family within a domain.|string
+|**SubCode** +
+__optional__|Specifies the sub-product family within a specific family.|string
+|===
+
+[[_transactions_get_transactions_bookingdate]]
+**BookingDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
+|===
+
+[[_transactions_get_transactions_merchantdetails]]
+**MerchantDetails**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
+**Length** : `3 - 4`|string
+|**Name** +
+__required__|Name by which the merchant is known. +
+**Length** : `1 - 350`|string
+|===
+
+[[_transactions_get_transactions_proprietarybanktransactioncode]]
+**ProprietaryBankTransactionCode**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Code** +
+__required__|Proprietary bank transaction code to identify the underlying transaction. +
+**Length** : `1 - 35`|string
+|**Issuer** +
+__optional__|Identification of the issuer of the proprietary bank transaction code. +
+**Length** : `1 - 35`|string
+|===
+
+[[_transactions_get_transactions_valuedate]]
+**ValueDate**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Date** +
+__optional__|ISODate YYYY-MM-DD +
+**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string
+|**DateTime** +
+__optional__||string (date-time)
 |===
 
 
@@ -2280,7 +2149,7 @@ __optional__|integer
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|transactions:read
 |===
 
 
