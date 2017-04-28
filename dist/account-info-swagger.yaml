@@ -38,7 +38,8 @@ paths:
               Permissions:
                 description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                 type: array
-                item:
+                items:
+                  description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                   type: string
                   enum:
                     - ReadAccounts
@@ -164,7 +165,8 @@ paths:
               Permissions:
                 description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                 type: array
-                item:
+                items:
+                  description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                   type: string
                   enum:
                     - ReadAccounts
@@ -316,7 +318,8 @@ paths:
               Permissions:
                 description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                 type: array
-                item:
+                items:
+                  description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                   type: string
                   enum:
                     - ReadAccounts
@@ -422,6 +425,8 @@ paths:
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
+        - PSUOAuth2Security:
+            - 'account_request:read'
   /accounts:
     get:
       summary: Get Accounts
@@ -436,12 +441,7 @@ paths:
             title: Accounts GET response
             type: object
             properties:
-              meta:
-                type: object
-                properties:
-                  TotalResults:
-                    type: integer
-              data:
+              Accounts:
                 type: array
                 items:
                   type: object
@@ -524,7 +524,7 @@ paths:
                     - Account
                     - Servicer
                 minItems: 0
-              links:
+              Links:
                 type: object
                 properties:
                   self:
@@ -547,8 +547,7 @@ paths:
                   - self
             additionalProperties: false
             required:
-              - meta
-              - data
+              - Accounts
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -556,7 +555,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'accounts:read'
   '/accounts/{AccountId}':
     get:
       summary: Get Account
@@ -662,7 +661,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'accounts:read'
   '/accounts/{AccountId}/transactions':
     get:
       summary: Get Account Transactions
@@ -679,12 +678,7 @@ paths:
             title: Account Transactions GET response
             type: object
             properties:
-              meta:
-                type: object
-                properties:
-                  TotalResults:
-                    type: integer
-              data:
+              Transactions:
                 description: Array of Transactions
                 type: array
                 items:
@@ -879,7 +873,7 @@ paths:
                     - BankTransactionCode
                     - Balance
                 minItems: 0
-              links:
+              Links:
                 type: object
                 properties:
                   self:
@@ -902,8 +896,7 @@ paths:
                   - self
             additionalProperties: false
             required:
-              - meta
-              - data
+              - Transactions
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -911,7 +904,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'transactions:read'
   '/accounts/{AccountId}/beneficiaries':
     get:
       summary: Get Account Beneficiaries
@@ -928,12 +921,7 @@ paths:
             title: Beneficiaries GET response
             type: object
             properties:
-              meta:
-                type: object
-                properties:
-                  TotalResults:
-                    type: integer
-              data:
+              Beneficiaries:
                 description: Array of Beneficiaries
                 type: array
                 items:
@@ -1019,7 +1007,7 @@ paths:
                     - Servicer
                     - CreditorAccount
                 minItems: 0
-              links:
+              Links:
                 type: object
                 properties:
                   self:
@@ -1042,8 +1030,7 @@ paths:
                   - self
             additionalProperties: false
             required:
-              - meta
-              - data
+              - Beneficiaries
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1051,7 +1038,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'beneficiaries:read'
   '/accounts/{AccountId}/balances':
     get:
       summary: Get Account Balances
@@ -1068,12 +1055,7 @@ paths:
             title: Balances GET response
             type: object
             properties:
-              meta:
-                type: object
-                properties:
-                  TotalResults:
-                    type: integer
-              data:
+              Balances:
                 description: Array of Balances
                 type: array
                 items:
@@ -1170,7 +1152,7 @@ paths:
                     - Date
                     - Type
                 minItems: 0
-              links:
+              Links:
                 type: object
                 properties:
                   self:
@@ -1193,8 +1175,7 @@ paths:
                   - self
             additionalProperties: false
             required:
-              - meta
-              - data
+              - Balances
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1202,7 +1183,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'balances:read'
   '/accounts/{AccountId}/direct-debits':
     get:
       summary: Get Account Direct Debits
@@ -1219,12 +1200,7 @@ paths:
             title: Direct Debits GET response
             type: object
             properties:
-              meta:
-                type: object
-                properties:
-                  TotalResults:
-                    type: integer
-              data:
+              DirectDebits:
                 description: Array of Direct Debits
                 type: array
                 items:
@@ -1289,7 +1265,7 @@ paths:
                     - Name
                   additionalProperties: false
                 minItems: 0
-              links:
+              Links:
                 type: object
                 properties:
                   self:
@@ -1312,8 +1288,7 @@ paths:
                   - self
             additionalProperties: false
             required:
-              - meta
-              - data
+              - DirectDebits
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1321,7 +1296,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'direct_debits:read'
   '/accounts/{AccountId}/standing-orders':
     get:
       summary: Get Account Standing Orders
@@ -1338,12 +1313,7 @@ paths:
             title: Standing Orders GET response
             type: object
             properties:
-              meta:
-                type: object
-                properties:
-                  TotalResults:
-                    type: integer
-              data:
+              StandingOrders:
                 description: Array of Standing Orders
                 type: array
                 items:
@@ -1512,7 +1482,7 @@ paths:
                     - CreditorAccount
                   additionalProperties: false
                 minItems: 0
-              links:
+              Links:
                 type: object
                 properties:
                   self:
@@ -1535,8 +1505,7 @@ paths:
                   - self
             additionalProperties: false
             required:
-              - meta
-              - data
+              - StandingOrders
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1544,7 +1513,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'standing_orders:read'
   /standing-orders:
     get:
       summary: Get Standing Orders
@@ -1563,7 +1532,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'standing_orders:read'
   /direct-debits:
     get:
       summary: Get Direct Debits
@@ -1582,7 +1551,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'direct_debits:read'
   /beneficiaries:
     get:
       summary: Get Beneficiaries
@@ -1601,7 +1570,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'beneficiaries:read'
   /transactions:
     get:
       summary: Get Transactions
@@ -1622,7 +1591,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'transactions:read'
   /balances:
     get:
       summary: Get Balances
@@ -1641,7 +1610,7 @@ paths:
         '500': *ref_3
       security:
         - PSUOAuth2Security:
-            - accounts
+            - 'balances:read'
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
@@ -1649,7 +1618,14 @@ securityDefinitions:
     tokenUrl: /token
     authorizationUrl: /authorization
     scopes:
-      accounts: Generic Account scope
+      'account_request:read': Ability to read account-request information
+      'accounts:read': Ability to read basic account information
+      'balances:read': Ability to read balance information
+      'beneficiaries:read': Ability to read basic beneficiary details
+      'direct_debits:read': Ability to read direct debit information
+      'standing_orders:read': Ability to read standing order information
+      'transactions:read': Ability to read basic transaction information
+      'product:read': Ability to read product information relating to the account
     description: 'OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU'
   TPPOAuth2Security:
     type: oauth2

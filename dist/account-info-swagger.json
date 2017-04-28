@@ -47,7 +47,8 @@
                 "Permissions": {
                   "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                   "type": "array",
-                  "item": {
+                  "items": {
+                    "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                     "type": "string",
                     "enum": [
                       "ReadAccounts",
@@ -200,7 +201,8 @@
                 "Permissions": {
                   "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                   "type": "array",
-                  "item": {
+                  "items": {
+                    "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                     "type": "string",
                     "enum": [
                       "ReadAccounts",
@@ -394,7 +396,8 @@
                 "Permissions": {
                   "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                   "type": "array",
-                  "item": {
+                  "items": {
+                    "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                     "type": "string",
                     "enum": [
                       "ReadAccounts",
@@ -533,6 +536,11 @@
             "TPPOAuth2Security": [
               "tpp_client_credential"
             ]
+          },
+          {
+            "PSUOAuth2Security": [
+              "account_request:read"
+            ]
           }
         ]
       }
@@ -552,15 +560,7 @@
               "title": "Accounts GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Accounts": {
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -655,7 +655,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -687,8 +687,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Accounts"
               ]
             }
           },
@@ -711,7 +710,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "accounts:read"
             ]
           }
         ]
@@ -849,7 +848,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "accounts:read"
             ]
           }
         ]
@@ -879,15 +878,7 @@
               "title": "Account Transactions GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Transactions": {
                   "description": "Array of Transactions",
                   "type": "array",
                   "items": {
@@ -1126,7 +1117,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -1158,8 +1149,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Transactions"
               ]
             }
           },
@@ -1182,7 +1172,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "transactions:read"
             ]
           }
         ]
@@ -1212,15 +1202,7 @@
               "title": "Beneficiaries GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Beneficiaries": {
                   "description": "Array of Beneficiaries",
                   "type": "array",
                   "items": {
@@ -1316,7 +1298,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -1348,8 +1330,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Beneficiaries"
               ]
             }
           },
@@ -1372,7 +1353,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "beneficiaries:read"
             ]
           }
         ]
@@ -1402,15 +1383,7 @@
               "title": "Balances GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Balances": {
                   "description": "Array of Balances",
                   "type": "array",
                   "items": {
@@ -1531,7 +1504,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -1563,8 +1536,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Balances"
               ]
             }
           },
@@ -1587,7 +1559,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "balances:read"
             ]
           }
         ]
@@ -1617,15 +1589,7 @@
               "title": "Direct Debits GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "DirectDebits": {
                   "description": "Array of Direct Debits",
                   "type": "array",
                   "items": {
@@ -1703,7 +1667,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -1735,8 +1699,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "DirectDebits"
               ]
             }
           },
@@ -1759,7 +1722,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "direct_debits:read"
             ]
           }
         ]
@@ -1789,15 +1752,7 @@
               "title": "Standing Orders GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "StandingOrders": {
                   "description": "Array of Standing Orders",
                   "type": "array",
                   "items": {
@@ -1977,7 +1932,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -2009,8 +1964,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "StandingOrders"
               ]
             }
           },
@@ -2033,7 +1987,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "standing_orders:read"
             ]
           }
         ]
@@ -2054,15 +2008,7 @@
               "title": "Standing Orders GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "StandingOrders": {
                   "description": "Array of Standing Orders",
                   "type": "array",
                   "items": {
@@ -2242,7 +2188,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -2274,8 +2220,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "StandingOrders"
               ]
             }
           },
@@ -2298,7 +2243,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "standing_orders:read"
             ]
           }
         ]
@@ -2319,15 +2264,7 @@
               "title": "Direct Debits GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "DirectDebits": {
                   "description": "Array of Direct Debits",
                   "type": "array",
                   "items": {
@@ -2405,7 +2342,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -2437,8 +2374,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "DirectDebits"
               ]
             }
           },
@@ -2461,7 +2397,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "direct_debits:read"
             ]
           }
         ]
@@ -2482,15 +2418,7 @@
               "title": "Beneficiaries GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Beneficiaries": {
                   "description": "Array of Beneficiaries",
                   "type": "array",
                   "items": {
@@ -2586,7 +2514,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -2618,8 +2546,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Beneficiaries"
               ]
             }
           },
@@ -2642,7 +2569,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "beneficiaries:read"
             ]
           }
         ]
@@ -2666,15 +2593,7 @@
               "title": "Account Transactions GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Transactions": {
                   "description": "Array of Transactions",
                   "type": "array",
                   "items": {
@@ -2913,7 +2832,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -2945,8 +2864,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Transactions"
               ]
             }
           },
@@ -2969,7 +2887,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "transactions:read"
             ]
           }
         ]
@@ -2990,15 +2908,7 @@
               "title": "Balances GET response",
               "type": "object",
               "properties": {
-                "meta": {
-                  "type": "object",
-                  "properties": {
-                    "TotalResults": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "data": {
+                "Balances": {
                   "description": "Array of Balances",
                   "type": "array",
                   "items": {
@@ -3119,7 +3029,7 @@
                   },
                   "minItems": 0
                 },
-                "links": {
+                "Links": {
                   "type": "object",
                   "properties": {
                     "self": {
@@ -3151,8 +3061,7 @@
               },
               "additionalProperties": false,
               "required": [
-                "meta",
-                "data"
+                "Balances"
               ]
             }
           },
@@ -3175,7 +3084,7 @@
         "security": [
           {
             "PSUOAuth2Security": [
-              "accounts"
+              "balances:read"
             ]
           }
         ]
@@ -3189,7 +3098,14 @@
       "tokenUrl": "/token",
       "authorizationUrl": "/authorization",
       "scopes": {
-        "accounts": "Generic Account scope"
+        "account_request:read": "Ability to read account-request information",
+        "accounts:read": "Ability to read basic account information",
+        "balances:read": "Ability to read balance information",
+        "beneficiaries:read": "Ability to read basic beneficiary details",
+        "direct_debits:read": "Ability to read direct debit information",
+        "standing_orders:read": "Ability to read standing order information",
+        "transactions:read": "Ability to read basic transaction information",
+        "product:read": "Ability to read product information relating to the account"
       },
       "description": "OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU"
     },

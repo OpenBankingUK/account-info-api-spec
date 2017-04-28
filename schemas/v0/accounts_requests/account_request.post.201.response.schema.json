@@ -1,6 +1,6 @@
 {
-  "title": "Account Request POST request",
-  "description": "Allows setup of an account access request",
+  "title": "Account Request POST response",
+  "description": "Account Request POST response",
   "type": "object",
   "properties": {
     "AccountRequestId": {

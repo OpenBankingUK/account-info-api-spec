@@ -24,3 +24,5 @@ get:
   security:
     - TPPOAuth2Security:
       - tpp_client_credential
+    - PSUOAuth2Security:
+      - account_request:read

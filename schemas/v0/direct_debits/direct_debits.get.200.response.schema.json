@@ -2,15 +2,7 @@
   "title": "Direct Debits GET response",
   "type": "object",
   "properties": {
-    "meta": {
-      "type": "object",
-      "properties": {
-        "TotalResults": {
-          "type": "integer"
-        }
-      }
-    },
-    "data": {
+    "DirectDebits": {
       "description": "Array of Direct Debits",
       "type": "array",
       "items": {
@@ -18,13 +10,12 @@
       },
       "minItems": 0
     },
-    "links": {
+    "Links": {
       "$ref": "../definitions/common/pagination_links.json"
     }
   },
   "additionalProperties": false,
   "required": [
-    "meta",
-    "data"
+    "DirectDebits"
   ]
 }
