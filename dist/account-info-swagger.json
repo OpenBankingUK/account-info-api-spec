@@ -98,7 +98,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -255,7 +256,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -454,7 +456,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -642,7 +645,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -817,7 +821,8 @@
                       "description": "Name of the identification scheme, in a coded form as published in an external list.",
                       "type": "string",
                       "enum": [
-                        "BBAN"
+                        "BBAN",
+                        "IBAN"
                       ]
                     },
                     "Identification": {
@@ -1309,7 +1314,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -1646,7 +1652,7 @@
                     "type": "object",
                     "properties": {
                       "AccountId": {
-                        "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 40
@@ -1939,7 +1945,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -2315,7 +2322,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
@@ -2440,7 +2448,7 @@
                     "type": "object",
                     "properties": {
                       "AccountId": {
-                        "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 40
@@ -2643,7 +2651,8 @@
                             "description": "Name of the identification scheme, in a coded form as published in an external list.",
                             "type": "string",
                             "enum": [
-                              "BBAN"
+                              "BBAN",
+                              "IBAN"
                             ]
                           },
                           "Identification": {
