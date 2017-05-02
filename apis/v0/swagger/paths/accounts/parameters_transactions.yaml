@@ -1,0 +1,21 @@
+filters:
+  name: filters
+  in: query
+  description: Results filtering; for instance by date
+  required: false
+  properties:
+    BookingDate:
+      type: BookingDate
+      required: false
+
+BookingDate:
+  properties:
+    fromdate:
+      type: string
+      required: true
+      in: query
+    todate:
+      type: string
+      required: true
+      in: query
+

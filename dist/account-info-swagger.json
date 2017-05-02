@@ -873,6 +873,18 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Results filtering; for instance by date",
+            "required": false,
+            "properties": {
+              "BookingDate": {
+                "type": "BookingDate",
+                "required": false
+              }
+            }
           }
         ],
         "responses": {

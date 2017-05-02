@@ -675,6 +675,14 @@ paths:
         - application/json
       parameters:
         - *ref_5
+        - name: filters
+          in: query
+          description: Results filtering; for instance by date
+          required: false
+          properties:
+            BookingDate:
+              type: BookingDate
+              required: false
       responses:
         '200':
           description: Account Transactions successfully retrieved
