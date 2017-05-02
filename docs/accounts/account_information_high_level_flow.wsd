@@ -1,0 +1,98 @@
+participant PSU
+participant AISP
+participant ASPSP Authorisation Server
+participant ASPSP Resource Server
+
+par Account Information Data Sharing
+PSU -> AISP: Opens Aggregation App
+AISP -> ASPSP Authorisation Server: Establish TLS 1.2 MA
+AISP -> ASPSP Authorisation Server: /token { client_id , client_secret,  scope: "account_request:manage"  }
+ASPSP Authorisation Server -> AISP: access token
+AISP -> ASPSP Resource Server: POST /accounts-requests { PermissionCodes: "ReadTransactions", "ReadAccounts" "ReadBalances" ... }
+ASPSP Resource Server -> ASPSP Resource Server: validate and stores account request consent payload
+ASPSP Resource Server --> AISP: HTTP 201 Created { AccountRequestId: 1 ,  status: AwaitingAuthorisation }
+AISP -> PSU: Redirect PSU to ASPSP for Auth (scopes: transactions:read, balances:read ...)
+end par
+
+
+par Authorise Consent - OAuth 2.0 Flow
+PSU -> ASPSP Authorisation Server: Sign-in to ASPSP web/mobile app
+ASPSP Authorisation Server --> PSU: View Consent details (Scopes (transactions:read + PermissionCodes: ReadTransactions, ReadTransactionsDebits)
+PSU -> ASPSP Resource Server: Select accounts to authorise access to
+PSU -> ASPSP Resource Server: Authorise consent for AISP access
+ASPSP Resource Server->ASPSP Authorisation Server:
+ASPSP Authorisation Server-> ASPSP Authorisation Server: associate selected accounts to account request
+ASPSP Authorisation Server --> PSU: Redirect plus auth code
+PSU -> AISP: Redirect auth code
+AISP -> ASPSP Resource Server: Establish TLS 1.2 MA
+AISP -> ASPSP Resource Server: /token { auth_code .. }
+ASPSP Resource Server --> AISP: { access_token: "eyJz93k4laUWw" .. }
+
+end par
+par Retrieve Account IDs
+AISP -> ASPSP Resource Server: GET /account-requests/{AccountRequestId} Authorisation eyJz93k4laUWw
+note right of ASPSP Resource Server: Check consent and retrieve associated account ids
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountIds: [ a1e590ad-73dc-453a-841e-2a2ef055e878 , a1e590ad-73dc-453a-841e-2a2ef055e879 ] ... }
+end par
+
+
+par Retrieve Account Information
+AISP -> ASPSP Resource Server: GET /accounts/a1e590ad-73dc-453a-841e-2a2ef055e878
+note left of ASPSP Resource Server: Check accounts scopes/permissions (Return sensitive data?)
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878, "Currency": "GBP" .... }
+
+
+opt Retrieve multiple accounts information (optional)
+AISP -> ASPSP Resource Server: GET /accounts
+note left of ASPSP Resource Server: Check accounts scopes/permissions (Return sensitive data?)
+ASPSP Resource Server --> AISP: HTTP 200 OK { "Accounts": [ { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878, productType: "PCA"  }, { ...} ] }
+end opt
+
+end par
+
+par Retrieve Account Balances
+AISP -> ASPSP Resource Server: GET /accounts/a1e590ad-73dc-453a-841e-2a2ef055e878/balances
+note left of ASPSP Resource Server: Check balances permissions/scopes
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878, balance: 1 }
+
+opt Retrieve Account balances using /balances resource  (optional)
+AISP --> ASPSP Resource Server: GET /balances
+note left of ASPSP Resource Server: Check balances permissions/scopes
+ASPSP Resource Server --> AISP: HTTP 200 OK { [ accountId:a1e590ad-73dc-453a-841e-2a2ef055e878, "balance": 30 ... }, {..  }  ] }
+end
+end par
+
+par Retrieve Account Beneficiaries
+AISP -> ASPSP Resource Server: GET /accounts/a1e590ad-73dc-453a-841e-2a2ef055e878/beneficiaries
+note left of ASPSP Resource Server: Check beneficiaries permissions/scopes (Return sensitive data?)
+ASPSP Resource Server --> AISP: HTTP 200 OK { "Beneficiaries": [ { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878, beneficiaryName: "John"  }, { ... } ] }
+
+opt Retrieve Multiple Accounts Beneficiaries using /beneficiaries resource (optional)
+AISP --> ASPSP Resource Server: GET /beneficiaries
+note left of ASPSP Resource Server: Check beneficiaries permissions/scopes  (Return sensitive data?)
+ASPSP Resource Server --> AISP: HTTP 200 OK { "Beneficiaries": [ { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878 , beneficiaryName: "John" .. }, { accountId: a1e590ad-73dc-453a-841e-2a2ef055e879 , beneficiaryName: "Doe" } ] }
+end
+end opt
+
+par  Retrieve Account Transactions
+AISP -> ASPSP Resource Server: GET /accounts/a1e590ad-73dc-453a-841e-2a2ef055e878/transactions
+note left of ASPSP Resource Server: Check transactions permissions/scopes (Return sensitive data?)
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878, transactionInformation: "Car" }
+
+opt Retrieve Multiple Accounts Transactions using /transactions resource
+AISP --> ASPSP Resource Server: GET /transactions
+note left of ASPSP Resource Server: Check transactions permissions/scopes (Return sensitive data?)
+ASPSP Resource Server --> AISP: HTTP 200 OK { "Transactions": [ { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878 , transactionInformation: "Car" ... }, { accountId:a1e590ad-73dc-453a-841e-2a2ef055e879 , transactionInformation: "Hotel" ... }] }
+end opt
+end par
+
+par Retrieve Account Product
+AISP -> ASPSP Resource Server: GET /accounts/a1e590ad-73dc-453a-841e-2a2ef055e878/product
+note left of ASPSP Resource Server: Check products permissions
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878, productType: "PCA" }
+
+opt  Retrieve Multiple Accounts products (optional)
+AISP --> ASPSP Resource Server: GET /products
+ASPSP Resource Server --> AISP: HTTP 200 OK { accountId: a1e590ad-73dc-453a-841e-2a2ef055e878 , productType: "PCA", accountId:2 , productType: "BCA" }
+end opt
+end par
