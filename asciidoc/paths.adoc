@@ -4,6 +4,361 @@
 
 <<<
 
+[[_createaccountrequest]]
+=== Create an account request
+....
+POST /account-requests
+....
+
+
+==== Description
+Create an account request
+
+
+==== Body parameter
+Create an Account Request
+
+[%hardbreaks]
+__Name__ : body
+__Flags__ : required
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Permissions** +
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array
+|**PermissionsExpirationDateTime** +
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
+|**SelectedAccounts** +
+__optional__|Provides account and servicer identification details for the account information request.|< <<_createaccountrequest_selectedaccounts,SelectedAccounts>> > array
+|**TransactionFromDateTime** +
+__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
+|**TransactionToDateTime** +
+__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+|===
+
+[[_createaccountrequest_selectedaccounts]]
+**SelectedAccounts**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Account** +
+__required__||<<_account-requests_post_account,Account>>
+|**Servicer** +
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_post_servicer,Servicer>>
+|===
+
+[[_account-requests_post_account]]
+**Account**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Identification** +
+__required__|Unique and unambiguous identification of the servicing institution. +
+**Length** : `1 - 34`|string
+|**Name** +
+__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
+**Length** : `1 - 70`|string
+|**SchemeName** +
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+|**SecondaryIdentification** +
+__optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
+**Length** : `1 - 34`|string
+|===
+
+[[_account-requests_post_servicer]]
+**Servicer**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Identification** +
+__required__|Unique and unambiguous identification of the servicing institution. +
+**Length** : `1 - 35`|string
+|**SchemeName** +
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Account Request resource successfully created|<<_account_request_post_response,Account Request POST response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**409**|Conflict|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_request_post_response]]
+**Account Request POST response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountIds** +
+__optional__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.|< string > array
+|**AccountRequestId** +
+__required__|Unique identification as assigned to identify the account request resource. +
+**Length** : `1 - 40`|string
+|**Permissions** +
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array
+|**PermissionsExpirationDateTime** +
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
+|**SelectedAccounts** +
+__optional__|Provides account and servicer identification details for the account information request.|< <<_account-requests_post_selectedaccounts,SelectedAccounts>> > array
+|**Status** +
+__optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
+|**TransactionFromDateTime** +
+__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
+|**TransactionToDateTime** +
+__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+|===
+
+[[_account-requests_post_selectedaccounts]]
+**SelectedAccounts**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Account** +
+__required__||<<_account-requests_post_selectedaccounts_account,Account>>
+|**Servicer** +
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_post_selectedaccounts_servicer,Servicer>>
+|===
+
+[[_account-requests_post_selectedaccounts_account]]
+**Account**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Identification** +
+__required__|Unique and unambiguous identification of the servicing institution. +
+**Length** : `1 - 34`|string
+|**Name** +
+__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
+**Length** : `1 - 70`|string
+|**SchemeName** +
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+|**SecondaryIdentification** +
+__optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
+**Length** : `1 - 34`|string
+|===
+
+[[_account-requests_post_selectedaccounts_servicer]]
+**Servicer**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Identification** +
+__required__|Unique and unambiguous identification of the servicing institution. +
+**Length** : `1 - 35`|string
+|**SchemeName** +
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|account_requests:manage
+|===
+
+
+<<<
+
+[[_getaccountrequest]]
+=== Get an account request
+....
+GET /account-requests/{AccountRequestId}
+....
+
+
+==== Description
+Get an account request
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountRequestId** +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account Request resource successfully retrieved|<<_account_request_get_response,Account Request GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_account_request_get_response]]
+**Account Request GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountIds** +
+__optional__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.|< string > array
+|**AccountRequestId** +
+__optional__|Unique identification as assigned to identify the account request resource. +
+**Length** : `1 - 40`|string
+|**Permissions** +
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array
+|**PermissionsExpirationDateTime** +
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
+|**SelectedAccounts** +
+__optional__|Provides account and servicer identification details for the account information request.|< <<_account-requests_accountrequestid_get_selectedaccounts,SelectedAccounts>> > array
+|**Status** +
+__optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
+|**TransactionFromDateTime** +
+__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
+|**TransactionToDateTime** +
+__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+|===
+
+[[_account-requests_accountrequestid_get_selectedaccounts]]
+**SelectedAccounts**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Account** +
+__required__||<<_account-requests_accountrequestid_get_selectedaccounts_account,Account>>
+|**Servicer** +
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_accountrequestid_get_selectedaccounts_servicer,Servicer>>
+|===
+
+[[_account-requests_accountrequestid_get_selectedaccounts_account]]
+**Account**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Identification** +
+__required__|Unique and unambiguous identification of the servicing institution. +
+**Length** : `1 - 34`|string
+|**Name** +
+__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
+**Length** : `1 - 70`|string
+|**SchemeName** +
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+|**SecondaryIdentification** +
+__optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
+**Length** : `1 - 34`|string
+|===
+
+[[_account-requests_accountrequestid_get_selectedaccounts_servicer]]
+**Servicer**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Identification** +
+__required__|Unique and unambiguous identification of the servicing institution. +
+**Length** : `1 - 35`|string
+|**SchemeName** +
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|account_requests:manage
+|===
+
+
+<<<
+
+[[_deleteaccountrequest]]
+=== Delete an account request
+....
+DELETE /account-requests/{AccountRequestId}
+....
+
+
+==== Description
+Delete an account request
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountRequestId** +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**204**|Account Request resource successfully deleted|No Content
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|account_requests:manage
+|===
+
+
+<<<
+
 [[_getaccounts]]
 === Get Accounts
 ....
@@ -123,310 +478,6 @@ __required__|string (uri)
 |===
 |Type|Name|Scopes
 |**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|accounts:read
-|===
-
-
-<<<
-
-[[_createaccountrequest]]
-=== Create an account request
-....
-POST /account-requests
-....
-
-
-==== Description
-Create an account request
-
-
-==== Body parameter
-Create an Account Request
-
-[%hardbreaks]
-__Name__ : body
-__Flags__ : required
-
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Permissions** +
-__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array
-|**PermissionsExpirationDateTime** +
-__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
-|**SelectedAccounts** +
-__optional__|Provides the details to identify accounts in the account information request.|< <<_createaccountrequest_selectedaccounts,SelectedAccounts>> > array
-|**TransactionFromDateTime** +
-__optional__|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
-|**TransactionToDateTime** +
-__optional__|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
-|===
-
-[[_createaccountrequest_selectedaccounts]]
-**SelectedAccounts**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Account** +
-__required__||<<_account-requests_post_account,Account>>
-|**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_post_servicer,Servicer>>
-|===
-
-[[_account-requests_post_account]]
-**Account**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|Unique and unambiguous identification of the servicing institution. +
-**Length** : `1 - 34`|string
-|**Name** +
-__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
-**Length** : `1 - 70`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
-|**SecondaryIdentification** +
-__optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
-**Length** : `1 - 34`|string
-|===
-
-[[_account-requests_post_servicer]]
-**Servicer**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|Unique and unambiguous identification of the servicing institution. +
-**Length** : `1 - 35`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP Code|Description|Schema
-|**201**|Account Request resource successfully created|<<_account_request_post_response,Account Request POST response>>
-|**400**|Bad Request|No Content
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**409**|Conflict|No Content
-|**500**|Internal Server Error|No Content
-|===
-
-[[_account_request_post_response]]
-**Account Request POST response**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**AccountIds** +
-__optional__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.|< string > array
-|**AccountRequestId** +
-__optional__|Unique identification as assigned to identify the account request resource. +
-**Length** : `1 - 40`|string
-|**Permissions** +
-__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array
-|**PermissionsExpirationDateTime** +
-__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
-|**SelectedAccounts** +
-__optional__|Provides the details to identify accounts in the account information request.|< <<_account-requests_post_selectedaccounts,SelectedAccounts>> > array
-|**Status** +
-__optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
-|**TransactionFromDateTime** +
-__optional__|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
-|**TransactionToDateTime** +
-__optional__|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
-|===
-
-[[_account-requests_post_selectedaccounts]]
-**SelectedAccounts**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Account** +
-__required__||<<_account-requests_post_selectedaccounts_account,Account>>
-|**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_post_selectedaccounts_servicer,Servicer>>
-|===
-
-[[_account-requests_post_selectedaccounts_account]]
-**Account**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|Unique and unambiguous identification of the servicing institution. +
-**Length** : `1 - 34`|string
-|**Name** +
-__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
-**Length** : `1 - 70`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
-|**SecondaryIdentification** +
-__optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
-**Length** : `1 - 34`|string
-|===
-
-[[_account-requests_post_selectedaccounts_servicer]]
-**Servicer**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|Unique and unambiguous identification of the servicing institution. +
-**Length** : `1 - 35`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
-|===
-
-
-==== Consumes
-
-* `application/json`
-
-
-==== Produces
-
-* `application/json`
-
-
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
-|===
-
-
-<<<
-
-[[_getaccountrequest]]
-=== Get an account request
-....
-GET /account-requests/{AccountRequestId}
-....
-
-
-==== Description
-Get an account request
-
-
-==== Parameters
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|Type|Name|Description|Schema
-|**Path**|**AccountRequestId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP Code|Description|Schema
-|**200**|Account Request resource successfully retrieved|<<_account_request_get_response,Account Request GET response>>
-|**400**|Bad Request|No Content
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|**500**|Internal Server Error|No Content
-|===
-
-[[_account_request_get_response]]
-**Account Request GET response**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**AccountIds** +
-__optional__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.|< string > array
-|**AccountRequestId** +
-__optional__|Unique identification as assigned to identify the account request resource. +
-**Length** : `1 - 40`|string
-|**Permissions** +
-__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive) > array
-|**PermissionsExpirationDateTime** +
-__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
-|**SelectedAccounts** +
-__optional__|Provides the details to identify accounts in the account information request.|< <<_account-requests_accountrequestid_get_selectedaccounts,SelectedAccounts>> > array
-|**Status** +
-__optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
-|**TransactionFromDateTime** +
-__optional__|Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
-|**TransactionToDateTime** +
-__optional__|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
-|===
-
-[[_account-requests_accountrequestid_get_selectedaccounts]]
-**SelectedAccounts**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Account** +
-__required__||<<_account-requests_accountrequestid_get_selectedaccounts_account,Account>>
-|**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_accountrequestid_get_selectedaccounts_servicer,Servicer>>
-|===
-
-[[_account-requests_accountrequestid_get_selectedaccounts_account]]
-**Account**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|Unique and unambiguous identification of the servicing institution. +
-**Length** : `1 - 34`|string
-|**Name** +
-__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
-**Length** : `1 - 70`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
-|**SecondaryIdentification** +
-__optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
-**Length** : `1 - 34`|string
-|===
-
-[[_account-requests_accountrequestid_get_selectedaccounts_servicer]]
-**Servicer**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|Unique and unambiguous identification of the servicing institution. +
-**Length** : `1 - 35`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
-|===
-
-
-==== Produces
-
-* `application/json`
-
-
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
-|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|account_request:read
 |===
 
 
@@ -949,6 +1000,102 @@ __required__|string (uri)
 
 <<<
 
+[[_getaccountproduct]]
+=== Get Account Product
+....
+GET /accounts/{AccountId}/product
+....
+
+
+==== Description
+Get Product related to an account
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**AccountId** +
+__required__|A unique identifier used to identify the account resource.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Account Product successfully retrieved|<<_product_get_response,Product GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_product_get_response]]
+**Product GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Links** +
+__optional__||< <<_accounts_accountid_product_get_links,Links>> > array
+|**Product** +
+__required__|Product|<<_accounts_accountid_product_get_product,Product>>
+|===
+
+[[_accounts_accountid_product_get_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**href** +
+__optional__|string (uri)
+|**method** +
+__optional__|enum (GET)
+|**rel** +
+__optional__|enum (self)
+|===
+
+[[_accounts_accountid_product_get_product]]
+**Product**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+**Length** : `1 - 40`|string
+|**ProductIdentifier** +
+__required__|Identifier within the parent organisation for the product. Must be unique in the organisation.|string
+|**ProductName** +
+__optional__|The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.|string
+|**ProductType** +
+__required__|Descriptive code for the product category.|enum (BCA, PCA)
+|**SecondaryProductIdentifier** +
+__optional__|Identifier within the parent organisation for the product. Must be unique in the organisation.|string
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|products:read
+|===
+
+
+<<<
+
 [[_getaccountstandingorders]]
 === Get Account Standing Orders
 ....
@@ -1221,7 +1368,7 @@ __required__|Amount of money in the cash entry.|<<_accounts_accountid_transactio
 |**Balance** +
 __required__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_accounts_accountid_transactions_get_transactions_balance,Balance>>
 |**BankTransactionCode** +
-__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_accounts_accountid_transactions_get_transactions_banktransactioncode,BankTransactionCode>>
+__optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_accounts_accountid_transactions_get_transactions_banktransactioncode,BankTransactionCode>>
 |**BookingDate** +
 __optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_accounts_accountid_transactions_get_transactions_bookingdate,BookingDate>>
 |**CreditDebitIndicator** +
@@ -1294,7 +1441,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |**Code** +
 __required__|Specifies the family within a domain.|string
 |**SubCode** +
-__optional__|Specifies the sub-product family within a specific family.|string
+__required__|Specifies the sub-product family within a specific family.|string
 |===
 
 [[_accounts_accountid_transactions_get_transactions_bookingdate]]
@@ -1751,6 +1898,96 @@ __required__|string (uri)
 
 <<<
 
+[[_getproducts]]
+=== Get Products
+....
+GET /products
+....
+
+
+==== Description
+Get Products
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Products successfully retrieved|<<_products_get_response,Products GET response>>
+|**400**|Bad Request|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|**500**|Internal Server Error|No Content
+|===
+
+[[_products_get_response]]
+**Products GET response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Links** +
+__optional__||<<_products_get_links,Links>>
+|**Products** +
+__required__|Array of Products|< <<_products_get_products,Products>> > array
+|===
+
+[[_products_get_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_products_get_products]]
+**Products**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AccountId** +
+__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+**Length** : `1 - 40`|string
+|**ProductIdentifier** +
+__required__|Identifier within the parent organisation for the product. Must be unique in the organisation.|string
+|**ProductName** +
+__optional__|The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.|string
+|**ProductType** +
+__required__|Descriptive code for the product category.|enum (BCA, PCA)
+|**SecondaryProductIdentifier** +
+__optional__|Identifier within the parent organisation for the product. Must be unique in the organisation.|string
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|products:read
+|===
+
+
+<<<
+
 [[_getstandingorders]]
 === Get Standing Orders
 ....
@@ -2003,7 +2240,7 @@ __required__|Amount of money in the cash entry.|<<_transactions_get_transactions
 |**Balance** +
 __required__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_transactions_get_transactions_balance,Balance>>
 |**BankTransactionCode** +
-__required__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_transactions_get_transactions_banktransactioncode,BankTransactionCode>>
+__optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_transactions_get_transactions_banktransactioncode,BankTransactionCode>>
 |**BookingDate** +
 __optional__|Date and time when an entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|<<_transactions_get_transactions_bookingdate,BookingDate>>
 |**CreditDebitIndicator** +
@@ -2076,7 +2313,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |**Code** +
 __required__|Specifies the family within a domain.|string
 |**SubCode** +
-__optional__|Specifies the sub-product family within a specific family.|string
+__required__|Specifies the sub-product family within a specific family.|string
 |===
 
 [[_transactions_get_transactions_bookingdate]]

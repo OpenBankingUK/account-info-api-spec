@@ -51,7 +51,6 @@
   },
   "required": [
     "AccountId",
-    "Currency",
     "Frequency",
     "NextPaymentDate",
     "NextPaymentAmount",

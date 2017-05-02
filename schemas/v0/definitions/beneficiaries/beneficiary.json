@@ -21,7 +21,6 @@
   "additionalProperties": false,
   "required": [
     "AccountId",
-    "BeneficiaryType",
     "Servicer",
     "CreditorAccount"
   ]

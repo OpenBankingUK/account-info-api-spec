@@ -287,8 +287,8 @@ paths:
         '500': &ref_3
           description: Internal Server Error
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - PSUOAuth2Security:
+            - 'account_requests:manage'
   '/account-requests/{AccountRequestId}':
     get:
       summary: Get an account request
@@ -447,7 +447,7 @@ paths:
         - TPPOAuth2Security:
             - tpp_client_credential
         - PSUOAuth2Security:
-            - 'account_request:manage'
+            - 'account_requests:manage'
     delete:
       summary: Delete an account request
       description: Delete an account request
@@ -465,10 +465,8 @@ paths:
         '404': *ref_5
         '500': *ref_3
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
         - PSUOAuth2Security:
-            - 'account_request:manage'
+            - 'account_requests:manage'
   /accounts:
     get:
       summary: Get Accounts
@@ -910,7 +908,6 @@ paths:
                   required:
                     - AccountId
                     - Amount
-                    - Currency
                     - CreditDebitIndicator
                     - Status
                     - Balance
@@ -1045,7 +1042,6 @@ paths:
                   additionalProperties: false
                   required:
                     - AccountId
-                    - BeneficiaryType
                     - Servicer
                     - CreditorAccount
                 minItems: 0
@@ -1516,7 +1512,6 @@ paths:
                       additionalProperties: false
                   required:
                     - AccountId
-                    - Currency
                     - Frequency
                     - NextPaymentDate
                     - NextPaymentAmount
@@ -1813,14 +1808,14 @@ securityDefinitions:
     tokenUrl: /token
     authorizationUrl: /authorization
     scopes:
-      'account_request:read': Ability to read account-request information
+      'account_requests:manage': Ability to manage account-requests
       'accounts:read': Ability to read basic account information
       'balances:read': Ability to read balance information
       'beneficiaries:read': Ability to read basic beneficiary details
       'direct_debits:read': Ability to read direct debit information
       'standing_orders:read': Ability to read standing order information
       'transactions:read': Ability to read basic transaction information
-      'product:read': Ability to read product information relating to the account
+      'products:read': Ability to read product information relating to the account
     description: 'OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU'
   TPPOAuth2Security:
     type: oauth2
