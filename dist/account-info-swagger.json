@@ -662,15 +662,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -1124,15 +1116,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -1305,15 +1289,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -1511,15 +1487,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -1674,15 +1642,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -1939,15 +1899,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -2317,15 +2269,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -2471,15 +2415,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -2643,15 +2579,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -2961,15 +2889,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -3158,15 +3078,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -3277,15 +3189,7 @@
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "last": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "prev": {
+                    "previous": {
                       "type": "string",
                       "format": "uri"
                     },
