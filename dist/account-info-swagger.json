@@ -320,6 +320,7 @@
               },
               "additionalProperties": false,
               "required": [
+                "AccountRequestId",
                 "Permissions"
               ]
             }

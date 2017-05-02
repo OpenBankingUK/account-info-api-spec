@@ -18,7 +18,7 @@
       }
     },
     "Permissions": {
-       "$ref": "../definitions/account_request/permissions.json"
+      "$ref": "../definitions/account_request/permissions.json"
     },
     "PermissionsExpirationDateTime": {
       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
@@ -45,6 +45,7 @@
   },
   "additionalProperties": false,
   "required": [
+    "AccountRequestId",
     "Permissions"
   ]
 }

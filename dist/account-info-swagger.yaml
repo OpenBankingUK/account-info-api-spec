@@ -266,6 +266,7 @@ paths:
                   additionalProperties: false
             additionalProperties: false
             required:
+              - AccountRequestId
               - Permissions
         '400': &ref_0
           description: Bad Request
@@ -1551,7 +1552,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Product successfully retrieved
@@ -1613,7 +1614,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1788,7 +1789,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
