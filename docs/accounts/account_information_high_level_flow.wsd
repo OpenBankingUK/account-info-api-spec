@@ -8,7 +8,7 @@ PSU -> AISP: Opens Aggregation App
 AISP -> ASPSP Authorisation Server: Establish TLS 1.2 MA
 AISP -> ASPSP Authorisation Server: /token { client_id , client_secret,  scope: "account_request:manage"  }
 ASPSP Authorisation Server -> AISP: access token
-AISP -> ASPSP Resource Server: POST /accounts-requests { PermissionCodes: "ReadTransactions", "ReadAccounts" "ReadBalances" ... }
+AISP -> ASPSP Resource Server: POST /account-requests { PermissionCodes: "ReadTransactions", "ReadAccounts" "ReadBalances" ... }
 ASPSP Resource Server -> ASPSP Resource Server: validate and stores account request consent payload
 ASPSP Resource Server --> AISP: HTTP 201 Created { AccountRequestId: 1 ,  status: AwaitingAuthorisation }
 AISP -> PSU: Redirect PSU to ASPSP for Auth (scopes: transactions:read, balances:read ...)
