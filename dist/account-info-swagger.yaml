@@ -62,15 +62,19 @@ paths:
                 type: string
                 format: date-time
               TransactionFromDateTime:
-                description: 'Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.'
+                description: >-
+                  Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available
+                  transaction.
                 type: string
                 format: date-time
               TransactionToDateTime:
-                description: 'Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.'
+                description: >-
+                  Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available
+                  transaction.
                 type: string
                 format: date-time
               SelectedAccounts:
-                description: Provides the details to identify accounts in the account information request.
+                description: Provides account and servicer identification details for the account information request.
                 type: array
                 items:
                   description: Provides the details to identify an account.
@@ -192,15 +196,19 @@ paths:
                 type: string
                 format: date-time
               TransactionFromDateTime:
-                description: 'Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.'
+                description: >-
+                  Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available
+                  transaction.
                 type: string
                 format: date-time
               TransactionToDateTime:
-                description: 'Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.'
+                description: >-
+                  Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available
+                  transaction.
                 type: string
                 format: date-time
               SelectedAccounts:
-                description: Provides the details to identify accounts in the account information request.
+                description: Provides account and servicer identification details for the account information request.
                 type: array
                 items:
                   description: Provides the details to identify an account.
@@ -266,6 +274,7 @@ paths:
                   additionalProperties: false
             additionalProperties: false
             required:
+              - AccountRequestId
               - Permissions
         '400': &ref_0
           description: Bad Request
@@ -349,15 +358,19 @@ paths:
                 type: string
                 format: date-time
               TransactionFromDateTime:
-                description: 'Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.'
+                description: >-
+                  Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available
+                  transaction.
                 type: string
                 format: date-time
               TransactionToDateTime:
-                description: 'Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.'
+                description: >-
+                  Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available
+                  transaction.
                 type: string
                 format: date-time
               SelectedAccounts:
-                description: Provides the details to identify accounts in the account information request.
+                description: Provides account and servicer identification details for the account information request.
                 type: array
                 items:
                   description: Provides the details to identify an account.
@@ -812,6 +825,7 @@ paths:
                           type: string
                       required:
                         - Code
+                        - SubCode
                       additionalProperties: false
                     ProprietaryBankTransactionCode:
                       description: Set of elements to fully identify a proprietary bank transaction code.
@@ -899,7 +913,6 @@ paths:
                     - Currency
                     - CreditDebitIndicator
                     - Status
-                    - BankTransactionCode
                     - Balance
                 minItems: 0
               Links:
@@ -1551,7 +1564,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Product successfully retrieved
@@ -1613,7 +1626,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1788,7 +1801,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:

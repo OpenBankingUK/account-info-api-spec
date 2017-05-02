@@ -75,17 +75,17 @@
                   "format": "date-time"
                 },
                 "TransactionFromDateTime": {
-                  "description": "Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.",
+                  "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
                   "type": "string",
                   "format": "date-time"
                 },
                 "TransactionToDateTime": {
-                  "description": "Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.",
+                  "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
                   "type": "string",
                   "format": "date-time"
                 },
                 "SelectedAccounts": {
-                  "description": "Provides the details to identify accounts in the account information request.",
+                  "description": "Provides account and servicer identification details for the account information request.",
                   "type": "array",
                   "items": {
                     "description": "Provides the details to identify an account.",
@@ -232,17 +232,17 @@
                   "format": "date-time"
                 },
                 "TransactionFromDateTime": {
-                  "description": "Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.",
+                  "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
                   "type": "string",
                   "format": "date-time"
                 },
                 "TransactionToDateTime": {
-                  "description": "Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.",
+                  "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
                   "type": "string",
                   "format": "date-time"
                 },
                 "SelectedAccounts": {
-                  "description": "Provides the details to identify accounts in the account information request.",
+                  "description": "Provides account and servicer identification details for the account information request.",
                   "type": "array",
                   "items": {
                     "description": "Provides the details to identify an account.",
@@ -320,6 +320,7 @@
               },
               "additionalProperties": false,
               "required": [
+                "AccountRequestId",
                 "Permissions"
               ]
             }
@@ -430,17 +431,17 @@
                   "format": "date-time"
                 },
                 "TransactionFromDateTime": {
-                  "description": "Specified start date and time for the transaction query period. If this is not populated, the request will be open ended.",
+                  "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
                   "type": "string",
                   "format": "date-time"
                 },
                 "TransactionToDateTime": {
-                  "description": "Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.",
+                  "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
                   "type": "string",
                   "format": "date-time"
                 },
                 "SelectedAccounts": {
-                  "description": "Provides the details to identify accounts in the account information request.",
+                  "description": "Provides account and servicer identification details for the account information request.",
                   "type": "array",
                   "items": {
                     "description": "Provides the details to identify an account.",
@@ -1056,7 +1057,8 @@
                           }
                         },
                         "required": [
-                          "Code"
+                          "Code",
+                          "SubCode"
                         ],
                         "additionalProperties": false
                       },
@@ -1167,7 +1169,6 @@
                       "Currency",
                       "CreditDebitIndicator",
                       "Status",
-                      "BankTransactionCode",
                       "Balance"
                     ]
                   },
@@ -2892,7 +2893,8 @@
                           }
                         },
                         "required": [
-                          "Code"
+                          "Code",
+                          "SubCode"
                         ],
                         "additionalProperties": false
                       },
@@ -3003,7 +3005,6 @@
                       "Currency",
                       "CreditDebitIndicator",
                       "Status",
-                      "BankTransactionCode",
                       "Balance"
                     ]
                   },
