@@ -1373,6 +1373,10 @@ paths:
                       type: string
                       minLength: 1
                       maxLength: 40
+                    Currency:
+                      description: Identification of the currency of the standing order
+                      type: string
+                      pattern: '^[A-Z]{3}$'
                     Frequency:
                       description: >-
                         EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070
@@ -1519,6 +1523,7 @@ paths:
                       additionalProperties: false
                   required:
                     - AccountId
+                    - Currency
                     - Frequency
                     - NextPaymentDate
                     - NextPaymentAmount

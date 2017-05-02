@@ -79,7 +79,7 @@ Create an Account Request
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="account-requests-post-servicer"></a>
@@ -131,7 +131,7 @@ Create an Account Request
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="account-requests-post-selectedaccounts-servicer"></a>
@@ -220,7 +220,7 @@ Get an account request
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="account-requests-accountrequestid-get-selectedaccounts-servicer"></a>
@@ -339,7 +339,7 @@ Get a list of accounts
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="accounts-get-accounts-servicer"></a>
@@ -423,7 +423,7 @@ Get an account
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="accounts-accountid-get-servicer"></a>
@@ -495,7 +495,7 @@ Get Balances related to an account
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#accounts-accountid-balances-get-balances-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#accounts-accountid-balances-get-balances-creditline)|
-|**Date**  <br>*required*|Indicates the date (and time) of the balance.|[Date](#accounts-accountid-balances-get-balances-date)|
+|**Date**  <br>*optional*|Indicates the date (and time) of the balance.|[Date](#accounts-accountid-balances-get-balances-date)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
 
 <a name="accounts-accountid-balances-get-balances-amount"></a>
@@ -512,7 +512,7 @@ Get Balances related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#accounts-accountid-balances-get-balances-creditline-amount)|
-|**Included**  <br>*required*||boolean|
+|**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|string|
 
 <a name="accounts-accountid-balances-get-balances-creditline-amount"></a>
@@ -612,7 +612,7 @@ Get Beneficiaries related to an account
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="accounts-accountid-beneficiaries-get-beneficiaries-servicer"></a>
@@ -691,7 +691,7 @@ Get Direct Debits related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Currency**  <br>*optional*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**DirectDebitId**  <br>*optional*|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
@@ -862,6 +862,7 @@ Get Standing Orders related to an account
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*required*|Provides the details to identify the beneficiary account.|[CreditorAccount](#accounts-accountid-standing-orders-get-standingorders-creditoraccount)|
 |**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**Currency**  <br>*required*|Identification of the currency of the standing order  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#accounts-accountid-standing-orders-get-standingorders-finalpaymentamount)|
 |**FinalPaymentDate**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
 |**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#accounts-accountid-standing-orders-get-standingorders-firstpaymentamount)|
@@ -879,7 +880,7 @@ Get Standing Orders related to an account
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="accounts-accountid-standing-orders-get-standingorders-finalpaymentamount"></a>
@@ -1116,7 +1117,7 @@ Get Balances
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balances-get-balances-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#balances-get-balances-creditline)|
-|**Date**  <br>*required*|Indicates the date (and time) of the balance.|[Date](#balances-get-balances-date)|
+|**Date**  <br>*optional*|Indicates the date (and time) of the balance.|[Date](#balances-get-balances-date)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
 
 <a name="balances-get-balances-amount"></a>
@@ -1133,7 +1134,7 @@ Get Balances
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balances-get-balances-creditline-amount)|
-|**Included**  <br>*required*||boolean|
+|**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|string|
 
 <a name="balances-get-balances-creditline-amount"></a>
@@ -1226,7 +1227,7 @@ Get Beneficiaries
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="beneficiaries-get-beneficiaries-servicer"></a>
@@ -1298,7 +1299,7 @@ Get Direct Debits
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Currency**  <br>*optional*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**DirectDebitId**  <br>*optional*|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
@@ -1457,6 +1458,7 @@ Get Standing Orders
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*required*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-orders-get-standingorders-creditoraccount)|
 |**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**Currency**  <br>*required*|Identification of the currency of the standing order  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-orders-get-standingorders-finalpaymentamount)|
 |**FinalPaymentDate**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.  <br>**Pattern** : `"^[0-9]{4}-(0[1-9]\|(1[0\|1\|2]))-((0[1-9])\|((1\|2)[0-9])\|(30\|31))$"`|string|
 |**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-orders-get-standingorders-firstpaymentamount)|
@@ -1474,7 +1476,7 @@ Get Standing Orders
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
 <a name="standing-orders-get-standingorders-finalpaymentamount"></a>
