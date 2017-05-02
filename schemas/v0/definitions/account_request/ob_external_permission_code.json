@@ -13,6 +13,7 @@
     "ReadTransactions",
     "ReadTransactionsCredits",
     "ReadTransactionsDebits",
-    "ReadTransactionsSensitive"
+    "ReadTransactionsSensitive",
+    "ReadProducts"
   ]
 }

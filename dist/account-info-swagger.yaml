@@ -54,6 +54,7 @@ paths:
                     - ReadTransactionsCredits
                     - ReadTransactionsDebits
                     - ReadTransactionsSensitive
+                    - ReadProducts
                 minProperties: 1
                 additionalProperties: false
               PermissionsExpirationDateTime:
@@ -183,6 +184,7 @@ paths:
                     - ReadTransactionsCredits
                     - ReadTransactionsDebits
                     - ReadTransactionsSensitive
+                    - ReadProducts
                 minProperties: 1
                 additionalProperties: false
               PermissionsExpirationDateTime:
@@ -338,6 +340,7 @@ paths:
                     - ReadTransactionsCredits
                     - ReadTransactionsDebits
                     - ReadTransactionsSensitive
+                    - ReadProducts
                 minProperties: 1
                 additionalProperties: false
               PermissionsExpirationDateTime:
@@ -1518,6 +1521,81 @@ paths:
       security:
         - PSUOAuth2Security:
             - 'standing_orders:read'
+  '/accounts/{AccountId}/product':
+    get:
+      summary: Get Account Product
+      description: Get Product related to an account
+      operationId: GetAccountProduct
+      produces:
+        - application/json
+      parameters:
+        - *ref_5
+      responses:
+        '200':
+          description: Account Product successfully retrieved
+          schema:
+            title: Product GET response
+            type: object
+            properties:
+              Product:
+                description: Product
+                type: object
+                properties:
+                  AccountId:
+                    description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
+                    type: string
+                    minLength: 1
+                    maxLength: 40
+                  ProductIdentifier:
+                    description: Identifier within the parent organisation for the product. Must be unique in the organisation.
+                    type: string
+                  ProductType:
+                    description: Descriptive code for the product category.
+                    type: string
+                    enum:
+                      - BCA
+                      - PCA
+                  ProductName:
+                    description: The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.
+                    type: string
+                  SecondaryProductIdentifier:
+                    description: Identifier within the parent organisation for the product. Must be unique in the organisation.
+                    type: string
+                additionalProperties: false
+                required:
+                  - AccountId
+                  - ProductIdentifier
+                  - ProductType
+              Links:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rel:
+                      type: string
+                      enum:
+                        - self
+                    href:
+                      type: string
+                      format: uri
+                    method:
+                      type: string
+                      enum:
+                        - GET
+                minItems: 1
+                uniqueItems: true
+                additionalProperties: false
+            additionalProperties: false
+            required:
+              - Product
+        '400': *ref_0
+        '401': *ref_1
+        '403': *ref_2
+        '404': *ref_4
+        '500': *ref_3
+      security:
+        - PSUOAuth2Security:
+            - 'products:read'
   /standing-orders:
     get:
       summary: Get Standing Orders
@@ -1615,6 +1693,84 @@ paths:
       security:
         - PSUOAuth2Security:
             - 'balances:read'
+  /products:
+    get:
+      summary: Get Products
+      description: Get Products
+      operationId: GetProducts
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Products successfully retrieved
+          schema:
+            title: Products GET response
+            type: object
+            properties:
+              Products:
+                description: Array of Products
+                type: array
+                items:
+                  type: object
+                  properties:
+                    AccountId:
+                      description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
+                      type: string
+                      minLength: 1
+                      maxLength: 40
+                    ProductIdentifier:
+                      description: Identifier within the parent organisation for the product. Must be unique in the organisation.
+                      type: string
+                    ProductType:
+                      description: Descriptive code for the product category.
+                      type: string
+                      enum:
+                        - BCA
+                        - PCA
+                    ProductName:
+                      description: The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.
+                      type: string
+                    SecondaryProductIdentifier:
+                      description: Identifier within the parent organisation for the product. Must be unique in the organisation.
+                      type: string
+                  additionalProperties: false
+                  required:
+                    - AccountId
+                    - ProductIdentifier
+                    - ProductType
+                minItems: 0
+              Links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    format: uri
+                  first:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                additionalProperties: false
+                required:
+                  - self
+            additionalProperties: false
+            required:
+              - Products
+        '400': *ref_0
+        '401': *ref_1
+        '403': *ref_2
+        '404': *ref_4
+        '500': *ref_3
+      security:
+        - PSUOAuth2Security:
+            - 'products:read'
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2

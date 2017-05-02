@@ -1,0 +1,21 @@
+{
+  "title": "Products GET response",
+  "type": "object",
+  "properties": {
+    "Products": {
+      "description": "Array of Products",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/products/product.json"
+      },
+      "minItems": 0
+    },
+    "Links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Products"
+  ]
+}
