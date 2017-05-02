@@ -1251,7 +1251,7 @@ paths:
                   type: object
                   properties:
                     AccountId:
-                      description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
+                      description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
                       type: string
                       minLength: 1
                       maxLength: 40
