@@ -1164,6 +1164,7 @@ paths:
                       type: object
                       properties:
                         Included:
+                          description: 'Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.'
                           type: boolean
                         Amount:
                           description: Active Or Historic Currency Code and Amount
@@ -1193,7 +1194,6 @@ paths:
                     - AccountId
                     - Amount
                     - CreditDebitIndicator
-                    - Date
                     - Type
                 minItems: 0
               Links:

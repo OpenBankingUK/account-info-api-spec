@@ -27,7 +27,6 @@
     "AccountId",
     "Amount",
     "CreditDebitIndicator",
-    "Date",
     "Type"
   ]
 }
