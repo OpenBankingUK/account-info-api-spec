@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "$ref": "../accounts/account_id.json"
+    },
+    "ProductIdentifier": {
+      "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
+      "type": "string"
+    },
+    "ProductType": {
+      "$ref": "../common/external_product_type_1_code.json"
+    },
+    "ProductName": {
+      "description": "The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.",
+      "type": "string"
+    },
+    "SecondaryProductIdentifier": {
+      "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "ProductIdentifier",
+    "ProductType"
+  ]
+}
