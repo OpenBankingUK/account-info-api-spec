@@ -1,7 +1,7 @@
-/accounts-requests:
+/account-requests:
   $ref: ./accounts_requests/accounts_request_post.yaml
-/accounts-requests/{AccountRequestId}:
-  $ref: ./accounts_requests/accounts_request_get.yaml
+/account-requests/{AccountRequestId}:
+  $ref: ./accounts_requests/account_request_other.yaml
 /accounts:
   $ref: ./accounts/accounts_get.yaml
 /accounts/{AccountId}:

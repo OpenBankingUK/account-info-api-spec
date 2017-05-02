@@ -131,7 +131,7 @@ __required__|string (uri)
 [[_createaccountrequest]]
 === Create an account request
 ....
-POST /accounts-requests
+POST /account-requests
 ....
 
 
@@ -169,12 +169,12 @@ __optional__|Specified end date and time for the transaction query period. If th
 |===
 |Name|Description|Schema
 |**Account** +
-__required__||<<_accounts-requests_post_account,Account>>
+__required__||<<_account-requests_post_account,Account>>
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts-requests_post_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_post_servicer,Servicer>>
 |===
 
-[[_accounts-requests_post_account]]
+[[_account-requests_post_account]]
 **Account**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -193,7 +193,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_accounts-requests_post_servicer]]
+[[_account-requests_post_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -236,7 +236,7 @@ __required__|Specifies the Open Banking account request types. This is a list of
 |**PermissionsExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**SelectedAccounts** +
-__optional__|Provides the details to identify accounts in the account information request.|< <<_accounts-requests_post_selectedaccounts,SelectedAccounts>> > array
+__optional__|Provides the details to identify accounts in the account information request.|< <<_account-requests_post_selectedaccounts,SelectedAccounts>> > array
 |**Status** +
 __optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
 |**TransactionFromDateTime** +
@@ -245,19 +245,19 @@ __optional__|Specified start date and time for the transaction query period. If 
 __optional__|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
 |===
 
-[[_accounts-requests_post_selectedaccounts]]
+[[_account-requests_post_selectedaccounts]]
 **SelectedAccounts**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Account** +
-__required__||<<_accounts-requests_post_selectedaccounts_account,Account>>
+__required__||<<_account-requests_post_selectedaccounts_account,Account>>
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts-requests_post_selectedaccounts_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_post_selectedaccounts_servicer,Servicer>>
 |===
 
-[[_accounts-requests_post_selectedaccounts_account]]
+[[_account-requests_post_selectedaccounts_account]]
 **Account**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -276,7 +276,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_accounts-requests_post_selectedaccounts_servicer]]
+[[_account-requests_post_selectedaccounts_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -314,7 +314,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [[_getaccountrequest]]
 === Get an account request
 ....
-GET /accounts-requests/{AccountRequestId}
+GET /account-requests/{AccountRequestId}
 ....
 
 
@@ -361,7 +361,7 @@ __required__|Specifies the Open Banking account request types. This is a list of
 |**PermissionsExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**SelectedAccounts** +
-__optional__|Provides the details to identify accounts in the account information request.|< <<_accounts-requests_accountrequestid_get_selectedaccounts,SelectedAccounts>> > array
+__optional__|Provides the details to identify accounts in the account information request.|< <<_account-requests_accountrequestid_get_selectedaccounts,SelectedAccounts>> > array
 |**Status** +
 __optional__|Specifies the status of the account request resource in code form.|enum (AwaitingAuthorisation, Authenticated, Rejected)
 |**TransactionFromDateTime** +
@@ -370,19 +370,19 @@ __optional__|Specified start date and time for the transaction query period. If 
 __optional__|Specified end date and time for the transaction query period. If this is not populated, the request will be open ended.|string (date-time)
 |===
 
-[[_accounts-requests_accountrequestid_get_selectedaccounts]]
+[[_account-requests_accountrequestid_get_selectedaccounts]]
 **SelectedAccounts**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Account** +
-__required__||<<_accounts-requests_accountrequestid_get_selectedaccounts_account,Account>>
+__required__||<<_account-requests_accountrequestid_get_selectedaccounts_account,Account>>
 |**Servicer** +
-__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_accounts-requests_accountrequestid_get_selectedaccounts_servicer,Servicer>>
+__required__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_account-requests_accountrequestid_get_selectedaccounts_servicer,Servicer>>
 |===
 
-[[_accounts-requests_accountrequestid_get_selectedaccounts_account]]
+[[_account-requests_accountrequestid_get_selectedaccounts_account]]
 **Account**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -401,7 +401,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_accounts-requests_accountrequestid_get_selectedaccounts_servicer]]
+[[_account-requests_accountrequestid_get_selectedaccounts_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]

@@ -22,7 +22,7 @@
     "application/json"
   ],
   "paths": {
-    "/accounts-requests": {
+    "/account-requests": {
       "post": {
         "summary": "Create an account request",
         "description": "Create an account request",
@@ -347,7 +347,7 @@
         ]
       }
     },
-    "/accounts-requests/{AccountRequestId}": {
+    "/account-requests/{AccountRequestId}": {
       "get": {
         "summary": "Get an account request",
         "description": "Get an account request",
@@ -543,7 +543,56 @@
           },
           {
             "PSUOAuth2Security": [
-              "account_request:read"
+              "account_request:manage"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete an account request",
+        "description": "Delete an account request",
+        "operationId": "DeleteAccountRequest",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountRequestId",
+            "in": "path",
+            "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Account Request resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "TPPOAuth2Security": [
+              "tpp_client_credential"
+            ]
+          },
+          {
+            "PSUOAuth2Security": [
+              "account_request:manage"
             ]
           }
         ]

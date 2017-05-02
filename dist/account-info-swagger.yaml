@@ -16,7 +16,7 @@ schemes:
 produces:
   - application/json
 paths:
-  /accounts-requests:
+  /account-requests:
     post:
       summary: Create an account request
       description: Create an account request
@@ -271,14 +271,14 @@ paths:
           description: Unauthorized
         '403': &ref_2
           description: Forbidden
-        '409': &ref_11
+        '409': &ref_12
           description: Conflict
         '500': &ref_3
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
-  '/accounts-requests/{AccountRequestId}':
+  '/account-requests/{AccountRequestId}':
     get:
       summary: Get an account request
       description: Get an account request
@@ -286,7 +286,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: AccountRequestId
+        - &ref_4
+          name: AccountRequestId
           in: path
           description: Unique identification as assigned by the ASPSP to uniquely identify the account request resource.
           required: true
@@ -423,14 +424,35 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': &ref_4
+        '404': &ref_5
           description: Not Found
         '500': *ref_3
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
         - PSUOAuth2Security:
-            - 'account_request:read'
+            - 'account_request:manage'
+    delete:
+      summary: Delete an account request
+      description: Delete an account request
+      operationId: DeleteAccountRequest
+      produces:
+        - application/json
+      parameters:
+        - *ref_4
+      responses:
+        '204':
+          description: Account Request resource successfully deleted
+        '400': *ref_0
+        '401': *ref_1
+        '403': *ref_2
+        '404': *ref_5
+        '500': *ref_3
+      security:
+        - TPPOAuth2Security:
+            - tpp_client_credential
+        - PSUOAuth2Security:
+            - 'account_request:manage'
   /accounts:
     get:
       summary: Get Accounts
@@ -555,7 +577,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -568,7 +590,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_5
+        - &ref_6
           name: AccountId
           in: path
           description: A unique identifier used to identify the account resource.
@@ -661,7 +683,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -674,11 +696,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Transactions successfully retrieved
-          schema: &ref_9
+          schema: &ref_10
             title: Account Transactions GET response
             type: object
             properties:
@@ -904,7 +926,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -917,11 +939,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Beneficiaries  successfully retrieved
-          schema: &ref_8
+          schema: &ref_9
             title: Beneficiaries GET response
             type: object
             properties:
@@ -1038,7 +1060,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1051,11 +1073,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Beneficiaries  successfully retrieved
-          schema: &ref_10
+          schema: &ref_11
             title: Balances GET response
             type: object
             properties:
@@ -1183,7 +1205,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1196,11 +1218,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Direct Debits successfully retrieved
-          schema: &ref_7
+          schema: &ref_8
             title: Direct Debits GET response
             type: object
             properties:
@@ -1296,7 +1318,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1309,11 +1331,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_5
+        - *ref_6
       responses:
         '200':
           description: Account Standing Orders successfully retrieved
-          schema: &ref_6
+          schema: &ref_7
             title: Standing Orders GET response
             type: object
             properties:
@@ -1513,7 +1535,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1528,11 +1550,11 @@ paths:
       responses:
         '200':
           description: Standing Orders successfully retrieved
-          schema: *ref_6
+          schema: *ref_7
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1547,11 +1569,11 @@ paths:
       responses:
         '200':
           description: Direct Debits successfully retrieved
-          schema: *ref_7
+          schema: *ref_8
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1566,11 +1588,11 @@ paths:
       responses:
         '200':
           description: Beneficiaries successfully retrieved
-          schema: *ref_8
+          schema: *ref_9
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1587,11 +1609,11 @@ paths:
       responses:
         '200':
           description: Transactions successfully retrieved
-          schema: *ref_9
+          schema: *ref_10
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1606,11 +1628,11 @@ paths:
       responses:
         '200':
           description: Balances successfully retrieved
-          schema: *ref_10
+          schema: *ref_11
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_4
+        '404': *ref_5
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -1642,6 +1664,6 @@ responses:
   400ErrorResponse: *ref_0
   401ErrorResponse: *ref_1
   403ErrorResponse: *ref_2
-  404NotFound: *ref_4
-  409ErrorResponse: *ref_11
+  404NotFound: *ref_5
+  409ErrorResponse: *ref_12
   500ErrorResponse: *ref_3
