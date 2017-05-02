@@ -813,6 +813,7 @@ paths:
                           type: string
                       required:
                         - Code
+                        - SubCode
                       additionalProperties: false
                     ProprietaryBankTransactionCode:
                       description: Set of elements to fully identify a proprietary bank transaction code.
@@ -900,7 +901,6 @@ paths:
                     - Currency
                     - CreditDebitIndicator
                     - Status
-                    - BankTransactionCode
                     - Balance
                 minItems: 0
               Links:

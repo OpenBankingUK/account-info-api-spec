@@ -1057,7 +1057,8 @@
                           }
                         },
                         "required": [
-                          "Code"
+                          "Code",
+                          "SubCode"
                         ],
                         "additionalProperties": false
                       },
@@ -1168,7 +1169,6 @@
                       "Currency",
                       "CreditDebitIndicator",
                       "Status",
-                      "BankTransactionCode",
                       "Balance"
                     ]
                   },
@@ -2893,7 +2893,8 @@
                           }
                         },
                         "required": [
-                          "Code"
+                          "Code",
+                          "SubCode"
                         ],
                         "additionalProperties": false
                       },
@@ -3004,7 +3005,6 @@
                       "Currency",
                       "CreditDebitIndicator",
                       "Status",
-                      "BankTransactionCode",
                       "Balance"
                     ]
                   },

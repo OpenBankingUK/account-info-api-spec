@@ -57,7 +57,6 @@
     "Currency",
     "CreditDebitIndicator",
     "Status",
-    "BankTransactionCode",
     "Balance"
   ]
 }
