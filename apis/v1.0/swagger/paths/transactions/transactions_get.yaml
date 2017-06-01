@@ -10,7 +10,7 @@ get:
     200:
       description: Transactions successfully retrieved
       schema:
-        $ref: ../../../../../compiled/schemas/v0/accounts/account_transactions.get.200.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.0/accounts/account_transactions.get.200.response.schema.yaml
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:

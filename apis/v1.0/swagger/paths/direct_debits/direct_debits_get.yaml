@@ -8,7 +8,7 @@ get:
     200:
       description: Direct Debits successfully retrieved
       schema:
-        $ref: ../../../../../compiled/schemas/v0/direct_debits/direct_debits.get.200.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.0/direct_debits/direct_debits.get.200.response.schema.yaml
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:

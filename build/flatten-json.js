@@ -1,9 +1,9 @@
 const refParser = require('json-schema-ref-parser');
-const jsonPath = process.argv[2] || './schemas/v0';
+const jsonPath = process.argv[2] || './schemas/v1.0';
 const distPath = process.argv[3] || './dist';
 const schemasRootPath = process.argv[4];
 const glob = require('glob');
-const YAML = require('json2yaml')
+const YAML = require('json2yaml');
 const utils = require('./utils');
 const Ajv = require('ajv');
 const fs = require('fs');
