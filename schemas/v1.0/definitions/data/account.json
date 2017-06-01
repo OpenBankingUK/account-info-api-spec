@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "Data": {
+      "title": "Data",
+      "type": "array",
+      "items": {
+        "$ref": "../accounts/account.json"
+      }
+    },
+    "Links": {
+      "title": "Links",
+      "$ref": "../common/links_self.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Data",
+    "Links"
+  ]
+}

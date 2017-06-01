@@ -1,31 +1,30 @@
 {
- "type": "object",
- "properties": {
-   "AccountId": {
-     "$ref": "./account_id.json"
-   },
-   "Currency": {
-     "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
-     "$ref": "../common/active_or_historic_currency_code.json"
-   },
-   "Nickname": {
-     "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
-     "$ref": "../common/max_70_text.json"
-   },
-   "Account": {
-     "description": "Provides the details to identify an account.",
-     "$ref": "../common/creditor_cash_account.json"
-   },
-   "Servicer": {
-     "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
-     "$ref": "../common/ob_branch_and_financial_institution_identification.json"
-   }
- },
- "additionalProperties": false,
- "required": [
-   "AccountId",
-   "Currency",
-   "Account",
-   "Servicer"
- ]
+  "type": "object",
+  "description": "",
+  "properties": {
+    "AccountId": {
+      "$ref": "./account_id.json"
+    },
+    "Currency": {
+      "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
+      "$ref": "../common/active_or_historic_currency_code.json"
+    },
+    "Nickname": {
+      "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
+      "$ref": "../common/max_70_text.json"
+    },
+    "Account": {
+      "description": "Provides the details to identify an account.",
+      "$ref": "../common/creditor_cash_account.json"
+    },
+    "Servicer": {
+      "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
+      "$ref": "../common/ob_branch_and_financial_institution_identification.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "Currency"
+  ]
 }

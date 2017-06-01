@@ -1,23 +1,13 @@
 {
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "rel": {
-        "type": "string",
-        "enum": [ "self" ]
-      },
-      "href": {
-        "type": "string",
-        "format": "uri"
-      },
-      "method": {
-        "type": "string",
-        "enum": [ "GET" ]
-      }
+  "type": "object",
+  "properties": {
+    "self": {
+      "type": "string",
+      "format": "uri"
     }
   },
-  "minItems": 1,
-  "uniqueItems": true,
-  "additionalProperties": false
+  "additionalProperties": false,
+  "required": [
+    "self"
+  ]
 }

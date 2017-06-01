@@ -20,8 +20,7 @@
     },
   "required": [
     "SchemeName",
-    "Identification",
-    "Name"
+    "Identification"
   ],
   "additionalProperties": false
 }

@@ -1,4 +1,4 @@
 {
  "title": "Account GET response",
- "$ref": "../definitions/accounts/account.json"
+ "$ref": "../definitions/data/account.json"
 }
