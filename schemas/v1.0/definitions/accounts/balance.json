@@ -14,9 +14,9 @@
     "Type": {
       "$ref": "./balances/balance_type_code.json"
     },
-    "Date": {
+    "DateTime": {
       "description": "Indicates the date (and time) of the balance.",
-      "$ref": "../common/date_and_date_time_choice.json"
+      "type": "date-time"
     },
     "CreditLine": {
       "$ref": "./balances/credit_line.json"
@@ -27,6 +27,7 @@
     "AccountId",
     "Amount",
     "CreditDebitIndicator",
+    "DateTime",
     "Type"
   ]
 }

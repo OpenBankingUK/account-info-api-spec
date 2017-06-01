@@ -8,7 +8,7 @@ get:
     200:
       description: Balances successfully retrieved
       schema:
-        $ref: ../../../../../compiled/schemas/v0/balances/balances.get.200.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.0/balances/balances.get.200.response.schema.yaml
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
