@@ -3,9 +3,9 @@ description: Swagger specification for Account Information APIs
 termsOfService: https://www.openbanking.org.uk/terms
 contact:
   #we need team email
-  name: Claudio Viola
-  email: claudio.viola@openbanking.org.uk
+  name: Craig Greenhouse
+  email: Craig.Greenhouse@openbanking.org.uk
 license:
   name: open-licence
   url: https://www.openbanking.org.uk/open-licence
-version: v0.1
+version: v1.0-rc1
