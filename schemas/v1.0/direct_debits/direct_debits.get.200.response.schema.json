@@ -1,0 +1,21 @@
+{
+  "title": "Direct Debits GET response",
+  "type": "object",
+  "properties": {
+    "DirectDebits": {
+      "description": "Array of Direct Debits",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/direct_debits/direct_debit.json"
+      },
+      "minItems": 0
+    },
+    "Links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "DirectDebits"
+  ]
+}

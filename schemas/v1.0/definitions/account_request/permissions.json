@@ -1,0 +1,9 @@
+{
+  "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
+  "type": "array",
+  "items": {
+    "$ref": "ob_external_permission_code.json"
+  },
+  "minProperties": 1,
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "title": "HTTP 409 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "409" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "Conflict" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The request could not be completed due to a conflict with the current state of the resource." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

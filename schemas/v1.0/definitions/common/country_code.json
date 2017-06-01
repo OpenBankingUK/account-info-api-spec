@@ -1,0 +1,5 @@
+{
+  "description": "CountryCode",
+  "type": "string",
+  "pattern": "[A-Z]{2}"
+}

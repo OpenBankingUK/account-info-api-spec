@@ -1,0 +1,6 @@
+type: oauth2
+flow: application
+tokenUrl: '/token'
+scopes:
+  tpp_client_credential: TPP Client Credential Scope
+description: TPP client credential authorisation flow with the ASPSP

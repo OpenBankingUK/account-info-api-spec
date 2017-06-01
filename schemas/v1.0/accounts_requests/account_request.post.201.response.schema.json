@@ -1,0 +1,51 @@
+{
+  "title": "Account Request POST response",
+  "description": "Account Request POST response",
+  "type": "object",
+  "properties": {
+    "AccountRequestId": {
+      "description": "Unique identification as assigned to identify the account request resource.",
+      "$ref": "../definitions/common/max_40_text.json"
+    },
+    "Status": {
+      "$ref": "../definitions/account_request/ob_external_request_status_code.json"
+    },
+    "AccountIds": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/common/max_40_text.json"
+      }
+    },
+    "Permissions": {
+      "$ref": "../definitions/account_request/permissions.json"
+    },
+    "PermissionsExpirationDateTime": {
+      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionFromDateTime": {
+      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionToDateTime": {
+      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "SelectedAccounts": {
+      "description": "Provides account and servicer identification details for the account information request.",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/common/cash_account_and_branch_identification.json"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountRequestId",
+    "Permissions"
+  ]
+}

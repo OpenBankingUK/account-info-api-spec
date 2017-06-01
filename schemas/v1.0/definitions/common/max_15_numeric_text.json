@@ -1,0 +1,5 @@
+{
+  "description": "max 15 numeric text",
+  "type": "string",
+  "pattern": "^[0-9]{1,15}$"
+}

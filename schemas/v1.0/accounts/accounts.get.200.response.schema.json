@@ -1,0 +1,20 @@
+{
+  "title": "Accounts GET response",
+  "type": "object",
+  "properties": {
+    "Accounts": {
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/accounts/account.json"
+      },
+      "minItems": 0
+    },
+    "Links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Accounts"
+  ]
+}

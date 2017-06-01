@@ -1,0 +1,14 @@
+type: oauth2
+flow: accessCode
+tokenUrl: '/token'
+authorizationUrl: '/authorization'
+scopes:
+  account_requests:manage: Ability to manage account-requests
+  accounts:read: Ability to read basic account information
+  balances:read: Ability to read balance information
+  beneficiaries:read: Ability to read basic beneficiary details
+  direct_debits:read: Ability to read direct debit information
+  standing_orders:read: Ability to read standing order information
+  transactions:read: Ability to read basic transaction information
+  products:read: Ability to read product information relating to the account
+description: OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU

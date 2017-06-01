@@ -1,0 +1,21 @@
+{
+  "title": "Balances GET response",
+  "type": "object",
+  "properties": {
+    "Balances": {
+      "description": "Array of Balances",
+      "type": "array",
+      "items": {
+        "$ref": "../definitions/accounts/balance.json"
+      },
+      "minItems": 0
+    },
+    "Links": {
+      "$ref": "../definitions/common/pagination_links.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Balances"
+  ]
+}
