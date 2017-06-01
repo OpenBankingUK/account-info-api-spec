@@ -25,7 +25,7 @@ get:
     - TPPOAuth2Security:
       - tpp_client_credential
     - PSUOAuth2Security:
-      - account_requests:manage
+      - accounts
 
 delete:
   summary: Delete an account request
@@ -50,4 +50,4 @@ delete:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - PSUOAuth2Security:
-      - account_requests:manage
+      - accounts

@@ -23,4 +23,4 @@ get:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - PSUOAuth2Security:
-      - transactions:read
+      - accounts

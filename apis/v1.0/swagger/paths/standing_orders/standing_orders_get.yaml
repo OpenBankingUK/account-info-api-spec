@@ -21,4 +21,4 @@ get:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - PSUOAuth2Security:
-      - standing_orders:read
+      - accounts

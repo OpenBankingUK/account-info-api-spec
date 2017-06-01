@@ -30,4 +30,4 @@ post:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - PSUOAuth2Security:
-      - account_requests:manage
+      - accounts
