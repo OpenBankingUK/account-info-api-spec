@@ -604,14 +604,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_version_information">1.1. Version information</h3>
 <div class="paragraph">
-<p><em>Version</em> : v0.1</p>
+<p><em>Version</em> : v1.0-rc1</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_contact_information">1.2. Contact information</h3>
 <div class="paragraph">
-<p><em>Contact</em> : Claudio Viola<br>
-<em>Contact Email</em> : <a href="mailto:claudio.viola@openbanking.org.uk">claudio.viola@openbanking.org.uk</a></p>
+<p><em>Contact</em> : Craig Greenhouse<br>
+<em>Contact Email</em> : <a href="mailto:Craig.Greenhouse@openbanking.org.uk">Craig.Greenhouse@openbanking.org.uk</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -634,7 +634,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -682,22 +682,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Permissions</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Allows setup of an account access request</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PermissionsExpirationDateTime</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ExpirationDateTime</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SelectedAccounts</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides account and servicer identification details for the account information request.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_createaccountrequest_selectedaccounts">SelectedAccounts</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Permissions</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -710,115 +735,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_createaccountrequest_selectedaccounts" class="paragraph">
-<p><strong>SelectedAccounts</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account-requests_post_account">Account</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account-requests_post_servicer">Servicer</a></p></td>
-</tr>
-</tbody>
-</table>
-<div id="_account-requests_post_account" class="paragraph">
-<p><strong>Account</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of the servicing institution.<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_account-requests_post_servicer" class="paragraph">
-<p><strong>Servicer</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of the servicing institution.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
@@ -889,41 +805,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountIds</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Allows setup of an account access request</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountRequestId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned to identify the account request resource.<br>
-<strong>Length</strong> : <code>1 - 40</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ExpirationDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Permissions</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PermissionsExpirationDateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SelectedAccounts</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides account and servicer identification details for the account information request.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_account-requests_post_selectedaccounts">SelectedAccounts</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource in code form.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AwaitingAuthorisation, Authenticated, Rejected)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -939,122 +861,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_account-requests_post_selectedaccounts" class="paragraph">
-<p><strong>SelectedAccounts</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account-requests_post_selectedaccounts_account">Account</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account-requests_post_selectedaccounts_servicer">Servicer</a></p></td>
-</tr>
-</tbody>
-</table>
-<div id="_account-requests_post_selectedaccounts_account" class="paragraph">
-<p><strong>Account</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of the servicing institution.<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_account-requests_post_selectedaccounts_servicer" class="paragraph">
-<p><strong>Servicer</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of the servicing institution.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="_consumes">2.1.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1064,7 +877,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1088,7 +901,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">account_requests:manage</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -1202,41 +1015,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountIds</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Allows setup of an account access request</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountRequestId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">object</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ExpirationDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned to identify the account request resource.<br>
-<strong>Length</strong> : <code>1 - 40</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Permissions</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PermissionsExpirationDateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SelectedAccounts</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides account and servicer identification details for the account information request.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_account-requests_accountrequestid_get_selectedaccounts">SelectedAccounts</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource in code form.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AwaitingAuthorisation, Authenticated, Rejected)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -1252,122 +1071,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_account-requests_accountrequestid_get_selectedaccounts" class="paragraph">
-<p><strong>SelectedAccounts</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account-requests_accountrequestid_get_selectedaccounts_account">Account</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account-requests_accountrequestid_get_selectedaccounts_servicer">Servicer</a></p></td>
-</tr>
-</tbody>
-</table>
-<div id="_account-requests_accountrequestid_get_selectedaccounts_account" class="paragraph">
-<p><strong>Account</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of the servicing institution.<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_account-requests_accountrequestid_get_selectedaccounts_servicer" class="paragraph">
-<p><strong>Servicer</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of the servicing institution.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="_produces_3">2.2.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1396,7 +1106,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">account_requests:manage</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -1498,7 +1208,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1522,7 +1232,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">account_requests:manage</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -1561,7 +1271,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Accounts successfully retrieved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_get_response">Accounts GET response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
@@ -1590,8 +1300,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_get_response" class="paragraph">
-<p><strong>Accounts GET response</strong></p>
+<div id="_account_get_response" class="paragraph">
+<p><strong>Account GET response</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1606,19 +1316,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Accounts</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_get_accounts">Accounts</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_get_accounts" class="paragraph">
-<p><strong>Accounts</strong></p>
+<div id="_accounts_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1636,9 +1346,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Provides the details to identify an account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_get_accounts_account">Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_get_data_account">Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountId</strong><br>
@@ -1663,13 +1373,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_get_accounts_servicer">Servicer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_get_data_servicer">Servicer</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_get_accounts_account" class="paragraph">
+<div id="_accounts_get_data_account" class="paragraph">
 <p><strong>Account</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1695,7 +1405,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -1715,7 +1425,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_get_accounts_servicer" class="paragraph">
+<div id="_accounts_get_data_servicer" class="paragraph">
 <p><strong>Servicer</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1747,7 +1457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1763,26 +1473,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -1795,7 +1485,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1819,7 +1509,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -1920,6 +1610,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_get_data">Data</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_accounts_accountid_get_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
 <col style="width: 22.2223%;">
@@ -1934,9 +1651,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Provides the details to identify an account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_get_account">Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_get_data_account">Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountId</strong><br>
@@ -1961,13 +1678,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_get_servicer">Servicer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_get_data_servicer">Servicer</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_get_account" class="paragraph">
+<div id="_accounts_accountid_get_data_account" class="paragraph">
 <p><strong>Account</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1993,7 +1710,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -2013,7 +1730,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_get_servicer" class="paragraph">
+<div id="_accounts_accountid_get_data_servicer" class="paragraph">
 <p><strong>Servicer</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2045,13 +1762,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_produces_6">2.5.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -2075,7 +1814,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -2176,34 +1915,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balances</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Balances</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_balances_get_balances">Balances</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_balances_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_balances_get_balances" class="paragraph">
-<p><strong>Balances</strong></p>
+<div id="_accounts_accountid_balances_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2230,7 +1965,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money of the cash balance.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_balances_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_data_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
@@ -2242,13 +1977,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditLine</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_balances_creditline">CreditLine</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_data_creditline">CreditLine</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates the date (and time) of the balance.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_balances_date">Date</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Type</strong><br>
@@ -2258,7 +1993,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_balances_get_balances_amount" class="paragraph">
+<div id="_accounts_accountid_balances_get_data_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2290,7 +2025,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_balances_get_balances_creditline" class="paragraph">
+<div id="_accounts_accountid_balances_get_data_creditline" class="paragraph">
 <p><strong>CreditLine</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2311,7 +2046,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Active Or Historic Currency Code and Amount</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_balances_creditline_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_balances_get_data_creditline_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Included</strong><br>
@@ -2327,7 +2062,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_balances_get_balances_creditline_amount" class="paragraph">
+<div id="_accounts_accountid_balances_get_data_creditline_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2359,39 +2094,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_balances_get_balances_date" class="paragraph">
-<p><strong>Date</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ISODate YYYY-MM-DD<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_accounts_accountid_balances_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2407,26 +2110,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -2439,7 +2122,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -2463,7 +2146,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">balances:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -2564,34 +2247,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Beneficiaries</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Beneficiaries</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_beneficiaries_get_beneficiaries">Beneficiaries</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_beneficiaries_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_beneficiaries_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_beneficiaries_get_beneficiaries" class="paragraph">
-<p><strong>Beneficiaries</strong></p>
+<div id="_accounts_accountid_beneficiaries_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2623,12 +2302,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_beneficiaries_get_beneficiaries_creditoraccount">CreditorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_beneficiaries_get_data_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorReferenceInformation</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
@@ -2636,13 +2315,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_beneficiaries_get_beneficiaries_servicer">Servicer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_beneficiaries_get_data_servicer">Servicer</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_beneficiaries_get_beneficiaries_creditoraccount" class="paragraph">
+<div id="_accounts_accountid_beneficiaries_get_data_creditoraccount" class="paragraph">
 <p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2668,7 +2347,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -2688,7 +2367,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_beneficiaries_get_beneficiaries_servicer" class="paragraph">
+<div id="_accounts_accountid_beneficiaries_get_data_servicer" class="paragraph">
 <p><strong>Servicer</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2720,7 +2399,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_beneficiaries_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2736,26 +2415,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -2768,7 +2427,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -2792,7 +2451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">beneficiaries:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -2859,7 +2518,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Account Direct Debits successfully retrieved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_direct_debits_get_response">Direct Debits GET response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
@@ -2888,39 +2547,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_direct_debits_get_response" class="paragraph">
-<p><strong>Direct Debits GET response</strong></p>
+<div id="_account_get_response" class="paragraph">
+<p><strong>Account GET response</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DirectDebits</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Direct Debits</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_direct-debits_get_directdebits">DirectDebits</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_direct-debits_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_direct-debits_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_direct-debits_get_directdebits" class="paragraph">
-<p><strong>DirectDebits</strong></p>
+<div id="_accounts_accountid_direct-debits_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2946,7 +2601,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds.<br>
 <strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -2981,18 +2636,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentAmount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the most recent direct debit collection.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_direct-debits_get_directdebits_previouspaymentamount">PreviousPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_direct-debits_get_data_previouspaymentamount">PreviousPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_direct-debits_get_directdebits_previouspaymentamount" class="paragraph">
+<div id="_accounts_accountid_direct-debits_get_data_previouspaymentamount" class="paragraph">
 <p><strong>PreviousPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3024,7 +2678,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_direct-debits_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3040,26 +2694,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -3072,7 +2706,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -3096,7 +2730,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">direct_debits:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -3197,37 +2831,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_product_get_links">Links</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Product</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Product</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_product_get_product">Product</a></p></td>
-</tr>
-</tbody>
-</table>
-<div id="_accounts_accountid_product_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
 </colgroup>
@@ -3239,24 +2842,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>href</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_product_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>method</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (GET)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>rel</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (self)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_product_get_product" class="paragraph">
-<p><strong>Product</strong></p>
+<div id="_accounts_accountid_product_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3305,13 +2903,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_produces_10">2.9.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -3335,7 +2955,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">products:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -3436,37 +3056,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_links">Links</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StandingOrders</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Standing Orders</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_standing-orders_get_standingorders">StandingOrders</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_accounts_accountid_standing-orders_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
 </colgroup>
@@ -3478,34 +3067,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_standing-orders_get_data">Data</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_standing-orders_get_standingorders" class="paragraph">
-<p><strong>StandingOrders</strong></p>
+<div id="_accounts_accountid_standing-orders_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3524,55 +3098,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.<br>
 <strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides the details to identify the beneficiary account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_standingorders_creditoraccount">CreditorAccount</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorReferenceInformation</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification of the currency of the standing order<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides the details to identify the beneficiary account.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_data_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentAmount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the final Standing Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_standingorders_finalpaymentamount">FinalPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_data_finalpaymentamount">FinalPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentAmount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the first Standing Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_standingorders_firstpaymentamount">FirstPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_data_firstpaymentamount">FirstPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Frequency</strong><br>
@@ -3585,20 +3143,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the next Standing Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_standingorders_nextpaymentamount">NextPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_data_nextpaymentamount">NextPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDate</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_standingorders_servicer">Servicer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_standing-orders_get_data_servicer">Servicer</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StandingOrderId</strong><br>
@@ -3609,7 +3173,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_standing-orders_get_standingorders_creditoraccount" class="paragraph">
+<div id="_accounts_accountid_standing-orders_get_data_creditoraccount" class="paragraph">
 <p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3635,7 +3199,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -3655,7 +3219,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_standing-orders_get_standingorders_finalpaymentamount" class="paragraph">
+<div id="_accounts_accountid_standing-orders_get_data_finalpaymentamount" class="paragraph">
 <p><strong>FinalPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3687,7 +3251,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_standing-orders_get_standingorders_firstpaymentamount" class="paragraph">
+<div id="_accounts_accountid_standing-orders_get_data_firstpaymentamount" class="paragraph">
 <p><strong>FirstPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3719,7 +3283,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_standing-orders_get_standingorders_nextpaymentamount" class="paragraph">
+<div id="_accounts_accountid_standing-orders_get_data_nextpaymentamount" class="paragraph">
 <p><strong>NextPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3751,7 +3315,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_standing-orders_get_standingorders_servicer" class="paragraph">
+<div id="_accounts_accountid_standing-orders_get_data_servicer" class="paragraph">
 <p><strong>Servicer</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3783,13 +3347,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_produces_11">2.10.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -3813,7 +3399,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">standing_orders:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -3914,37 +3500,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_links">Links</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Transactions</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Transactions</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_transactions_get_transactions">Transactions</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_accounts_accountid_transactions_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
 </colgroup>
@@ -3956,34 +3511,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_transactions_get_data">Data</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions" class="paragraph">
-<p><strong>Transactions</strong></p>
+<div id="_accounts_accountid_transactions_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -4017,55 +3557,54 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money in the cash entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balance</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_balance">Balance</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_balance">Balance</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to fully identify the type of underlying transaction resulting in an entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_banktransactioncode">BankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_banktransactioncode">BankTransactionCode</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDate</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when an entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_bookingdate">BookingDate</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDateTime</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when a transaction entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates whether the entry is a credit or a debit entry</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates whether the transaction is a credit or a debit entry.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Credit, Debit)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantDetails</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Details of the merchant involved in the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_merchantdetails">MerchantDetails</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_merchantdetails">MerchantDetails</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ProprietaryBankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements to fully identify a proprietary bank transaction code.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of an entry on the books of the account servicer</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of a transaction entry on the books of the account servicer.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Booked, Pending)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionId</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 40 text<br>
-<strong>Length</strong> : <code>1 - 40</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4083,14 +3622,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ValueDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ValueDateTime</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_valuedate">ValueDate</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_amount" class="paragraph">
+<div id="_accounts_accountid_transactions_get_data_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4122,7 +3661,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_balance" class="paragraph">
+<div id="_accounts_accountid_transactions_get_data_balance" class="paragraph">
 <p><strong>Balance</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4143,7 +3682,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money of the cash balance after a transaction entry is applied to the account..</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_transactions_balance_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_balance_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
@@ -4159,7 +3698,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_balance_amount" class="paragraph">
+<div id="_accounts_accountid_transactions_get_data_balance_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4191,7 +3730,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_banktransactioncode" class="paragraph">
+<div id="_accounts_accountid_transactions_get_data_banktransactioncode" class="paragraph">
 <p><strong>BankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4222,39 +3761,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_bookingdate" class="paragraph">
-<p><strong>BookingDate</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ISODate YYYY-MM-DD<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_accounts_accountid_transactions_get_transactions_merchantdetails" class="paragraph">
+<div id="_accounts_accountid_transactions_get_data_merchantdetails" class="paragraph">
 <p><strong>MerchantDetails</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4287,7 +3794,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_proprietarybanktransactioncode" class="paragraph">
+<div id="_accounts_accountid_transactions_get_data_proprietarybanktransactioncode" class="paragraph">
 <p><strong>ProprietaryBankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4320,35 +3827,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_transactions_valuedate" class="paragraph">
-<p><strong>ValueDate</strong></p>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ISODate YYYY-MM-DD<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 </tbody>
 </table>
@@ -4358,7 +3855,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -4382,7 +3879,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">transactions:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -4455,34 +3952,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balances</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Balances</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balances_get_balances">Balances</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balances_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_balances_get_balances" class="paragraph">
-<p><strong>Balances</strong></p>
+<div id="_balances_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -4509,7 +4002,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money of the cash balance.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_balances_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_data_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
@@ -4521,13 +4014,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditLine</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_balances_creditline">CreditLine</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_data_creditline">CreditLine</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates the date (and time) of the balance.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_balances_date">Date</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Type</strong><br>
@@ -4537,7 +4030,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_balances_get_balances_amount" class="paragraph">
+<div id="_balances_get_data_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4569,7 +4062,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_balances_get_balances_creditline" class="paragraph">
+<div id="_balances_get_data_creditline" class="paragraph">
 <p><strong>CreditLine</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4590,7 +4083,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Active Or Historic Currency Code and Amount</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_balances_creditline_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_data_creditline_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Included</strong><br>
@@ -4606,7 +4099,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_balances_get_balances_creditline_amount" class="paragraph">
+<div id="_balances_get_data_creditline_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4638,39 +4131,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_balances_get_balances_date" class="paragraph">
-<p><strong>Date</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ISODate YYYY-MM-DD<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_balances_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4686,26 +4147,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -4718,7 +4159,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -4742,7 +4183,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">balances:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -4815,34 +4256,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Beneficiaries</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Beneficiaries</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_beneficiaries_get_beneficiaries">Beneficiaries</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_beneficiaries_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_beneficiaries_get_beneficiaries" class="paragraph">
-<p><strong>Beneficiaries</strong></p>
+<div id="_beneficiaries_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -4874,12 +4311,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_beneficiaries_creditoraccount">CreditorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_data_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorReferenceInformation</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
@@ -4887,13 +4324,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_beneficiaries_servicer">Servicer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_data_servicer">Servicer</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_beneficiaries_get_beneficiaries_creditoraccount" class="paragraph">
+<div id="_beneficiaries_get_data_creditoraccount" class="paragraph">
 <p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4919,7 +4356,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -4939,7 +4376,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_beneficiaries_get_beneficiaries_servicer" class="paragraph">
+<div id="_beneficiaries_get_data_servicer" class="paragraph">
 <p><strong>Servicer</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4971,7 +4408,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_beneficiaries_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4987,26 +4424,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -5019,7 +4436,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -5043,7 +4460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">beneficiaries:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -5082,7 +4499,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Direct Debits successfully retrieved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_direct_debits_get_response">Direct Debits GET response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
@@ -5111,39 +4528,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_direct_debits_get_response" class="paragraph">
-<p><strong>Direct Debits GET response</strong></p>
+<div id="_account_get_response" class="paragraph">
+<p><strong>Account GET response</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DirectDebits</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Direct Debits</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_direct-debits_get_directdebits">DirectDebits</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_direct-debits_get_data">Data</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_direct-debits_get_links">Links</a></p></td>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_direct-debits_get_directdebits" class="paragraph">
-<p><strong>DirectDebits</strong></p>
+<div id="_direct-debits_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5169,7 +4582,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds.<br>
 <strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -5204,18 +4617,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentAmount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the most recent direct debit collection.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_direct-debits_get_directdebits_previouspaymentamount">PreviousPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_direct-debits_get_data_previouspaymentamount">PreviousPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_direct-debits_get_directdebits_previouspaymentamount" class="paragraph">
+<div id="_direct-debits_get_data_previouspaymentamount" class="paragraph">
 <p><strong>PreviousPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5247,7 +4659,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_direct-debits_get_links" class="paragraph">
+<div id="_links" class="paragraph">
 <p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5263,26 +4675,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
@@ -5295,7 +4687,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -5319,7 +4711,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">direct_debits:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -5392,37 +4784,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_products_get_links">Links</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Products</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Products</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_products_get_products">Products</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_products_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
 </colgroup>
@@ -5434,34 +4795,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_products_get_data">Data</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_products_get_products" class="paragraph">
-<p><strong>Products</strong></p>
+<div id="_products_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5510,13 +4856,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_produces_16">2.15.3. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -5540,7 +4908,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">products:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -5613,37 +4981,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_links">Links</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StandingOrders</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Standing Orders</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_standing-orders_get_standingorders">StandingOrders</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_standing-orders_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
 </colgroup>
@@ -5655,34 +4992,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_standing-orders_get_data">Data</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_standing-orders_get_standingorders" class="paragraph">
-<p><strong>StandingOrders</strong></p>
+<div id="_standing-orders_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5701,55 +5023,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.<br>
 <strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides the details to identify the beneficiary account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_standingorders_creditoraccount">CreditorAccount</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorReferenceInformation</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification of the currency of the standing order<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Provides the details to identify the beneficiary account.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_data_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentAmount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the final Standing Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_standingorders_finalpaymentamount">FinalPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_data_finalpaymentamount">FinalPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentAmount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the first Standing Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_standingorders_firstpaymentamount">FirstPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_data_firstpaymentamount">FirstPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Frequency</strong><br>
@@ -5762,20 +5068,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The amount of the next Standing Order</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_standingorders_nextpaymentamount">NextPaymentAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_data_nextpaymentamount">NextPaymentAmount</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDate</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Servicer</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_standingorders_servicer">Servicer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing-orders_get_data_servicer">Servicer</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StandingOrderId</strong><br>
@@ -5786,7 +5098,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_standing-orders_get_standingorders_creditoraccount" class="paragraph">
+<div id="_standing-orders_get_data_creditoraccount" class="paragraph">
 <p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5812,7 +5124,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -5832,7 +5144,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_standing-orders_get_standingorders_finalpaymentamount" class="paragraph">
+<div id="_standing-orders_get_data_finalpaymentamount" class="paragraph">
 <p><strong>FinalPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5864,7 +5176,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_standing-orders_get_standingorders_firstpaymentamount" class="paragraph">
+<div id="_standing-orders_get_data_firstpaymentamount" class="paragraph">
 <p><strong>FirstPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5896,7 +5208,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_standing-orders_get_standingorders_nextpaymentamount" class="paragraph">
+<div id="_standing-orders_get_data_nextpaymentamount" class="paragraph">
 <p><strong>NextPaymentAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5928,7 +5240,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_standing-orders_get_standingorders_servicer" class="paragraph">
+<div id="_standing-orders_get_data_servicer" class="paragraph">
 <p><strong>Servicer</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -5960,13 +5272,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_produces_17">2.16.3. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -5990,7 +5324,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">standing_orders:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -6063,37 +5397,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_links">Links</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Transactions</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Array of Transactions</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_transactions_get_transactions">Transactions</a> &gt; array</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_transactions_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
 </colgroup>
@@ -6105,34 +5408,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_transactions_get_data">Data</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions" class="paragraph">
-<p><strong>Transactions</strong></p>
+<div id="_transactions_get_data" class="paragraph">
+<p><strong>Data</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -6166,55 +5454,54 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money in the cash entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balance</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_balance">Balance</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_balance">Balance</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to fully identify the type of underlying transaction resulting in an entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_banktransactioncode">BankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_banktransactioncode">BankTransactionCode</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDate</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when an entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_bookingdate">BookingDate</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDateTime</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when a transaction entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates whether the entry is a credit or a debit entry</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates whether the transaction is a credit or a debit entry.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Credit, Debit)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantDetails</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Details of the merchant involved in the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_merchantdetails">MerchantDetails</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_merchantdetails">MerchantDetails</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ProprietaryBankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements to fully identify a proprietary bank transaction code.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of an entry on the books of the account servicer</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of a transaction entry on the books of the account servicer.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Booked, Pending)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionId</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 40 text<br>
-<strong>Length</strong> : <code>1 - 40</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -6232,14 +5519,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ValueDate</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ValueDateTime</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_valuedate">ValueDate</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_amount" class="paragraph">
+<div id="_transactions_get_data_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -6271,7 +5558,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_balance" class="paragraph">
+<div id="_transactions_get_data_balance" class="paragraph">
 <p><strong>Balance</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -6292,7 +5579,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money of the cash balance after a transaction entry is applied to the account..</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_transactions_balance_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_balance_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
@@ -6308,7 +5595,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_balance_amount" class="paragraph">
+<div id="_transactions_get_data_balance_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -6340,7 +5627,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_banktransactioncode" class="paragraph">
+<div id="_transactions_get_data_banktransactioncode" class="paragraph">
 <p><strong>BankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -6371,39 +5658,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_bookingdate" class="paragraph">
-<p><strong>BookingDate</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ISODate YYYY-MM-DD<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_transactions_get_transactions_merchantdetails" class="paragraph">
+<div id="_transactions_get_data_merchantdetails" class="paragraph">
 <p><strong>MerchantDetails</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -6436,7 +5691,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_proprietarybanktransactioncode" class="paragraph">
+<div id="_transactions_get_data_proprietarybanktransactioncode" class="paragraph">
 <p><strong>ProprietaryBankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -6469,35 +5724,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_transactions_valuedate" class="paragraph">
-<p><strong>ValueDate</strong></p>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Date</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ISODate YYYY-MM-DD<br>
-<strong>Pattern</strong> : <code>"^[0-9]{4}-(0[1-9]|(1[0|1|2]))-0[1-9])|((1|2)[0-9])|(30|31$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 </tbody>
 </table>
@@ -6507,7 +5752,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -6517,7 +5762,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -6541,7 +5786,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_psuoauth2security">PSUOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">transactions:read</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
 </tr>
 </tbody>
 </table>
@@ -6605,36 +5850,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">account_requests:manage</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to manage account-requests</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read basic account information</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">balances:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read balance information</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">beneficiaries:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read basic beneficiary details</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">direct_debits:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read direct debit information</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">standing_orders:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read standing order information</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">transactions:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read basic transaction information</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">products:read</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read product information relating to the account</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">accounts</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Ability to read Accounts information</p></td>
 </tr>
 </tbody>
 </table>
@@ -6644,7 +5861,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 15:36:14 BST
+Last updated 2017-04-27 13:38:05 BST
 </div>
 </div>
 </body>
