@@ -1,18 +1,4 @@
 {
   "title": "Product GET response",
-  "type": "object",
-  "properties": {
-    "Product": {
-      "description": "Product",
-      "type": "object",
-      "$ref": "../definitions/products/product.json"
-    },
-    "Links": {
-      "$ref": "../definitions/common/links_self.json"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "Product"
-  ]
+  "$ref": "../definitions/data/product.json"
 }
