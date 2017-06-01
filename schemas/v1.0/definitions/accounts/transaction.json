@@ -26,11 +26,13 @@
     },
     "BookingDateTime": {
       "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "ValueDateTime": {
       "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "TransactionInformation": {
       "description": "Further details of the transaction. This is the transaction narrative, which in unstructured text.",
