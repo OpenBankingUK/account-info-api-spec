@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "Data": {
+      "title": "Data",
+      "type": "array",
+      "items": {
+        "$ref": "../standing_orders/standing_order.json"
+      }
+    },
+    "Links": {
+      "title": "Links",
+      "$ref": "../common/links_self.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Data",
+    "Links"
+  ]
+}
