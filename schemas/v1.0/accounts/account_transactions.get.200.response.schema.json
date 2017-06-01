@@ -1,21 +1,4 @@
 {
   "title": "Account Transactions GET response",
-  "type": "object",
-  "properties": {
-    "Transactions": {
-      "description": "Array of Transactions",
-      "type": "array",
-      "items": {
-        "$ref": "../definitions/accounts/transaction.json"
-      },
-      "minItems": 0
-    },
-    "Links": {
-      "$ref": "../definitions/common/pagination_links.json"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "Transactions"
-  ]
+  "$ref": "../definitions/data/transaction.json"
 }
