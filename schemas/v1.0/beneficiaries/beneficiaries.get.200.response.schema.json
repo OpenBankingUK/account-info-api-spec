@@ -1,21 +1,4 @@
 {
   "title": "Beneficiaries GET response",
-  "type": "object",
-  "properties": {
-    "Beneficiaries": {
-      "description": "Array of Beneficiaries",
-      "type": "array",
-      "items": {
-        "$ref": "../definitions/beneficiaries/beneficiary.json"
-      },
-      "minItems": 0
-    },
-    "Links": {
-      "$ref": "../definitions/common/pagination_links.json"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "Beneficiaries"
-  ]
+  "$ref": "../definitions/data/beneficiary.json"
 }
