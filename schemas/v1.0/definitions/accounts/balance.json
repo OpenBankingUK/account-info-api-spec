@@ -16,7 +16,8 @@
     },
     "DateTime": {
       "description": "Indicates the date (and time) of the balance.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "CreditLine": {
       "$ref": "./balances/credit_line.json"

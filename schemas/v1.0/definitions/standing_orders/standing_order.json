@@ -19,7 +19,8 @@
     },
     "FirstPaymentDateTime": {
       "description": "The date on which the first payment for a Standing Order schedule will be made.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "FirstPaymentAmount": {
       "description": "The amount of the first Standing Order",
@@ -27,7 +28,8 @@
     },
     "NextPaymentDateTime": {
       "description": "The date on which the next payment for a Standing Order schedule will be made.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "NextPaymentAmount": {
       "description": "The amount of the next Standing Order",
@@ -35,7 +37,8 @@
     },
     "FinalPaymentDateTime": {
       "description": "The date on which the final payment for a Standing Order schedule will be made.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "FinalPaymentAmount": {
       "description": "The amount of the final Standing Order",

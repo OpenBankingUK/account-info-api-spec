@@ -27,7 +27,8 @@
     },
     "PreviousPaymentDateTime": {
       "description": "Date of most recent direct debit collection.",
-      "type": "date-time"
+      "type": "string",
+      "format": "date-time"
     },
     "PreviousPaymentAmount": {
       "description": "The amount of the most recent direct debit collection.",
