@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "description": "Mete Data Relevant to the payload",
+  "properties": {
+  },
+  "additionalProperties": false
+}

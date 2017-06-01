@@ -5,7 +5,7 @@
   "properties": {
     "Permissions": {
       "type": "array",
-      "$ref": "../definitions/account_request/permissions.json"
+      "$ref": "permissions.json"
     },
     "ExpirationDateTime": {
       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",

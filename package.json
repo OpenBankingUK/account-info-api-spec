@@ -1,6 +1,6 @@
 {
   "name": "account-info-api-spec",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Tools to compile and flatten JSON schemas, and generate Swagger Docs",
   "main": "index.js",
   "scripts": {
