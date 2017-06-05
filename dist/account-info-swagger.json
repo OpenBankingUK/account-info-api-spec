@@ -1008,13 +1008,14 @@
                             "enum": [
                               "ClosingAvailable",
                               "ClosingBooked",
+                              "Expected",
                               "ForwardAvailable",
+                              "Information",
                               "InterimAvailable",
                               "InterimBooked",
                               "OpeningAvailable",
                               "OpeningBooked",
-                              "PreviouslyClosedBooked",
-                              "Expected"
+                              "PreviouslyClosedBooked"
                             ]
                           }
                         },
@@ -1402,13 +1403,14 @@
                         "enum": [
                           "ClosingAvailable",
                           "ClosingBooked",
+                          "Expected",
                           "ForwardAvailable",
+                          "Information",
                           "InterimAvailable",
                           "InterimBooked",
                           "OpeningAvailable",
                           "OpeningBooked",
-                          "PreviouslyClosedBooked",
-                          "Expected"
+                          "PreviouslyClosedBooked"
                         ]
                       },
                       "DateTime": {
@@ -2958,13 +2960,14 @@
                             "enum": [
                               "ClosingAvailable",
                               "ClosingBooked",
+                              "Expected",
                               "ForwardAvailable",
+                              "Information",
                               "InterimAvailable",
                               "InterimBooked",
                               "OpeningAvailable",
                               "OpeningBooked",
-                              "PreviouslyClosedBooked",
-                              "Expected"
+                              "PreviouslyClosedBooked"
                             ]
                           }
                         },
@@ -3148,13 +3151,14 @@
                         "enum": [
                           "ClosingAvailable",
                           "ClosingBooked",
+                          "Expected",
                           "ForwardAvailable",
+                          "Information",
                           "InterimAvailable",
                           "InterimBooked",
                           "OpeningAvailable",
                           "OpeningBooked",
-                          "PreviouslyClosedBooked",
-                          "Expected"
+                          "PreviouslyClosedBooked"
                         ]
                       },
                       "DateTime": {

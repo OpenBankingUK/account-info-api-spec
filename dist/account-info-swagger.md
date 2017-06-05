@@ -475,7 +475,7 @@ Get Balances related to an account
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance.|string (date-time)|
-|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
+|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
 <a name="balance-amount"></a>
 **Amount**
@@ -1015,7 +1015,7 @@ Get transactions related to an account
 |---|---|---|
 |**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#accounts-accountid-transactions-get-data-balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
+|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
 <a name="accounts-accountid-transactions-get-data-balance-amount"></a>
 **Amount**
@@ -1123,7 +1123,7 @@ Get Balances
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance.|string (date-time)|
-|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
+|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
 <a name="balance-amount"></a>
 **Amount**
@@ -1634,7 +1634,7 @@ Get Transactions
 |---|---|---|
 |**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#transactions-get-data-balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
+|**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
 <a name="transactions-get-data-balance-amount"></a>
 **Amount**

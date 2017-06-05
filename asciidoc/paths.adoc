@@ -605,7 +605,7 @@ __optional__||<<_balance_creditline,CreditLine>>
 |**DateTime** +
 __required__|Indicates the date (and time) of the balance.|string (date-time)
 |**Type** +
-__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
 
 [[_balance_amount]]
@@ -1400,7 +1400,7 @@ __required__|Amount of money of the cash balance after a transaction entry is ap
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**Type** +
-__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
 
 [[_accounts_accountid_transactions_get_data_balance_amount]]
@@ -1557,7 +1557,7 @@ __optional__||<<_balance_creditline,CreditLine>>
 |**DateTime** +
 __required__|Indicates the date (and time) of the balance.|string (date-time)
 |**Type** +
-__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
 
 [[_balance_amount]]
@@ -2310,7 +2310,7 @@ __required__|Amount of money of the cash balance after a transaction entry is ap
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**Type** +
-__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)
+__required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
 
 [[_transactions_get_data_balance_amount]]

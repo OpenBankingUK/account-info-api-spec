@@ -770,13 +770,14 @@ paths:
                           enum:
                             - ClosingAvailable
                             - ClosingBooked
+                            - Expected
                             - ForwardAvailable
+                            - Information
                             - InterimAvailable
                             - InterimBooked
                             - OpeningAvailable
                             - OpeningBooked
                             - PreviouslyClosedBooked
-                            - Expected
                       additionalProperties: false
                       required:
                         - Amount
@@ -1054,13 +1055,14 @@ paths:
                       enum:
                         - ClosingAvailable
                         - ClosingBooked
+                        - Expected
                         - ForwardAvailable
+                        - Information
                         - InterimAvailable
                         - InterimBooked
                         - OpeningAvailable
                         - OpeningBooked
                         - PreviouslyClosedBooked
-                        - Expected
                     DateTime:
                       description: Indicates the date (and time) of the balance.
                       type: string

@@ -4,12 +4,13 @@
   "enum": [
     "ClosingAvailable",
     "ClosingBooked",
+    "Expected",
     "ForwardAvailable",
+    "Information",
     "InterimAvailable",
     "InterimBooked",
     "OpeningAvailable",
     "OpeningBooked",
-    "PreviouslyClosedBooked",
-    "Expected"
+    "PreviouslyClosedBooked"
   ]
 }
