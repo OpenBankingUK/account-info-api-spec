@@ -1,6 +1,7 @@
 {
   "type": "object",
-  "description": "",
+  "title": "Account",
+  "description": "Account",
   "properties": {
     "AccountId": {
       "$ref": "./account_id.json"

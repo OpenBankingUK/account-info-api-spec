@@ -1,5 +1,7 @@
 {
   "type": "object",
+  "title": "Standing Order",
+  "description": "Standing Order",
   "properties": {
     "AccountId": {
       "description": "The date on which the first payment for a Standing Order schedule will be made.",

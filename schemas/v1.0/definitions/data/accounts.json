@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Data",
+      "title": "Account",
       "type": "array",
       "items": {
         "$ref": "../accounts/account.json"

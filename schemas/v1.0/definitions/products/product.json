@@ -1,5 +1,7 @@
 {
   "type": "object",
+  "title": "Product",
+  "description": "Product",
   "properties": {
     "AccountId": {
       "$ref": "../accounts/account_id.json"

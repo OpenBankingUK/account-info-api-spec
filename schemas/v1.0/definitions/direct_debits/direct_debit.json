@@ -1,5 +1,7 @@
 {
   "type": "object",
+  "title": "Direct Debit",
+  "description": "Direct Debit",
   "properties": {
     "AccountId": {
       "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",

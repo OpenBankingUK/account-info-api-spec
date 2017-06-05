@@ -329,11 +329,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Account
                 type: array
                 items:
                   type: object
-                  description: ''
+                  title: Account
+                  description: Account
                   properties:
                     AccountId:
                       description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
@@ -454,11 +455,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Account
                 type: array
                 items:
                   type: object
-                  description: ''
+                  title: Account
+                  description: Account
                   properties:
                     AccountId:
                       description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
@@ -545,12 +547,6 @@ paths:
                 additionalProperties: false
                 required:
                   - self
-              Meta:
-                title: Meta Data
-                type: object
-                description: Meta Data Relevant to the payload
-                properties: {}
-                additionalProperties: false
             additionalProperties: false
             required:
               - Data
@@ -580,7 +576,7 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Transaction
                 type: array
                 items:
                   type: object
@@ -791,10 +787,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Beneficiary
                 type: array
                 items:
                   type: object
+                  title: Beneficiary
+                  description: Beneficiary
                   properties:
                     AccountId:
                       description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
@@ -911,10 +909,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Balance
                 type: array
                 items:
                   type: object
+                  title: Balance
+                  description: Balance
                   properties:
                     AccountId:
                       description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
@@ -1037,10 +1037,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: DirectDebit
                 type: array
                 items:
                   type: object
+                  title: Direct Debit
+                  description: Direct Debit
                   properties:
                     AccountId:
                       description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
@@ -1139,10 +1141,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: StandingOrder
                 type: array
                 items:
                   type: object
+                  title: Standing Order
+                  description: Standing Order
                   properties:
                     AccountId:
                       description: The date on which the first payment for a Standing Order schedule will be made.
@@ -1342,10 +1346,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Product
                 type: array
                 items:
                   type: object
+                  title: Product
+                  description: Product
                   properties:
                     AccountId:
                       description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.
@@ -1506,10 +1512,12 @@ paths:
             type: object
             properties:
               Data:
-                title: Data
+                title: Product
                 type: array
                 items:
                   type: object
+                  title: Product
+                  description: Product
                   properties:
                     AccountId:
                       description: A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.

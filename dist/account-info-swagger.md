@@ -261,21 +261,21 @@ Get a list of accounts
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#accounts-get-data) > array|
+|**Data**  <br>*required*|< [Account](#account) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="accounts-get-data"></a>
-**Data**
+<a name="account"></a>
+**Account**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#accounts-get-data-account)|
+|**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#account-account)|
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#accounts-get-data-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#account-servicer)|
 
-<a name="accounts-get-data-account"></a>
+<a name="account-account"></a>
 **Account**
 
 |Name|Description|Schema|
@@ -285,7 +285,7 @@ Get a list of accounts
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-get-data-servicer"></a>
+<a name="account-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -347,24 +347,23 @@ Get an account
 <a name="account-get-response"></a>
 **Account GET response**
 
+|Name|Schema|
+|---|---|
+|**Data**  <br>*required*|< [Account](#account) > array|
+|**Links**  <br>*required*|[Links](#links)|
+
+<a name="account"></a>
+**Account**
+
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Data](#accounts-accountid-get-data) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*optional*|Meta Data Relevant to the payload|object|
-
-<a name="accounts-accountid-get-data"></a>
-**Data**
-
-|Name|Description|Schema|
-|---|---|---|
-|**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#accounts-accountid-get-data-account)|
+|**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#account-account)|
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#accounts-accountid-get-data-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#account-servicer)|
 
-<a name="accounts-accountid-get-data-account"></a>
+<a name="account-account"></a>
 **Account**
 
 |Name|Description|Schema|
@@ -374,7 +373,7 @@ Get an account
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-accountid-get-data-servicer"></a>
+<a name="account-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -438,22 +437,22 @@ Get Balances related to an account
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-balances-get-data) > array|
+|**Data**  <br>*required*|< [Balance](#balance) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="accounts-accountid-balances-get-data"></a>
-**Data**
+<a name="balance"></a>
+**Balance**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#accounts-accountid-balances-get-data-amount)|
+|**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||[CreditLine](#accounts-accountid-balances-get-data-creditline)|
+|**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance.|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
 
-<a name="accounts-accountid-balances-get-data-amount"></a>
+<a name="balance-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
@@ -461,16 +460,16 @@ Get Balances related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="accounts-accountid-balances-get-data-creditline"></a>
+<a name="balance-creditline"></a>
 **CreditLine**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#accounts-accountid-balances-get-data-creditline-amount)|
+|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|string|
 
-<a name="accounts-accountid-balances-get-data-creditline-amount"></a>
+<a name="balance-creditline-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
@@ -534,21 +533,21 @@ Get Beneficiaries related to an account
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-beneficiaries-get-data) > array|
+|**Data**  <br>*required*|< [Beneficiary](#beneficiary) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="accounts-accountid-beneficiaries-get-data"></a>
-**Data**
+<a name="beneficiary"></a>
+**Beneficiary**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*||[CreditorAccount](#accounts-accountid-beneficiaries-get-data-creditoraccount)|
+|**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-accountid-beneficiaries-get-data-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#beneficiary-servicer)|
 
-<a name="accounts-accountid-beneficiaries-get-data-creditoraccount"></a>
+<a name="beneficiary-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
@@ -558,7 +557,7 @@ Get Beneficiaries related to an account
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-accountid-beneficiaries-get-data-servicer"></a>
+<a name="beneficiary-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -622,11 +621,11 @@ Get Direct Debits related to an account
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-direct-debits-get-data) > array|
+|**Data**  <br>*required*|< [Direct Debit](#direct-debit) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="accounts-accountid-direct-debits-get-data"></a>
-**Data**
+<a name="direct-debit"></a>
+**Direct Debit**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -636,10 +635,10 @@ Get Direct Debits related to an account
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
 |**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
 |**Name**  <br>*required*|Name of Service User  <br>**Length** : `1 - 70`|string|
-|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#accounts-accountid-direct-debits-get-data-previouspaymentamount)|
+|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#direct-debit-previouspaymentamount)|
 |**PreviousPaymentDateTime**  <br>*optional*|Date of most recent direct debit collection.|string (date-time)|
 
-<a name="accounts-accountid-direct-debits-get-data-previouspaymentamount"></a>
+<a name="direct-debit-previouspaymentamount"></a>
 **PreviousPaymentAmount**
 
 |Name|Description|Schema|
@@ -703,11 +702,11 @@ Get Product related to an account
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-product-get-data) > array|
+|**Data**  <br>*required*|< [Product](#product) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="accounts-accountid-product-get-data"></a>
-**Data**
+<a name="product"></a>
+**Product**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -773,28 +772,28 @@ Get Standing Orders related to an account
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-standing-orders-get-data) > array|
+|**Data**  <br>*required*|< [Standing Order](#standing-order) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="accounts-accountid-standing-orders-get-data"></a>
-**Data**
+<a name="standing-order"></a>
+**Standing Order**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#accounts-accountid-standing-orders-get-data-creditoraccount)|
-|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#accounts-accountid-standing-orders-get-data-finalpaymentamount)|
+|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-order-creditoraccount)|
+|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-order-finalpaymentamount)|
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)|
-|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#accounts-accountid-standing-orders-get-data-firstpaymentamount)|
+|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-order-firstpaymentamount)|
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
 |**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
-|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#accounts-accountid-standing-orders-get-data-nextpaymentamount)|
+|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-order-nextpaymentamount)|
 |**NextPaymentDateTime**  <br>*optional*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#accounts-accountid-standing-orders-get-data-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-order-servicer)|
 |**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 
-<a name="accounts-accountid-standing-orders-get-data-creditoraccount"></a>
+<a name="standing-order-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
@@ -804,7 +803,7 @@ Get Standing Orders related to an account
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="accounts-accountid-standing-orders-get-data-finalpaymentamount"></a>
+<a name="standing-order-finalpaymentamount"></a>
 **FinalPaymentAmount**
 
 |Name|Description|Schema|
@@ -812,7 +811,7 @@ Get Standing Orders related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="accounts-accountid-standing-orders-get-data-firstpaymentamount"></a>
+<a name="standing-order-firstpaymentamount"></a>
 **FirstPaymentAmount**
 
 |Name|Description|Schema|
@@ -820,7 +819,7 @@ Get Standing Orders related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="accounts-accountid-standing-orders-get-data-nextpaymentamount"></a>
+<a name="standing-order-nextpaymentamount"></a>
 **NextPaymentAmount**
 
 |Name|Description|Schema|
@@ -828,7 +827,7 @@ Get Standing Orders related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="accounts-accountid-standing-orders-get-data-servicer"></a>
+<a name="standing-order-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -1013,22 +1012,22 @@ Get Balances
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#balances-get-data) > array|
+|**Data**  <br>*required*|< [Balance](#balance) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="balances-get-data"></a>
-**Data**
+<a name="balance"></a>
+**Balance**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balances-get-data-amount)|
+|**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||[CreditLine](#balances-get-data-creditline)|
+|**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance.|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, ForwardAvailable, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked, Expected)|
 
-<a name="balances-get-data-amount"></a>
+<a name="balance-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
@@ -1036,16 +1035,16 @@ Get Balances
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="balances-get-data-creditline"></a>
+<a name="balance-creditline"></a>
 **CreditLine**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balances-get-data-creditline-amount)|
+|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|string|
 
-<a name="balances-get-data-creditline-amount"></a>
+<a name="balance-creditline-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
@@ -1102,21 +1101,21 @@ Get Beneficiaries
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#beneficiaries-get-data) > array|
+|**Data**  <br>*required*|< [Beneficiary](#beneficiary) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="beneficiaries-get-data"></a>
-**Data**
+<a name="beneficiary"></a>
+**Beneficiary**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiaries-get-data-creditoraccount)|
+|**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#beneficiaries-get-data-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#beneficiary-servicer)|
 
-<a name="beneficiaries-get-data-creditoraccount"></a>
+<a name="beneficiary-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
@@ -1126,7 +1125,7 @@ Get Beneficiaries
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="beneficiaries-get-data-servicer"></a>
+<a name="beneficiary-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -1183,11 +1182,11 @@ Get Direct Debits
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#direct-debits-get-data) > array|
+|**Data**  <br>*required*|< [Direct Debit](#direct-debit) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="direct-debits-get-data"></a>
-**Data**
+<a name="direct-debit"></a>
+**Direct Debit**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1197,10 +1196,10 @@ Get Direct Debits
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
 |**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
 |**Name**  <br>*required*|Name of Service User  <br>**Length** : `1 - 70`|string|
-|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#direct-debits-get-data-previouspaymentamount)|
+|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#direct-debit-previouspaymentamount)|
 |**PreviousPaymentDateTime**  <br>*optional*|Date of most recent direct debit collection.|string (date-time)|
 
-<a name="direct-debits-get-data-previouspaymentamount"></a>
+<a name="direct-debit-previouspaymentamount"></a>
 **PreviousPaymentAmount**
 
 |Name|Description|Schema|
@@ -1257,11 +1256,11 @@ Get Products
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#products-get-data) > array|
+|**Data**  <br>*required*|< [Product](#product) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="products-get-data"></a>
-**Data**
+<a name="product"></a>
+**Product**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1320,28 +1319,28 @@ Get Standing Orders
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|< [Data](#standing-orders-get-data) > array|
+|**Data**  <br>*required*|< [Standing Order](#standing-order) > array|
 |**Links**  <br>*required*|[Links](#links)|
 
-<a name="standing-orders-get-data"></a>
-**Data**
+<a name="standing-order"></a>
+**Standing Order**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-orders-get-data-creditoraccount)|
-|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-orders-get-data-finalpaymentamount)|
+|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-order-creditoraccount)|
+|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-order-finalpaymentamount)|
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)|
-|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-orders-get-data-firstpaymentamount)|
+|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-order-firstpaymentamount)|
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
 |**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
-|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-orders-get-data-nextpaymentamount)|
+|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-order-nextpaymentamount)|
 |**NextPaymentDateTime**  <br>*optional*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-orders-get-data-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-order-servicer)|
 |**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 
-<a name="standing-orders-get-data-creditoraccount"></a>
+<a name="standing-order-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
@@ -1351,7 +1350,7 @@ Get Standing Orders
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="standing-orders-get-data-finalpaymentamount"></a>
+<a name="standing-order-finalpaymentamount"></a>
 **FinalPaymentAmount**
 
 |Name|Description|Schema|
@@ -1359,7 +1358,7 @@ Get Standing Orders
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-orders-get-data-firstpaymentamount"></a>
+<a name="standing-order-firstpaymentamount"></a>
 **FirstPaymentAmount**
 
 |Name|Description|Schema|
@@ -1367,7 +1366,7 @@ Get Standing Orders
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-orders-get-data-nextpaymentamount"></a>
+<a name="standing-order-nextpaymentamount"></a>
 **NextPaymentAmount**
 
 |Name|Description|Schema|
@@ -1375,7 +1374,7 @@ Get Standing Orders
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-orders-get-data-servicer"></a>
+<a name="standing-order-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|

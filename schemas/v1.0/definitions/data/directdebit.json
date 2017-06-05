@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Data",
+      "title": "DirectDebit",
       "type": "array",
       "items": {
         "$ref": "../direct_debits/direct_debit.json"

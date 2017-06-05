@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Data",
+      "title": "StandingOrder",
       "type": "array",
       "items": {
         "$ref": "../standing_orders/standing_order.json"
