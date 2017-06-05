@@ -262,8 +262,8 @@ Get a list of accounts
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Account](#account) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="account"></a>
 **Account**
@@ -362,8 +362,8 @@ Get an account
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Account](#account) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="account"></a>
 **Account**
@@ -462,8 +462,8 @@ Get Balances related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Balance](#balance) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="balance"></a>
 **Balance**
@@ -570,8 +570,8 @@ Get Beneficiaries related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -670,8 +670,8 @@ Get Direct Debits related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Direct Debit](#direct-debit) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="direct-debit"></a>
 **Direct Debit**
@@ -763,8 +763,8 @@ Get Product related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Product](#product) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="product"></a>
 **Product**
@@ -845,8 +845,8 @@ Get Standing Orders related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Standing Order](#standing-order) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="standing-order"></a>
 **Standing Order**
@@ -957,6 +957,8 @@ Get transactions related to an account
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Path**|**AccountId**  <br>*required*|A unique identifier used to identify the account resource.|string|
+|**Query**|**fromBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**toBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
 
 
 #### Responses
@@ -975,9 +977,9 @@ Get transactions related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Data](#accounts-accountid-transactions-get-data) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#meta)|
+|**Data**  <br>*required*|Data Section of the Payload|< [Data](#accounts-accountid-transactions-get-data) > array|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta](#meta)|
 
 <a name="accounts-accountid-transactions-get-data"></a>
 **Data**
@@ -1109,8 +1111,8 @@ Get Balances
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Balance](#balance) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="balance"></a>
 **Balance**
@@ -1210,8 +1212,8 @@ Get Beneficiaries
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -1303,8 +1305,8 @@ Get Direct Debits
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Direct Debit](#direct-debit) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="direct-debit"></a>
 **Direct Debit**
@@ -1389,8 +1391,8 @@ Get Products
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Product](#product) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="product"></a>
 **Product**
@@ -1464,8 +1466,8 @@ Get Standing Orders
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*||< [Standing Order](#standing-order) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="standing-order"></a>
 **Standing Order**
@@ -1571,6 +1573,14 @@ GET /transactions
 Get Transactions
 
 
+#### Parameters
+
+|Type|Name|Description|Schema|
+|---|---|---|---|
+|**Query**|**fromBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**toBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+
+
 #### Responses
 
 |HTTP Code|Description|Schema|
@@ -1587,9 +1597,9 @@ Get Transactions
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Data](#transactions-get-data) > array|
-|**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#meta)|
+|**Data**  <br>*required*|Data Section of the Payload|< [Data](#transactions-get-data) > array|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta](#meta)|
 
 <a name="transactions-get-data"></a>
 **Data**

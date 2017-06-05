@@ -290,9 +290,9 @@ Get a list of accounts
 |**Data** +
 __required__||< <<_account,Account>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_account]]
@@ -436,9 +436,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**Data** +
 __required__||< <<_account,Account>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_account]]
@@ -582,9 +582,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**Data** +
 __required__||< <<_balance,Balance>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_balance]]
@@ -736,9 +736,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**Data** +
 __required__||< <<_beneficiary,Beneficiary>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_beneficiary]]
@@ -882,9 +882,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**Data** +
 __required__||< <<_direct_debit,Direct Debit>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_direct_debit]]
@@ -1017,9 +1017,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**Data** +
 __required__||< <<_product,Product>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_product]]
@@ -1129,9 +1129,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**Data** +
 __required__||< <<_standing_order,Standing Order>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_standing_order]]
@@ -1304,6 +1304,10 @@ Get transactions related to an account
 |Type|Name|Description|Schema
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
+|**Query**|**fromBookingDate** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+|**Query**|**toBookingDate** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
 |===
 
 
@@ -1327,11 +1331,11 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_accounts_accountid_transactions_get_data,Data>> > array
+__required__|Data Section of the Payload|< <<_accounts_accountid_transactions_get_data,Data>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta,Meta>>
+__required__|Meta Data relevant to the payload|<<_meta,Meta>>
 |===
 
 [[_accounts_accountid_transactions_get_data]]
@@ -1532,9 +1536,9 @@ Get Balances
 |**Data** +
 __required__||< <<_balance,Balance>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_balance]]
@@ -1676,9 +1680,9 @@ Get Beneficiaries
 |**Data** +
 __required__||< <<_beneficiary,Beneficiary>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_beneficiary]]
@@ -1812,9 +1816,9 @@ Get Direct Debits
 |**Data** +
 __required__||< <<_direct_debit,Direct Debit>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_direct_debit]]
@@ -1937,9 +1941,9 @@ Get Products
 |**Data** +
 __required__||< <<_product,Product>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_product]]
@@ -2039,9 +2043,9 @@ Get Standing Orders
 |**Data** +
 __required__||< <<_standing_order,Standing Order>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_standing_order]]
@@ -2207,6 +2211,18 @@ GET /transactions
 Get Transactions
 
 
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**fromBookingDate** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+|**Query**|**toBookingDate** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+|===
+
+
 ==== Responses
 
 [options="header", cols=".^2,.^14,.^4"]
@@ -2227,11 +2243,11 @@ Get Transactions
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_transactions_get_data,Data>> > array
+__required__|Data Section of the Payload|< <<_transactions_get_data,Data>> > array
 |**Links** +
-__required__||<<_links,Links>>
+__required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data Relevant to the payload|<<_meta,Meta>>
+__required__|Meta Data relevant to the payload|<<_meta,Meta>>
 |===
 
 [[_transactions_get_data]]

@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Links relevant to the payload",
   "properties": {
     "self": {
       "type": "string",

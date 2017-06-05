@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "Meta Data Relevant to the payload",
+  "description": "Meta Data relevant to the payload",
   "properties": {
     "total-pages": {
       "type": "integer",

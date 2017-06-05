@@ -3,6 +3,7 @@
   "properties": {
     "Data": {
       "title": "Transaction",
+      "description": "Data Section of the Payload",
       "type": "array",
       "items": {
         "$ref": "../accounts/transaction.json"

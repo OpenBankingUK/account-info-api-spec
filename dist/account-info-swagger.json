@@ -536,6 +536,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -566,7 +567,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -731,6 +732,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -761,7 +763,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -805,6 +807,22 @@
       }
     },
     "/accounts/{AccountId}/transactions": {
+      "parameters": [
+        {
+          "in": "query",
+          "name": "fromBookingDate",
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+        },
+        {
+          "in": "query",
+          "name": "toBookingDate",
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+        }
+      ],
       "get": {
         "summary": "Get Account Transactions",
         "description": "Get transactions related to an account",
@@ -830,6 +848,7 @@
               "properties": {
                 "Data": {
                   "title": "Transaction",
+                  "description": "Data Section of the Payload",
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -1042,6 +1061,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -1072,7 +1092,7 @@
                 "Meta": {
                   "title": "Meta",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -1236,6 +1256,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -1266,7 +1287,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -1447,6 +1468,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -1477,7 +1499,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -1626,6 +1648,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -1656,7 +1679,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -1904,6 +1927,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -1934,7 +1958,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -2047,6 +2071,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -2077,7 +2102,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -2316,6 +2341,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -2346,7 +2372,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -2486,6 +2512,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -2516,7 +2543,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -2671,6 +2698,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -2701,7 +2729,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -2745,6 +2773,22 @@
       }
     },
     "/transactions": {
+      "parameters": [
+        {
+          "in": "query",
+          "name": "fromBookingDate",
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+        },
+        {
+          "in": "query",
+          "name": "toBookingDate",
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+        }
+      ],
       "get": {
         "summary": "Get Transactions",
         "description": "Get Transactions",
@@ -2764,6 +2808,7 @@
               "properties": {
                 "Data": {
                   "title": "Transaction",
+                  "description": "Data Section of the Payload",
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -2976,6 +3021,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -3006,7 +3052,7 @@
                 "Meta": {
                   "title": "Meta",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -3178,6 +3224,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -3208,7 +3255,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
@@ -3312,6 +3359,7 @@
                 "Links": {
                   "title": "Links",
                   "type": "object",
+                  "description": "Links relevant to the payload",
                   "properties": {
                     "self": {
                       "type": "string",
@@ -3342,7 +3390,7 @@
                 "Meta": {
                   "title": "Meta Data",
                   "type": "object",
-                  "description": "Meta Data Relevant to the payload",
+                  "description": "Meta Data relevant to the payload",
                   "properties": {
                     "total-pages": {
                       "type": "integer",
