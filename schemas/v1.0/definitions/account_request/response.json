@@ -23,7 +23,7 @@
       "minItems": 1
     },
     "ExpirationDateTime": {
-      "description": "Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.",
+      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
       "type": "string",
       "format": "date-time"
     },

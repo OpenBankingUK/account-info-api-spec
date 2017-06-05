@@ -86,7 +86,7 @@ __required__|Unique identification as assigned to identify the account request r
 |**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**ExpirationDateTime** +
-__optional__|Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.|string (date-time)
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**Permissions** +
 __required__||< < enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array > array
 |**Status** +
@@ -177,7 +177,7 @@ __required__|Unique identification as assigned to identify the account request r
 |**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**ExpirationDateTime** +
-__optional__|Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.|string (date-time)
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**Permissions** +
 __required__||< < enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array > array
 |**Status** +
@@ -418,7 +418,7 @@ __required__||< <<_accounts_accountid_get_data,Data>> > array
 |**Links** +
 __required__||<<_links,Links>>
 |**Meta** +
-__optional__|Mete Data Relevant to the payload|object
+__optional__|Meta Data Relevant to the payload|object
 |===
 
 [[_accounts_accountid_get_data]]

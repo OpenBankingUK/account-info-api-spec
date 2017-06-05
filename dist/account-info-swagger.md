@@ -98,7 +98,7 @@ Create an Account Request
 |---|---|---|
 |**AccountRequestId**  <br>*required*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
-|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**Permissions**  <br>*required*||< < enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array > array|
 |**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
@@ -168,7 +168,7 @@ Get an account request
 |---|---|---|
 |**AccountRequestId**  <br>*required*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
-|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**Permissions**  <br>*required*||< < enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array > array|
 |**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
@@ -351,7 +351,7 @@ Get an account
 |---|---|---|
 |**Data**  <br>*required*||< [Data](#accounts-accountid-get-data) > array|
 |**Links**  <br>*required*||[Links](#links)|
-|**Meta**  <br>*optional*|Mete Data Relevant to the payload|object|
+|**Meta**  <br>*optional*|Meta Data Relevant to the payload|object|
 
 <a name="accounts-accountid-get-data"></a>
 **Data**
