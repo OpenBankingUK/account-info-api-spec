@@ -59,7 +59,7 @@ Create an Account Request
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*|Allows setup of an account access request|[Data](#data)|
-|**Risk**  <br>*required*|The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
+|**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
 **Data**
@@ -89,7 +89,7 @@ Create an Account Request
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*|Allows setup of an account access request|[Data](#data)|
-|**Risk**  <br>*required*|The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
+|**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
 **Data**
@@ -156,7 +156,7 @@ Get an account request
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*|Allows setup of an account access request|[Data](#data)|
-|**Risk**  <br>*required*|The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
+|**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
 **Data**

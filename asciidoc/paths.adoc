@@ -29,7 +29,7 @@ __Flags__ : required
 |**Data** +
 __required__|Allows setup of an account access request|<<_data,Data>>
 |**Risk** +
-__required__|The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
+__required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
 
 [[_data]]
@@ -71,7 +71,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 |**Data** +
 __required__|Allows setup of an account access request|<<_data,Data>>
 |**Risk** +
-__required__|The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
+__required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
 
 [[_data]]
@@ -155,7 +155,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**Data** +
 __required__|Allows setup of an account access request|<<_data,Data>>
 |**Risk** +
-__required__|The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
+__required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
 
 [[_data]]

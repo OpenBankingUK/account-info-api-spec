@@ -84,7 +84,7 @@ paths:
               Risk:
                 title: Risk
                 type: object
-                description: The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.
+                description: The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.
                 properties: {}
                 additionalProperties: false
             additionalProperties: false
@@ -147,7 +147,7 @@ paths:
               Risk:
                 title: Risk
                 type: object
-                description: The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.
+                description: The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.
                 properties: {}
                 additionalProperties: false
             additionalProperties: false
@@ -237,7 +237,7 @@ paths:
               Risk:
                 title: Risk
                 type: object
-                description: The Security payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.
+                description: The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.
                 properties: {}
                 additionalProperties: false
             additionalProperties: false
