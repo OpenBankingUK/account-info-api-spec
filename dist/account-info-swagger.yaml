@@ -418,13 +418,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -544,13 +566,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -755,13 +799,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -877,13 +943,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1005,13 +1093,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1109,13 +1219,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1314,13 +1446,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1385,13 +1539,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
@@ -1551,13 +1727,35 @@ paths:
                   self:
                     type: string
                     format: uri
+                  first:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
                 additionalProperties: false
                 required:
                   - self
+              Meta:
+                title: Meta Data
+                type: object
+                description: Meta Data Relevant to the payload
+                properties:
+                  total-pages:
+                    type: integer
+                    format: int32
+                additionalProperties: false
             additionalProperties: false
             required:
               - Data
               - Links
+              - Meta
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2

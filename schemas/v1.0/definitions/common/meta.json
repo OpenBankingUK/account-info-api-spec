@@ -2,6 +2,10 @@
   "type": "object",
   "description": "Meta Data Relevant to the payload",
   "properties": {
+    "total-pages": {
+      "type": "integer",
+      "format": "int32"
+    }
   },
   "additionalProperties": false
 }

@@ -12,11 +12,16 @@
     "Links": {
       "title": "Links",
       "$ref": "../common/links_self.json"
+    },
+    "Meta": {
+      "title": "Meta Data",
+      "$ref": "../common/meta.json"
     }
   },
   "additionalProperties": false,
   "required": [
     "Data",
-    "Links"
+    "Links",
+    "Meta"
   ]
 }

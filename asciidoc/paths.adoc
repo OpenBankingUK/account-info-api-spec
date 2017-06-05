@@ -284,13 +284,15 @@ Get a list of accounts
 [[_account_get_response]]
 **Account GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_account,Account>> > array
+__required__||< <<_account,Account>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_account]]
@@ -352,8 +354,26 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -410,13 +430,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_account_get_response]]
 **Account GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_account,Account>> > array
+__required__||< <<_account,Account>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_account]]
@@ -478,8 +500,26 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -536,13 +576,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_balances_get_response]]
 **Balances GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_balance,Balance>> > array
+__required__||< <<_balance,Balance>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_balance]]
@@ -612,8 +654,26 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -670,13 +730,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_beneficiaries_get_response]]
 **Beneficiaries GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_beneficiary,Beneficiary>> > array
+__required__||< <<_beneficiary,Beneficiary>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_beneficiary]]
@@ -738,8 +800,26 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -796,13 +876,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_account_get_response]]
 **Account GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_direct_debit,Direct Debit>> > array
+__required__||< <<_direct_debit,Direct Debit>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_direct_debit]]
@@ -853,8 +935,26 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -911,13 +1011,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_product_get_response]]
 **Product GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_product,Product>> > array
+__required__||< <<_product,Product>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_product]]
@@ -945,8 +1047,26 @@ __optional__|Identifier within the parent organisation for the product. Must be 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1003,13 +1123,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_standing_orders_get_response]]
 **Standing Orders GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_standing_order,Standing Order>> > array
+__required__||< <<_standing_order,Standing Order>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_standing_order]]
@@ -1125,8 +1247,26 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1183,13 +1323,15 @@ __required__|A unique identifier used to identify the account resource.|string
 [[_account_transactions_get_response]]
 **Account Transactions GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_accounts_accountid_transactions_get_data,Data>> > array
+__required__||< <<_accounts_accountid_transactions_get_data,Data>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta,Meta>>
 |===
 
 [[_accounts_accountid_transactions_get_data]]
@@ -1318,8 +1460,26 @@ __optional__|Identification of the issuer of the proprietary bank transaction co
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta]]
+**Meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1366,13 +1526,15 @@ Get Balances
 [[_balances_get_response]]
 **Balances GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_balance,Balance>> > array
+__required__||< <<_balance,Balance>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_balance]]
@@ -1442,8 +1604,26 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1490,13 +1670,15 @@ Get Beneficiaries
 [[_beneficiaries_get_response]]
 **Beneficiaries GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_beneficiary,Beneficiary>> > array
+__required__||< <<_beneficiary,Beneficiary>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_beneficiary]]
@@ -1558,8 +1740,26 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1606,13 +1806,15 @@ Get Direct Debits
 [[_account_get_response]]
 **Account GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_direct_debit,Direct Debit>> > array
+__required__||< <<_direct_debit,Direct Debit>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_direct_debit]]
@@ -1663,8 +1865,26 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1711,13 +1931,15 @@ Get Products
 [[_products_get_response]]
 **Products GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_product,Product>> > array
+__required__||< <<_product,Product>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_product]]
@@ -1745,8 +1967,26 @@ __optional__|Identifier within the parent organisation for the product. Must be 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1793,13 +2033,15 @@ Get Standing Orders
 [[_standing_orders_get_response]]
 **Standing Orders GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_standing_order,Standing Order>> > array
+__required__||< <<_standing_order,Standing Order>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta_data,Meta Data>>
 |===
 
 [[_standing_order]]
@@ -1915,8 +2157,26 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta_data]]
+**Meta Data**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
@@ -1963,13 +2223,15 @@ Get Transactions
 [[_account_transactions_get_response]]
 **Account Transactions GET response**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**Data** +
-__required__|< <<_transactions_get_data,Data>> > array
+__required__||< <<_transactions_get_data,Data>> > array
 |**Links** +
-__required__|<<_links,Links>>
+__required__||<<_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_meta,Meta>>
 |===
 
 [[_transactions_get_data]]
@@ -2098,8 +2360,26 @@ __optional__|Identification of the issuer of the proprietary bank transaction co
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**first** +
+__optional__|string (uri)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
 |**self** +
 __required__|string (uri)
+|===
+
+[[_meta]]
+**Meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 

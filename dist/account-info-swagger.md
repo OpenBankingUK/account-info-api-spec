@@ -259,10 +259,11 @@ Get a list of accounts
 <a name="account-get-response"></a>
 **Account GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Account](#account) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Account](#account) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="account"></a>
 **Account**
@@ -298,7 +299,18 @@ Get a list of accounts
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -347,10 +359,11 @@ Get an account
 <a name="account-get-response"></a>
 **Account GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Account](#account) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Account](#account) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="account"></a>
 **Account**
@@ -386,7 +399,18 @@ Get an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -435,10 +459,11 @@ Get Balances related to an account
 <a name="balances-get-response"></a>
 **Balances GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Balance](#balance) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Balance](#balance) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="balance"></a>
 **Balance**
@@ -482,7 +507,18 @@ Get Balances related to an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -531,10 +567,11 @@ Get Beneficiaries related to an account
 <a name="beneficiaries-get-response"></a>
 **Beneficiaries GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Beneficiary](#beneficiary) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -570,7 +607,18 @@ Get Beneficiaries related to an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -619,10 +667,11 @@ Get Direct Debits related to an account
 <a name="account-get-response"></a>
 **Account GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Direct Debit](#direct-debit) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Direct Debit](#direct-debit) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="direct-debit"></a>
 **Direct Debit**
@@ -651,7 +700,18 @@ Get Direct Debits related to an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -700,10 +760,11 @@ Get Product related to an account
 <a name="product-get-response"></a>
 **Product GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Product](#product) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Product](#product) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="product"></a>
 **Product**
@@ -721,7 +782,18 @@ Get Product related to an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -770,10 +842,11 @@ Get Standing Orders related to an account
 <a name="standing-orders-get-response"></a>
 **Standing Orders GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Standing Order](#standing-order) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Standing Order](#standing-order) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="standing-order"></a>
 **Standing Order**
@@ -840,7 +913,18 @@ Get Standing Orders related to an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -889,10 +973,11 @@ Get transactions related to an account
 <a name="account-transactions-get-response"></a>
 **Account Transactions GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-transactions-get-data) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Data](#accounts-accountid-transactions-get-data) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#meta)|
 
 <a name="accounts-accountid-transactions-get-data"></a>
 **Data**
@@ -968,7 +1053,18 @@ Get transactions related to an account
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta"></a>
+**Meta**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -1010,10 +1106,11 @@ Get Balances
 <a name="balances-get-response"></a>
 **Balances GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Balance](#balance) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Balance](#balance) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="balance"></a>
 **Balance**
@@ -1057,7 +1154,18 @@ Get Balances
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -1099,10 +1207,11 @@ Get Beneficiaries
 <a name="beneficiaries-get-response"></a>
 **Beneficiaries GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Beneficiary](#beneficiary) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -1138,7 +1247,18 @@ Get Beneficiaries
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -1180,10 +1300,11 @@ Get Direct Debits
 <a name="account-get-response"></a>
 **Account GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Direct Debit](#direct-debit) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Direct Debit](#direct-debit) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="direct-debit"></a>
 **Direct Debit**
@@ -1212,7 +1333,18 @@ Get Direct Debits
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -1254,10 +1386,11 @@ Get Products
 <a name="products-get-response"></a>
 **Products GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Product](#product) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Product](#product) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="product"></a>
 **Product**
@@ -1275,7 +1408,18 @@ Get Products
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -1317,10 +1461,11 @@ Get Standing Orders
 <a name="standing-orders-get-response"></a>
 **Standing Orders GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Standing Order](#standing-order) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Standing Order](#standing-order) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta Data](#meta-data)|
 
 <a name="standing-order"></a>
 **Standing Order**
@@ -1387,7 +1532,18 @@ Get Standing Orders
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta-data"></a>
+**Meta Data**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -1429,10 +1585,11 @@ Get Transactions
 <a name="account-transactions-get-response"></a>
 **Account Transactions GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Data](#transactions-get-data) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Data](#transactions-get-data) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#meta)|
 
 <a name="transactions-get-data"></a>
 **Data**
@@ -1508,7 +1665,18 @@ Get Transactions
 
 |Name|Schema|
 |---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
+
+<a name="meta"></a>
+**Meta**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Consumes
