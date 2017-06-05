@@ -4,6 +4,7 @@
   "description": "Balance",
   "properties": {
     "AccountId": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
       "$ref": "./account_id.json"
     },
     "Amount": {

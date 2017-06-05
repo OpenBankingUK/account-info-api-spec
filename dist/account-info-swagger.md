@@ -271,7 +271,7 @@ Get a list of accounts
 |Name|Description|Schema|
 |---|---|---|
 |**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#account-account)|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
 |**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#account-servicer)|
@@ -371,7 +371,7 @@ Get an account
 |Name|Description|Schema|
 |---|---|---|
 |**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#account-account)|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
 |**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#account-servicer)|
@@ -470,7 +470,7 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
@@ -578,7 +578,7 @@ Get Beneficiaries related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
@@ -770,7 +770,7 @@ Get Product related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**ProductIdentifier**  <br>*required*|Identifier within the parent organisation for the product. Must be unique in the organisation.|string|
 |**ProductName**  <br>*optional*|The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.|string|
 |**ProductType**  <br>*required*|Descriptive code for the product category.|enum (BCA, PCA)|
@@ -1118,7 +1118,7 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
@@ -1219,7 +1219,7 @@ Get Beneficiaries
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
@@ -1397,7 +1397,7 @@ Get Products
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**ProductIdentifier**  <br>*required*|Identifier within the parent organisation for the product. Must be unique in the organisation.|string|
 |**ProductName**  <br>*optional*|The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.|string|
 |**ProductType**  <br>*required*|Descriptive code for the product category.|enum (BCA, PCA)|

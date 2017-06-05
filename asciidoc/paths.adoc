@@ -304,7 +304,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |**Account** +
 __optional__|Provides the details to identify an account.|<<_account_account,Account>>
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**Currency** +
 __required__|Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account. +
@@ -450,7 +450,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |**Account** +
 __optional__|Provides the details to identify an account.|<<_account_account,Account>>
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**Currency** +
 __required__|Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account. +
@@ -594,7 +594,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**Amount** +
 __required__|Amount of money of the cash balance.|<<_balance_amount,Amount>>
@@ -748,7 +748,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**BeneficiaryId** +
 __optional__|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner. +
@@ -1026,7 +1026,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**ProductIdentifier** +
 __required__|Identifier within the parent organisation for the product. Must be unique in the organisation.|string
@@ -1546,7 +1546,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**Amount** +
 __required__|Amount of money of the cash balance.|<<_balance_amount,Amount>>
@@ -1690,7 +1690,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**BeneficiaryId** +
 __optional__|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner. +
@@ -1948,7 +1948,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**ProductIdentifier** +
 __required__|Identifier within the parent organisation for the product. Must be unique in the organisation.|string
