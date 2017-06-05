@@ -2,7 +2,7 @@
   "description": "Details of the merchant involved in the transaction.",
   "type": "object",
   "properties": {
-    "Name": {
+    "MerchantName": {
       "description": "Name by which the merchant is known.",
       "$ref": "../../common/max_350_text.json"
     },
@@ -12,7 +12,7 @@
     }
   },
   "required": [
-    "Name"
+    "MerchantName"
   ],
   "additionalProperties": false
 }
