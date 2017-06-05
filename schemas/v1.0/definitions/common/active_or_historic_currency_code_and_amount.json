@@ -1,0 +1,18 @@
+{
+  "description": "Active Or Historic Currency Code and Amount",
+  "type": "object",
+  "properties": {
+    "Amount": {
+      "type": "string",
+      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+    },
+    "Currency":{
+      "$ref": "active_or_historic_currency_code.json"
+    }
+  },
+  "required": [
+    "Amount",
+    "Currency"
+  ],
+  "additionalProperties": false
+}

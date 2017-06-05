@@ -8,13 +8,13 @@ Swagger specification for Account Information APIs
 
 === Version information
 [%hardbreaks]
-__Version__ : v0.1
+__Version__ : v1.0-rc1
 
 
 === Contact information
 [%hardbreaks]
-__Contact__ : Claudio Viola
-__Contact Email__ : claudio.viola@openbanking.org.uk
+__Contact__ : Craig Greenhouse
+__Contact Email__ : Craig.Greenhouse@openbanking.org.uk
 
 
 === License information
@@ -32,7 +32,7 @@ __Schemes__ : HTTPS
 
 === Produces
 
-* `application/json`
+* `application/vnd.api+json`
 
 
 

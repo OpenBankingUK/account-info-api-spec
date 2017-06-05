@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "Data": {
+      "title": "Data",
+      "$ref": "../account_request/response.json"
+    },
+    "Risk": {
+      "title": "Risk",
+      "$ref": "../account_request/risk.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Data",
+    "Risk"
+  ]
+}

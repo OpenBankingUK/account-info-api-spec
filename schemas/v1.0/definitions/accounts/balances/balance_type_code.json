@@ -1,0 +1,16 @@
+{
+  "description": "Balance type, in a coded form.",
+  "type": "string",
+  "enum": [
+    "ClosingAvailable",
+    "ClosingBooked",
+    "Expected",
+    "ForwardAvailable",
+    "Information",
+    "InterimAvailable",
+    "InterimBooked",
+    "OpeningAvailable",
+    "OpeningBooked",
+    "PreviouslyClosedBooked"
+  ]
+}

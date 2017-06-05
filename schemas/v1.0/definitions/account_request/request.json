@@ -1,0 +1,30 @@
+{
+  "title": "Account Request POST request",
+  "description": "Allows setup of an account access request",
+  "type": "object",
+  "properties": {
+    "Permissions": {
+      "type": "array",
+      "$ref": "permissions.json"
+    },
+    "ExpirationDateTime": {
+      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionFromDateTime": {
+      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionToDateTime": {
+      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Permissions"
+  ]
+}

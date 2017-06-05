@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "Included": {
+      "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+      "type": "boolean"
+    },
+    "Amount": {
+      "$ref": "../../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "Type": {
+      "$ref": "external_limit_type_code.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Included"
+  ]
+}

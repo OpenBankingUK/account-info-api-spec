@@ -1,0 +1,54 @@
+/account-requests:
+  $ref: ./accounts_requests/accounts_request_post.yaml
+/account-requests/{AccountRequestId}:
+  $ref: ./accounts_requests/account_request_other.yaml
+/accounts:
+  $ref: ./accounts/accounts_get.yaml
+/accounts/{AccountId}:
+  $ref: ./accounts/account_get.yaml
+/accounts/{AccountId}/transactions:
+  $ref: ./accounts/accounts_transactions_get.yaml
+  parameters:
+    - in: query
+      name: fromBookingDate
+      type: string
+      format: date-time
+      description: The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date
+    - in: query
+      name: toBookingDate
+      type: string
+      format: date-time
+      description: The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date
+/accounts/{AccountId}/beneficiaries:
+  $ref: ./accounts/accounts_beneficiaries_get.yaml
+/accounts/{AccountId}/balances:
+  $ref: ./accounts/accounts_balances_get.yaml
+/accounts/{AccountId}/direct-debits:
+  $ref: ./accounts/accounts_direct_debits_get.yaml
+/accounts/{AccountId}/standing-orders:
+  $ref: ./accounts/accounts_standing_orders_get.yaml
+/accounts/{AccountId}/product:
+  $ref: ./accounts/accounts_product_get.yaml
+/standing-orders:
+  $ref: ./standing_orders/standing_orders_get.yaml
+/direct-debits:
+  $ref: ./direct_debits/direct_debits_get.yaml
+/beneficiaries:
+  $ref: ./beneficiaries/beneficiaries_get.yaml
+/transactions:
+  $ref: ./transactions/transactions_get.yaml
+  parameters:
+    - in: query
+      name: fromBookingDate
+      type: string
+      format: date-time
+      description: The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date
+    - in: query
+      name: toBookingDate
+      type: string
+      format: date-time
+      description: The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date
+/balances:
+  $ref: ./balances/balances_get.yaml
+/products:
+  $ref: ./products/products_get.yaml

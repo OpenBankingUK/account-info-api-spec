@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+      "$ref": "./account_id.json"
+    },
+    "TransactionId": {
+      "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
+      "$ref": "../common/max_40_text.json"
+    },
+    "TransactionReference": {
+      "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
+      "$ref": "../common/max_35_text.json"
+    },
+    "Amount": {
+      "description": "Amount of money in the cash entry.",
+      "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "CreditDebitIndicator": {
+      "description": "Indicates whether the transaction is a credit or a debit entry.",
+      "$ref": "./transactions/credit_debit_indicator.json"
+    },
+    "Status": {
+      "description": "Status of a transaction entry on the books of the account servicer.",
+      "$ref": "./transactions/status.json"
+    },
+    "BookingDateTime": {
+      "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "ValueDateTime": {
+      "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionInformation": {
+      "description": "Further details of the transaction. This is the transaction narrative, which in unstructured text.",
+      "$ref": "../common/max_500_text.json"
+    },
+    "AddressLine": {
+      "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+      "$ref": "../common/max_70_text.json"
+    },
+    "BankTransactionCode": {
+      "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+      "$ref": "./transactions/bank_transaction_code.json"
+    },
+    "ProprietaryBankTransactionCode": {
+      "description": "Set of elements to fully identify a proprietary bank transaction code.",
+      "$ref": "./transactions/proprietary_bank_transaction_code_structure.json"
+    },
+    "Balance": {
+      "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
+      "$ref": "./transactions/cash_balance.json"
+    },
+    "MerchantDetails": {
+      "description": "Details of the merchant involved in the transaction.",
+      "$ref": "./transactions/merchant_details.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "Amount",
+    "CreditDebitIndicator",
+    "Status",
+    "BookingDateTime"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "title": "Account Request GET response",
+  "$ref": "../definitions/data/account_request_get_response.json"
+}

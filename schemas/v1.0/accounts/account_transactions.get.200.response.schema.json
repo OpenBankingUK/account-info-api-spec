@@ -1,0 +1,4 @@
+{
+  "title": "Account Transactions GET response",
+  "$ref": "../definitions/data/transaction.json"
+}

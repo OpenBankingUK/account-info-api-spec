@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "Date": {
+      "$ref": "iso_date.json"
+    },
+    "DateTime": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "minProperties": 1,
+  "maxProperties": 1,
+  "additionalProperties": false
+}

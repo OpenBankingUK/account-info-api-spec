@@ -1,0 +1,5 @@
+{
+  "description": "Decimal Number",
+  "type": "string",
+  "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+}
