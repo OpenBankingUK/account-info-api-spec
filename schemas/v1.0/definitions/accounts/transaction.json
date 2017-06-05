@@ -2,10 +2,11 @@
   "type": "object",
   "properties": {
     "AccountId": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
       "$ref": "./account_id.json"
     },
     "TransactionId": {
-      "description": " ",
+      "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
       "$ref": "../common/max_40_text.json"
     },
     "TransactionReference": {

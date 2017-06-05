@@ -679,7 +679,6 @@ Get Direct Debits related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**Currency**  <br>*optional*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**DirectDebitId**  <br>*optional*|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
 |**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
@@ -986,7 +985,7 @@ Get transactions related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
 |**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#accounts-accountid-transactions-get-data-amount)|
 |**Balance**  <br>*optional*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#accounts-accountid-transactions-get-data-balance)|
@@ -996,7 +995,7 @@ Get transactions related to an account
 |**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#accounts-accountid-transactions-get-data-merchantdetails)|
 |**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#accounts-accountid-transactions-get-data-proprietarybanktransactioncode)|
 |**Status**  <br>*required*|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)|
-|**TransactionId**  <br>*optional*|**Length** : `1 - 40`|string|
+|**TransactionId**  <br>*optional*|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.  <br>**Length** : `1 - 40`|string|
 |**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which in unstructured text.  <br>**Length** : `1 - 500`|string|
 |**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDateTime**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|string (date-time)|
@@ -1314,7 +1313,6 @@ Get Direct Debits
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**Currency**  <br>*optional*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 |**DirectDebitId**  <br>*optional*|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
 |**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
@@ -1606,7 +1604,7 @@ Get Transactions
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
 |**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#transactions-get-data-amount)|
 |**Balance**  <br>*optional*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#transactions-get-data-balance)|
@@ -1616,7 +1614,7 @@ Get Transactions
 |**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#transactions-get-data-merchantdetails)|
 |**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#transactions-get-data-proprietarybanktransactioncode)|
 |**Status**  <br>*required*|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)|
-|**TransactionId**  <br>*optional*|**Length** : `1 - 40`|string|
+|**TransactionId**  <br>*optional*|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.  <br>**Length** : `1 - 40`|string|
 |**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which in unstructured text.  <br>**Length** : `1 - 500`|string|
 |**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDateTime**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|string (date-time)|

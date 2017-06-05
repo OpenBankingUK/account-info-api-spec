@@ -854,13 +854,13 @@
                     "type": "object",
                     "properties": {
                       "AccountId": {
-                        "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 40
                       },
                       "TransactionId": {
-                        "description": " ",
+                        "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 40
@@ -1599,11 +1599,6 @@
                           "Active",
                           "Inactive"
                         ]
-                      },
-                      "Currency": {
-                        "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds.",
-                        "type": "string",
-                        "pattern": "^[A-Z]{3}$"
                       },
                       "Name": {
                         "description": "Name of Service User",
@@ -2464,11 +2459,6 @@
                           "Inactive"
                         ]
                       },
-                      "Currency": {
-                        "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds.",
-                        "type": "string",
-                        "pattern": "^[A-Z]{3}$"
-                      },
                       "Name": {
                         "description": "Name of Service User",
                         "type": "string",
@@ -2814,13 +2804,13 @@
                     "type": "object",
                     "properties": {
                       "AccountId": {
-                        "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 40
                       },
                       "TransactionId": {
-                        "description": " ",
+                        "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 40

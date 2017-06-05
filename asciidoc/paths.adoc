@@ -896,9 +896,6 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |**AccountId** +
 __required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
-|**Currency** +
-__optional__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds. +
-**Pattern** : `"^[A-Z]{3}$"`|string
 |**DirectDebitId** +
 __optional__|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
@@ -1345,7 +1342,7 @@ __required__|Meta Data relevant to the payload|<<_meta,Meta>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**AddressLine** +
 __optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
@@ -1367,7 +1364,8 @@ __optional__|Set of elements to fully identify a proprietary bank transaction co
 |**Status** +
 __required__|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)
 |**TransactionId** +
-__optional__|**Length** : `1 - 40`|string
+__optional__|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable. +
+**Length** : `1 - 40`|string
 |**TransactionInformation** +
 __optional__|Further details of the transaction. This is the transaction narrative, which in unstructured text. +
 **Length** : `1 - 500`|string
@@ -1830,9 +1828,6 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |**AccountId** +
 __required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
-|**Currency** +
-__optional__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 Codes for the representation of currencies and funds. +
-**Pattern** : `"^[A-Z]{3}$"`|string
 |**DirectDebitId** +
 __optional__|A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
@@ -2257,7 +2252,7 @@ __required__|Meta Data relevant to the payload|<<_meta,Meta>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**AddressLine** +
 __optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
@@ -2279,7 +2274,8 @@ __optional__|Set of elements to fully identify a proprietary bank transaction co
 |**Status** +
 __required__|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)
 |**TransactionId** +
-__optional__|**Length** : `1 - 40`|string
+__optional__|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable. +
+**Length** : `1 - 40`|string
 |**TransactionInformation** +
 __optional__|Further details of the transaction. This is the transaction narrative, which in unstructured text. +
 **Length** : `1 - 500`|string
