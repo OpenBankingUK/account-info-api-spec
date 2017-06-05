@@ -120,36 +120,59 @@
               "properties": {
                 "Data": {
                   "title": "Data",
-                  "description": "Allows setup of an account access request",
                   "type": "object",
                   "properties": {
+                    "AccountRequestId": {
+                      "description": "Unique identification as assigned to identify the account request resource.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "Status": {
+                      "description": "Specifies the status of the account request resource.",
+                      "type": "string",
+                      "enum": [
+                        "Authorised",
+                        "AwaitingAuthorisation",
+                        "Rejected"
+                      ]
+                    },
+                    "CreationDateTime": {
+                      "description": "Date and time at which the resource was created.",
+                      "type": "string",
+                      "format": "date-time"
+                    },
                     "Permissions": {
                       "type": "array",
-                      "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                        "type": "string",
-                        "enum": [
-                          "ReadAccounts",
-                          "ReadAccountsSensitive",
-                          "ReadBalances",
-                          "ReadBeneficiaries",
-                          "ReadBeneficiariesSensitive",
-                          "ReadDirectDebits",
-                          "ReadStandingOrders",
-                          "ReadStandingOrdersSensitive",
-                          "ReadTransactions",
-                          "ReadTransactionsCredits",
-                          "ReadTransactionsDebits",
-                          "ReadTransactionsSensitive",
-                          "ReadProducts"
-                        ]
+                        "type": "array",
+                        "items": {
+                          "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
+                          "type": "string",
+                          "enum": [
+                            "ReadAccounts",
+                            "ReadAccountsSensitive",
+                            "ReadBalances",
+                            "ReadBeneficiaries",
+                            "ReadBeneficiariesSensitive",
+                            "ReadDirectDebits",
+                            "ReadStandingOrders",
+                            "ReadStandingOrdersSensitive",
+                            "ReadTransactions",
+                            "ReadTransactionsCredits",
+                            "ReadTransactionsDebits",
+                            "ReadTransactionsSensitive",
+                            "ReadProducts"
+                          ]
+                        },
+                        "minProperties": 1,
+                        "additionalProperties": false
                       },
-                      "minProperties": 1,
-                      "additionalProperties": false
+                      "minItems": 1
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -166,6 +189,8 @@
                   },
                   "additionalProperties": false,
                   "required": [
+                    "AccountRequestId",
+                    "CreationDateTime",
                     "Permissions"
                   ]
                 },
@@ -235,36 +260,59 @@
               "properties": {
                 "Data": {
                   "title": "Data",
-                  "description": "Allows setup of an account access request",
                   "type": "object",
                   "properties": {
+                    "AccountRequestId": {
+                      "description": "Unique identification as assigned to identify the account request resource.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "Status": {
+                      "description": "Specifies the status of the account request resource.",
+                      "type": "string",
+                      "enum": [
+                        "Authorised",
+                        "AwaitingAuthorisation",
+                        "Rejected"
+                      ]
+                    },
+                    "CreationDateTime": {
+                      "description": "Date and time at which the resource was created.",
+                      "type": "string",
+                      "format": "date-time"
+                    },
                     "Permissions": {
                       "type": "array",
-                      "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                        "type": "string",
-                        "enum": [
-                          "ReadAccounts",
-                          "ReadAccountsSensitive",
-                          "ReadBalances",
-                          "ReadBeneficiaries",
-                          "ReadBeneficiariesSensitive",
-                          "ReadDirectDebits",
-                          "ReadStandingOrders",
-                          "ReadStandingOrdersSensitive",
-                          "ReadTransactions",
-                          "ReadTransactionsCredits",
-                          "ReadTransactionsDebits",
-                          "ReadTransactionsSensitive",
-                          "ReadProducts"
-                        ]
+                        "type": "array",
+                        "items": {
+                          "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
+                          "type": "string",
+                          "enum": [
+                            "ReadAccounts",
+                            "ReadAccountsSensitive",
+                            "ReadBalances",
+                            "ReadBeneficiaries",
+                            "ReadBeneficiariesSensitive",
+                            "ReadDirectDebits",
+                            "ReadStandingOrders",
+                            "ReadStandingOrdersSensitive",
+                            "ReadTransactions",
+                            "ReadTransactionsCredits",
+                            "ReadTransactionsDebits",
+                            "ReadTransactionsSensitive",
+                            "ReadProducts"
+                          ]
+                        },
+                        "minProperties": 1,
+                        "additionalProperties": false
                       },
-                      "minProperties": 1,
-                      "additionalProperties": false
+                      "minItems": 1
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -281,6 +329,8 @@
                   },
                   "additionalProperties": false,
                   "required": [
+                    "AccountRequestId",
+                    "CreationDateTime",
                     "Permissions"
                   ]
                 },
@@ -660,6 +710,13 @@
                   "required": [
                     "self"
                   ]
+                },
+                "Meta": {
+                  "title": "Meta Data",
+                  "type": "object",
+                  "description": "Mete Data Relevant to the payload",
+                  "properties": {},
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false,
@@ -900,7 +957,7 @@
                         "description": "Details of the merchant involved in the transaction.",
                         "type": "object",
                         "properties": {
-                          "Name": {
+                          "MerchantName": {
                             "description": "Name by which the merchant is known.",
                             "type": "string",
                             "minLength": 1,
@@ -914,7 +971,7 @@
                           }
                         },
                         "required": [
-                          "Name"
+                          "MerchantName"
                         ],
                         "additionalProperties": false
                       }
@@ -2557,7 +2614,7 @@
                         "description": "Details of the merchant involved in the transaction.",
                         "type": "object",
                         "properties": {
-                          "Name": {
+                          "MerchantName": {
                             "description": "Name by which the merchant is known.",
                             "type": "string",
                             "minLength": 1,
@@ -2571,7 +2628,7 @@
                           }
                         },
                         "required": [
-                          "Name"
+                          "MerchantName"
                         ],
                         "additionalProperties": false
                       }

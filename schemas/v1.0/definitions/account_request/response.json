@@ -4,7 +4,7 @@
   "properties": {
     "AccountRequestId": {
       "description": "Unique identification as assigned to identify the account request resource.",
-      "$ref": "../definitions/common/max_40_text.json"
+      "$ref": "../common/max_40_text.json"
     },
     "Status": {
       "description": "Specifies the status of the account request resource.",

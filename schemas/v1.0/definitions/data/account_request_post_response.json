@@ -3,7 +3,7 @@
   "properties": {
     "Data": {
       "title": "Data",
-      "$ref": "../account_request/request.json"
+      "$ref": "../account_request/response.json"
     },
     "Risk": {
       "title": "Risk",

@@ -88,7 +88,7 @@ Create an Account Request
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*|Allows setup of an account access request|[Data](#data)|
+|**Data**  <br>*required*||[Data](#data)|
 |**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
@@ -96,8 +96,11 @@ Create an Account Request
 
 |Name|Description|Schema|
 |---|---|---|
-|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
-|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array|
+|**AccountRequestId**  <br>*required*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**Permissions**  <br>*required*||< < enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array > array|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
 
@@ -155,7 +158,7 @@ Get an account request
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*|Allows setup of an account access request|[Data](#data)|
+|**Data**  <br>*required*||[Data](#data)|
 |**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
@@ -163,8 +166,11 @@ Get an account request
 
 |Name|Description|Schema|
 |---|---|---|
-|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
-|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array|
+|**AccountRequestId**  <br>*required*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expired. If this is not populated, the permissions will be open ended.|string (date-time)|
+|**Permissions**  <br>*required*||< < enum (ReadAccounts, ReadAccountsSensitive, ReadBalances, ReadBeneficiaries, ReadBeneficiariesSensitive, ReadDirectDebits, ReadStandingOrders, ReadStandingOrdersSensitive, ReadTransactions, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsSensitive, ReadProducts) > array > array|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
 
@@ -341,10 +347,11 @@ Get an account
 <a name="account-get-response"></a>
 **Account GET response**
 
-|Name|Schema|
-|---|---|
-|**Data**  <br>*required*|< [Data](#accounts-accountid-get-data) > array|
-|**Links**  <br>*required*|[Links](#links)|
+|Name|Description|Schema|
+|---|---|---|
+|**Data**  <br>*required*||< [Data](#accounts-accountid-get-data) > array|
+|**Links**  <br>*required*||[Links](#links)|
+|**Meta**  <br>*optional*|Mete Data Relevant to the payload|object|
 
 <a name="accounts-accountid-get-data"></a>
 **Data**
@@ -947,7 +954,7 @@ Get transactions related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**Name**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+|**MerchantName**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
 <a name="accounts-accountid-transactions-get-data-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
@@ -1487,7 +1494,7 @@ Get Transactions
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**Name**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+|**MerchantName**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
 <a name="transactions-get-data-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
