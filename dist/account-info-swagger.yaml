@@ -47,19 +47,19 @@ paths:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                       type: string
                       enum:
-                        - ReadAccounts
-                        - ReadAccountsSensitive
+                        - ReadAccountsBasic
+                        - ReadAccountsDetail
                         - ReadBalances
-                        - ReadBeneficiaries
-                        - ReadBeneficiariesSensitive
+                        - ReadBeneficiariesBasic
+                        - ReadBeneficiariesDetail
                         - ReadDirectDebits
-                        - ReadStandingOrders
-                        - ReadStandingOrdersSensitive
-                        - ReadTransactions
+                        - ReadProducts
+                        - ReadStandingOrdersBasic
+                        - ReadStandingOrdersDetail
+                        - ReadTransactionsBasic
                         - ReadTransactionsCredits
                         - ReadTransactionsDebits
-                        - ReadTransactionsSensitive
-                        - ReadProducts
+                        - ReadTransactionsDetail
                     minProperties: 1
                     additionalProperties: false
                   ExpirationDateTime:
@@ -127,19 +127,19 @@ paths:
                         description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                         type: string
                         enum:
-                          - ReadAccounts
-                          - ReadAccountsSensitive
+                          - ReadAccountsBasic
+                          - ReadAccountsDetail
                           - ReadBalances
-                          - ReadBeneficiaries
-                          - ReadBeneficiariesSensitive
+                          - ReadBeneficiariesBasic
+                          - ReadBeneficiariesDetail
                           - ReadDirectDebits
-                          - ReadStandingOrders
-                          - ReadStandingOrdersSensitive
-                          - ReadTransactions
+                          - ReadProducts
+                          - ReadStandingOrdersBasic
+                          - ReadStandingOrdersDetail
+                          - ReadTransactionsBasic
                           - ReadTransactionsCredits
                           - ReadTransactionsDebits
-                          - ReadTransactionsSensitive
-                          - ReadProducts
+                          - ReadTransactionsDetail
                       minProperties: 1
                       additionalProperties: false
                     minItems: 1
@@ -237,19 +237,19 @@ paths:
                         description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                         type: string
                         enum:
-                          - ReadAccounts
-                          - ReadAccountsSensitive
+                          - ReadAccountsBasic
+                          - ReadAccountsDetail
                           - ReadBalances
-                          - ReadBeneficiaries
-                          - ReadBeneficiariesSensitive
+                          - ReadBeneficiariesBasic
+                          - ReadBeneficiariesDetail
                           - ReadDirectDebits
-                          - ReadStandingOrders
-                          - ReadStandingOrdersSensitive
-                          - ReadTransactions
+                          - ReadProducts
+                          - ReadStandingOrdersBasic
+                          - ReadStandingOrdersDetail
+                          - ReadTransactionsBasic
                           - ReadTransactionsCredits
                           - ReadTransactionsDebits
-                          - ReadTransactionsSensitive
-                          - ReadProducts
+                          - ReadTransactionsDetail
                       minProperties: 1
                       additionalProperties: false
                     minItems: 1
