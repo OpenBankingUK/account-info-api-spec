@@ -26,6 +26,6 @@ You need to have
 - gem install prawn -v 2.1.0
 
 # Troubleshooting
-
+ 
 If you run `npm run build:all` and there are errors in a new terminal session, 
 issuing the command `rvm use 2.2` may fix it 
