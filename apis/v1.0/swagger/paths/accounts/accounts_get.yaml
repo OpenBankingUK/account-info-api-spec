@@ -4,6 +4,8 @@ get:
   operationId: GetAccounts
   produces:
     - $ref: ../../definitions/mime_type.yaml
+  parameters:
+   - $ref: ../../headers/fapi.yaml
   responses:
     200:
       description: Accounts successfully retrieved

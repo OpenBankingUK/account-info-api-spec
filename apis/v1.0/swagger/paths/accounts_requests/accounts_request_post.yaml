@@ -7,12 +7,8 @@ post:
   produces:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
-    - name: body
-      in: body
-      description: Create an Account Request
-      required: true
-      schema:
-        $ref: ../../../../../compiled/schemas/v1.0/accounts_requests/account_request.post.request.schema.yaml
+    - $ref: ./body.yaml
+    - $ref: ../../headers/fapi.yaml
   responses:
     201:
       description: Account Request resource successfully created

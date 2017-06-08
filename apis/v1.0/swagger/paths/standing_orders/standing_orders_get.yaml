@@ -4,6 +4,8 @@ get:
   operationId: GetStandingOrders
   produces:
     - $ref: ../../definitions/mime_type.yaml
+  parameters:
+    - $ref: ../../headers/fapi.yaml
   responses:
     200:
       description: Standing Orders successfully retrieved

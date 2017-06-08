@@ -4,6 +4,8 @@ get:
   operationId: GetDirectDebits
   produces:
     - $ref: ../../definitions/mime_type.yaml
+  parameters:
+    - $ref: ../../headers/fapi.yaml
   responses:
     200:
       description: Direct Debits successfully retrieved
