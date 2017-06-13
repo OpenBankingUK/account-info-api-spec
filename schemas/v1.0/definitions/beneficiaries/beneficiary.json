@@ -22,8 +22,5 @@
       "$ref": "../common/creditor_cash_account.json"
     }
   },
-  "additionalProperties": false,
-  "required": [
-    "AccountId"
-  ]
+  "additionalProperties": false
 }
