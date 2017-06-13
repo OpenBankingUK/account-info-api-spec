@@ -2,20 +2,22 @@
   description: Bad Request
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-400.schema.yaml
+
 401ErrorResponse:
   description: Unauthorized
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-401.schema.yaml
+
 403ErrorResponse:
   description: Forbidden
-404NotFound:
-  description: Not Found
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-403.schema.yaml
+
 409ErrorResponse:
   description: Conflict
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-409.schema.yaml
+
 500ErrorResponse:
   description: Internal Server Error
   # schema:

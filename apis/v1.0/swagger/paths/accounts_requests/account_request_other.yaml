@@ -18,8 +18,6 @@ get:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
-    404:
-      $ref: ../../index.yaml#/responses/404NotFound
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
@@ -45,8 +43,6 @@ delete:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
-    404:
-      $ref: ../../index.yaml#/responses/404NotFound
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
