@@ -108,9 +108,9 @@ __required__|Date and time at which the resource was created.|string (date-time)
 |**ExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**Permissions** +
-__required__||< < enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array > array
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**Status** +
-__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)
+__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)
 |**TransactionFromDateTime** +
 __optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
 |**TransactionToDateTime** +
@@ -207,9 +207,9 @@ __required__|Date and time at which the resource was created.|string (date-time)
 |**ExpirationDateTime** +
 __optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
 |**Permissions** +
-__required__||< < enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array > array
+__required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**Status** +
-__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)
+__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)
 |**TransactionFromDateTime** +
 __optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
 |**TransactionToDateTime** +
@@ -816,7 +816,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__optional__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**BeneficiaryId** +
 __optional__|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner. +
@@ -1822,7 +1822,7 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 |===
 |Name|Description|Schema
 |**AccountId** +
-__required__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
+__optional__|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |**BeneficiaryId** +
 __optional__|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner. +

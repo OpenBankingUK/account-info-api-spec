@@ -50,8 +50,8 @@
                   "type": "object",
                   "properties": {
                     "Permissions": {
-                      "type": "array",
                       "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
+                      "type": "array",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                         "type": "string",
@@ -169,7 +169,8 @@
                       "enum": [
                         "Authorised",
                         "AwaitingAuthorisation",
-                        "Rejected"
+                        "Rejected",
+                        "Revoked"
                       ]
                     },
                     "CreationDateTime": {
@@ -178,33 +179,29 @@
                       "format": "date-time"
                     },
                     "Permissions": {
+                      "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                       "type": "array",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                        "type": "array",
-                        "items": {
-                          "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                          "type": "string",
-                          "enum": [
-                            "ReadAccountsBasic",
-                            "ReadAccountsDetail",
-                            "ReadBalances",
-                            "ReadBeneficiariesBasic",
-                            "ReadBeneficiariesDetail",
-                            "ReadDirectDebits",
-                            "ReadProducts",
-                            "ReadStandingOrdersBasic",
-                            "ReadStandingOrdersDetail",
-                            "ReadTransactionsBasic",
-                            "ReadTransactionsCredits",
-                            "ReadTransactionsDebits",
-                            "ReadTransactionsDetail"
-                          ]
-                        },
-                        "minProperties": 1,
-                        "additionalProperties": false
+                        "type": "string",
+                        "enum": [
+                          "ReadAccountsBasic",
+                          "ReadAccountsDetail",
+                          "ReadBalances",
+                          "ReadBeneficiariesBasic",
+                          "ReadBeneficiariesDetail",
+                          "ReadDirectDebits",
+                          "ReadProducts",
+                          "ReadStandingOrdersBasic",
+                          "ReadStandingOrdersDetail",
+                          "ReadTransactionsBasic",
+                          "ReadTransactionsCredits",
+                          "ReadTransactionsDebits",
+                          "ReadTransactionsDetail"
+                        ]
                       },
-                      "minItems": 1
+                      "minProperties": 1,
+                      "additionalProperties": false
                     },
                     "ExpirationDateTime": {
                       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
@@ -343,7 +340,8 @@
                       "enum": [
                         "Authorised",
                         "AwaitingAuthorisation",
-                        "Rejected"
+                        "Rejected",
+                        "Revoked"
                       ]
                     },
                     "CreationDateTime": {
@@ -352,33 +350,29 @@
                       "format": "date-time"
                     },
                     "Permissions": {
+                      "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                       "type": "array",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                        "type": "array",
-                        "items": {
-                          "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                          "type": "string",
-                          "enum": [
-                            "ReadAccountsBasic",
-                            "ReadAccountsDetail",
-                            "ReadBalances",
-                            "ReadBeneficiariesBasic",
-                            "ReadBeneficiariesDetail",
-                            "ReadDirectDebits",
-                            "ReadProducts",
-                            "ReadStandingOrdersBasic",
-                            "ReadStandingOrdersDetail",
-                            "ReadTransactionsBasic",
-                            "ReadTransactionsCredits",
-                            "ReadTransactionsDebits",
-                            "ReadTransactionsDetail"
-                          ]
-                        },
-                        "minProperties": 1,
-                        "additionalProperties": false
+                        "type": "string",
+                        "enum": [
+                          "ReadAccountsBasic",
+                          "ReadAccountsDetail",
+                          "ReadBalances",
+                          "ReadBeneficiariesBasic",
+                          "ReadBeneficiariesDetail",
+                          "ReadDirectDebits",
+                          "ReadProducts",
+                          "ReadStandingOrdersBasic",
+                          "ReadStandingOrdersDetail",
+                          "ReadTransactionsBasic",
+                          "ReadTransactionsCredits",
+                          "ReadTransactionsDebits",
+                          "ReadTransactionsDetail"
+                        ]
                       },
-                      "minItems": 1
+                      "minProperties": 1,
+                      "additionalProperties": false
                     },
                     "ExpirationDateTime": {
                       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
@@ -1429,10 +1423,7 @@
                         "additionalProperties": false
                       }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId"
-                    ]
+                    "additionalProperties": false
                   }
                 },
                 "Links": {
@@ -3064,10 +3055,7 @@
                         "additionalProperties": false
                       }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId"
-                    ]
+                    "additionalProperties": false
                   }
                 },
                 "Links": {

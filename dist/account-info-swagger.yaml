@@ -41,8 +41,8 @@ paths:
                 type: object
                 properties:
                   Permissions:
-                    type: array
                     description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
+                    type: array
                     items:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                       type: string
@@ -143,35 +143,33 @@ paths:
                       - Authorised
                       - AwaitingAuthorisation
                       - Rejected
+                      - Revoked
                   CreationDateTime:
                     description: Date and time at which the resource was created.
                     type: string
                     format: date-time
                   Permissions:
+                    description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                     type: array
                     items:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                      type: array
-                      items:
-                        description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                        type: string
-                        enum:
-                          - ReadAccountsBasic
-                          - ReadAccountsDetail
-                          - ReadBalances
-                          - ReadBeneficiariesBasic
-                          - ReadBeneficiariesDetail
-                          - ReadDirectDebits
-                          - ReadProducts
-                          - ReadStandingOrdersBasic
-                          - ReadStandingOrdersDetail
-                          - ReadTransactionsBasic
-                          - ReadTransactionsCredits
-                          - ReadTransactionsDebits
-                          - ReadTransactionsDetail
-                      minProperties: 1
-                      additionalProperties: false
-                    minItems: 1
+                      type: string
+                      enum:
+                        - ReadAccountsBasic
+                        - ReadAccountsDetail
+                        - ReadBalances
+                        - ReadBeneficiariesBasic
+                        - ReadBeneficiariesDetail
+                        - ReadDirectDebits
+                        - ReadProducts
+                        - ReadStandingOrdersBasic
+                        - ReadStandingOrdersDetail
+                        - ReadTransactionsBasic
+                        - ReadTransactionsCredits
+                        - ReadTransactionsDebits
+                        - ReadTransactionsDetail
+                    minProperties: 1
+                    additionalProperties: false
                   ExpirationDateTime:
                     description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
                     type: string
@@ -261,35 +259,33 @@ paths:
                       - Authorised
                       - AwaitingAuthorisation
                       - Rejected
+                      - Revoked
                   CreationDateTime:
                     description: Date and time at which the resource was created.
                     type: string
                     format: date-time
                   Permissions:
+                    description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                     type: array
                     items:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                      type: array
-                      items:
-                        description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                        type: string
-                        enum:
-                          - ReadAccountsBasic
-                          - ReadAccountsDetail
-                          - ReadBalances
-                          - ReadBeneficiariesBasic
-                          - ReadBeneficiariesDetail
-                          - ReadDirectDebits
-                          - ReadProducts
-                          - ReadStandingOrdersBasic
-                          - ReadStandingOrdersDetail
-                          - ReadTransactionsBasic
-                          - ReadTransactionsCredits
-                          - ReadTransactionsDebits
-                          - ReadTransactionsDetail
-                      minProperties: 1
-                      additionalProperties: false
-                    minItems: 1
+                      type: string
+                      enum:
+                        - ReadAccountsBasic
+                        - ReadAccountsDetail
+                        - ReadBalances
+                        - ReadBeneficiariesBasic
+                        - ReadBeneficiariesDetail
+                        - ReadDirectDebits
+                        - ReadProducts
+                        - ReadStandingOrdersBasic
+                        - ReadStandingOrdersDetail
+                        - ReadTransactionsBasic
+                        - ReadTransactionsCredits
+                        - ReadTransactionsDebits
+                        - ReadTransactionsDetail
+                    minProperties: 1
+                    additionalProperties: false
                   ExpirationDateTime:
                     description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
                     type: string
@@ -1003,8 +999,6 @@ paths:
                         - Identification
                       additionalProperties: false
                   additionalProperties: false
-                  required:
-                    - AccountId
               Links:
                 title: Links
                 type: object
