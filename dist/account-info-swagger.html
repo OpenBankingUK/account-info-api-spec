@@ -711,6 +711,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-jws-signature</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Header containig a detached JWS signature of the body of the payload.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -813,7 +820,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully created</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully created<br>
+<strong>Headers</strong> : <br>
+<code>x-jws-signature</code> (string) : Header containig a detached JWS signature of the body of the payload.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_request_post_response">Account Request POST response</a></p></td>
 </tr>
 <tr>

@@ -9,11 +9,16 @@ post:
   parameters:
     - $ref: ./body.yaml
     - $ref: ../../headers/fapi.yaml
+    - $ref: ../../headers/jws.yaml
   responses:
     201:
       description: Account Request resource successfully created
       schema:
         $ref: ../../../../../compiled/schemas/v1.0/accounts_requests/account_request.post.201.response.schema.yaml
+      headers:
+        x-jws-signature:
+          type: string
+          description: Header containig a detached JWS signature of the body of the payload.
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
