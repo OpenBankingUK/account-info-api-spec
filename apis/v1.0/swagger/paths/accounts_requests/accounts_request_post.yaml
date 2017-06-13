@@ -28,8 +28,6 @@ post:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
-    409:
-      $ref: ../../index.yaml#/responses/409ErrorResponse
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
