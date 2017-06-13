@@ -50,8 +50,8 @@
                   "type": "object",
                   "properties": {
                     "Permissions": {
-                      "type": "array",
                       "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
+                      "type": "array",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                         "type": "string",
@@ -169,7 +169,8 @@
                       "enum": [
                         "Authorised",
                         "AwaitingAuthorisation",
-                        "Rejected"
+                        "Rejected",
+                        "Revoked"
                       ]
                     },
                     "CreationDateTime": {
@@ -178,33 +179,29 @@
                       "format": "date-time"
                     },
                     "Permissions": {
+                      "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                       "type": "array",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                        "type": "array",
-                        "items": {
-                          "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                          "type": "string",
-                          "enum": [
-                            "ReadAccountsBasic",
-                            "ReadAccountsDetail",
-                            "ReadBalances",
-                            "ReadBeneficiariesBasic",
-                            "ReadBeneficiariesDetail",
-                            "ReadDirectDebits",
-                            "ReadProducts",
-                            "ReadStandingOrdersBasic",
-                            "ReadStandingOrdersDetail",
-                            "ReadTransactionsBasic",
-                            "ReadTransactionsCredits",
-                            "ReadTransactionsDebits",
-                            "ReadTransactionsDetail"
-                          ]
-                        },
-                        "minProperties": 1,
-                        "additionalProperties": false
+                        "type": "string",
+                        "enum": [
+                          "ReadAccountsBasic",
+                          "ReadAccountsDetail",
+                          "ReadBalances",
+                          "ReadBeneficiariesBasic",
+                          "ReadBeneficiariesDetail",
+                          "ReadDirectDebits",
+                          "ReadProducts",
+                          "ReadStandingOrdersBasic",
+                          "ReadStandingOrdersDetail",
+                          "ReadTransactionsBasic",
+                          "ReadTransactionsCredits",
+                          "ReadTransactionsDebits",
+                          "ReadTransactionsDetail"
+                        ]
                       },
-                      "minItems": 1
+                      "minProperties": 1,
+                      "additionalProperties": false
                     },
                     "ExpirationDateTime": {
                       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
@@ -247,6 +244,10 @@
               "x-jws-signature": {
                 "type": "string",
                 "description": "Header containig a detached JWS signature of the body of the payload."
+              },
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
               }
             }
           },
@@ -258,9 +259,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "409": {
-            "description": "Conflict"
           },
           "500": {
             "description": "Internal Server Error"
@@ -343,7 +341,8 @@
                       "enum": [
                         "Authorised",
                         "AwaitingAuthorisation",
-                        "Rejected"
+                        "Rejected",
+                        "Revoked"
                       ]
                     },
                     "CreationDateTime": {
@@ -352,33 +351,29 @@
                       "format": "date-time"
                     },
                     "Permissions": {
+                      "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
                       "type": "array",
                       "items": {
                         "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                        "type": "array",
-                        "items": {
-                          "description": "Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.",
-                          "type": "string",
-                          "enum": [
-                            "ReadAccountsBasic",
-                            "ReadAccountsDetail",
-                            "ReadBalances",
-                            "ReadBeneficiariesBasic",
-                            "ReadBeneficiariesDetail",
-                            "ReadDirectDebits",
-                            "ReadProducts",
-                            "ReadStandingOrdersBasic",
-                            "ReadStandingOrdersDetail",
-                            "ReadTransactionsBasic",
-                            "ReadTransactionsCredits",
-                            "ReadTransactionsDebits",
-                            "ReadTransactionsDetail"
-                          ]
-                        },
-                        "minProperties": 1,
-                        "additionalProperties": false
+                        "type": "string",
+                        "enum": [
+                          "ReadAccountsBasic",
+                          "ReadAccountsDetail",
+                          "ReadBalances",
+                          "ReadBeneficiariesBasic",
+                          "ReadBeneficiariesDetail",
+                          "ReadDirectDebits",
+                          "ReadProducts",
+                          "ReadStandingOrdersBasic",
+                          "ReadStandingOrdersDetail",
+                          "ReadTransactionsBasic",
+                          "ReadTransactionsCredits",
+                          "ReadTransactionsDebits",
+                          "ReadTransactionsDetail"
+                        ]
                       },
-                      "minItems": 1
+                      "minProperties": 1,
+                      "additionalProperties": false
                     },
                     "ExpirationDateTime": {
                       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
@@ -416,6 +411,12 @@
                 "Data",
                 "Risk"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -426,9 +427,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -465,7 +463,13 @@
         ],
         "responses": {
           "204": {
-            "description": "Account Request resource successfully deleted"
+            "description": "Account Request resource successfully deleted",
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -475,9 +479,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -682,6 +683,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -692,9 +699,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -906,6 +910,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -916,9 +926,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1262,6 +1269,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1272,9 +1285,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1429,10 +1439,7 @@
                         "additionalProperties": false
                       }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId"
-                    ]
+                    "additionalProperties": false
                   }
                 },
                 "Links": {
@@ -1485,6 +1492,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1495,9 +1508,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1656,7 +1666,12 @@
                           },
                           "Type": {
                             "description": "Limit type, in a coded form.",
-                            "type": "string"
+                            "type": "string",
+                            "enum": [
+                              "Pre-Agreed",
+                              "Emergency",
+                              "Temporary"
+                            ]
                           }
                         },
                         "additionalProperties": false,
@@ -1726,6 +1741,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1736,9 +1757,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1929,6 +1947,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1939,9 +1963,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2180,7 +2201,7 @@
                     "required": [
                       "AccountId",
                       "Frequency",
-                      "NextPaymentDate",
+                      "NextPaymentDateTime",
                       "NextPaymentAmount"
                     ],
                     "additionalProperties": false
@@ -2236,6 +2257,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2246,9 +2273,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2408,6 +2432,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2418,9 +2448,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2652,7 +2679,7 @@
                     "required": [
                       "AccountId",
                       "Frequency",
-                      "NextPaymentDate",
+                      "NextPaymentDateTime",
                       "NextPaymentAmount"
                     ],
                     "additionalProperties": false
@@ -2708,6 +2735,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2718,9 +2751,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2904,6 +2934,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2914,9 +2950,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3064,10 +3097,7 @@
                         "additionalProperties": false
                       }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId"
-                    ]
+                    "additionalProperties": false
                   }
                 },
                 "Links": {
@@ -3120,6 +3150,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3130,9 +3166,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3455,6 +3488,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3465,9 +3504,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3619,7 +3655,12 @@
                           },
                           "Type": {
                             "description": "Limit type, in a coded form.",
-                            "type": "string"
+                            "type": "string",
+                            "enum": [
+                              "Pre-Agreed",
+                              "Emergency",
+                              "Temporary"
+                            ]
                           }
                         },
                         "additionalProperties": false,
@@ -3689,6 +3730,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3699,9 +3746,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3854,6 +3898,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3864,9 +3914,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3912,12 +3959,6 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
-    },
-    "404NotFound": {
-      "description": "Not Found"
-    },
-    "409ErrorResponse": {
-      "description": "Conflict"
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"

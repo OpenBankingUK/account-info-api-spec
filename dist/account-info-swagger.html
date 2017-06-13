@@ -822,7 +822,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully created<br>
 <strong>Headers</strong> : <br>
-<code>x-jws-signature</code> (string) : Header containig a detached JWS signature of the body of the payload.</p></td>
+<code>x-jws-signature</code> (string) : Header containig a detached JWS signature of the body of the payload.<br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_request_post_response">Account Request POST response</a></p></td>
 </tr>
 <tr>
@@ -838,11 +839,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>409</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Conflict</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -922,14 +918,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Permissions</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; &lt; enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) &gt; array &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -1079,7 +1075,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_request_get_response">Account Request GET response</a></p></td>
 </tr>
 <tr>
@@ -1095,11 +1093,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1179,14 +1172,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Permissions</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; &lt; enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) &gt; array &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -1303,7 +1296,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>204</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully deleted</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully deleted<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1319,11 +1314,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1450,7 +1440,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Accounts successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Accounts successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
@@ -1466,11 +1458,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1835,7 +1822,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account resource successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account resource successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
@@ -1851,11 +1840,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -2220,7 +2204,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Beneficiaries successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Beneficiaries successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_response">Balances GET response</a></p></td>
 </tr>
 <tr>
@@ -2236,11 +2222,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -2408,7 +2389,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Type</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Limit type, in a coded form.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Pre-Agreed, Emergency, Temporary)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2632,7 +2613,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Beneficiaries successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Beneficiaries successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_response">Beneficiaries GET response</a></p></td>
 </tr>
 <tr>
@@ -2648,11 +2631,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -2718,7 +2696,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountId</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.<br>
 <strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -3017,7 +2995,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Direct Debits successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Direct Debits successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
@@ -3033,11 +3013,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -3369,7 +3344,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Product successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Product successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_product_get_response">Product GET response</a></p></td>
 </tr>
 <tr>
@@ -3385,11 +3362,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -3674,7 +3646,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Standing Orders successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Standing Orders successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing_orders_get_response">Standing Orders GET response</a></p></td>
 </tr>
 <tr>
@@ -3690,11 +3664,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -3810,7 +3779,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDateTime</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
@@ -4212,7 +4181,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Transactions successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account Transactions successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_transactions_get_response">Account Transactions GET response</a></p></td>
 </tr>
 <tr>
@@ -4228,11 +4199,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -4766,7 +4732,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Balances successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Balances successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balances_get_response">Balances GET response</a></p></td>
 </tr>
 <tr>
@@ -4782,11 +4750,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -4954,7 +4917,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Type</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Limit type, in a coded form.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Pre-Agreed, Emergency, Temporary)</p></td>
 </tr>
 </tbody>
 </table>
@@ -5171,7 +5134,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Beneficiaries successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Beneficiaries successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_beneficiaries_get_response">Beneficiaries GET response</a></p></td>
 </tr>
 <tr>
@@ -5187,11 +5152,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -5257,7 +5217,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AccountId</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.<br>
 <strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
@@ -5549,7 +5509,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Direct Debits successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Direct Debits successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_get_response">Account GET response</a></p></td>
 </tr>
 <tr>
@@ -5565,11 +5527,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -5894,7 +5851,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Products successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Products successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_products_get_response">Products GET response</a></p></td>
 </tr>
 <tr>
@@ -5910,11 +5869,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -6192,7 +6146,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Standing Orders successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Standing Orders successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_standing_orders_get_response">Standing Orders GET response</a></p></td>
 </tr>
 <tr>
@@ -6208,11 +6164,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -6328,7 +6279,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDateTime</strong><br>
-<em>optional</em></p></td>
+<em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
@@ -6709,7 +6660,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Transactions successfully retrieved</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Transactions successfully retrieved<br>
+<strong>Headers</strong> : <br>
+<code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_transactions_get_response">Account Transactions GET response</a></p></td>
 </tr>
 <tr>
@@ -6725,11 +6678,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>

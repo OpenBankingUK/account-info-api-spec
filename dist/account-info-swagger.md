@@ -87,11 +87,10 @@ Create an Account Request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Account Request resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload.|[Account Request POST response](#account-request-post-response)|
+|**201**|Account Request resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request POST response](#account-request-post-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**409**|Conflict|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-request-post-response"></a>
@@ -110,8 +109,8 @@ Create an Account Request
 |**AccountRequestId**  <br>*required*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
-|**Permissions**  <br>*required*||< < enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)|
+|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
 
@@ -161,11 +160,10 @@ Get an account request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Request resource successfully retrieved|[Account Request GET response](#account-request-get-response)|
+|**200**|Account Request resource successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request GET response](#account-request-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-request-get-response"></a>
@@ -184,8 +182,8 @@ Get an account request
 |**AccountRequestId**  <br>*required*|Unique identification as assigned to identify the account request resource.  <br>**Length** : `1 - 40`|string|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
-|**Permissions**  <br>*required*||< < enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected)|
+|**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
 
@@ -227,11 +225,10 @@ Delete an account request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**204**|Account Request resource successfully deleted|No Content|
+|**204**|Account Request resource successfully deleted  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 
@@ -274,11 +271,10 @@ Get a list of accounts
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Accounts successfully retrieved|[Account GET response](#account-get-response)|
+|**200**|Accounts successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -378,11 +374,10 @@ Get an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account resource successfully retrieved|[Account GET response](#account-get-response)|
+|**200**|Account resource successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -482,11 +477,10 @@ Get Balances related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Beneficiaries successfully retrieved|[Balances GET response](#balances-get-response)|
+|**200**|Account Beneficiaries successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Balances GET response](#balances-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="balances-get-response"></a>
@@ -525,7 +519,7 @@ Get Balances related to an account
 |---|---|---|
 |**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
-|**Type**  <br>*optional*|Limit type, in a coded form.|string|
+|**Type**  <br>*optional*|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)|
 
 <a name="balance-creditline-amount"></a>
 **Amount**
@@ -594,11 +588,10 @@ Get Beneficiaries related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Beneficiaries  successfully retrieved|[Beneficiaries GET response](#beneficiaries-get-response)|
+|**200**|Account Beneficiaries  successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Beneficiaries GET response](#beneficiaries-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="beneficiaries-get-response"></a>
@@ -615,7 +608,7 @@ Get Beneficiaries related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*optional*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
@@ -698,11 +691,10 @@ Get Direct Debits related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Direct Debits successfully retrieved|[Account GET response](#account-get-response)|
+|**200**|Account Direct Debits successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -794,11 +786,10 @@ Get Product related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Product successfully retrieved|[Product GET response](#product-get-response)|
+|**200**|Account Product successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Product GET response](#product-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="product-get-response"></a>
@@ -880,11 +871,10 @@ Get Standing Orders related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Standing Orders successfully retrieved|[Standing Orders GET response](#standing-orders-get-response)|
+|**200**|Account Standing Orders successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Standing Orders GET response](#standing-orders-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="standing-orders-get-response"></a>
@@ -909,7 +899,7 @@ Get Standing Orders related to an account
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
 |**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
 |**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-order-nextpaymentamount)|
-|**NextPaymentDateTime**  <br>*optional*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
+|**NextPaymentDateTime**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
 |**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-order-servicer)|
 |**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
@@ -1017,11 +1007,10 @@ Get transactions related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Transactions successfully retrieved|[Account Transactions GET response](#account-transactions-get-response)|
+|**200**|Account Transactions successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Transactions GET response](#account-transactions-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-transactions-get-response"></a>
@@ -1160,11 +1149,10 @@ Get Balances
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Balances successfully retrieved|[Balances GET response](#balances-get-response)|
+|**200**|Balances successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Balances GET response](#balances-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="balances-get-response"></a>
@@ -1203,7 +1191,7 @@ Get Balances
 |---|---|---|
 |**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
-|**Type**  <br>*optional*|Limit type, in a coded form.|string|
+|**Type**  <br>*optional*|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)|
 
 <a name="balance-creditline-amount"></a>
 **Amount**
@@ -1271,11 +1259,10 @@ Get Beneficiaries
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Beneficiaries successfully retrieved|[Beneficiaries GET response](#beneficiaries-get-response)|
+|**200**|Beneficiaries successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Beneficiaries GET response](#beneficiaries-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="beneficiaries-get-response"></a>
@@ -1292,7 +1279,7 @@ Get Beneficiaries
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*optional*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
@@ -1374,11 +1361,10 @@ Get Direct Debits
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Direct Debits successfully retrieved|[Account GET response](#account-get-response)|
+|**200**|Direct Debits successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -1469,11 +1455,10 @@ Get Products
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Products successfully retrieved|[Products GET response](#products-get-response)|
+|**200**|Products successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Products GET response](#products-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="products-get-response"></a>
@@ -1554,11 +1539,10 @@ Get Standing Orders
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Standing Orders successfully retrieved|[Standing Orders GET response](#standing-orders-get-response)|
+|**200**|Standing Orders successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Standing Orders GET response](#standing-orders-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="standing-orders-get-response"></a>
@@ -1583,7 +1567,7 @@ Get Standing Orders
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
 |**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
 |**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-order-nextpaymentamount)|
-|**NextPaymentDateTime**  <br>*optional*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
+|**NextPaymentDateTime**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
 |**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-order-servicer)|
 |**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
@@ -1688,11 +1672,10 @@ Get Transactions
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Transactions successfully retrieved|[Account Transactions GET response](#account-transactions-get-response)|
+|**200**|Transactions successfully retrieved  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Transactions GET response](#account-transactions-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-transactions-get-response"></a>

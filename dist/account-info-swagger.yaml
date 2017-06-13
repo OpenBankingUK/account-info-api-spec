@@ -41,8 +41,8 @@ paths:
                 type: object
                 properties:
                   Permissions:
-                    type: array
                     description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
+                    type: array
                     items:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                       type: string
@@ -143,35 +143,33 @@ paths:
                       - Authorised
                       - AwaitingAuthorisation
                       - Rejected
+                      - Revoked
                   CreationDateTime:
                     description: Date and time at which the resource was created.
                     type: string
                     format: date-time
                   Permissions:
+                    description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                     type: array
                     items:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                      type: array
-                      items:
-                        description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                        type: string
-                        enum:
-                          - ReadAccountsBasic
-                          - ReadAccountsDetail
-                          - ReadBalances
-                          - ReadBeneficiariesBasic
-                          - ReadBeneficiariesDetail
-                          - ReadDirectDebits
-                          - ReadProducts
-                          - ReadStandingOrdersBasic
-                          - ReadStandingOrdersDetail
-                          - ReadTransactionsBasic
-                          - ReadTransactionsCredits
-                          - ReadTransactionsDebits
-                          - ReadTransactionsDetail
-                      minProperties: 1
-                      additionalProperties: false
-                    minItems: 1
+                      type: string
+                      enum:
+                        - ReadAccountsBasic
+                        - ReadAccountsDetail
+                        - ReadBalances
+                        - ReadBeneficiariesBasic
+                        - ReadBeneficiariesDetail
+                        - ReadDirectDebits
+                        - ReadProducts
+                        - ReadStandingOrdersBasic
+                        - ReadStandingOrdersDetail
+                        - ReadTransactionsBasic
+                        - ReadTransactionsCredits
+                        - ReadTransactionsDebits
+                        - ReadTransactionsDetail
+                    minProperties: 1
+                    additionalProperties: false
                   ExpirationDateTime:
                     description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
                     type: string
@@ -207,14 +205,15 @@ paths:
             x-jws-signature:
               type: string
               description: Header containig a detached JWS signature of the body of the payload.
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': &ref_4
           description: Bad Request
         '401': &ref_5
           description: Unauthorized
         '403': &ref_6
           description: Forbidden
-        '409': &ref_16
-          description: Conflict
         '500': &ref_7
           description: Internal Server Error
       security:
@@ -261,35 +260,33 @@ paths:
                       - Authorised
                       - AwaitingAuthorisation
                       - Rejected
+                      - Revoked
                   CreationDateTime:
                     description: Date and time at which the resource was created.
                     type: string
                     format: date-time
                   Permissions:
+                    description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
                     type: array
                     items:
                       description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                      type: array
-                      items:
-                        description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.'
-                        type: string
-                        enum:
-                          - ReadAccountsBasic
-                          - ReadAccountsDetail
-                          - ReadBalances
-                          - ReadBeneficiariesBasic
-                          - ReadBeneficiariesDetail
-                          - ReadDirectDebits
-                          - ReadProducts
-                          - ReadStandingOrdersBasic
-                          - ReadStandingOrdersDetail
-                          - ReadTransactionsBasic
-                          - ReadTransactionsCredits
-                          - ReadTransactionsDebits
-                          - ReadTransactionsDetail
-                      minProperties: 1
-                      additionalProperties: false
-                    minItems: 1
+                      type: string
+                      enum:
+                        - ReadAccountsBasic
+                        - ReadAccountsDetail
+                        - ReadBalances
+                        - ReadBeneficiariesBasic
+                        - ReadBeneficiariesDetail
+                        - ReadDirectDebits
+                        - ReadProducts
+                        - ReadStandingOrdersBasic
+                        - ReadStandingOrdersDetail
+                        - ReadTransactionsBasic
+                        - ReadTransactionsCredits
+                        - ReadTransactionsDebits
+                        - ReadTransactionsDetail
+                    minProperties: 1
+                    additionalProperties: false
                   ExpirationDateTime:
                     description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
                     type: string
@@ -321,11 +318,13 @@ paths:
             required:
               - Data
               - Risk
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': &ref_9
-          description: Not Found
         '500': *ref_7
       security:
         - TPPOAuth2Security:
@@ -343,10 +342,13 @@ paths:
       responses:
         '204':
           description: Account Request resource successfully deleted
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -490,10 +492,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -506,7 +511,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_10
+        - &ref_9
           name: AccountId
           in: path
           description: A unique identifier used to identify the account resource.
@@ -643,10 +648,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -659,7 +667,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_10
+        - *ref_9
         - in: query
           name: fromBookingDate
           type: string
@@ -677,7 +685,7 @@ paths:
       responses:
         '200':
           description: Account Transactions successfully retrieved
-          schema: &ref_14
+          schema: &ref_13
             title: Account Transactions GET response
             type: object
             properties:
@@ -893,10 +901,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -909,7 +920,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_10
+        - *ref_9
         - *ref_0
         - *ref_1
         - *ref_2
@@ -917,7 +928,7 @@ paths:
       responses:
         '200':
           description: Account Beneficiaries  successfully retrieved
-          schema: &ref_13
+          schema: &ref_12
             title: Beneficiaries GET response
             type: object
             properties:
@@ -1003,8 +1014,6 @@ paths:
                         - Identification
                       additionalProperties: false
                   additionalProperties: false
-                  required:
-                    - AccountId
               Links:
                 title: Links
                 type: object
@@ -1042,10 +1051,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1058,7 +1070,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_10
+        - *ref_9
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1066,7 +1078,7 @@ paths:
       responses:
         '200':
           description: Account Beneficiaries successfully retrieved
-          schema: &ref_15
+          schema: &ref_14
             title: Balances GET response
             type: object
             properties:
@@ -1150,6 +1162,10 @@ paths:
                         Type:
                           description: 'Limit type, in a coded form.'
                           type: string
+                          enum:
+                            - Pre-Agreed
+                            - Emergency
+                            - Temporary
                       additionalProperties: false
                       required:
                         - Included
@@ -1198,10 +1214,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1214,7 +1233,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_10
+        - *ref_9
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1222,7 +1241,7 @@ paths:
       responses:
         '200':
           description: Account Direct Debits successfully retrieved
-          schema: &ref_12
+          schema: &ref_11
             title: Account GET response
             type: object
             properties:
@@ -1323,10 +1342,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1339,7 +1361,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_10
+        - *ref_9
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1347,7 +1369,7 @@ paths:
       responses:
         '200':
           description: Account Standing Orders successfully retrieved
-          schema: &ref_11
+          schema: &ref_10
             title: Standing Orders GET response
             type: object
             properties:
@@ -1515,7 +1537,7 @@ paths:
                   required:
                     - AccountId
                     - Frequency
-                    - NextPaymentDate
+                    - NextPaymentDateTime
                     - NextPaymentAmount
                   additionalProperties: false
               Links:
@@ -1555,10 +1577,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1571,7 +1596,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_10
+        - *ref_9
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1653,10 +1678,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1676,11 +1704,14 @@ paths:
       responses:
         '200':
           description: Standing Orders successfully retrieved
-          schema: *ref_11
+          schema: *ref_10
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1700,11 +1731,14 @@ paths:
       responses:
         '200':
           description: Direct Debits successfully retrieved
-          schema: *ref_12
+          schema: *ref_11
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1724,11 +1758,14 @@ paths:
       responses:
         '200':
           description: Beneficiaries successfully retrieved
-          schema: *ref_13
+          schema: *ref_12
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1748,11 +1785,14 @@ paths:
       responses:
         '200':
           description: Transactions successfully retrieved
-          schema: *ref_14
+          schema: *ref_13
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1772,11 +1812,14 @@ paths:
       responses:
         '200':
           description: Balances successfully retrieved
-          schema: *ref_15
+          schema: *ref_14
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1870,10 +1913,13 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_9
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1898,6 +1944,4 @@ responses:
   400ErrorResponse: *ref_4
   401ErrorResponse: *ref_5
   403ErrorResponse: *ref_6
-  404NotFound: *ref_9
-  409ErrorResponse: *ref_16
   500ErrorResponse: *ref_7

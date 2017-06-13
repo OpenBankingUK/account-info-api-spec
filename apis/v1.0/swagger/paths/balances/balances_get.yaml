@@ -11,14 +11,19 @@ get:
       description: Balances successfully retrieved
       schema:
         $ref: ../../../../../compiled/schemas/v1.0/balances/balances.get.200.response.schema.yaml
+      headers:
+        x-jws-signature:
+          type: string
+          description: Header containing a detached JWS signature of the body of the payload.
+        x-fapi-interaction-id:
+          type: string
+          description: An RFC4122 UID used as a correlation id.
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
-    404:
-      $ref: ../../index.yaml#/responses/404NotFound
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
