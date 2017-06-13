@@ -205,14 +205,15 @@ paths:
             x-jws-signature:
               type: string
               description: Header containig a detached JWS signature of the body of the payload.
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': &ref_4
           description: Bad Request
         '401': &ref_5
           description: Unauthorized
         '403': &ref_6
           description: Forbidden
-        '409': &ref_15
-          description: Conflict
         '500': &ref_7
           description: Internal Server Error
       security:
@@ -317,6 +318,10 @@ paths:
             required:
               - Data
               - Risk
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -337,6 +342,10 @@ paths:
       responses:
         '204':
           description: Account Request resource successfully deleted
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -483,6 +492,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -635,6 +648,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -884,6 +901,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1030,6 +1051,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1137,6 +1162,10 @@ paths:
                         Type:
                           description: 'Limit type, in a coded form.'
                           type: string
+                          enum:
+                            - Pre-Agreed
+                            - Emergency
+                            - Temporary
                       additionalProperties: false
                       required:
                         - Included
@@ -1185,6 +1214,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1309,6 +1342,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1500,7 +1537,7 @@ paths:
                   required:
                     - AccountId
                     - Frequency
-                    - NextPaymentDate
+                    - NextPaymentDateTime
                     - NextPaymentAmount
                   additionalProperties: false
               Links:
@@ -1540,6 +1577,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1637,6 +1678,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1660,6 +1705,10 @@ paths:
         '200':
           description: Standing Orders successfully retrieved
           schema: *ref_10
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1683,6 +1732,10 @@ paths:
         '200':
           description: Direct Debits successfully retrieved
           schema: *ref_11
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1706,6 +1759,10 @@ paths:
         '200':
           description: Beneficiaries successfully retrieved
           schema: *ref_12
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1729,6 +1786,10 @@ paths:
         '200':
           description: Transactions successfully retrieved
           schema: *ref_13
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1752,6 +1813,10 @@ paths:
         '200':
           description: Balances successfully retrieved
           schema: *ref_14
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1848,6 +1913,10 @@ paths:
               - Data
               - Links
               - Meta
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
@@ -1875,5 +1944,4 @@ responses:
   400ErrorResponse: *ref_4
   401ErrorResponse: *ref_5
   403ErrorResponse: *ref_6
-  409ErrorResponse: *ref_15
   500ErrorResponse: *ref_7

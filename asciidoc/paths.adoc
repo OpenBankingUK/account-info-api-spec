@@ -74,11 +74,11 @@ __optional__|Specified end date and time for the transaction query period. If th
 |HTTP Code|Description|Schema
 |**201**|Account Request resource successfully created +
 **Headers** :  +
-`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload.|<<_account_request_post_response,Account Request POST response>>
+`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload. +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_request_post_response,Account Request POST response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
-|**409**|Conflict|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -173,7 +173,9 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Request resource successfully retrieved|<<_account_request_get_response,Account Request GET response>>
+|**200**|Account Request resource successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_request_get_response,Account Request GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -259,7 +261,9 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**204**|Account Request resource successfully deleted|No Content
+|**204**|Account Request resource successfully deleted +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -315,7 +319,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Accounts successfully retrieved|<<_account_get_response,Account GET response>>
+|**200**|Accounts successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -468,7 +474,9 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account resource successfully retrieved|<<_account_get_response,Account GET response>>
+|**200**|Account resource successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -621,7 +629,9 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Beneficiaries successfully retrieved|<<_balances_get_response,Balances GET response>>
+|**200**|Account Beneficiaries successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_balances_get_response,Balances GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -687,7 +697,7 @@ __optional__|Active Or Historic Currency Code and Amount|<<_balance_creditline_a
 |**Included** +
 __required__|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean
 |**Type** +
-__optional__|Limit type, in a coded form.|string
+__optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)
 |===
 
 [[_balance_creditline_amount]]
@@ -782,7 +792,9 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Beneficiaries successfully retrieved|<<_beneficiaries_get_response,Beneficiaries GET response>>
+|**200**|Account Beneficiaries successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_beneficiaries_get_response,Beneficiaries GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -935,7 +947,9 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Direct Debits successfully retrieved|<<_account_get_response,Account GET response>>
+|**200**|Account Direct Debits successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -1074,7 +1088,9 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Product successfully retrieved|<<_product_get_response,Product GET response>>
+|**200**|Account Product successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_product_get_response,Product GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -1193,7 +1209,9 @@ __required__|A unique identifier used to identify the account resource.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Standing Orders successfully retrieved|<<_standing_orders_get_response,Standing Orders GET response>>
+|**200**|Account Standing Orders successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_standing_orders_get_response,Standing Orders GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -1239,7 +1257,7 @@ __required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC1
 |**NextPaymentAmount** +
 __required__|The amount of the next Standing Order|<<_standing_order_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDateTime** +
-__optional__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
+__required__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
 |**Reference** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
@@ -1404,7 +1422,9 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Account Transactions successfully retrieved|<<_account_transactions_get_response,Account Transactions GET response>>
+|**200**|Account Transactions successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_transactions_get_response,Account Transactions GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -1623,7 +1643,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Balances successfully retrieved|<<_balances_get_response,Balances GET response>>
+|**200**|Balances successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_balances_get_response,Balances GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -1689,7 +1711,7 @@ __optional__|Active Or Historic Currency Code and Amount|<<_balance_creditline_a
 |**Included** +
 __required__|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean
 |**Type** +
-__optional__|Limit type, in a coded form.|string
+__optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)
 |===
 
 [[_balance_creditline_amount]]
@@ -1782,7 +1804,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Beneficiaries successfully retrieved|<<_beneficiaries_get_response,Beneficiaries GET response>>
+|**200**|Beneficiaries successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_beneficiaries_get_response,Beneficiaries GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -1933,7 +1957,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Direct Debits successfully retrieved|<<_account_get_response,Account GET response>>
+|**200**|Direct Debits successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -2070,7 +2096,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Products successfully retrieved|<<_products_get_response,Products GET response>>
+|**200**|Products successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_products_get_response,Products GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -2187,7 +2215,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Standing Orders successfully retrieved|<<_standing_orders_get_response,Standing Orders GET response>>
+|**200**|Standing Orders successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_standing_orders_get_response,Standing Orders GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -2233,7 +2263,7 @@ __required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC1
 |**NextPaymentAmount** +
 __required__|The amount of the next Standing Order|<<_standing_order_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDateTime** +
-__optional__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
+__required__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
 |**Reference** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
@@ -2392,7 +2422,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Transactions successfully retrieved|<<_account_transactions_get_response,Account Transactions GET response>>
+|**200**|Transactions successfully retrieved +
+**Headers** :  +
+`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_transactions_get_response,Account Transactions GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content

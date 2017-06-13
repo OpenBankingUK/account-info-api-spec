@@ -244,6 +244,10 @@
               "x-jws-signature": {
                 "type": "string",
                 "description": "Header containig a detached JWS signature of the body of the payload."
+              },
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
               }
             }
           },
@@ -255,9 +259,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "409": {
-            "description": "Conflict"
           },
           "500": {
             "description": "Internal Server Error"
@@ -410,6 +411,12 @@
                 "Data",
                 "Risk"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -456,7 +463,13 @@
         ],
         "responses": {
           "204": {
-            "description": "Account Request resource successfully deleted"
+            "description": "Account Request resource successfully deleted",
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -670,6 +683,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -891,6 +910,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1244,6 +1269,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1461,6 +1492,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1629,7 +1666,12 @@
                           },
                           "Type": {
                             "description": "Limit type, in a coded form.",
-                            "type": "string"
+                            "type": "string",
+                            "enum": [
+                              "Pre-Agreed",
+                              "Emergency",
+                              "Temporary"
+                            ]
                           }
                         },
                         "additionalProperties": false,
@@ -1699,6 +1741,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1899,6 +1947,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2147,7 +2201,7 @@
                     "required": [
                       "AccountId",
                       "Frequency",
-                      "NextPaymentDate",
+                      "NextPaymentDateTime",
                       "NextPaymentAmount"
                     ],
                     "additionalProperties": false
@@ -2203,6 +2257,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2372,6 +2432,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2613,7 +2679,7 @@
                     "required": [
                       "AccountId",
                       "Frequency",
-                      "NextPaymentDate",
+                      "NextPaymentDateTime",
                       "NextPaymentAmount"
                     ],
                     "additionalProperties": false
@@ -2669,6 +2735,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -2862,6 +2934,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3072,6 +3150,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3404,6 +3488,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3565,7 +3655,12 @@
                           },
                           "Type": {
                             "description": "Limit type, in a coded form.",
-                            "type": "string"
+                            "type": "string",
+                            "enum": [
+                              "Pre-Agreed",
+                              "Emergency",
+                              "Temporary"
+                            ]
                           }
                         },
                         "additionalProperties": false,
@@ -3635,6 +3730,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3797,6 +3898,12 @@
                 "Links",
                 "Meta"
               ]
+            },
+            "headers": {
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -3852,9 +3959,6 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
-    },
-    "409ErrorResponse": {
-      "description": "Conflict"
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"
