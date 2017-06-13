@@ -4,7 +4,6 @@
   "type": "object",
   "properties": {
     "Permissions": {
-      "type": "array",
       "$ref": "permissions.json"
     },
     "ExpirationDateTime": {

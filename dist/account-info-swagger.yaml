@@ -115,6 +115,11 @@ paths:
           type: string
           required: false
           description: An RFC4122 UID used as a correlation id.
+        - in: header
+          name: x-jws-signature
+          type: string
+          required: true
+          description: Header containig a detached JWS signature of the body of the payload.
       responses:
         '201':
           description: Account Request resource successfully created
@@ -198,6 +203,10 @@ paths:
             required:
               - Data
               - Risk
+          headers:
+            x-jws-signature:
+              type: string
+              description: Header containig a detached JWS signature of the body of the payload.
         '400': &ref_4
           description: Bad Request
         '401': &ref_5

@@ -28,6 +28,8 @@ __optional__|The time when the PSU last logged in with the TPP.|string
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
+|**Header**|**x-jws-signature** +
+__required__|Header containig a detached JWS signature of the body of the payload.|string
 |===
 
 
@@ -70,7 +72,9 @@ __optional__|Specified end date and time for the transaction query period. If th
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**201**|Account Request resource successfully created|<<_account_request_post_response,Account Request POST response>>
+|**201**|Account Request resource successfully created +
+**Headers** :  +
+`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload.|<<_account_request_post_response,Account Request POST response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content

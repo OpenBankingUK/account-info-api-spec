@@ -16,11 +16,7 @@
       "format": "date-time"
     },
     "Permissions": {
-      "type": "array",
-      "items": {
-        "$ref": "permissions.json"
-      },
-      "minItems": 1
+      "$ref": "permissions.json"
     },
     "ExpirationDateTime": {
       "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
