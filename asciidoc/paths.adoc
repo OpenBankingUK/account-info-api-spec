@@ -15,6 +15,22 @@ POST /account-requests
 Create an account request
 
 
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
+
+
 ==== Body parameter
 Create an Account Request
 
@@ -100,12 +116,12 @@ __optional__|Specified end date and time for the transaction query period. If th
 
 ==== Consumes
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -135,6 +151,14 @@ Get an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountRequestId** +
 __required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
 |===
@@ -191,7 +215,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -243,7 +267,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -266,6 +290,22 @@ GET /accounts
 
 ==== Description
 Get a list of accounts
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
 
 
 ==== Responses
@@ -379,7 +419,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -409,6 +449,14 @@ Get an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |===
@@ -525,7 +573,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -555,6 +603,14 @@ Get Balances related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |===
@@ -679,7 +735,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -709,6 +765,14 @@ Get Beneficiaries related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |===
@@ -825,7 +889,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -855,6 +919,14 @@ Get Direct Debits related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |===
@@ -957,7 +1029,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -987,6 +1059,14 @@ Get Product related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |===
@@ -1069,7 +1149,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -1099,6 +1179,14 @@ Get Standing Orders related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |===
@@ -1269,7 +1357,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -1299,6 +1387,14 @@ Get transactions related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |**Query**|**fromBookingDate** +
@@ -1487,7 +1583,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -1510,6 +1606,22 @@ GET /balances
 
 ==== Description
 Get Balances
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
 
 
 ==== Responses
@@ -1631,7 +1743,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -1654,6 +1766,22 @@ GET /beneficiaries
 
 ==== Description
 Get Beneficiaries
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
 
 
 ==== Responses
@@ -1767,7 +1895,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -1790,6 +1918,22 @@ GET /direct-debits
 
 ==== Description
 Get Direct Debits
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
 
 
 ==== Responses
@@ -1889,7 +2033,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -1912,6 +2056,22 @@ GET /products
 
 ==== Description
 Get Products
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
 
 
 ==== Responses
@@ -1991,7 +2151,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -2014,6 +2174,22 @@ GET /standing-orders
 
 ==== Description
 Get Standing Orders
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
+|===
 
 
 ==== Responses
@@ -2181,7 +2357,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security
@@ -2211,10 +2387,14 @@ Get Transactions
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Query**|**fromBookingDate** +
-__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
-|**Query**|**toBookingDate** +
-__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |===
 
 
@@ -2395,14 +2575,9 @@ __optional__|integer (int32)
 |===
 
 
-==== Consumes
-
-* `application/vnd.api+json`
-
-
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Security

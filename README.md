@@ -9,6 +9,14 @@
 ```npm run flatten-schemas``` flattens the schemas in the schema folder<br>
 ```npm run compile-swagger``` dereference the swagger spec split from  several yaml files to one fully dereferenced yaml file , dereferencing the schemas compiled using npm run flatten-schemas
 
+# Debugging
+
+When runnning ```npm run build:all``` the schema flattening was failing
+ due to multiple referenced files not being interpreted correctly. 
+It's now possible to see a debug log of the inner reference fixes 
+set the environment variable *SWAGGER_DEBUG=true* and a json file of old / fixes / and fixed 
+partials will appear in the path *debug/log.json*
+
 
 ****WIP Documentation****
 To convert SwaggerSpec to MARKDOWN

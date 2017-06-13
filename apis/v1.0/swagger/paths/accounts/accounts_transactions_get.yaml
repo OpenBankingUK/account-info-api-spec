@@ -6,6 +6,8 @@ get:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
    - $ref: "./parameters.yaml#/AccountId"
+   - $ref: ../../parameters/date_filtering.yaml
+   - $ref: ../../headers/fapi.yaml
   responses:
     200:
       description: Account Transactions successfully retrieved

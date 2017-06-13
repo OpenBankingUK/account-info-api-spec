@@ -1,0 +1,10 @@
+  - in: query
+    name: fromBookingDate
+    type: string
+    format: date-time
+    description: The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date
+  - in: query
+    name: toBookingDate
+    type: string
+    format: date-time
+    description: The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date

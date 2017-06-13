@@ -12,14 +12,14 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0-rc1"
+    "version": "v1.0-rc2"
   },
   "basePath": "/open-banking",
   "schemes": [
     "https"
   ],
   "produces": [
-    "application/vnd.api+json"
+    "application/json"
   ],
   "paths": {
     "/account-requests": {
@@ -28,10 +28,10 @@
         "description": "Create an account request",
         "operationId": "CreateAccountRequest",
         "consumes": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -109,6 +109,34 @@
                 "Risk"
               ]
             }
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -240,7 +268,7 @@
         "description": "Get an account request",
         "operationId": "GetAccountRequest",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -249,6 +277,34 @@
             "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -383,7 +439,7 @@
         "description": "Delete an account request",
         "operationId": "DeleteAccountRequest",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -429,7 +485,37 @@
         "description": "Get a list of accounts",
         "operationId": "GetAccounts",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {
@@ -616,7 +702,7 @@
         "description": "Get an account",
         "operationId": "GetAccount",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -625,6 +711,34 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -807,28 +921,12 @@
       }
     },
     "/accounts/{AccountId}/transactions": {
-      "parameters": [
-        {
-          "in": "query",
-          "name": "fromBookingDate",
-          "type": "string",
-          "format": "date-time",
-          "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
-        },
-        {
-          "in": "query",
-          "name": "toBookingDate",
-          "type": "string",
-          "format": "date-time",
-          "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
-        }
-      ],
       "get": {
         "summary": "Get Account Transactions",
         "description": "Get transactions related to an account",
         "operationId": "GetAccountTransactions",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -837,6 +935,48 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "fromBookingDate",
+            "type": "string",
+            "format": "date-time",
+            "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+          },
+          {
+            "in": "query",
+            "name": "toBookingDate",
+            "type": "string",
+            "format": "date-time",
+            "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -1142,7 +1282,7 @@
         "description": "Get Beneficiaries related to an account",
         "operationId": "GetAccountBeneficiaries",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -1151,6 +1291,34 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -1337,7 +1505,7 @@
         "description": "Get Balances related to an account",
         "operationId": "GetAccountBalances",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -1346,6 +1514,34 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -1550,7 +1746,7 @@
         "description": "Get Direct Debits related to an account",
         "operationId": "GetAccountDirectDebits",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -1559,6 +1755,34 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -1725,7 +1949,7 @@
         "description": "Get Standing Orders related to an account",
         "operationId": "GetAccountStandingOrders",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -1734,6 +1958,34 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -2004,7 +2256,7 @@
         "description": "Get Product related to an account",
         "operationId": "GetAccountProduct",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -2013,6 +2265,34 @@
             "description": "A unique identifier used to identify the account resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -2148,7 +2428,37 @@
         "description": "Get Standing Orders",
         "operationId": "GetStandingOrders",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {
@@ -2418,7 +2728,37 @@
         "description": "Get Direct Debits",
         "operationId": "GetDirectDebits",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {
@@ -2584,7 +2924,37 @@
         "description": "Get Beneficiaries",
         "operationId": "GetBeneficiaries",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {
@@ -2765,31 +3135,42 @@
       }
     },
     "/transactions": {
-      "parameters": [
-        {
-          "in": "query",
-          "name": "fromBookingDate",
-          "type": "string",
-          "format": "date-time",
-          "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
-        },
-        {
-          "in": "query",
-          "name": "toBookingDate",
-          "type": "string",
-          "format": "date-time",
-          "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
-        }
-      ],
       "get": {
         "summary": "Get Transactions",
         "description": "Get Transactions",
         "operationId": "GetTransactions",
-        "consumes": [
-          "application/vnd.api+json"
-        ],
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {
@@ -3094,7 +3475,37 @@
         "description": "Get Balances",
         "operationId": "GetBalances",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {
@@ -3298,7 +3709,37 @@
         "description": "Get Products",
         "operationId": "GetProducts",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          }
         ],
         "responses": {
           "200": {

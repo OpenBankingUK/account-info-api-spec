@@ -6,6 +6,7 @@ get:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
    - $ref: "./parameters.yaml#/AccountId"
+   - $ref: ../headers/fapi.yaml
   responses:
     200:
       description: Account resource successfully retrieved
@@ -23,4 +24,4 @@ get:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - PSUOAuth2Security:
-      - accounts:read
+      - accounts
