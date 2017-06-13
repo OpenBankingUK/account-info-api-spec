@@ -12,6 +12,10 @@ get:
       description: Account Request resource successfully retrieved
       schema:
         $ref: ../../../../../compiled/schemas/v1.0/accounts_requests/account_request.get.200.response.schema.yaml
+      headers:
+        x-fapi-interaction-id:
+          type: string
+          description: An RFC4122 UID used as a correlation id.
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
@@ -37,6 +41,10 @@ delete:
   responses:
     204:
       description: Account Request resource successfully deleted
+      headers:
+        x-fapi-interaction-id:
+          type: string
+          description: An RFC4122 UID used as a correlation id.
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
