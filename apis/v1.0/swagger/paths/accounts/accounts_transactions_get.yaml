@@ -8,6 +8,7 @@ get:
    - $ref: "./parameters.yaml#/AccountId"
    - $ref: ../../parameters/date_filtering.yaml
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/auth.yaml
   responses:
     200:
       description: Account Transactions successfully retrieved

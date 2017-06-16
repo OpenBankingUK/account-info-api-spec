@@ -7,6 +7,7 @@ get:
   parameters:
    - $ref: "./parameters.yaml#/AccountRequestId"
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/auth.yaml
   responses:
     200:
       description: Account Request resource successfully retrieved
@@ -41,6 +42,7 @@ delete:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
    - $ref: "./parameters.yaml#/AccountRequestId"
+   - $ref: ../../headers/auth.yaml
   responses:
     204:
       description: Account Request resource successfully deleted

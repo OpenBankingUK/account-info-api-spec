@@ -6,6 +6,7 @@ get:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
     - $ref: ../../headers/fapi.yaml
+    - $ref: ../../headers/auth.yaml
   responses:
     200:
       description: Balances successfully retrieved

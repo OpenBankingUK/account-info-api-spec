@@ -9,6 +9,7 @@ post:
   parameters:
     - $ref: ./body.yaml
     - $ref: ../../headers/fapi.yaml
+    - $ref: ../../headers/auth.yaml
     - $ref: ../../headers/jws.yaml
   responses:
     201:
