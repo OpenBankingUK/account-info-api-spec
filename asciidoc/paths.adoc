@@ -260,6 +260,8 @@ Delete an account request
 |Type|Name|Description|Schema
 |**Header**|**authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Path**|**AccountRequestId** +
 __required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
 |===

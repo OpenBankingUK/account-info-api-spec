@@ -353,6 +353,11 @@ paths:
       parameters:
         - *ref_10
         - *ref_4
+        - in: header
+          name: x-fapi-financial-id
+          type: string
+          required: true
+          description: The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.
       responses:
         '204':
           description: Account Request resource successfully deleted
