@@ -53,6 +53,7 @@ Create an account request
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -149,6 +150,7 @@ Get an account request
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -218,6 +220,7 @@ Delete an account request
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Path**|**AccountRequestId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string|
 
 
@@ -261,6 +264,7 @@ Get a list of accounts
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -363,6 +367,7 @@ Get an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -466,6 +471,7 @@ Get Balances related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -577,6 +583,7 @@ Get Beneficiaries related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -680,6 +687,7 @@ Get Direct Debits related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -775,6 +783,7 @@ Get Product related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -860,6 +869,7 @@ Get Standing Orders related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -994,6 +1004,7 @@ Get transactions related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1139,6 +1150,7 @@ Get Balances
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1249,6 +1261,7 @@ Get Beneficiaries
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1351,6 +1364,7 @@ Get Direct Debits
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1445,6 +1459,7 @@ Get Products
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1529,6 +1544,7 @@ Get Standing Orders
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1662,6 +1678,7 @@ Get Transactions
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
