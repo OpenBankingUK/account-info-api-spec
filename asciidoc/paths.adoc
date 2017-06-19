@@ -81,6 +81,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -184,6 +185,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -274,6 +276,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -335,6 +338,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -493,6 +497,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -651,6 +656,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -817,6 +823,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -975,6 +982,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1119,6 +1127,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1243,6 +1252,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1459,6 +1469,7 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1683,6 +1694,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1847,6 +1859,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2003,6 +2016,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2145,6 +2159,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2267,6 +2282,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2477,6 +2493,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 

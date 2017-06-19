@@ -92,6 +92,7 @@ Create an Account Request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-request-post-response"></a>
@@ -166,6 +167,7 @@ Get an account request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-request-get-response"></a>
@@ -232,6 +234,7 @@ Delete an account request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 
@@ -279,6 +282,7 @@ Get a list of accounts
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -383,6 +387,7 @@ Get an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -487,6 +492,7 @@ Get Balances related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="balances-get-response"></a>
@@ -599,6 +605,7 @@ Get Beneficiaries related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="beneficiaries-get-response"></a>
@@ -703,6 +710,7 @@ Get Direct Debits related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -799,6 +807,7 @@ Get Product related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="product-get-response"></a>
@@ -885,6 +894,7 @@ Get Standing Orders related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="standing-orders-get-response"></a>
@@ -1022,6 +1032,7 @@ Get transactions related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-transactions-get-response"></a>
@@ -1165,6 +1176,7 @@ Get Balances
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="balances-get-response"></a>
@@ -1276,6 +1288,7 @@ Get Beneficiaries
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="beneficiaries-get-response"></a>
@@ -1379,6 +1392,7 @@ Get Direct Debits
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -1474,6 +1488,7 @@ Get Products
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="products-get-response"></a>
@@ -1559,6 +1574,7 @@ Get Standing Orders
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="standing-orders-get-response"></a>
@@ -1693,6 +1709,7 @@ Get Transactions
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-transactions-get-response"></a>
