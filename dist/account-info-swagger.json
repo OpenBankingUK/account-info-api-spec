@@ -490,10 +490,6 @@
           "204": {
             "description": "Account Request resource successfully deleted",
             "headers": {
-              "x-jws-signature": {
-                "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
-              },
               "x-fapi-interaction-id": {
                 "type": "string",
                 "description": "An RFC4122 UID used as a correlation id."
@@ -1261,9 +1257,6 @@
                             "maxLength": 4
                           }
                         },
-                        "required": [
-                          "MerchantName"
-                        ],
                         "additionalProperties": false
                       }
                     },
@@ -3579,9 +3572,6 @@
                             "maxLength": 4
                           }
                         },
-                        "required": [
-                          "MerchantName"
-                        ],
                         "additionalProperties": false
                       }
                     },

@@ -228,7 +228,7 @@ Delete an account request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**204**|Account Request resource successfully deleted  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content|
+|**204**|Account Request resource successfully deleted  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1092,7 +1092,7 @@ Get transactions related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**MerchantName**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+|**MerchantName**  <br>*optional*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
 <a name="accounts-accountid-transactions-get-data-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
@@ -1763,7 +1763,7 @@ Get Transactions
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**MerchantName**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+|**MerchantName**  <br>*optional*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
 <a name="transactions-get-data-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
