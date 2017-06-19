@@ -6,6 +6,8 @@ get:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
     - $ref: ../../headers/fapi.yaml
+    - $ref: ../../headers/auth.yaml
+    - $ref: ../../parameters/date_filtering.yaml
   responses:
     200:
       description: Transactions successfully retrieved
@@ -24,6 +26,8 @@ get:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
+    429:
+      $ref: ../../index.yaml#/responses/429ErrorResponse
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:

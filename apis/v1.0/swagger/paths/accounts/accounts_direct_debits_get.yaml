@@ -7,6 +7,7 @@ get:
   parameters:
    - $ref: "./parameters.yaml#/AccountId"
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/auth.yaml
   responses:
     200:
       description: Account Direct Debits successfully retrieved
@@ -25,6 +26,8 @@ get:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
+    429:
+      $ref: ../../index.yaml#/responses/429ErrorResponse
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:

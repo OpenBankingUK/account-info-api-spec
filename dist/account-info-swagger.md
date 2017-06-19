@@ -53,6 +53,7 @@ Create an account request
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -91,6 +92,7 @@ Create an Account Request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-request-post-response"></a>
@@ -149,6 +151,7 @@ Get an account request
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -164,6 +167,7 @@ Get an account request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-request-get-response"></a>
@@ -218,6 +222,8 @@ Delete an account request
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
+|**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Path**|**AccountRequestId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string|
 
 
@@ -225,10 +231,11 @@ Delete an account request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**204**|Account Request resource successfully deleted  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content|
+|**204**|Account Request resource successfully deleted  <br>**Headers** :   <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 
@@ -261,6 +268,7 @@ Get a list of accounts
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -275,6 +283,7 @@ Get a list of accounts
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -363,6 +372,7 @@ Get an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -378,6 +388,7 @@ Get an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -466,6 +477,7 @@ Get Balances related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -481,6 +493,7 @@ Get Balances related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="balances-get-response"></a>
@@ -577,6 +590,7 @@ Get Beneficiaries related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -592,6 +606,7 @@ Get Beneficiaries related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="beneficiaries-get-response"></a>
@@ -680,6 +695,7 @@ Get Direct Debits related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -695,6 +711,7 @@ Get Direct Debits related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -775,6 +792,7 @@ Get Product related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -790,6 +808,7 @@ Get Product related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="product-get-response"></a>
@@ -860,6 +879,7 @@ Get Standing Orders related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -875,6 +895,7 @@ Get Standing Orders related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="standing-orders-get-response"></a>
@@ -994,13 +1015,14 @@ Get transactions related to an account
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Path**|**AccountId**  <br>*required*|A unique identifier used to identify the account resource.|string|
-|**Query**|**fromBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
-|**Query**|**toBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**fromBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**toBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
 
 
 #### Responses
@@ -1011,6 +1033,7 @@ Get transactions related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-transactions-get-response"></a>
@@ -1081,7 +1104,7 @@ Get transactions related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**MerchantName**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+|**MerchantName**  <br>*optional*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
 <a name="accounts-accountid-transactions-get-data-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
@@ -1139,6 +1162,7 @@ Get Balances
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1153,6 +1177,7 @@ Get Balances
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="balances-get-response"></a>
@@ -1249,6 +1274,7 @@ Get Beneficiaries
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1263,6 +1289,7 @@ Get Beneficiaries
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="beneficiaries-get-response"></a>
@@ -1351,6 +1378,7 @@ Get Direct Debits
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1365,6 +1393,7 @@ Get Direct Debits
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-get-response"></a>
@@ -1445,6 +1474,7 @@ Get Products
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1459,6 +1489,7 @@ Get Products
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="products-get-response"></a>
@@ -1529,6 +1560,7 @@ Get Standing Orders
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
@@ -1543,6 +1575,7 @@ Get Standing Orders
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="standing-orders-get-response"></a>
@@ -1662,10 +1695,13 @@ Get Transactions
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
+|**Query**|**fromBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**toBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
 
 
 #### Responses
@@ -1676,6 +1712,7 @@ Get Transactions
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="account-transactions-get-response"></a>
@@ -1746,7 +1783,7 @@ Get Transactions
 |Name|Description|Schema|
 |---|---|---|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**MerchantName**  <br>*required*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
+|**MerchantName**  <br>*optional*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
 <a name="transactions-get-data-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**

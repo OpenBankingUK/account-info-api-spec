@@ -11,8 +11,5 @@
       "$ref": "../../common/min3_max4_text.json"
     }
   },
-  "required": [
-    "MerchantName"
-  ],
   "additionalProperties": false
 }

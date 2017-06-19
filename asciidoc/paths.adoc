@@ -20,6 +20,8 @@ Create an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -79,6 +81,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -155,6 +158,8 @@ Get an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -180,6 +185,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -252,6 +258,10 @@ Delete an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Path**|**AccountRequestId** +
 __required__|Unique identification as assigned by the ASPSP to uniquely identify the account request resource.|string
 |===
@@ -264,11 +274,11 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |HTTP Code|Description|Schema
 |**204**|Account Request resource successfully deleted +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|No Content
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -305,6 +315,8 @@ Get a list of accounts
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -328,6 +340,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -459,6 +472,8 @@ Get an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -484,6 +499,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -615,6 +631,8 @@ Get Balances related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -640,6 +658,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -779,6 +798,8 @@ Get Beneficiaries related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -804,6 +825,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -935,6 +957,8 @@ Get Direct Debits related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -960,6 +984,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1077,6 +1102,8 @@ Get Product related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -1102,6 +1129,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1199,6 +1227,8 @@ Get Standing Orders related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -1224,6 +1254,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1409,6 +1440,8 @@ Get transactions related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -1419,9 +1452,9 @@ __required__|The unique id of the ASPSP to which the request is issued. The uniq
 __optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
-|**Query**|**fromBookingDate** +
+|**Query**|**fromBookingDateTime** +
 __optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
-|**Query**|**toBookingDate** +
+|**Query**|**toBookingDateTime** +
 __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
 |===
 
@@ -1438,6 +1471,7 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1558,7 +1592,7 @@ __required__|Specifies the sub-product family within a specific family.|string
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
 **Length** : `3 - 4`|string
 |**MerchantName** +
-__required__|Name by which the merchant is known. +
+__optional__|Name by which the merchant is known. +
 **Length** : `1 - 350`|string
 |===
 
@@ -1637,6 +1671,8 @@ Get Balances
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -1660,6 +1696,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1799,6 +1836,8 @@ Get Beneficiaries
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -1822,6 +1861,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1953,6 +1993,8 @@ Get Direct Debits
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -1976,6 +2018,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2093,6 +2136,8 @@ Get Products
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -2116,6 +2161,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2213,6 +2259,8 @@ Get Standing Orders
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -2236,6 +2284,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2421,6 +2470,8 @@ Get Transactions
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -2429,6 +2480,10 @@ __optional__|The time when the PSU last logged in with the TPP.|string
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
+|**Query**|**fromBookingDateTime** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+|**Query**|**toBookingDateTime** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
 |===
 
 
@@ -2444,6 +2499,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2564,7 +2620,7 @@ __required__|Specifies the sub-product family within a specific family.|string
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
 **Length** : `3 - 4`|string
 |**MerchantName** +
-__required__|Name by which the merchant is known. +
+__optional__|Name by which the merchant is known. +
 **Length** : `1 - 350`|string
 |===
 

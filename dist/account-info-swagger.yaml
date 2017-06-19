@@ -115,6 +115,12 @@ paths:
           type: string
           required: false
           description: An RFC4122 UID used as a correlation id.
+        - &ref_4
+          in: header
+          name: authorization
+          type: string
+          required: true
+          description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
         - in: header
           name: x-jws-signature
           type: string
@@ -208,13 +214,15 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': &ref_4
+        '400': &ref_5
           description: Bad Request
-        '401': &ref_5
+        '401': &ref_6
           description: Unauthorized
-        '403': &ref_6
+        '403': &ref_7
           description: Forbidden
-        '500': &ref_7
+        '429': &ref_8
+          description: Too Many Requests
+        '500': &ref_9
           description: Internal Server Error
       security:
         - PSUOAuth2Security:
@@ -227,7 +235,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_8
+        - &ref_10
           name: AccountRequestId
           in: path
           description: Unique identification as assigned by the ASPSP to uniquely identify the account request resource.
@@ -237,6 +245,7 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Request resource successfully retrieved
@@ -325,10 +334,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
@@ -341,21 +351,25 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_8
+        - *ref_10
+        - *ref_4
+        - in: header
+          name: x-fapi-financial-id
+          type: string
+          required: true
+          description: The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.
       responses:
         '204':
           description: Account Request resource successfully deleted
           headers:
-            x-jws-signature:
-              type: string
-              description: Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -371,6 +385,7 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Accounts successfully retrieved
@@ -505,10 +520,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -520,7 +536,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_9
+        - &ref_11
           name: AccountId
           in: path
           description: A unique identifier used to identify the account resource.
@@ -530,6 +546,7 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account resource successfully retrieved
@@ -664,10 +681,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -679,14 +697,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_9
-        - in: query
-          name: fromBookingDate
+        - *ref_11
+        - &ref_15
+          in: query
+          name: fromBookingDateTime
           type: string
           format: date-time
           description: 'The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date'
-        - in: query
-          name: toBookingDate
+        - &ref_16
+          in: query
+          name: toBookingDateTime
           type: string
           format: date-time
           description: 'The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date'
@@ -694,10 +714,11 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Transactions successfully retrieved
-          schema: &ref_13
+          schema: &ref_17
             title: Account Transactions GET response
             type: object
             properties:
@@ -866,8 +887,6 @@ paths:
                           type: string
                           minLength: 3
                           maxLength: 4
-                      required:
-                        - MerchantName
                       additionalProperties: false
                   additionalProperties: false
                   required:
@@ -920,10 +939,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -935,15 +955,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_9
+        - *ref_11
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Beneficiaries  successfully retrieved
-          schema: &ref_12
+          schema: &ref_14
             title: Beneficiaries GET response
             type: object
             properties:
@@ -1073,10 +1094,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1088,15 +1110,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_9
+        - *ref_11
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Beneficiaries successfully retrieved
-          schema: &ref_14
+          schema: &ref_18
             title: Balances GET response
             type: object
             properties:
@@ -1239,10 +1262,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1254,15 +1278,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_9
+        - *ref_11
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Direct Debits successfully retrieved
-          schema: &ref_11
+          schema: &ref_13
             title: Account GET response
             type: object
             properties:
@@ -1370,10 +1395,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1385,15 +1411,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_9
+        - *ref_11
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Standing Orders successfully retrieved
-          schema: &ref_10
+          schema: &ref_12
             title: Standing Orders GET response
             type: object
             properties:
@@ -1608,10 +1635,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1623,11 +1651,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_9
+        - *ref_11
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Account Product successfully retrieved
@@ -1712,10 +1741,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1731,10 +1761,11 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Standing Orders successfully retrieved
-          schema: *ref_10
+          schema: *ref_12
           headers:
             x-jws-signature:
               type: string
@@ -1742,10 +1773,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1761,10 +1793,11 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Direct Debits successfully retrieved
-          schema: *ref_11
+          schema: *ref_13
           headers:
             x-jws-signature:
               type: string
@@ -1772,10 +1805,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1791,10 +1825,11 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Beneficiaries successfully retrieved
-          schema: *ref_12
+          schema: *ref_14
           headers:
             x-jws-signature:
               type: string
@@ -1802,10 +1837,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1821,10 +1857,13 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
+        - *ref_15
+        - *ref_16
       responses:
         '200':
           description: Transactions successfully retrieved
-          schema: *ref_13
+          schema: *ref_17
           headers:
             x-jws-signature:
               type: string
@@ -1832,10 +1871,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1851,10 +1891,11 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Balances successfully retrieved
-          schema: *ref_14
+          schema: *ref_18
           headers:
             x-jws-signature:
               type: string
@@ -1862,10 +1903,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1881,6 +1923,7 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Products successfully retrieved
@@ -1965,10 +2008,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1989,7 +2033,8 @@ securityDefinitions:
       tpp_client_credential: TPP Client Credential Scope
     description: TPP client credential authorisation flow with the ASPSP
 responses:
-  400ErrorResponse: *ref_4
-  401ErrorResponse: *ref_5
-  403ErrorResponse: *ref_6
-  500ErrorResponse: *ref_7
+  400ErrorResponse: *ref_5
+  401ErrorResponse: *ref_6
+  403ErrorResponse: *ref_7
+  429ErrorResponse: *ref_8
+  500ErrorResponse: *ref_9
