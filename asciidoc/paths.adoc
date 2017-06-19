@@ -1452,9 +1452,9 @@ __required__|The unique id of the ASPSP to which the request is issued. The uniq
 __optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
-|**Query**|**fromBookingDate** +
+|**Query**|**fromBookingDateTime** +
 __optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
-|**Query**|**toBookingDate** +
+|**Query**|**toBookingDateTime** +
 __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
 |===
 
@@ -2480,6 +2480,10 @@ __optional__|The time when the PSU last logged in with the TPP.|string
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
+|**Query**|**fromBookingDateTime** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+|**Query**|**toBookingDateTime** +
+__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
 |===
 
 

@@ -1027,14 +1027,14 @@
           },
           {
             "in": "query",
-            "name": "fromBookingDate",
+            "name": "fromBookingDateTime",
             "type": "string",
             "format": "date-time",
             "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
           },
           {
             "in": "query",
-            "name": "toBookingDate",
+            "name": "toBookingDateTime",
             "type": "string",
             "format": "date-time",
             "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
@@ -3415,6 +3415,20 @@
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
+          },
+          {
+            "in": "query",
+            "name": "fromBookingDateTime",
+            "type": "string",
+            "format": "date-time",
+            "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+          },
+          {
+            "in": "query",
+            "name": "toBookingDateTime",
+            "type": "string",
+            "format": "date-time",
+            "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
           }
         ],
         "responses": {

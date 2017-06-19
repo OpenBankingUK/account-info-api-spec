@@ -7,6 +7,7 @@ get:
   parameters:
     - $ref: ../../headers/fapi.yaml
     - $ref: ../../headers/auth.yaml
+    - $ref: ../../parameters/date_filtering.yaml
   responses:
     200:
       description: Transactions successfully retrieved

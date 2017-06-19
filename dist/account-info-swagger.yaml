@@ -698,13 +698,15 @@ paths:
         - application/json
       parameters:
         - *ref_11
-        - in: query
-          name: fromBookingDate
+        - &ref_15
+          in: query
+          name: fromBookingDateTime
           type: string
           format: date-time
           description: 'The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date'
-        - in: query
-          name: toBookingDate
+        - &ref_16
+          in: query
+          name: toBookingDateTime
           type: string
           format: date-time
           description: 'The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date'
@@ -716,7 +718,7 @@ paths:
       responses:
         '200':
           description: Account Transactions successfully retrieved
-          schema: &ref_15
+          schema: &ref_17
             title: Account Transactions GET response
             type: object
             properties:
@@ -1117,7 +1119,7 @@ paths:
       responses:
         '200':
           description: Account Beneficiaries successfully retrieved
-          schema: &ref_16
+          schema: &ref_18
             title: Balances GET response
             type: object
             properties:
@@ -1856,10 +1858,12 @@ paths:
         - *ref_2
         - *ref_3
         - *ref_4
+        - *ref_15
+        - *ref_16
       responses:
         '200':
           description: Transactions successfully retrieved
-          schema: *ref_15
+          schema: *ref_17
           headers:
             x-jws-signature:
               type: string
@@ -1891,7 +1895,7 @@ paths:
       responses:
         '200':
           description: Balances successfully retrieved
-          schema: *ref_16
+          schema: *ref_18
           headers:
             x-jws-signature:
               type: string

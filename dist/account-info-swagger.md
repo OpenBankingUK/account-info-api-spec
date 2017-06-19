@@ -1021,8 +1021,8 @@ Get transactions related to an account
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Path**|**AccountId**  <br>*required*|A unique identifier used to identify the account resource.|string|
-|**Query**|**fromBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
-|**Query**|**toBookingDate**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**fromBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**toBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
 
 
 #### Responses
@@ -1700,6 +1700,8 @@ Get Transactions
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
+|**Query**|**fromBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
+|**Query**|**toBookingDateTime**  <br>*optional*|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)|
 
 
 #### Responses
