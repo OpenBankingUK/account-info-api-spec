@@ -7,7 +7,7 @@ Swagger specification for Account Information APIs
 
 
 ### Version information
-*Version* : v1.0-rc2
+*Version* : v1.0-rc3
 
 
 ### Contact information
