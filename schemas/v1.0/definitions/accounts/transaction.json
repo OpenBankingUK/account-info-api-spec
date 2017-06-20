@@ -36,7 +36,7 @@
       "format": "date-time"
     },
     "TransactionInformation": {
-      "description": "Further details of the transaction. This is the transaction narrative, which in unstructured text.",
+      "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
       "$ref": "../common/max_500_text.json"
     },
     "AddressLine": {
