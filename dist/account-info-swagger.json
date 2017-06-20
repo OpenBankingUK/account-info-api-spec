@@ -624,7 +624,7 @@
                             ]
                           },
                           "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 34
@@ -865,7 +865,7 @@
                             ]
                           },
                           "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 34
@@ -1154,7 +1154,7 @@
                         "format": "date-time"
                       },
                       "TransactionInformation": {
-                        "description": "Further details of the transaction. This is the transaction narrative, which in unstructured text.",
+                        "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 500
@@ -1465,7 +1465,7 @@
                         "maxLength": 35
                       },
                       "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account",
+                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
                         "type": "object",
                         "properties": {
                           "SchemeName": {
@@ -1490,6 +1490,7 @@
                         "additionalProperties": false
                       },
                       "CreditorAccount": {
+                        "description": "Provides the details to identify the beneficiary account.",
                         "type": "object",
                         "properties": {
                           "SchemeName": {
@@ -1501,7 +1502,7 @@
                             ]
                           },
                           "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 34
@@ -2302,7 +2303,7 @@
                             ]
                           },
                           "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 34
@@ -2808,7 +2809,7 @@
                             ]
                           },
                           "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 34
@@ -3221,7 +3222,7 @@
                         "maxLength": 35
                       },
                       "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account",
+                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
                         "type": "object",
                         "properties": {
                           "SchemeName": {
@@ -3246,6 +3247,7 @@
                         "additionalProperties": false
                       },
                       "CreditorAccount": {
+                        "description": "Provides the details to identify the beneficiary account.",
                         "type": "object",
                         "properties": {
                           "SchemeName": {
@@ -3257,7 +3259,7 @@
                             ]
                           },
                           "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 34
@@ -3510,7 +3512,7 @@
                         "format": "date-time"
                       },
                       "TransactionInformation": {
-                        "description": "Further details of the transaction. This is the transaction narrative, which in unstructured text.",
+                        "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 500

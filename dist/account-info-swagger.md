@@ -311,7 +311,7 @@ Get a list of accounts
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -416,7 +416,7 @@ Get an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -625,16 +625,16 @@ Get Beneficiaries related to an account
 |---|---|---|
 |**AccountId**  <br>*optional*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
+|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#beneficiary-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.|[Servicer](#beneficiary-servicer)|
 
 <a name="beneficiary-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -930,7 +930,7 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -1061,7 +1061,7 @@ Get transactions related to an account
 |**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#accounts-accountid-transactions-get-data-proprietarybanktransactioncode)|
 |**Status**  <br>*required*|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)|
 |**TransactionId**  <br>*optional*|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.  <br>**Length** : `1 - 40`|string|
-|**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which in unstructured text.  <br>**Length** : `1 - 500`|string|
+|**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which is unstructured text.  <br>**Length** : `1 - 500`|string|
 |**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDateTime**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|string (date-time)|
 
@@ -1308,16 +1308,16 @@ Get Beneficiaries
 |---|---|---|
 |**AccountId**  <br>*optional*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**BeneficiaryId**  <br>*optional*|A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*||[CreditorAccount](#beneficiary-creditoraccount)|
+|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#beneficiary-creditoraccount)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#beneficiary-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.|[Servicer](#beneficiary-servicer)|
 
 <a name="beneficiary-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -1610,7 +1610,7 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -1740,7 +1740,7 @@ Get Transactions
 |**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#transactions-get-data-proprietarybanktransactioncode)|
 |**Status**  <br>*required*|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)|
 |**TransactionId**  <br>*optional*|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.  <br>**Length** : `1 - 40`|string|
-|**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which in unstructured text.  <br>**Length** : `1 - 500`|string|
+|**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which is unstructured text.  <br>**Length** : `1 - 500`|string|
 |**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDateTime**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|string (date-time)|
 
