@@ -6,7 +6,7 @@
        "$ref": "external_account_identification_code.json"
      },
      "Identification": {
-       "description": "Unique and unambiguous identification of the servicing institution.",
+       "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
        "$ref": "../common/max_34_text.json"
      },
      "Name": {
