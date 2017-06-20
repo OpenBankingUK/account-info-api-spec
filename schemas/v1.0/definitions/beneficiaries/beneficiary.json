@@ -16,9 +16,11 @@
       "$ref": "../common/max_35_text.json"
     },
     "Servicer": {
+      "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
       "$ref": "../common/ob_branch_and_financial_institution_identification.json"
     },
     "CreditorAccount": {
+      "description": "Provides the details to identify the beneficiary account.",
       "$ref": "../common/creditor_cash_account.json"
     }
   },
