@@ -8,7 +8,7 @@ Swagger specification for Account Information APIs
 
 === Version information
 [%hardbreaks]
-__Version__ : v1.0-rc3
+__Version__ : v1.0-rc4
 
 
 === Contact information
