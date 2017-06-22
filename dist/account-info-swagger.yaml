@@ -9,7 +9,7 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.0-rc3
+  version: v1.0-rc4
 basePath: /open-banking
 schemes:
   - https
