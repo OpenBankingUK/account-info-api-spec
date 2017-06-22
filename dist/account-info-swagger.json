@@ -168,7 +168,7 @@
                       "description": "Unique identification as assigned to identify the account request resource.",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 40
+                      "maxLength": 128
                     },
                     "Status": {
                       "description": "Specifies the status of the account request resource.",
@@ -350,7 +350,7 @@
                       "description": "Unique identification as assigned to identify the account request resource.",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 40
+                      "maxLength": 128
                     },
                     "Status": {
                       "description": "Specifies the status of the account request resource.",

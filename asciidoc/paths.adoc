@@ -105,7 +105,7 @@ __required__|The Risk payload is sent by the initiating party to the ASPSP. It i
 |Name|Description|Schema
 |**AccountRequestId** +
 __required__|Unique identification as assigned to identify the account request resource. +
-**Length** : `1 - 40`|string
+**Length** : `1 - 128`|string
 |**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**ExpirationDateTime** +
@@ -209,7 +209,7 @@ __required__|The Risk payload is sent by the initiating party to the ASPSP. It i
 |Name|Description|Schema
 |**AccountRequestId** +
 __required__|Unique identification as assigned to identify the account request resource. +
-**Length** : `1 - 40`|string
+**Length** : `1 - 128`|string
 |**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**ExpirationDateTime** +
