@@ -34,5 +34,5 @@ post:
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
-    - PSUOAuth2Security:
-      - accounts
+    - TPPOAuth2Security:
+      - tpp_client_credential

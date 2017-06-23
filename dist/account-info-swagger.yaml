@@ -225,8 +225,8 @@ paths:
         '500': &ref_9
           description: Internal Server Error
       security:
-        - PSUOAuth2Security:
-            - accounts
+        - TPPOAuth2Security:
+            - tpp_client_credential
   '/account-requests/{AccountRequestId}':
     get:
       summary: Get an account request
@@ -342,8 +342,6 @@ paths:
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
-        - PSUOAuth2Security:
-            - accounts
     delete:
       summary: Delete an account request
       description: Delete an account request
@@ -371,8 +369,8 @@ paths:
         '429': *ref_8
         '500': *ref_9
       security:
-        - PSUOAuth2Security:
-            - accounts
+        - TPPOAuth2Security:
+            - tpp_client_credential
   /accounts:
     get:
       summary: Get Accounts

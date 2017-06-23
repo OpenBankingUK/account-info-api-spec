@@ -131,7 +131,7 @@ Create an Account Request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
 
 
 ***
@@ -202,7 +202,6 @@ Get an account request
 |Type|Name|Scopes|
 |---|---|---|
 |**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
-|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
 
 
 ***
@@ -248,7 +247,7 @@ Delete an account request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|accounts|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
 
 
 ***
