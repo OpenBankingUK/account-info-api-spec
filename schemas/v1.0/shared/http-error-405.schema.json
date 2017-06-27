@@ -1,0 +1,24 @@
+{
+  "title": "HTTP 405 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "405" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "Method Not Allowed" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}
