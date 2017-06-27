@@ -26,6 +26,8 @@ get:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
+    405:
+      $ref: ../../index.yaml#/responses/405ErrorResponse
     406:
       $ref: ../../index.yaml#/responses/406ErrorResponse
     429:
@@ -63,6 +65,8 @@ delete:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
+    405:
+      $ref: ../../index.yaml#/responses/405ErrorResponse
     406:
       $ref: ../../index.yaml#/responses/406ErrorResponse
     429:
