@@ -14,7 +14,7 @@
       "$ref": "../common/links_self.json"
     },
     "Meta": {
-      "title": "Meta Data",
+      "title": "MetaData",
       "$ref": "../common/meta.json"
     }
   },
