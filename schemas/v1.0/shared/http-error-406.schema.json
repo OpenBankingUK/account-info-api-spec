@@ -1,0 +1,24 @@
+{
+  "title": "HTTP 406 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "406" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "Not Acceptable" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to the accept headers sent in the request." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}
