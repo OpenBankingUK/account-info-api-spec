@@ -13,6 +13,11 @@
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-403.schema.yaml
 
+406ErrorResponse:
+  description: Not Acceptable
+  # schema:
+  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-406.schema.yaml
+
 429ErrorResponse:
   description: Too Many Requests
   # schema:
