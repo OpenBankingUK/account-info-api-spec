@@ -1,5 +1,6 @@
 {
   "title": "Account Request Response",
+  "description": "Account Request Response",
   "type": "object",
   "properties": {
     "AccountRequestId": {

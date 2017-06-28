@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "title": "Direct Debit",
+  "title": "DirectDebit",
   "description": "Direct Debit",
   "properties": {
     "AccountId": {
