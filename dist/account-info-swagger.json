@@ -162,6 +162,7 @@
               "properties": {
                 "Data": {
                   "title": "Data",
+                  "description": "Account Request Response",
                   "type": "object",
                   "properties": {
                     "AccountRequestId": {
@@ -344,6 +345,7 @@
               "properties": {
                 "Data": {
                   "title": "Data",
+                  "description": "Account Request Response",
                   "type": "object",
                   "properties": {
                     "AccountRequestId": {
@@ -708,7 +710,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -949,7 +951,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -1557,7 +1559,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -1820,7 +1822,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -1939,7 +1941,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "title": "Direct Debit",
+                    "title": "DirectDebit",
                     "description": "Direct Debit",
                     "properties": {
                       "AccountId": {
@@ -2040,7 +2042,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -2159,7 +2161,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "title": "Standing Order",
+                    "title": "StandingOrder",
                     "description": "Standing Order",
                     "properties": {
                       "AccountId": {
@@ -2364,7 +2366,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -2553,7 +2555,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -2665,7 +2667,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "title": "Standing Order",
+                    "title": "StandingOrder",
                     "description": "Standing Order",
                     "properties": {
                       "AccountId": {
@@ -2870,7 +2872,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -2982,7 +2984,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "title": "Direct Debit",
+                    "title": "DirectDebit",
                     "description": "Direct Debit",
                     "properties": {
                       "AccountId": {
@@ -3083,7 +3085,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -3314,7 +3316,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -3933,7 +3935,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -4115,7 +4117,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta Data",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {

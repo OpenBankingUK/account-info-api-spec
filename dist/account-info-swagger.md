@@ -100,7 +100,7 @@ Create an Account Request
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||[Data](#data)|
+|**Data**  <br>*required*|Account Request Response|[Data](#data)|
 |**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
@@ -175,7 +175,7 @@ Get an account request
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||[Data](#data)|
+|**Data**  <br>*required*|Account Request Response|[Data](#data)|
 |**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
@@ -292,7 +292,7 @@ Get a list of accounts
 |---|---|---|
 |**Data**  <br>*required*||< [Account](#account) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="account"></a>
 **Account**
@@ -334,8 +334,8 @@ Get a list of accounts
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -397,7 +397,7 @@ Get an account
 |---|---|---|
 |**Data**  <br>*required*||< [Account](#account) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="account"></a>
 **Account**
@@ -439,8 +439,8 @@ Get an account
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -502,7 +502,7 @@ Get Balances related to an account
 |---|---|---|
 |**Data**  <br>*required*||< [Balance](#balance) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="balance"></a>
 **Balance**
@@ -552,8 +552,8 @@ Get Balances related to an account
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -615,7 +615,7 @@ Get Beneficiaries related to an account
 |---|---|---|
 |**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -657,8 +657,8 @@ Get Beneficiaries related to an account
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -718,12 +718,12 @@ Get Direct Debits related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Direct Debit](#direct-debit) > array|
+|**Data**  <br>*required*||< [DirectDebit](#directdebit) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
-<a name="direct-debit"></a>
-**Direct Debit**
+<a name="directdebit"></a>
+**DirectDebit**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -732,10 +732,10 @@ Get Direct Debits related to an account
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
 |**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
 |**Name**  <br>*required*|Name of Service User  <br>**Length** : `1 - 70`|string|
-|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#direct-debit-previouspaymentamount)|
+|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#directdebit-previouspaymentamount)|
 |**PreviousPaymentDateTime**  <br>*optional*|Date of most recent direct debit collection.|string (date-time)|
 
-<a name="direct-debit-previouspaymentamount"></a>
+<a name="directdebit-previouspaymentamount"></a>
 **PreviousPaymentAmount**
 
 |Name|Description|Schema|
@@ -754,8 +754,8 @@ Get Direct Debits related to an account
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -817,7 +817,7 @@ Get Product related to an account
 |---|---|---|
 |**Data**  <br>*required*||< [Product](#product) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="product"></a>
 **Product**
@@ -841,8 +841,8 @@ Get Product related to an account
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -902,29 +902,29 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Standing Order](#standing-order) > array|
+|**Data**  <br>*required*||< [StandingOrder](#standingorder) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
-<a name="standing-order"></a>
-**Standing Order**
+<a name="standingorder"></a>
+**StandingOrder**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-order-creditoraccount)|
-|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-order-finalpaymentamount)|
+|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standingorder-creditoraccount)|
+|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standingorder-finalpaymentamount)|
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)|
-|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-order-firstpaymentamount)|
+|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standingorder-firstpaymentamount)|
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
 |**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
-|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-order-nextpaymentamount)|
+|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standingorder-nextpaymentamount)|
 |**NextPaymentDateTime**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-order-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standingorder-servicer)|
 |**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 
-<a name="standing-order-creditoraccount"></a>
+<a name="standingorder-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
@@ -934,7 +934,7 @@ Get Standing Orders related to an account
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="standing-order-finalpaymentamount"></a>
+<a name="standingorder-finalpaymentamount"></a>
 **FinalPaymentAmount**
 
 |Name|Description|Schema|
@@ -942,7 +942,7 @@ Get Standing Orders related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-order-firstpaymentamount"></a>
+<a name="standingorder-firstpaymentamount"></a>
 **FirstPaymentAmount**
 
 |Name|Description|Schema|
@@ -950,7 +950,7 @@ Get Standing Orders related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-order-nextpaymentamount"></a>
+<a name="standingorder-nextpaymentamount"></a>
 **NextPaymentAmount**
 
 |Name|Description|Schema|
@@ -958,7 +958,7 @@ Get Standing Orders related to an account
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-order-servicer"></a>
+<a name="standingorder-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -977,8 +977,8 @@ Get Standing Orders related to an account
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -1186,7 +1186,7 @@ Get Balances
 |---|---|---|
 |**Data**  <br>*required*||< [Balance](#balance) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="balance"></a>
 **Balance**
@@ -1236,8 +1236,8 @@ Get Balances
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -1298,7 +1298,7 @@ Get Beneficiaries
 |---|---|---|
 |**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -1340,8 +1340,8 @@ Get Beneficiaries
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -1400,12 +1400,12 @@ Get Direct Debits
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Direct Debit](#direct-debit) > array|
+|**Data**  <br>*required*||< [DirectDebit](#directdebit) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
-<a name="direct-debit"></a>
-**Direct Debit**
+<a name="directdebit"></a>
+**DirectDebit**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1414,10 +1414,10 @@ Get Direct Debits
 |**DirectDebitStatusCode**  <br>*optional*|Specifies the status of the direct debit in code form.|enum (Active, Inactive)|
 |**MandateIdentification**  <br>*required*|Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.  <br>**Length** : `1 - 35`|string|
 |**Name**  <br>*required*|Name of Service User  <br>**Length** : `1 - 70`|string|
-|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#direct-debit-previouspaymentamount)|
+|**PreviousPaymentAmount**  <br>*optional*|The amount of the most recent direct debit collection.|[PreviousPaymentAmount](#directdebit-previouspaymentamount)|
 |**PreviousPaymentDateTime**  <br>*optional*|Date of most recent direct debit collection.|string (date-time)|
 
-<a name="direct-debit-previouspaymentamount"></a>
+<a name="directdebit-previouspaymentamount"></a>
 **PreviousPaymentAmount**
 
 |Name|Description|Schema|
@@ -1436,8 +1436,8 @@ Get Direct Debits
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -1498,7 +1498,7 @@ Get Products
 |---|---|---|
 |**Data**  <br>*required*||< [Product](#product) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
 <a name="product"></a>
 **Product**
@@ -1522,8 +1522,8 @@ Get Products
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -1582,29 +1582,29 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Standing Order](#standing-order) > array|
+|**Data**  <br>*required*||< [StandingOrder](#standingorder) > array|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta Data](#meta-data)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
-<a name="standing-order"></a>
-**Standing Order**
+<a name="standingorder"></a>
+**StandingOrder**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Length** : `1 - 40`|string|
-|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standing-order-creditoraccount)|
-|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standing-order-finalpaymentamount)|
+|**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standingorder-creditoraccount)|
+|**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standingorder-finalpaymentamount)|
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)|
-|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standing-order-firstpaymentamount)|
+|**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standingorder-firstpaymentamount)|
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
 |**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
-|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standing-order-nextpaymentamount)|
+|**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standingorder-nextpaymentamount)|
 |**NextPaymentDateTime**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
-|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standing-order-servicer)|
+|**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|[Servicer](#standingorder-servicer)|
 |**StandingOrderId**  <br>*optional*|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 
-<a name="standing-order-creditoraccount"></a>
+<a name="standingorder-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
@@ -1614,7 +1614,7 @@ Get Standing Orders
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
 
-<a name="standing-order-finalpaymentamount"></a>
+<a name="standingorder-finalpaymentamount"></a>
 **FinalPaymentAmount**
 
 |Name|Description|Schema|
@@ -1622,7 +1622,7 @@ Get Standing Orders
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-order-firstpaymentamount"></a>
+<a name="standingorder-firstpaymentamount"></a>
 **FirstPaymentAmount**
 
 |Name|Description|Schema|
@@ -1630,7 +1630,7 @@ Get Standing Orders
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-order-nextpaymentamount"></a>
+<a name="standingorder-nextpaymentamount"></a>
 **NextPaymentAmount**
 
 |Name|Description|Schema|
@@ -1638,7 +1638,7 @@ Get Standing Orders
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="standing-order-servicer"></a>
+<a name="standingorder-servicer"></a>
 **Servicer**
 
 |Name|Description|Schema|
@@ -1657,8 +1657,8 @@ Get Standing Orders
 |**prev**  <br>*optional*|string (uri)|
 |**self**  <br>*required*|string (uri)|
 
-<a name="meta-data"></a>
-**Meta Data**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|

@@ -135,6 +135,7 @@ paths:
             properties:
               Data:
                 title: Data
+                description: Account Request Response
                 type: object
                 properties:
                   AccountRequestId:
@@ -255,6 +256,7 @@ paths:
             properties:
               Data:
                 title: Data
+                description: Account Request Response
                 type: object
                 properties:
                   AccountRequestId:
@@ -498,7 +500,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -659,7 +661,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -1073,7 +1075,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -1241,7 +1243,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -1295,7 +1297,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  title: Direct Debit
+                  title: DirectDebit
                   description: Direct Debit
                   properties:
                     AccountId:
@@ -1374,7 +1376,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -1428,7 +1430,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  title: Standing Order
+                  title: StandingOrder
                   description: Standing Order
                   properties:
                     AccountId:
@@ -1614,7 +1616,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -1720,7 +1722,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
@@ -1987,7 +1989,7 @@ paths:
                 required:
                   - self
               Meta:
-                title: Meta Data
+                title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
