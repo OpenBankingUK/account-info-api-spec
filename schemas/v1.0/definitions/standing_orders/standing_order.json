@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "title": "Standing Order",
+  "title": "StandingOrder",
   "description": "Standing Order",
   "properties": {
     "AccountId": {
