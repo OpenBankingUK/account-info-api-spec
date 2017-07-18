@@ -12,14 +12,14 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0-rc4"
+    "version": "v1.0.1"
   },
   "basePath": "/open-banking",
   "schemes": [
     "https"
   ],
   "produces": [
-    "application/json"
+    "application/json; charset=utf-8"
   ],
   "paths": {
     "/account-requests": {
@@ -28,10 +28,10 @@
         "description": "Create an account request",
         "operationId": "CreateAccountRequest",
         "consumes": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -268,6 +268,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -290,7 +296,7 @@
         "description": "Get an account request",
         "operationId": "GetAccountRequest",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -451,6 +457,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -471,7 +483,7 @@
         "description": "Delete an account request",
         "operationId": "DeleteAccountRequest",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -515,6 +527,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -537,7 +555,7 @@
         "description": "Get a list of accounts",
         "operationId": "GetAccounts",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -683,30 +701,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -714,7 +732,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -749,6 +767,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -771,7 +795,7 @@
         "description": "Get an account",
         "operationId": "GetAccount",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -924,30 +948,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -955,7 +979,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -990,6 +1014,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1012,7 +1042,7 @@
         "description": "Get transactions related to an account",
         "operationId": "GetAccountTransactions",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1294,30 +1324,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -1325,7 +1355,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1360,6 +1390,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1382,7 +1418,7 @@
         "description": "Get Beneficiaries related to an account",
         "operationId": "GetAccountBeneficiaries",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1532,30 +1568,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -1563,7 +1599,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1598,6 +1634,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1620,7 +1662,7 @@
         "description": "Get Balances related to an account",
         "operationId": "GetAccountBalances",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1795,30 +1837,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -1826,7 +1868,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1861,6 +1903,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1883,7 +1931,7 @@
         "description": "Get Direct Debits related to an account",
         "operationId": "GetAccountDirectDebits",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -2015,30 +2063,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -2046,7 +2094,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -2081,6 +2129,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -2103,7 +2157,7 @@
         "description": "Get Standing Orders related to an account",
         "operationId": "GetAccountStandingOrders",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -2339,30 +2393,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -2370,7 +2424,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -2405,6 +2459,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -2427,7 +2487,7 @@
         "description": "Get Product related to an account",
         "operationId": "GetAccountProduct",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -2528,30 +2588,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -2559,7 +2619,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -2594,6 +2654,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -2616,7 +2682,7 @@
         "description": "Get Standing Orders",
         "operationId": "GetStandingOrders",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -2845,30 +2911,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -2876,7 +2942,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -2911,6 +2977,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -2933,7 +3005,7 @@
         "description": "Get Direct Debits",
         "operationId": "GetDirectDebits",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -3058,30 +3130,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -3089,7 +3161,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -3124,6 +3196,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -3146,7 +3224,7 @@
         "description": "Get Beneficiaries",
         "operationId": "GetBeneficiaries",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -3289,30 +3367,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -3320,7 +3398,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -3355,6 +3433,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -3377,7 +3461,7 @@
         "description": "Get Transactions",
         "operationId": "GetTransactions",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -3652,30 +3736,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -3683,7 +3767,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -3718,6 +3802,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -3740,7 +3830,7 @@
         "description": "Get Balances",
         "operationId": "GetBalances",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -3908,30 +3998,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -3939,7 +4029,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -3974,6 +4064,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -3996,7 +4092,7 @@
         "description": "Get Products",
         "operationId": "GetProducts",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -4090,30 +4186,30 @@
                   "type": "object",
                   "description": "Links relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
@@ -4121,7 +4217,7 @@
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -4155,6 +4251,12 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
           },
           "429": {
             "description": "Too Many Requests"
@@ -4203,6 +4305,12 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
+    },
+    "405ErrorResponse": {
+      "description": "Method Not Allowed"
+    },
+    "406ErrorResponse": {
+      "description": "Not Acceptable"
     },
     "429ErrorResponse": {
       "description": "Too Many Requests"

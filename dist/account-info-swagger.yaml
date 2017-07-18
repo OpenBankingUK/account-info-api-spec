@@ -9,12 +9,12 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.0-rc4
+  version: v1.0.1
 basePath: /open-banking
 schemes:
   - https
 produces:
-  - application/json
+  - application/json; charset=utf-8
 paths:
   /account-requests:
     post:
@@ -22,9 +22,9 @@ paths:
       description: Create an account request
       operationId: CreateAccountRequest
       consumes:
-        - application/json
+        - application/json; charset=utf-8
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - name: body
           in: body
@@ -221,9 +221,13 @@ paths:
           description: Unauthorized
         '403': &ref_7
           description: Forbidden
-        '429': &ref_8
+        '405': &ref_8
+          description: Method Not Allowed
+        '406': &ref_9
+          description: Not Acceptable
+        '429': &ref_10
           description: Too Many Requests
-        '500': &ref_9
+        '500': &ref_11
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
@@ -234,9 +238,9 @@ paths:
       description: Get an account request
       operationId: GetAccountRequest
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - &ref_10
+        - &ref_12
           name: AccountRequestId
           in: path
           description: Unique identification as assigned by the ASPSP to uniquely identify the account request resource.
@@ -339,8 +343,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
@@ -349,9 +355,9 @@ paths:
       description: Delete an account request
       operationId: DeleteAccountRequest
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_10
+        - *ref_12
         - *ref_4
         - in: header
           name: x-fapi-financial-id
@@ -368,8 +374,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
@@ -379,7 +387,7 @@ paths:
       description: Get a list of accounts
       operationId: GetAccounts
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - *ref_0
         - *ref_1
@@ -481,30 +489,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -523,8 +531,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -534,9 +544,9 @@ paths:
       description: Get an account
       operationId: GetAccount
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - &ref_11
+        - &ref_13
           name: AccountId
           in: path
           description: A unique identifier used to identify the account resource.
@@ -642,30 +652,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -684,8 +694,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -695,16 +707,16 @@ paths:
       description: Get transactions related to an account
       operationId: GetAccountTransactions
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_11
-        - &ref_15
+        - *ref_13
+        - &ref_17
           in: query
           name: fromBookingDateTime
           type: string
           format: date-time
           description: 'The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date'
-        - &ref_16
+        - &ref_18
           in: query
           name: toBookingDateTime
           type: string
@@ -718,7 +730,7 @@ paths:
       responses:
         '200':
           description: Account Transactions successfully retrieved
-          schema: &ref_17
+          schema: &ref_19
             title: Account Transactions GET response
             type: object
             properties:
@@ -900,30 +912,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: Meta
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -942,8 +954,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -953,9 +967,9 @@ paths:
       description: Get Beneficiaries related to an account
       operationId: GetAccountBeneficiaries
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_11
+        - *ref_13
         - *ref_0
         - *ref_1
         - *ref_2
@@ -964,7 +978,7 @@ paths:
       responses:
         '200':
           description: Account Beneficiaries  successfully retrieved
-          schema: &ref_14
+          schema: &ref_16
             title: Beneficiaries GET response
             type: object
             properties:
@@ -1056,30 +1070,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1098,8 +1112,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1109,9 +1125,9 @@ paths:
       description: Get Balances related to an account
       operationId: GetAccountBalances
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_11
+        - *ref_13
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1120,7 +1136,7 @@ paths:
       responses:
         '200':
           description: Account Beneficiaries successfully retrieved
-          schema: &ref_18
+          schema: &ref_20
             title: Balances GET response
             type: object
             properties:
@@ -1224,30 +1240,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1266,8 +1282,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1277,9 +1295,9 @@ paths:
       description: Get Direct Debits related to an account
       operationId: GetAccountDirectDebits
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_11
+        - *ref_13
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1288,7 +1306,7 @@ paths:
       responses:
         '200':
           description: Account Direct Debits successfully retrieved
-          schema: &ref_13
+          schema: &ref_15
             title: Account GET response
             type: object
             properties:
@@ -1357,30 +1375,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1399,8 +1417,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1410,9 +1430,9 @@ paths:
       description: Get Standing Orders related to an account
       operationId: GetAccountStandingOrders
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_11
+        - *ref_13
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1421,7 +1441,7 @@ paths:
       responses:
         '200':
           description: Account Standing Orders successfully retrieved
-          schema: &ref_12
+          schema: &ref_14
             title: Standing Orders GET response
             type: object
             properties:
@@ -1597,30 +1617,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1639,8 +1659,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1650,9 +1672,9 @@ paths:
       description: Get Product related to an account
       operationId: GetAccountProduct
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_11
+        - *ref_13
         - *ref_0
         - *ref_1
         - *ref_2
@@ -1703,30 +1725,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1745,8 +1767,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1756,7 +1780,7 @@ paths:
       description: Get Standing Orders
       operationId: GetStandingOrders
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - *ref_0
         - *ref_1
@@ -1766,70 +1790,6 @@ paths:
       responses:
         '200':
           description: Standing Orders successfully retrieved
-          schema: *ref_12
-          headers:
-            x-jws-signature:
-              type: string
-              description: Header containing a detached JWS signature of the body of the payload.
-            x-fapi-interaction-id:
-              type: string
-              description: An RFC4122 UID used as a correlation id.
-        '400': *ref_5
-        '401': *ref_6
-        '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  /direct-debits:
-    get:
-      summary: Get Direct Debits
-      description: Get Direct Debits
-      operationId: GetDirectDebits
-      produces:
-        - application/json
-      parameters:
-        - *ref_0
-        - *ref_1
-        - *ref_2
-        - *ref_3
-        - *ref_4
-      responses:
-        '200':
-          description: Direct Debits successfully retrieved
-          schema: *ref_13
-          headers:
-            x-jws-signature:
-              type: string
-              description: Header containing a detached JWS signature of the body of the payload.
-            x-fapi-interaction-id:
-              type: string
-              description: An RFC4122 UID used as a correlation id.
-        '400': *ref_5
-        '401': *ref_6
-        '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  /beneficiaries:
-    get:
-      summary: Get Beneficiaries
-      description: Get Beneficiaries
-      operationId: GetBeneficiaries
-      produces:
-        - application/json
-      parameters:
-        - *ref_0
-        - *ref_1
-        - *ref_2
-        - *ref_3
-        - *ref_4
-      responses:
-        '200':
-          description: Beneficiaries successfully retrieved
           schema: *ref_14
           headers:
             x-jws-signature:
@@ -1841,8 +1801,78 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /direct-debits:
+    get:
+      summary: Get Direct Debits
+      description: Get Direct Debits
+      operationId: GetDirectDebits
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - *ref_0
+        - *ref_1
+        - *ref_2
+        - *ref_3
+        - *ref_4
+      responses:
+        '200':
+          description: Direct Debits successfully retrieved
+          schema: *ref_15
+          headers:
+            x-jws-signature:
+              type: string
+              description: Header containing a detached JWS signature of the body of the payload.
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /beneficiaries:
+    get:
+      summary: Get Beneficiaries
+      description: Get Beneficiaries
+      operationId: GetBeneficiaries
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - *ref_0
+        - *ref_1
+        - *ref_2
+        - *ref_3
+        - *ref_4
+      responses:
+        '200':
+          description: Beneficiaries successfully retrieved
+          schema: *ref_16
+          headers:
+            x-jws-signature:
+              type: string
+              description: Header containing a detached JWS signature of the body of the payload.
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id.
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1852,19 +1882,19 @@ paths:
       description: Get Transactions
       operationId: GetTransactions
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
         - *ref_4
-        - *ref_15
-        - *ref_16
+        - *ref_17
+        - *ref_18
       responses:
         '200':
           description: Transactions successfully retrieved
-          schema: *ref_17
+          schema: *ref_19
           headers:
             x-jws-signature:
               type: string
@@ -1875,8 +1905,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1886,7 +1918,7 @@ paths:
       description: Get Balances
       operationId: GetBalances
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - *ref_0
         - *ref_1
@@ -1896,7 +1928,7 @@ paths:
       responses:
         '200':
           description: Balances successfully retrieved
-          schema: *ref_18
+          schema: *ref_20
           headers:
             x-jws-signature:
               type: string
@@ -1907,8 +1939,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1918,7 +1952,7 @@ paths:
       description: Get Products
       operationId: GetProducts
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - *ref_0
         - *ref_1
@@ -1970,30 +2004,30 @@ paths:
                 type: object
                 description: Links relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 title: MetaData
                 type: object
                 description: Meta Data relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -2012,8 +2046,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - accounts
@@ -2037,5 +2073,7 @@ responses:
   400ErrorResponse: *ref_5
   401ErrorResponse: *ref_6
   403ErrorResponse: *ref_7
-  429ErrorResponse: *ref_8
-  500ErrorResponse: *ref_9
+  405ErrorResponse: *ref_8
+  406ErrorResponse: *ref_9
+  429ErrorResponse: *ref_10
+  500ErrorResponse: *ref_11
