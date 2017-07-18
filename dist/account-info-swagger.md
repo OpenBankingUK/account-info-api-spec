@@ -7,7 +7,7 @@ Swagger specification for Account Information APIs
 
 
 ### Version information
-*Version* : v1.0.0
+*Version* : v1.0.1
 
 
 ### Contact information
@@ -28,7 +28,7 @@ Swagger specification for Account Information APIs
 
 ### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 
@@ -92,6 +92,8 @@ Create an Account Request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -119,12 +121,12 @@ Create an Account Request
 
 #### Consumes
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -167,6 +169,8 @@ Get an account request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -194,7 +198,7 @@ Get an account request
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -234,13 +238,15 @@ Delete an account request
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -282,6 +288,8 @@ Get a list of accounts
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -328,23 +336,23 @@ Get a list of accounts
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -387,6 +395,8 @@ Get an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -433,23 +443,23 @@ Get an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -492,6 +502,8 @@ Get Balances related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -546,23 +558,23 @@ Get Balances related to an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -605,6 +617,8 @@ Get Beneficiaries related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -651,23 +665,23 @@ Get Beneficiaries related to an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -710,6 +724,8 @@ Get Direct Debits related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -748,23 +764,23 @@ Get Direct Debits related to an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -807,6 +823,8 @@ Get Product related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -835,23 +853,23 @@ Get Product related to an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -894,6 +912,8 @@ Get Standing Orders related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -971,23 +991,23 @@ Get Standing Orders related to an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1032,6 +1052,8 @@ Get transactions related to an account
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1118,23 +1140,23 @@ Get transactions related to an account
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="meta"></a>
 **Meta**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1176,6 +1198,8 @@ Get Balances
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1230,23 +1254,23 @@ Get Balances
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1288,6 +1312,8 @@ Get Beneficiaries
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1334,23 +1360,23 @@ Get Beneficiaries
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1392,6 +1418,8 @@ Get Direct Debits
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1430,23 +1458,23 @@ Get Direct Debits
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1488,6 +1516,8 @@ Get Products
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1516,23 +1546,23 @@ Get Products
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1574,6 +1604,8 @@ Get Standing Orders
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1651,23 +1683,23 @@ Get Standing Orders
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="metadata"></a>
 **MetaData**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
@@ -1711,6 +1743,8 @@ Get Transactions
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -1797,23 +1831,23 @@ Get Transactions
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="meta"></a>
 **Meta**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Security
