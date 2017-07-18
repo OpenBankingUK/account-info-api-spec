@@ -515,6 +515,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -678,6 +684,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -938,6 +950,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -1096,6 +1114,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -1266,6 +1290,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -1401,6 +1431,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -1643,6 +1679,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -1751,6 +1793,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
@@ -2030,6 +2078,12 @@ paths:
                   TotalPages:
                     type: integer
                     format: int32
+                  FirstAvailableTransactionDate:
+                    type: string
+                    format: date-time
+                  LastAvailableTransactionDate:
+                    type: string
+                    format: date-time
                 additionalProperties: false
             additionalProperties: false
             required:
