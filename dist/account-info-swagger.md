@@ -347,6 +347,8 @@ Get a list of accounts
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -454,6 +456,8 @@ Get an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -569,6 +573,8 @@ Get Balances related to an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -676,6 +682,8 @@ Get Beneficiaries related to an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -775,6 +783,8 @@ Get Direct Debits related to an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -864,6 +874,8 @@ Get Product related to an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1002,6 +1014,8 @@ Get Standing Orders related to an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1151,6 +1165,8 @@ Get transactions related to an account
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1265,6 +1281,8 @@ Get Balances
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1371,6 +1389,8 @@ Get Beneficiaries
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1469,6 +1489,8 @@ Get Direct Debits
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1557,6 +1579,8 @@ Get Products
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1694,6 +1718,8 @@ Get Standing Orders
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 
@@ -1842,6 +1868,8 @@ Get Transactions
 
 |Name|Schema|
 |---|---|
+|**FirstAvailableTransactionDate**  <br>*optional*|string (date-time)|
+|**LastAvailableTransactionDate**  <br>*optional*|string (date-time)|
 |**TotalPages**  <br>*optional*|integer (int32)|
 
 

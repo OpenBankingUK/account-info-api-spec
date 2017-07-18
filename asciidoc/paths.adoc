@@ -442,6 +442,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -603,6 +607,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -772,6 +780,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -933,6 +945,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -1080,6 +1096,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -1207,6 +1227,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -1422,6 +1446,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -1655,6 +1683,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -1822,6 +1854,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -1981,6 +2017,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -2126,6 +2166,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -2251,6 +2295,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -2464,6 +2512,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
@@ -2695,6 +2747,10 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
 |**TotalPages** +
 __optional__|integer (int32)
 |===
