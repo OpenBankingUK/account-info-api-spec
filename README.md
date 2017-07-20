@@ -1,5 +1,9 @@
 # account-info-api-spec
 
+# Version
+This is version v1.0.1
+A Patch Release
+
 # Usage
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format
 

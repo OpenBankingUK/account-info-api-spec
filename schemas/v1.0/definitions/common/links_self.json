@@ -2,29 +2,29 @@
   "type": "object",
   "description": "Links relevant to the payload",
   "properties": {
-    "self": {
+    "Self": {
       "type": "string",
       "format": "uri"
     },
-    "first": {
+    "First": {
       "type": "string",
       "format": "uri"
     },
-    "prev": {
+    "Prev": {
       "type": "string",
       "format": "uri"
     },
-    "next": {
+    "Next": {
       "type": "string",
       "format": "uri"
     },
-    "last": {
+    "Last": {
       "type": "string",
       "format": "uri"
     }
   },
   "additionalProperties": false,
   "required": [
-    "self"
+    "Self"
   ]
 }

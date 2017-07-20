@@ -81,6 +81,8 @@ __optional__|Specified end date and time for the transaction query period. If th
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -92,7 +94,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||<<_data,Data>>
+__required__|Account Request Response|<<_data,Data>>
 |**Risk** +
 __required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
@@ -123,12 +125,12 @@ __optional__|Specified end date and time for the transaction query period. If th
 
 ==== Consumes
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -185,6 +187,8 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -196,7 +200,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||<<_data,Data>>
+__required__|Account Request Response|<<_data,Data>>
 |**Risk** +
 __required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
@@ -227,7 +231,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -277,6 +281,8 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -284,7 +290,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -339,6 +345,8 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -354,7 +362,7 @@ __required__||< <<_account,Account>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_account]]
@@ -416,32 +424,36 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -498,6 +510,8 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -513,7 +527,7 @@ __required__||< <<_account,Account>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_account]]
@@ -575,32 +589,36 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -657,6 +675,8 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -672,7 +692,7 @@ __required__||< <<_balance,Balance>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_balance]]
@@ -742,32 +762,36 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -824,6 +848,8 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -839,7 +865,7 @@ __required__||< <<_beneficiary,Beneficiary>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_beneficiary]]
@@ -901,32 +927,36 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -983,6 +1013,8 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -994,15 +1026,15 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_direct_debit,Direct Debit>> > array
+__required__||< <<_directdebit,DirectDebit>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
-[[_direct_debit]]
-**Direct Debit**
+[[_directdebit]]
+**DirectDebit**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1022,12 +1054,12 @@ __required__|Direct Debit reference. For AUDDIS service users provide Core Refer
 __required__|Name of Service User +
 **Length** : `1 - 70`|string
 |**PreviousPaymentAmount** +
-__optional__|The amount of the most recent direct debit collection.|<<_direct_debit_previouspaymentamount,PreviousPaymentAmount>>
+__optional__|The amount of the most recent direct debit collection.|<<_directdebit_previouspaymentamount,PreviousPaymentAmount>>
 |**PreviousPaymentDateTime** +
 __optional__|Date of most recent direct debit collection.|string (date-time)
 |===
 
-[[_direct_debit_previouspaymentamount]]
+[[_directdebit_previouspaymentamount]]
 **PreviousPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1046,32 +1078,36 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -1128,6 +1164,8 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -1143,7 +1181,7 @@ __required__||< <<_product,Product>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_product]]
@@ -1171,32 +1209,36 @@ __optional__|Identifier within the parent organisation for the product. Must be 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -1253,6 +1295,8 @@ __required__|A unique identifier used to identify the account resource.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -1264,15 +1308,15 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_standing_order,Standing Order>> > array
+__required__||< <<_standingorder,StandingOrder>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
-[[_standing_order]]
-**Standing Order**
+[[_standingorder]]
+**StandingOrder**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1281,33 +1325,33 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 __required__|The date on which the first payment for a Standing Order schedule will be made. +
 **Length** : `1 - 40`|string
 |**CreditorAccount** +
-__optional__|Provides the details to identify the beneficiary account.|<<_standing_order_creditoraccount,CreditorAccount>>
+__optional__|Provides the details to identify the beneficiary account.|<<_standingorder_creditoraccount,CreditorAccount>>
 |**FinalPaymentAmount** +
-__optional__|The amount of the final Standing Order|<<_standing_order_finalpaymentamount,FinalPaymentAmount>>
+__optional__|The amount of the final Standing Order|<<_standingorder_finalpaymentamount,FinalPaymentAmount>>
 |**FinalPaymentDateTime** +
 __optional__|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)
 |**FirstPaymentAmount** +
-__optional__|The amount of the first Standing Order|<<_standing_order_firstpaymentamount,FirstPaymentAmount>>
+__optional__|The amount of the first Standing Order|<<_standingorder_firstpaymentamount,FirstPaymentAmount>>
 |**FirstPaymentDateTime** +
 __optional__|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)
 |**Frequency** +
 __required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)) +
 **Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string
 |**NextPaymentAmount** +
-__required__|The amount of the next Standing Order|<<_standing_order_nextpaymentamount,NextPaymentAmount>>
+__required__|The amount of the next Standing Order|<<_standingorder_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDateTime** +
 __required__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
 |**Reference** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
 |**Servicer** +
-__optional__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_standing_order_servicer,Servicer>>
+__optional__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_standingorder_servicer,Servicer>>
 |**StandingOrderId** +
 __optional__|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |===
 
-[[_standing_order_creditoraccount]]
+[[_standingorder_creditoraccount]]
 **CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1326,7 +1370,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_standing_order_finalpaymentamount]]
+[[_standingorder_finalpaymentamount]]
 **FinalPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1339,7 +1383,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing_order_firstpaymentamount]]
+[[_standingorder_firstpaymentamount]]
 **FirstPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1352,7 +1396,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing_order_nextpaymentamount]]
+[[_standingorder_nextpaymentamount]]
 **NextPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1365,7 +1409,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing_order_servicer]]
+[[_standingorder_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1384,32 +1428,36 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -1470,6 +1518,8 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -1615,15 +1665,15 @@ __optional__|Identification of the issuer of the proprietary bank transaction co
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
@@ -1633,14 +1683,18 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -1695,6 +1749,8 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -1710,7 +1766,7 @@ __required__||< <<_balance,Balance>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_balance]]
@@ -1780,32 +1836,36 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -1860,6 +1920,8 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -1875,7 +1937,7 @@ __required__||< <<_beneficiary,Beneficiary>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_beneficiary]]
@@ -1937,32 +1999,36 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -2017,6 +2083,8 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -2028,15 +2096,15 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_direct_debit,Direct Debit>> > array
+__required__||< <<_directdebit,DirectDebit>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
-[[_direct_debit]]
-**Direct Debit**
+[[_directdebit]]
+**DirectDebit**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -2056,12 +2124,12 @@ __required__|Direct Debit reference. For AUDDIS service users provide Core Refer
 __required__|Name of Service User +
 **Length** : `1 - 70`|string
 |**PreviousPaymentAmount** +
-__optional__|The amount of the most recent direct debit collection.|<<_direct_debit_previouspaymentamount,PreviousPaymentAmount>>
+__optional__|The amount of the most recent direct debit collection.|<<_directdebit_previouspaymentamount,PreviousPaymentAmount>>
 |**PreviousPaymentDateTime** +
 __optional__|Date of most recent direct debit collection.|string (date-time)
 |===
 
-[[_direct_debit_previouspaymentamount]]
+[[_directdebit_previouspaymentamount]]
 **PreviousPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2080,32 +2148,36 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -2160,6 +2232,8 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -2175,7 +2249,7 @@ __required__||< <<_product,Product>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
 [[_product]]
@@ -2203,32 +2277,36 @@ __optional__|Identifier within the parent organisation for the product. Must be 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -2283,6 +2361,8 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -2294,15 +2374,15 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_standing_order,Standing Order>> > array
+__required__||< <<_standingorder,StandingOrder>> > array
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
-[[_standing_order]]
-**Standing Order**
+[[_standingorder]]
+**StandingOrder**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -2311,33 +2391,33 @@ __required__|Meta Data relevant to the payload|<<_meta_data,Meta Data>>
 __required__|The date on which the first payment for a Standing Order schedule will be made. +
 **Length** : `1 - 40`|string
 |**CreditorAccount** +
-__optional__|Provides the details to identify the beneficiary account.|<<_standing_order_creditoraccount,CreditorAccount>>
+__optional__|Provides the details to identify the beneficiary account.|<<_standingorder_creditoraccount,CreditorAccount>>
 |**FinalPaymentAmount** +
-__optional__|The amount of the final Standing Order|<<_standing_order_finalpaymentamount,FinalPaymentAmount>>
+__optional__|The amount of the final Standing Order|<<_standingorder_finalpaymentamount,FinalPaymentAmount>>
 |**FinalPaymentDateTime** +
 __optional__|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)
 |**FirstPaymentAmount** +
-__optional__|The amount of the first Standing Order|<<_standing_order_firstpaymentamount,FirstPaymentAmount>>
+__optional__|The amount of the first Standing Order|<<_standingorder_firstpaymentamount,FirstPaymentAmount>>
 |**FirstPaymentDateTime** +
 __optional__|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)
 |**Frequency** +
 __required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)) +
 **Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string
 |**NextPaymentAmount** +
-__required__|The amount of the next Standing Order|<<_standing_order_nextpaymentamount,NextPaymentAmount>>
+__required__|The amount of the next Standing Order|<<_standingorder_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDateTime** +
 __required__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
 |**Reference** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
 |**Servicer** +
-__optional__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_standing_order_servicer,Servicer>>
+__optional__|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account|<<_standingorder_servicer,Servicer>>
 |**StandingOrderId** +
 __optional__|A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner. +
 **Length** : `1 - 40`|string
 |===
 
-[[_standing_order_creditoraccount]]
+[[_standingorder_creditoraccount]]
 **CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2356,7 +2436,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 **Length** : `1 - 34`|string
 |===
 
-[[_standing_order_finalpaymentamount]]
+[[_standingorder_finalpaymentamount]]
 **FinalPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2369,7 +2449,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing_order_firstpaymentamount]]
+[[_standingorder_firstpaymentamount]]
 **FirstPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2382,7 +2462,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing_order_nextpaymentamount]]
+[[_standingorder_nextpaymentamount]]
 **NextPaymentAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2395,7 +2475,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_standing_order_servicer]]
+[[_standingorder_servicer]]
 **Servicer**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2414,32 +2494,36 @@ __required__|Name of the identification scheme, in a coded form as published in 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
-[[_meta_data]]
-**Meta Data**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
@@ -2498,6 +2582,8 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -2643,15 +2729,15 @@ __optional__|Identification of the issuer of the proprietary bank transaction co
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
@@ -2661,14 +2747,18 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**FirstAvailableTransactionDate** +
+__optional__|string (date-time)
+|**LastAvailableTransactionDate** +
+__optional__|string (date-time)
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Security
