@@ -150,7 +150,7 @@
             "name": "x-jws-signature",
             "type": "string",
             "required": true,
-            "description": "Header containig a detached JWS signature of the body of the payload."
+            "description": "Header containing a detached JWS signature of the body of the payload."
           }
         ],
         "responses": {
@@ -251,7 +251,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containig a detached JWS signature of the body of the payload."
+                "description": "Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",

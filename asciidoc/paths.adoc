@@ -31,7 +31,7 @@ __required__|The unique id of the ASPSP to which the request is issued. The uniq
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
 |**Header**|**x-jws-signature** +
-__required__|Header containig a detached JWS signature of the body of the payload.|string
+__required__|Header containing a detached JWS signature of the body of the payload.|string
 |===
 
 
@@ -76,7 +76,7 @@ __optional__|Specified end date and time for the transaction query period. If th
 |HTTP Code|Description|Schema
 |**201**|Account Request resource successfully created +
 **Headers** :  +
-`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_request_post_response,Account Request POST response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
