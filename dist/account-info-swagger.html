@@ -722,7 +722,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-jws-signature</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Header containig a detached JWS signature of the body of the payload.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Header containing a detached JWS signature of the body of the payload.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -829,7 +829,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Account Request resource successfully created<br>
 <strong>Headers</strong> : <br>
-<code>x-jws-signature</code> (string) : Header containig a detached JWS signature of the body of the payload.<br>
+<code>x-jws-signature</code> (string) : Header containing a detached JWS signature of the body of the payload.<br>
 <code>x-fapi-interaction-id</code> (string) : An RFC4122 UID used as a correlation id.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_account_request_post_response">Account Request POST response</a></p></td>
 </tr>
@@ -7688,7 +7688,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p><em>Type</em> : oauth2<br>
 <em>Flow</em> : application<br>
-<em>Token URL</em> : /token</p>
+<em>Token URL</em> : <a href="https://authserver.example/token" class="bare">https://authserver.example/token</a></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -7717,8 +7717,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p><em>Type</em> : oauth2<br>
 <em>Flow</em> : accessCode<br>
-<em>Token URL</em> : /authorization<br>
-<em>Token URL</em> : /token</p>
+<em>Token URL</em> : <a href="https://authserver.example/authorization" class="bare">https://authserver.example/authorization</a><br>
+<em>Token URL</em> : <a href="https://authserver.example/token" class="bare">https://authserver.example/token</a></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>

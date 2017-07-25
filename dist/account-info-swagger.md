@@ -58,7 +58,7 @@ Create an account request
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
-|**Header**|**x-jws-signature**  <br>*required*|Header containig a detached JWS signature of the body of the payload.|string|
+|**Header**|**x-jws-signature**  <br>*required*|Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -88,7 +88,7 @@ Create an Account Request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Account Request resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containig a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request POST response](#account-request-post-response)|
+|**201**|Account Request resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request POST response](#account-request-post-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1898,7 +1898,7 @@ TPP client credential authorisation flow with the ASPSP
 
 *Type* : oauth2  
 *Flow* : application  
-*Token URL* : /token
+*Token URL* : https://authserver.example/token
 
 
 |Name|Description|
@@ -1912,8 +1912,8 @@ OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when
 
 *Type* : oauth2  
 *Flow* : accessCode  
-*Token URL* : /authorization  
-*Token URL* : /token
+*Token URL* : https://authserver.example/authorization  
+*Token URL* : https://authserver.example/token
 
 
 |Name|Description|

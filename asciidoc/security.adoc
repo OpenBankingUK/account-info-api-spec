@@ -9,7 +9,7 @@ TPP client credential authorisation flow with the ASPSP
 [%hardbreaks]
 __Type__ : oauth2
 __Flow__ : application
-__Token URL__ : /token
+__Token URL__ : https://authserver.example/token
 
 
 [options="header", cols=".^3,.^17"]
@@ -26,8 +26,8 @@ OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when
 [%hardbreaks]
 __Type__ : oauth2
 __Flow__ : accessCode
-__Token URL__ : /authorization
-__Token URL__ : /token
+__Token URL__ : https://authserver.example/authorization
+__Token URL__ : https://authserver.example/token
 
 
 [options="header", cols=".^3,.^17"]
