@@ -125,7 +125,7 @@ paths:
           name: x-jws-signature
           type: string
           required: true
-          description: Header containig a detached JWS signature of the body of the payload.
+          description: Header containing a detached JWS signature of the body of the payload.
       responses:
         '201':
           description: Account Request resource successfully created
@@ -211,7 +211,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containig a detached JWS signature of the body of the payload.
+              description: Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2111,15 +2111,15 @@ securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
     flow: accessCode
-    tokenUrl: /token
-    authorizationUrl: /authorization
+    tokenUrl: 'https://authserver.example/token'
+    authorizationUrl: 'https://authserver.example/authorization'
     scopes:
       accounts: Ability to read Accounts information
     description: 'OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU'
   TPPOAuth2Security:
     type: oauth2
     flow: application
-    tokenUrl: /token
+    tokenUrl: 'https://authserver.example/token'
     scopes:
       tpp_client_credential: TPP Client Credential Scope
     description: TPP client credential authorisation flow with the ASPSP
