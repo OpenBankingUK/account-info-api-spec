@@ -6,11 +6,11 @@
       "type": "integer",
       "format": "int32"
     },
-    "FirstAvailableTransactionDate": {
+    "FirstAvailableDateTime": {
       "type": "string",
       "format": "date-time"
     },
-    "LastAvailableTransactionDate": {
+    "LastAvailableDateTime": {
       "type": "string",
       "format": "date-time"
     }
