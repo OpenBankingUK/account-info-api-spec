@@ -26,7 +26,7 @@ __Terms of service__ : https://www.openbanking.org.uk/terms
 
 === URI scheme
 [%hardbreaks]
-__BasePath__ : /open-banking
+__BasePath__ : /open-banking/v1.0
 __Schemes__ : HTTPS
 
 

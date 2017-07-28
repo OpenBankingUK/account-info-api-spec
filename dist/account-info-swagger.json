@@ -14,7 +14,7 @@
     },
     "version": "v1.0.1"
   },
-  "basePath": "/open-banking",
+  "basePath": "/open-banking/v1.0",
   "schemes": [
     "https"
   ],

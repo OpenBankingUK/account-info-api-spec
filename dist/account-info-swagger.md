@@ -22,7 +22,7 @@ Swagger specification for Account Information APIs
 
 
 ### URI scheme
-*BasePath* : /open-banking  
+*BasePath* : /open-banking/v1.0  
 *Schemes* : HTTPS
 
 
