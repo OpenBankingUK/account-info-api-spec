@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
    $ref: ./info/index.yaml
 # host: api.openbanking.xyz
-basePath: /open-banking
+basePath: /open-banking/v1.0
 schemes:
   - https
 produces:
