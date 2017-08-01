@@ -2,10 +2,19 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "DirectDebit",
-      "type": "array",
-      "items": {
-        "$ref": "../direct_debits/direct_debit.json"
+      "title": "Data",
+      "type": "object",
+      "description": "Data",
+      "properties": {
+        "DirectDebit": {
+          "title": "DirectDebit",
+          "description": "DirectDebit",
+          "type": "array",
+          "items": {
+            "$ref": "../direct_debits/direct_debit.json"
+          },
+          "additionalProperties": false
+        }
       }
     },
     "Links": {

@@ -2,10 +2,19 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Beneficiary",
-      "type": "array",
-      "items": {
-        "$ref": "../beneficiaries/beneficiary.json"
+      "title": "Data",
+      "type": "object",
+      "description": "Data",
+      "properties": {
+        "Beneficiary": {
+          "title": "Beneficiary",
+          "description": "Beneficiary",
+          "type": "array",
+          "items": {
+            "$ref": "../beneficiaries/beneficiary.json"
+          },
+          "additionalProperties": false
+        }
       }
     },
     "Links": {

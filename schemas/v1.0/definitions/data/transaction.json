@@ -2,11 +2,20 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Transaction",
-      "description": "Data Section of the Payload",
-      "type": "array",
-      "items": {
-        "$ref": "../accounts/transaction.json"
+      "title": "Data",
+      "description": "Data",
+      "type": "object",
+      "properties": {
+        "Transaction": {
+          "title": "Transaction",
+          "description": "Transaction",
+          "type": "array",
+          "items": {
+            "$ref": "../accounts/transaction.json"
+          },
+          "minItems": 1,
+          "additionalProperties": false
+        }
       }
     },
     "Links": {
@@ -14,7 +23,7 @@
       "$ref": "../common/links_self.json"
     },
     "Meta": {
-      "title": "Meta",
+      "title": "MetaData",
       "$ref": "../common/meta.json"
     }
   },

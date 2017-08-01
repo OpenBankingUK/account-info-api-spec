@@ -2,12 +2,21 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Balance",
-      "type": "array",
-      "items": {
-        "$ref": "../accounts/balance.json"
-      },
-      "minItems": 1
+      "title": "Data",
+      "description": "Data",
+      "type": "object",
+      "properties": {
+        "Balance": {
+          "title": "Balance",
+          "description": "Balance",
+          "type": "array",
+          "items": {
+            "$ref": "../accounts/balance.json"
+          },
+          "minItems": 1,
+          "additionalProperties": false
+        }
+      }
     },
     "Links": {
       "title": "Links",

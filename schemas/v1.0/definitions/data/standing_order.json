@@ -2,10 +2,19 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "StandingOrder",
-      "type": "array",
-      "items": {
-        "$ref": "../standing_orders/standing_order.json"
+      "title": "Data",
+      "description": "Data",
+      "type": "object",
+      "properties": {
+        "StandingOrder": {
+          "title": "StandingOrder",
+          "description": "StandingOrder",
+          "type": "array",
+          "items": {
+            "$ref": "../standing_orders/standing_order.json"
+          },
+          "additionalProperties": false
+        }
       }
     },
     "Links": {

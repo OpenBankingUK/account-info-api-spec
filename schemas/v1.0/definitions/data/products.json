@@ -2,10 +2,19 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Product",
-      "type": "array",
-      "items": {
-        "$ref": "../products/product.json"
+      "title": "Data",
+      "type": "object",
+      "description": "Data",
+      "properties": {
+        "Product": {
+          "title": "Product",
+          "description": "Product",
+          "type": "array",
+          "items": {
+            "$ref": "../products/product.json"
+          },
+          "additionalProperties": false
+        }
       }
     },
     "Links": {
