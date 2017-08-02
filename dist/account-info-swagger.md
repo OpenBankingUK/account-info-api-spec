@@ -103,6 +103,8 @@ Create an Account Request
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*|Account Request Response|[Data](#data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 |**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
@@ -114,9 +116,29 @@ Create an Account Request
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
+
+<a name="links"></a>
+**Links**
+
+|Name|Schema|
+|---|---|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
+
+<a name="metadata"></a>
+**MetaData**
+
+|Name|Schema|
+|---|---|
+|**FirstAvailableDateTime**  <br>*optional*|string (date-time)|
+|**LastAvailableDateTime**  <br>*optional*|string (date-time)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Consumes
@@ -180,6 +202,8 @@ Get an account request
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*|Account Request Response|[Data](#data)|
+|**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 |**Risk**  <br>*required*|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object|
 
 <a name="data"></a>
@@ -191,9 +215,29 @@ Get an account request
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
+
+<a name="links"></a>
+**Links**
+
+|Name|Schema|
+|---|---|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
+
+<a name="metadata"></a>
+**MetaData**
+
+|Name|Schema|
+|---|---|
+|**FirstAvailableDateTime**  <br>*optional*|string (date-time)|
+|**LastAvailableDateTime**  <br>*optional*|string (date-time)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
@@ -298,9 +342,16 @@ Get a list of accounts
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Account](#account) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Account**  <br>*optional*|Account|< [Account](#account) > array|
 
 <a name="account"></a>
 **Account**
@@ -407,9 +458,16 @@ Get an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Account](#account) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Account**  <br>*optional*|Account|< [Account](#account) > array|
 
 <a name="account"></a>
 **Account**
@@ -516,9 +574,16 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Balance](#balance) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Balance**  <br>*optional*|Balance|< [Balance](#balance) > array|
 
 <a name="balance"></a>
 **Balance**
@@ -537,7 +602,7 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="balance-creditline"></a>
@@ -554,7 +619,7 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="links"></a>
@@ -633,9 +698,16 @@ Get Beneficiaries related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Beneficiary**  <br>*optional*|Beneficiary|< [Beneficiary](#beneficiary) > array|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -742,9 +814,16 @@ Get Direct Debits related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [DirectDebit](#directdebit) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**DirectDebit**  <br>*optional*|DirectDebit|< [DirectDebit](#directdebit) > array|
 
 <a name="directdebit"></a>
 **DirectDebit**
@@ -764,7 +843,7 @@ Get Direct Debits related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="links"></a>
@@ -843,9 +922,16 @@ Get Product related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Product](#product) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Product**  <br>*optional*|Product|< [Product](#product) > array|
 
 <a name="product"></a>
 **Product**
@@ -934,9 +1020,16 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [StandingOrder](#standingorder) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**StandingOrder**  <br>*optional*|StandingOrder|< [StandingOrder](#standingorder) > array|
 
 <a name="standingorder"></a>
 **StandingOrder**
@@ -971,7 +1064,7 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="standingorder-firstpaymentamount"></a>
@@ -979,7 +1072,7 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="standingorder-nextpaymentamount"></a>
@@ -987,7 +1080,7 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="standingorder-servicer"></a>
@@ -1076,56 +1169,63 @@ Get transactions related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*|Data Section of the Payload|< [Data](#accounts-accountid-transactions-get-data) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta](#meta)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
-<a name="accounts-accountid-transactions-get-data"></a>
+<a name="data"></a>
 **Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Transaction**  <br>*optional*|Transaction|< [Transaction](#data-transaction) > array|
+
+<a name="data-transaction"></a>
+**Transaction**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
-|**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#accounts-accountid-transactions-get-data-amount)|
-|**Balance**  <br>*optional*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#accounts-accountid-transactions-get-data-balance)|
-|**BankTransactionCode**  <br>*optional*|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|[BankTransactionCode](#accounts-accountid-transactions-get-data-banktransactioncode)|
+|**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#data-transaction-amount)|
+|**Balance**  <br>*optional*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#data-transaction-balance)|
+|**BankTransactionCode**  <br>*optional*|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|[BankTransactionCode](#data-transaction-banktransactioncode)|
 |**BookingDateTime**  <br>*required*|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|string (date-time)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the transaction is a credit or a debit entry.|enum (Credit, Debit)|
-|**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#accounts-accountid-transactions-get-data-merchantdetails)|
-|**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#accounts-accountid-transactions-get-data-proprietarybanktransactioncode)|
+|**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#data-transaction-merchantdetails)|
+|**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#data-transaction-proprietarybanktransactioncode)|
 |**Status**  <br>*required*|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)|
 |**TransactionId**  <br>*optional*|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.  <br>**Length** : `1 - 40`|string|
 |**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which is unstructured text.  <br>**Length** : `1 - 500`|string|
 |**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDateTime**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|string (date-time)|
 
-<a name="accounts-accountid-transactions-get-data-amount"></a>
+<a name="data-transaction-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="accounts-accountid-transactions-get-data-balance"></a>
+<a name="data-transaction-balance"></a>
 **Balance**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#accounts-accountid-transactions-get-data-balance-amount)|
+|**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#data-transaction-balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
-<a name="accounts-accountid-transactions-get-data-balance-amount"></a>
+<a name="data-transaction-balance-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="accounts-accountid-transactions-get-data-banktransactioncode"></a>
+<a name="data-transaction-banktransactioncode"></a>
 **BankTransactionCode**
 
 |Name|Description|Schema|
@@ -1133,7 +1233,7 @@ Get transactions related to an account
 |**Code**  <br>*required*|Specifies the family within a domain.|string|
 |**SubCode**  <br>*required*|Specifies the sub-product family within a specific family.|string|
 
-<a name="accounts-accountid-transactions-get-data-merchantdetails"></a>
+<a name="data-transaction-merchantdetails"></a>
 **MerchantDetails**
 
 |Name|Description|Schema|
@@ -1141,7 +1241,7 @@ Get transactions related to an account
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
 |**MerchantName**  <br>*optional*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
-<a name="accounts-accountid-transactions-get-data-proprietarybanktransactioncode"></a>
+<a name="data-transaction-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
 
 |Name|Description|Schema|
@@ -1160,8 +1260,8 @@ Get transactions related to an account
 |**Prev**  <br>*optional*|string (uri)|
 |**Self**  <br>*required*|string (uri)|
 
-<a name="meta"></a>
-**Meta**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|
@@ -1224,9 +1324,16 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Balance](#balance) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Balance**  <br>*optional*|Balance|< [Balance](#balance) > array|
 
 <a name="balance"></a>
 **Balance**
@@ -1245,7 +1352,7 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="balance-creditline"></a>
@@ -1262,7 +1369,7 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="links"></a>
@@ -1340,9 +1447,16 @@ Get Beneficiaries
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Beneficiary](#beneficiary) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Beneficiary**  <br>*optional*|Beneficiary|< [Beneficiary](#beneficiary) > array|
 
 <a name="beneficiary"></a>
 **Beneficiary**
@@ -1448,9 +1562,16 @@ Get Direct Debits
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [DirectDebit](#directdebit) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**DirectDebit**  <br>*optional*|DirectDebit|< [DirectDebit](#directdebit) > array|
 
 <a name="directdebit"></a>
 **DirectDebit**
@@ -1470,7 +1591,7 @@ Get Direct Debits
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="links"></a>
@@ -1548,9 +1669,16 @@ Get Products
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [Product](#product) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Product**  <br>*optional*|Product|< [Product](#product) > array|
 
 <a name="product"></a>
 **Product**
@@ -1638,9 +1766,16 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*||< [StandingOrder](#standingorder) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
 |**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
+
+<a name="data"></a>
+**Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**StandingOrder**  <br>*optional*|StandingOrder|< [StandingOrder](#standingorder) > array|
 
 <a name="standingorder"></a>
 **StandingOrder**
@@ -1675,7 +1810,7 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="standingorder-firstpaymentamount"></a>
@@ -1683,7 +1818,7 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="standingorder-nextpaymentamount"></a>
@@ -1691,7 +1826,7 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="standingorder-servicer"></a>
@@ -1779,56 +1914,63 @@ Get Transactions
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*|Data Section of the Payload|< [Data](#transactions-get-data) > array|
+|**Data**  <br>*required*|Data|[Data](#data)|
 |**Links**  <br>*required*|Links relevant to the payload|[Links](#links)|
-|**Meta**  <br>*required*|Meta Data relevant to the payload|[Meta](#meta)|
+|**Meta**  <br>*required*|Meta Data relevant to the payload|[MetaData](#metadata)|
 
-<a name="transactions-get-data"></a>
+<a name="data"></a>
 **Data**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Transaction**  <br>*optional*|Transaction|< [Transaction](#data-transaction) > array|
+
+<a name="data-transaction"></a>
+**Transaction**
 
 |Name|Description|Schema|
 |---|---|---|
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
-|**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#transactions-get-data-amount)|
-|**Balance**  <br>*optional*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#transactions-get-data-balance)|
-|**BankTransactionCode**  <br>*optional*|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|[BankTransactionCode](#transactions-get-data-banktransactioncode)|
+|**Amount**  <br>*required*|Amount of money in the cash entry.|[Amount](#data-transaction-amount)|
+|**Balance**  <br>*optional*|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|[Balance](#data-transaction-balance)|
+|**BankTransactionCode**  <br>*optional*|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|[BankTransactionCode](#data-transaction-banktransactioncode)|
 |**BookingDateTime**  <br>*required*|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|string (date-time)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the transaction is a credit or a debit entry.|enum (Credit, Debit)|
-|**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#transactions-get-data-merchantdetails)|
-|**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#transactions-get-data-proprietarybanktransactioncode)|
+|**MerchantDetails**  <br>*optional*|Details of the merchant involved in the transaction.|[MerchantDetails](#data-transaction-merchantdetails)|
+|**ProprietaryBankTransactionCode**  <br>*optional*|Set of elements to fully identify a proprietary bank transaction code.|[ProprietaryBankTransactionCode](#data-transaction-proprietarybanktransactioncode)|
 |**Status**  <br>*required*|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)|
 |**TransactionId**  <br>*optional*|Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.  <br>**Length** : `1 - 40`|string|
 |**TransactionInformation**  <br>*optional*|Further details of the transaction. This is the transaction narrative, which is unstructured text.  <br>**Length** : `1 - 500`|string|
 |**TransactionReference**  <br>*optional*|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.  <br>**Length** : `1 - 35`|string|
 |**ValueDateTime**  <br>*optional*|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.|string (date-time)|
 
-<a name="transactions-get-data-amount"></a>
+<a name="data-transaction-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="transactions-get-data-balance"></a>
+<a name="data-transaction-balance"></a>
 **Balance**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#transactions-get-data-balance-amount)|
+|**Amount**  <br>*required*|Amount of money of the cash balance after a transaction entry is applied to the account..|[Amount](#data-transaction-balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
-<a name="transactions-get-data-balance-amount"></a>
+<a name="data-transaction-balance-amount"></a>
 **Amount**
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
-<a name="transactions-get-data-banktransactioncode"></a>
+<a name="data-transaction-banktransactioncode"></a>
 **BankTransactionCode**
 
 |Name|Description|Schema|
@@ -1836,7 +1978,7 @@ Get Transactions
 |**Code**  <br>*required*|Specifies the family within a domain.|string|
 |**SubCode**  <br>*required*|Specifies the sub-product family within a specific family.|string|
 
-<a name="transactions-get-data-merchantdetails"></a>
+<a name="data-transaction-merchantdetails"></a>
 **MerchantDetails**
 
 |Name|Description|Schema|
@@ -1844,7 +1986,7 @@ Get Transactions
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
 |**MerchantName**  <br>*optional*|Name by which the merchant is known.  <br>**Length** : `1 - 350`|string|
 
-<a name="transactions-get-data-proprietarybanktransactioncode"></a>
+<a name="data-transaction-proprietarybanktransactioncode"></a>
 **ProprietaryBankTransactionCode**
 
 |Name|Description|Schema|
@@ -1863,8 +2005,8 @@ Get Transactions
 |**Prev**  <br>*optional*|string (uri)|
 |**Self**  <br>*required*|string (uri)|
 
-<a name="meta"></a>
-**Meta**
+<a name="metadata"></a>
+**MetaData**
 
 |Name|Schema|
 |---|---|

@@ -2,10 +2,19 @@
   "type": "object",
   "properties": {
     "Data": {
-      "title": "Account",
-      "type": "array",
-      "items": {
-        "$ref": "../accounts/account.json"
+      "title": "Data",
+      "type": "object",
+      "description": "Data",
+      "properties": {
+        "Account": {
+          "title": "Account",
+          "description": "Account",
+          "type": "array",
+          "items": {
+            "$ref": "../accounts/account.json"
+          },
+          "additionalProperties": false
+        }
       }
     },
     "Links": {

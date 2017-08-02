@@ -95,6 +95,10 @@ __optional__|Specified end date and time for the transaction query period. If th
 |Name|Description|Schema
 |**Data** +
 __required__|Account Request Response|<<_data,Data>>
+|**Links** +
+__required__|Links relevant to the payload|<<_links,Links>>
+|**Meta** +
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |**Risk** +
 __required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
@@ -115,11 +119,43 @@ __optional__|Specified date and time the permissions will expire. If this is not
 |**Permissions** +
 __required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**Status** +
-__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)
+__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)
 |**TransactionFromDateTime** +
 __optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
 |**TransactionToDateTime** +
 __optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+|===
+
+[[_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**First** +
+__optional__|string (uri)
+|**Last** +
+__optional__|string (uri)
+|**Next** +
+__optional__|string (uri)
+|**Prev** +
+__optional__|string (uri)
+|**Self** +
+__required__|string (uri)
+|===
+
+[[_metadata]]
+**MetaData**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**FirstAvailableDateTime** +
+__optional__|string (date-time)
+|**LastAvailableDateTime** +
+__optional__|string (date-time)
+|**TotalPages** +
+__optional__|integer (int32)
 |===
 
 
@@ -201,6 +237,10 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |Name|Description|Schema
 |**Data** +
 __required__|Account Request Response|<<_data,Data>>
+|**Links** +
+__required__|Links relevant to the payload|<<_links,Links>>
+|**Meta** +
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |**Risk** +
 __required__|The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.|object
 |===
@@ -221,11 +261,43 @@ __optional__|Specified date and time the permissions will expire. If this is not
 |**Permissions** +
 __required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**Status** +
-__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)
+__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)
 |**TransactionFromDateTime** +
 __optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
 |**TransactionToDateTime** +
 __optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+|===
+
+[[_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**First** +
+__optional__|string (uri)
+|**Last** +
+__optional__|string (uri)
+|**Next** +
+__optional__|string (uri)
+|**Prev** +
+__optional__|string (uri)
+|**Self** +
+__required__|string (uri)
+|===
+
+[[_metadata]]
+**MetaData**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**FirstAvailableDateTime** +
+__optional__|string (date-time)
+|**LastAvailableDateTime** +
+__optional__|string (date-time)
+|**TotalPages** +
+__optional__|integer (int32)
 |===
 
 
@@ -358,11 +430,21 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_account,Account>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Account** +
+__optional__|Account|< <<_account,Account>> > array
 |===
 
 [[_account]]
@@ -523,11 +605,21 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_account,Account>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Account** +
+__optional__|Account|< <<_account,Account>> > array
 |===
 
 [[_account]]
@@ -688,11 +780,21 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_balance,Balance>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Balance** +
+__optional__|Balance|< <<_balance,Balance>> > array
 |===
 
 [[_balance]]
@@ -723,7 +825,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -750,7 +852,7 @@ __optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -861,11 +963,21 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_beneficiary,Beneficiary>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Beneficiary** +
+__optional__|Beneficiary|< <<_beneficiary,Beneficiary>> > array
 |===
 
 [[_beneficiary]]
@@ -1026,11 +1138,21 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_directdebit,DirectDebit>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**DirectDebit** +
+__optional__|DirectDebit|< <<_directdebit,DirectDebit>> > array
 |===
 
 [[_directdebit]]
@@ -1066,7 +1188,7 @@ __optional__|Date of most recent direct debit collection.|string (date-time)
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1177,11 +1299,21 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_product,Product>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Product** +
+__optional__|Product|< <<_product,Product>> > array
 |===
 
 [[_product]]
@@ -1308,11 +1440,21 @@ __required__|A unique identifier used to identify the account resource.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_standingorder,StandingOrder>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**StandingOrder** +
+__optional__|StandingOrder|< <<_standingorder,StandingOrder>> > array
 |===
 
 [[_standingorder]]
@@ -1377,7 +1519,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1390,7 +1532,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1403,7 +1545,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1531,15 +1673,25 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |===
 |Name|Description|Schema
 |**Data** +
-__required__|Data Section of the Payload|< <<_accounts_accountid_transactions_get_data,Data>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta,Meta>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
-[[_accounts_accountid_transactions_get_data]]
+[[_data]]
 **Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Transaction** +
+__optional__|Transaction|< <<_data_transaction,Transaction>> > array
+|===
+
+[[_data_transaction]]
+**Transaction**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1551,19 +1703,19 @@ __required__|A unique and immutable identifier used to identify the account reso
 __optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
 **Length** : `1 - 70`|string
 |**Amount** +
-__required__|Amount of money in the cash entry.|<<_accounts_accountid_transactions_get_data_amount,Amount>>
+__required__|Amount of money in the cash entry.|<<_data_transaction_amount,Amount>>
 |**Balance** +
-__optional__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_accounts_accountid_transactions_get_data_balance,Balance>>
+__optional__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_data_transaction_balance,Balance>>
 |**BankTransactionCode** +
-__optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_accounts_accountid_transactions_get_data_banktransactioncode,BankTransactionCode>>
+__optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_data_transaction_banktransactioncode,BankTransactionCode>>
 |**BookingDateTime** +
 __required__|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|string (date-time)
 |**CreditDebitIndicator** +
 __required__|Indicates whether the transaction is a credit or a debit entry.|enum (Credit, Debit)
 |**MerchantDetails** +
-__optional__|Details of the merchant involved in the transaction.|<<_accounts_accountid_transactions_get_data_merchantdetails,MerchantDetails>>
+__optional__|Details of the merchant involved in the transaction.|<<_data_transaction_merchantdetails,MerchantDetails>>
 |**ProprietaryBankTransactionCode** +
-__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_accounts_accountid_transactions_get_data_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
+__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_data_transaction_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
 |**Status** +
 __required__|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)
 |**TransactionId** +
@@ -1579,47 +1731,47 @@ __optional__|Unique reference for the transaction. This reference is optionally 
 __optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|string (date-time)
 |===
 
-[[_accounts_accountid_transactions_get_data_amount]]
+[[_data_transaction_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_transactions_get_data_balance]]
+[[_data_transaction_balance]]
 **Balance**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_accounts_accountid_transactions_get_data_balance_amount,Amount>>
+__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_data_transaction_balance_amount,Amount>>
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**Type** +
 __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
 
-[[_accounts_accountid_transactions_get_data_balance_amount]]
+[[_data_transaction_balance_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_accounts_accountid_transactions_get_data_banktransactioncode]]
+[[_data_transaction_banktransactioncode]]
 **BankTransactionCode**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1631,7 +1783,7 @@ __required__|Specifies the family within a domain.|string
 __required__|Specifies the sub-product family within a specific family.|string
 |===
 
-[[_accounts_accountid_transactions_get_data_merchantdetails]]
+[[_data_transaction_merchantdetails]]
 **MerchantDetails**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1645,7 +1797,7 @@ __optional__|Name by which the merchant is known. +
 **Length** : `1 - 350`|string
 |===
 
-[[_accounts_accountid_transactions_get_data_proprietarybanktransactioncode]]
+[[_data_transaction_proprietarybanktransactioncode]]
 **ProprietaryBankTransactionCode**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1677,8 +1829,8 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_meta]]
-**Meta**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1762,11 +1914,21 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_balance,Balance>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Balance** +
+__optional__|Balance|< <<_balance,Balance>> > array
 |===
 
 [[_balance]]
@@ -1797,7 +1959,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1824,7 +1986,7 @@ __optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1933,11 +2095,21 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_beneficiary,Beneficiary>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Beneficiary** +
+__optional__|Beneficiary|< <<_beneficiary,Beneficiary>> > array
 |===
 
 [[_beneficiary]]
@@ -2096,11 +2268,21 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_directdebit,DirectDebit>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**DirectDebit** +
+__optional__|DirectDebit|< <<_directdebit,DirectDebit>> > array
 |===
 
 [[_directdebit]]
@@ -2136,7 +2318,7 @@ __optional__|Date of most recent direct debit collection.|string (date-time)
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2245,11 +2427,21 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_product,Product>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Product** +
+__optional__|Product|< <<_product,Product>> > array
 |===
 
 [[_product]]
@@ -2374,11 +2566,21 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |===
 |Name|Description|Schema
 |**Data** +
-__required__||< <<_standingorder,StandingOrder>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
 __required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
+|===
+
+[[_data]]
+**Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**StandingOrder** +
+__optional__|StandingOrder|< <<_standingorder,StandingOrder>> > array
 |===
 
 [[_standingorder]]
@@ -2443,7 +2645,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2456,7 +2658,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2469,7 +2671,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2595,15 +2797,25 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |===
 |Name|Description|Schema
 |**Data** +
-__required__|Data Section of the Payload|< <<_transactions_get_data,Data>> > array
+__required__|Data|<<_data,Data>>
 |**Links** +
 __required__|Links relevant to the payload|<<_links,Links>>
 |**Meta** +
-__required__|Meta Data relevant to the payload|<<_meta,Meta>>
+__required__|Meta Data relevant to the payload|<<_metadata,MetaData>>
 |===
 
-[[_transactions_get_data]]
+[[_data]]
 **Data**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Transaction** +
+__optional__|Transaction|< <<_data_transaction,Transaction>> > array
+|===
+
+[[_data_transaction]]
+**Transaction**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -2615,19 +2827,19 @@ __required__|A unique and immutable identifier used to identify the account reso
 __optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
 **Length** : `1 - 70`|string
 |**Amount** +
-__required__|Amount of money in the cash entry.|<<_transactions_get_data_amount,Amount>>
+__required__|Amount of money in the cash entry.|<<_data_transaction_amount,Amount>>
 |**Balance** +
-__optional__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_transactions_get_data_balance,Balance>>
+__optional__|Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.|<<_data_transaction_balance,Balance>>
 |**BankTransactionCode** +
-__optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_transactions_get_data_banktransactioncode,BankTransactionCode>>
+__optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_data_transaction_banktransactioncode,BankTransactionCode>>
 |**BookingDateTime** +
 __required__|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|string (date-time)
 |**CreditDebitIndicator** +
 __required__|Indicates whether the transaction is a credit or a debit entry.|enum (Credit, Debit)
 |**MerchantDetails** +
-__optional__|Details of the merchant involved in the transaction.|<<_transactions_get_data_merchantdetails,MerchantDetails>>
+__optional__|Details of the merchant involved in the transaction.|<<_data_transaction_merchantdetails,MerchantDetails>>
 |**ProprietaryBankTransactionCode** +
-__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_transactions_get_data_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
+__optional__|Set of elements to fully identify a proprietary bank transaction code.|<<_data_transaction_proprietarybanktransactioncode,ProprietaryBankTransactionCode>>
 |**Status** +
 __required__|Status of a transaction entry on the books of the account servicer.|enum (Booked, Pending)
 |**TransactionId** +
@@ -2643,47 +2855,47 @@ __optional__|Unique reference for the transaction. This reference is optionally 
 __optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|string (date-time)
 |===
 
-[[_transactions_get_data_amount]]
+[[_data_transaction_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_transactions_get_data_balance]]
+[[_data_transaction_balance]]
 **Balance**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_transactions_get_data_balance_amount,Amount>>
+__required__|Amount of money of the cash balance after a transaction entry is applied to the account..|<<_data_transaction_balance_amount,Amount>>
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**Type** +
 __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
 
-[[_transactions_get_data_balance_amount]]
+[[_data_transaction_balance_amount]]
 **Amount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
 |===
 
-[[_transactions_get_data_banktransactioncode]]
+[[_data_transaction_banktransactioncode]]
 **BankTransactionCode**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2695,7 +2907,7 @@ __required__|Specifies the family within a domain.|string
 __required__|Specifies the sub-product family within a specific family.|string
 |===
 
-[[_transactions_get_data_merchantdetails]]
+[[_data_transaction_merchantdetails]]
 **MerchantDetails**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2709,7 +2921,7 @@ __optional__|Name by which the merchant is known. +
 **Length** : `1 - 350`|string
 |===
 
-[[_transactions_get_data_proprietarybanktransactioncode]]
+[[_data_transaction_proprietarybanktransactioncode]]
 **ProprietaryBankTransactionCode**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -2741,8 +2953,8 @@ __optional__|string (uri)
 __required__|string (uri)
 |===
 
-[[_meta]]
-**Meta**
+[[_metadata]]
+**MetaData**
 
 [options="header", cols=".^3,.^4"]
 |===

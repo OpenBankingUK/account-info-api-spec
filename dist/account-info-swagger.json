@@ -176,6 +176,7 @@
                       "type": "string",
                       "enum": [
                         "Authorised",
+                        "AwaitingAuthentication",
                         "AwaitingAuthorisation",
                         "Rejected",
                         "Revoked"
@@ -240,12 +241,65 @@
                   "description": "The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.",
                   "properties": {},
                   "additionalProperties": false
+                },
+                "Links": {
+                  "title": "Links",
+                  "type": "object",
+                  "description": "Links relevant to the payload",
+                  "properties": {
+                    "Self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "First": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "Prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "Next": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "Last": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Self"
+                  ]
+                },
+                "Meta": {
+                  "title": "MetaData",
+                  "type": "object",
+                  "description": "Meta Data relevant to the payload",
+                  "properties": {
+                    "TotalPages": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "FirstAvailableDateTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "LastAvailableDateTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false,
               "required": [
                 "Data",
-                "Risk"
+                "Risk",
+                "Links",
+                "Meta"
               ]
             },
             "headers": {
@@ -365,6 +419,7 @@
                       "type": "string",
                       "enum": [
                         "Authorised",
+                        "AwaitingAuthentication",
                         "AwaitingAuthorisation",
                         "Rejected",
                         "Revoked"
@@ -429,12 +484,65 @@
                   "description": "The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.",
                   "properties": {},
                   "additionalProperties": false
+                },
+                "Links": {
+                  "title": "Links",
+                  "type": "object",
+                  "description": "Links relevant to the payload",
+                  "properties": {
+                    "Self": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "First": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "Prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "Next": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "Last": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "Self"
+                  ]
+                },
+                "Meta": {
+                  "title": "MetaData",
+                  "type": "object",
+                  "description": "Meta Data relevant to the payload",
+                  "properties": {
+                    "TotalPages": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "FirstAvailableDateTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "LastAvailableDateTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false,
               "required": [
                 "Data",
-                "Risk"
+                "Risk",
+                "Links",
+                "Meta"
               ]
             },
             "headers": {
@@ -602,98 +710,107 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Account",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Account",
-                    "description": "Account",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Currency": {
-                        "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
-                        "type": "string",
-                        "pattern": "^[A-Z]{3}$"
-                      },
-                      "Nickname": {
-                        "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 70
-                      },
-                      "Account": {
-                        "description": "Provides the details to identify an account.",
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "Account": {
+                      "title": "Account",
+                      "description": "Account",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "Account",
+                        "description": "Account",
                         "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BBAN",
-                              "IBAN"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
                             "minLength": 1,
-                            "maxLength": 34
+                            "maxLength": 40
                           },
-                          "Name": {
-                            "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                          "Currency": {
+                            "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
+                            "type": "string",
+                            "pattern": "^[A-Z]{3}$"
+                          },
+                          "Nickname": {
+                            "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 70
                           },
-                          "SecondaryIdentification": {
-                            "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          }
-                        },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BICFI",
-                              "UKSortCode"
-                            ]
+                          "Account": {
+                            "description": "Provides the details to identify an account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BBAN",
+                                  "IBAN"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              },
+                              "Name": {
+                                "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 70
+                              },
+                              "SecondaryIdentification": {
+                                "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           },
-                          "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 35
+                          "Servicer": {
+                            "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BICFI",
+                                  "UKSortCode"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Unique and unambiguous identification of the servicing institution.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           }
                         },
+                        "additionalProperties": false,
                         "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "Currency"
-                    ]
+                          "AccountId",
+                          "Currency"
+                        ]
+                      },
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -857,98 +974,107 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Account",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Account",
-                    "description": "Account",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Currency": {
-                        "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
-                        "type": "string",
-                        "pattern": "^[A-Z]{3}$"
-                      },
-                      "Nickname": {
-                        "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 70
-                      },
-                      "Account": {
-                        "description": "Provides the details to identify an account.",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "Account": {
+                      "title": "Account",
+                      "description": "Account",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "Account",
+                        "description": "Account",
                         "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BBAN",
-                              "IBAN"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
                             "minLength": 1,
-                            "maxLength": 34
+                            "maxLength": 40
                           },
-                          "Name": {
-                            "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                          "Currency": {
+                            "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
+                            "type": "string",
+                            "pattern": "^[A-Z]{3}$"
+                          },
+                          "Nickname": {
+                            "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 70
                           },
-                          "SecondaryIdentification": {
-                            "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          }
-                        },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BICFI",
-                              "UKSortCode"
-                            ]
+                          "Account": {
+                            "description": "Provides the details to identify an account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BBAN",
+                                  "IBAN"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              },
+                              "Name": {
+                                "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 70
+                              },
+                              "SecondaryIdentification": {
+                                "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           },
-                          "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 35
+                          "Servicer": {
+                            "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BICFI",
+                                  "UKSortCode"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Unique and unambiguous identification of the servicing institution.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           }
                         },
+                        "additionalProperties": false,
                         "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "Currency"
-                    ]
+                          "AccountId",
+                          "Currency"
+                        ]
+                      },
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -1126,140 +1252,42 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Transaction",
-                  "description": "Data Section of the Payload",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "TransactionId": {
-                        "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "TransactionReference": {
-                        "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "Amount": {
-                        "description": "Amount of money in the cash entry.",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "Transaction": {
+                      "title": "Transaction",
+                      "description": "Transaction",
+                      "type": "array",
+                      "items": {
                         "type": "object",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "TransactionId": {
+                            "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "CreditDebitIndicator": {
-                        "description": "Indicates whether the transaction is a credit or a debit entry.",
-                        "type": "string",
-                        "enum": [
-                          "Credit",
-                          "Debit"
-                        ]
-                      },
-                      "Status": {
-                        "description": "Status of a transaction entry on the books of the account servicer.",
-                        "type": "string",
-                        "enum": [
-                          "Booked",
-                          "Pending"
-                        ]
-                      },
-                      "BookingDateTime": {
-                        "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "ValueDateTime": {
-                        "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "TransactionInformation": {
-                        "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 500
-                      },
-                      "AddressLine": {
-                        "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 70
-                      },
-                      "BankTransactionCode": {
-                        "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
-                        "type": "object",
-                        "properties": {
-                          "Code": {
-                            "description": "Specifies the family within a domain.",
-                            "type": "string"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "SubCode": {
-                            "description": "Specifies the sub-product family within a specific family.",
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "Code",
-                          "SubCode"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "ProprietaryBankTransactionCode": {
-                        "description": "Set of elements to fully identify a proprietary bank transaction code.",
-                        "type": "object",
-                        "properties": {
-                          "Code": {
-                            "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                          "TransactionReference": {
+                            "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 35
                           },
-                          "Issuer": {
-                            "description": "Identification of the issuer of the proprietary bank transaction code.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 35
-                          }
-                        },
-                        "required": [
-                          "Code"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "Balance": {
-                        "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
-                        "type": "object",
-                        "properties": {
                           "Amount": {
-                            "description": "Amount of money of the cash balance after a transaction entry is applied to the account..",
+                            "description": "Amount of money in the cash entry.",
                             "type": "object",
                             "properties": {
                               "Amount": {
                                 "type": "string",
-                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                               },
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
@@ -1274,65 +1302,172 @@
                             "additionalProperties": false
                           },
                           "CreditDebitIndicator": {
-                            "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+                            "description": "Indicates whether the transaction is a credit or a debit entry.",
                             "type": "string",
                             "enum": [
                               "Credit",
                               "Debit"
                             ]
                           },
-                          "Type": {
-                            "description": "Balance type, in a coded form.",
+                          "Status": {
+                            "description": "Status of a transaction entry on the books of the account servicer.",
                             "type": "string",
                             "enum": [
-                              "ClosingAvailable",
-                              "ClosingBooked",
-                              "Expected",
-                              "ForwardAvailable",
-                              "Information",
-                              "InterimAvailable",
-                              "InterimBooked",
-                              "OpeningAvailable",
-                              "OpeningBooked",
-                              "PreviouslyClosedBooked"
+                              "Booked",
+                              "Pending"
                             ]
+                          },
+                          "BookingDateTime": {
+                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "ValueDateTime": {
+                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "TransactionInformation": {
+                            "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "AddressLine": {
+                            "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 70
+                          },
+                          "BankTransactionCode": {
+                            "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Specifies the family within a domain.",
+                                "type": "string"
+                              },
+                              "SubCode": {
+                                "description": "Specifies the sub-product family within a specific family.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "Code",
+                              "SubCode"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "ProprietaryBankTransactionCode": {
+                            "description": "Set of elements to fully identify a proprietary bank transaction code.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              },
+                              "Issuer": {
+                                "description": "Identification of the issuer of the proprietary bank transaction code.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "Code"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Balance": {
+                            "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "description": "Amount of money of the cash balance after a transaction entry is applied to the account..",
+                                "type": "object",
+                                "properties": {
+                                  "Amount": {
+                                    "type": "string",
+                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                  },
+                                  "Currency": {
+                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{3}$"
+                                  }
+                                },
+                                "required": [
+                                  "Amount",
+                                  "Currency"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "CreditDebitIndicator": {
+                                "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+                                "type": "string",
+                                "enum": [
+                                  "Credit",
+                                  "Debit"
+                                ]
+                              },
+                              "Type": {
+                                "description": "Balance type, in a coded form.",
+                                "type": "string",
+                                "enum": [
+                                  "ClosingAvailable",
+                                  "ClosingBooked",
+                                  "Expected",
+                                  "ForwardAvailable",
+                                  "Information",
+                                  "InterimAvailable",
+                                  "InterimBooked",
+                                  "OpeningAvailable",
+                                  "OpeningBooked",
+                                  "PreviouslyClosedBooked"
+                                ]
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Amount",
+                              "CreditDebitIndicator",
+                              "Type"
+                            ]
+                          },
+                          "MerchantDetails": {
+                            "description": "Details of the merchant involved in the transaction.",
+                            "type": "object",
+                            "properties": {
+                              "MerchantName": {
+                                "description": "Name by which the merchant is known.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 350
+                              },
+                              "MerchantCategoryCode": {
+                                "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                                "type": "string",
+                                "minLength": 3,
+                                "maxLength": 4
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
                         "additionalProperties": false,
                         "required": [
+                          "AccountId",
                           "Amount",
                           "CreditDebitIndicator",
-                          "Type"
+                          "Status",
+                          "BookingDateTime"
                         ]
                       },
-                      "MerchantDetails": {
-                        "description": "Details of the merchant involved in the transaction.",
-                        "type": "object",
-                        "properties": {
-                          "MerchantName": {
-                            "description": "Name by which the merchant is known.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 350
-                          },
-                          "MerchantCategoryCode": {
-                            "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-                            "type": "string",
-                            "minLength": 3,
-                            "maxLength": 4
-                          }
-                        },
-                        "additionalProperties": false
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "Amount",
-                      "CreditDebitIndicator",
-                      "Status",
-                      "BookingDateTime"
-                    ]
+                      "minItems": 1,
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -1367,7 +1502,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -1496,95 +1631,104 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Beneficiary",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Beneficiary",
-                    "description": "Beneficiary",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "BeneficiaryId": {
-                        "description": "A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Reference": {
-                        "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "Beneficiary": {
+                      "title": "Beneficiary",
+                      "description": "Beneficiary",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "Beneficiary",
+                        "description": "Beneficiary",
                         "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "enum": [
-                              "BICFI",
-                              "UKSortCode"
-                            ]
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                          "BeneficiaryId": {
+                            "description": "A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 40
+                          },
+                          "Reference": {
+                            "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 35
+                          },
+                          "Servicer": {
+                            "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BICFI",
+                                  "UKSortCode"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Unique and unambiguous identification of the servicing institution.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "CreditorAccount": {
+                            "description": "Provides the details to identify the beneficiary account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BBAN",
+                                  "IBAN"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              },
+                              "Name": {
+                                "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 70
+                              },
+                              "SecondaryIdentification": {
+                                "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           }
                         },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
                         "additionalProperties": false
                       },
-                      "CreditorAccount": {
-                        "description": "Provides the details to identify the beneficiary account.",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BBAN",
-                              "IBAN"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          },
-                          "Name": {
-                            "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 70
-                          },
-                          "SecondaryIdentification": {
-                            "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          }
-                        },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "additionalProperties": false
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -1748,82 +1892,32 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Balance",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Balance",
-                    "description": "Balance",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Amount": {
-                        "description": "Amount of money of the cash balance.",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "Balance": {
+                      "title": "Balance",
+                      "description": "Balance",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "Balance",
+                        "description": "Balance",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
-                          },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                            "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "CreditDebitIndicator": {
-                        "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
-                        "type": "string",
-                        "enum": [
-                          "Credit",
-                          "Debit"
-                        ]
-                      },
-                      "Type": {
-                        "description": "Balance type, in a coded form.",
-                        "type": "string",
-                        "enum": [
-                          "ClosingAvailable",
-                          "ClosingBooked",
-                          "Expected",
-                          "ForwardAvailable",
-                          "Information",
-                          "InterimAvailable",
-                          "InterimBooked",
-                          "OpeningAvailable",
-                          "OpeningBooked",
-                          "PreviouslyClosedBooked"
-                        ]
-                      },
-                      "DateTime": {
-                        "description": "Indicates the date (and time) of the balance.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "CreditLine": {
-                        "type": "object",
-                        "properties": {
-                          "Included": {
-                            "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
-                            "type": "boolean"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
                           "Amount": {
-                            "description": "Active Or Historic Currency Code and Amount",
+                            "description": "Amount of money of the cash balance.",
                             "type": "object",
                             "properties": {
                               "Amount": {
                                 "type": "string",
-                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                               },
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
@@ -1837,32 +1931,91 @@
                             ],
                             "additionalProperties": false
                           },
-                          "Type": {
-                            "description": "Limit type, in a coded form.",
+                          "CreditDebitIndicator": {
+                            "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
                             "type": "string",
                             "enum": [
-                              "Pre-Agreed",
-                              "Emergency",
-                              "Temporary"
+                              "Credit",
+                              "Debit"
+                            ]
+                          },
+                          "Type": {
+                            "description": "Balance type, in a coded form.",
+                            "type": "string",
+                            "enum": [
+                              "ClosingAvailable",
+                              "ClosingBooked",
+                              "Expected",
+                              "ForwardAvailable",
+                              "Information",
+                              "InterimAvailable",
+                              "InterimBooked",
+                              "OpeningAvailable",
+                              "OpeningBooked",
+                              "PreviouslyClosedBooked"
+                            ]
+                          },
+                          "DateTime": {
+                            "description": "Indicates the date (and time) of the balance.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "CreditLine": {
+                            "type": "object",
+                            "properties": {
+                              "Included": {
+                                "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+                                "type": "boolean"
+                              },
+                              "Amount": {
+                                "description": "Active Or Historic Currency Code and Amount",
+                                "type": "object",
+                                "properties": {
+                                  "Amount": {
+                                    "type": "string",
+                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                  },
+                                  "Currency": {
+                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{3}$"
+                                  }
+                                },
+                                "required": [
+                                  "Amount",
+                                  "Currency"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "Type": {
+                                "description": "Limit type, in a coded form.",
+                                "type": "string",
+                                "enum": [
+                                  "Pre-Agreed",
+                                  "Emergency",
+                                  "Temporary"
+                                ]
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Included"
                             ]
                           }
                         },
                         "additionalProperties": false,
                         "required": [
-                          "Included"
+                          "AccountId",
+                          "Amount",
+                          "CreditDebitIndicator",
+                          "DateTime",
+                          "Type"
                         ]
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "Amount",
-                      "CreditDebitIndicator",
-                      "DateTime",
-                      "Type"
-                    ]
-                  },
-                  "minItems": 1
+                      },
+                      "minItems": 1,
+                      "additionalProperties": false
+                    }
+                  }
                 },
                 "Links": {
                   "title": "Links",
@@ -2025,77 +2178,86 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "DirectDebit",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "DirectDebit",
-                    "description": "Direct Debit",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "DirectDebitId": {
-                        "description": "A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "MandateIdentification": {
-                        "description": "Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "DirectDebitStatusCode": {
-                        "description": "Specifies the status of the direct debit in code form.",
-                        "type": "string",
-                        "enum": [
-                          "Active",
-                          "Inactive"
-                        ]
-                      },
-                      "Name": {
-                        "description": "Name of Service User",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 70
-                      },
-                      "PreviousPaymentDateTime": {
-                        "description": "Date of most recent direct debit collection.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "PreviousPaymentAmount": {
-                        "description": "The amount of the most recent direct debit collection.",
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "DirectDebit": {
+                      "title": "DirectDebit",
+                      "description": "DirectDebit",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "DirectDebit",
+                        "description": "Direct Debit",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "DirectDebitId": {
+                            "description": "A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
+                            "minLength": 1,
+                            "maxLength": 40
+                          },
+                          "MandateIdentification": {
+                            "description": "Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 35
+                          },
+                          "DirectDebitStatusCode": {
+                            "description": "Specifies the status of the direct debit in code form.",
+                            "type": "string",
+                            "enum": [
+                              "Active",
+                              "Inactive"
+                            ]
+                          },
+                          "Name": {
+                            "description": "Name of Service User",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 70
+                          },
+                          "PreviousPaymentDateTime": {
+                            "description": "Date of most recent direct debit collection.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "PreviousPaymentAmount": {
+                            "description": "The amount of the most recent direct debit collection.",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
                           }
                         },
                         "required": [
-                          "Amount",
-                          "Currency"
+                          "AccountId",
+                          "MandateIdentification",
+                          "Name"
                         ],
                         "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "AccountId",
-                      "MandateIdentification",
-                      "Name"
-                    ],
-                    "additionalProperties": false
+                      },
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -2259,181 +2421,190 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "StandingOrder",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "StandingOrder",
-                    "description": "Standing Order",
-                    "properties": {
-                      "AccountId": {
-                        "description": "The date on which the first payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "StandingOrderId": {
-                        "description": "A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Frequency": {
-                        "description": "EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))",
-                        "type": "string",
-                        "pattern": "^((EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"
-                      },
-                      "Reference": {
-                        "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "FirstPaymentDateTime": {
-                        "description": "The date on which the first payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "FirstPaymentAmount": {
-                        "description": "The amount of the first Standing Order",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "StandingOrder": {
+                      "title": "StandingOrder",
+                      "description": "StandingOrder",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "StandingOrder",
+                        "description": "Standing Order",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "StandingOrderId": {
+                            "description": "A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "NextPaymentDateTime": {
-                        "description": "The date on which the next payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "NextPaymentAmount": {
-                        "description": "The amount of the next Standing Order",
-                        "type": "object",
-                        "properties": {
-                          "Amount": {
-                            "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "Frequency": {
+                            "description": "EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "FinalPaymentDateTime": {
-                        "description": "The date on which the final payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "FinalPaymentAmount": {
-                        "description": "The amount of the final Standing Order",
-                        "type": "object",
-                        "properties": {
-                          "Amount": {
-                            "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "pattern": "^((EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                            "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BICFI",
-                              "UKSortCode"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                          "Reference": {
+                            "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 35
+                          },
+                          "FirstPaymentDateTime": {
+                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "FirstPaymentAmount": {
+                            "description": "The amount of the first Standing Order",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "NextPaymentDateTime": {
+                            "description": "The date on which the next payment for a Standing Order schedule will be made.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "NextPaymentAmount": {
+                            "description": "The amount of the next Standing Order",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "FinalPaymentDateTime": {
+                            "description": "The date on which the final payment for a Standing Order schedule will be made.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "FinalPaymentAmount": {
+                            "description": "The amount of the final Standing Order",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Servicer": {
+                            "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BICFI",
+                                  "UKSortCode"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Unique and unambiguous identification of the servicing institution.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "CreditorAccount": {
+                            "description": "Provides the details to identify the beneficiary account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BBAN",
+                                  "IBAN"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              },
+                              "Name": {
+                                "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 70
+                              },
+                              "SecondaryIdentification": {
+                                "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           }
                         },
                         "required": [
-                          "SchemeName",
-                          "Identification"
+                          "AccountId",
+                          "Frequency",
+                          "NextPaymentDateTime",
+                          "NextPaymentAmount"
                         ],
                         "additionalProperties": false
                       },
-                      "CreditorAccount": {
-                        "description": "Provides the details to identify the beneficiary account.",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BBAN",
-                              "IBAN"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          },
-                          "Name": {
-                            "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 70
-                          },
-                          "SecondaryIdentification": {
-                            "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          }
-                        },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "AccountId",
-                      "Frequency",
-                      "NextPaymentDateTime",
-                      "NextPaymentAmount"
-                    ],
-                    "additionalProperties": false
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -2597,46 +2768,55 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Product",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Product",
-                    "description": "Product",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "ProductIdentifier": {
-                        "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
-                        "type": "string"
-                      },
-                      "ProductType": {
-                        "description": "Descriptive code for the product category.",
-                        "type": "string",
-                        "enum": [
-                          "BCA",
-                          "PCA"
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "Product": {
+                      "title": "Product",
+                      "description": "Product",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "title": "Product",
+                        "description": "Product",
+                        "properties": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 40
+                          },
+                          "ProductIdentifier": {
+                            "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
+                            "type": "string"
+                          },
+                          "ProductType": {
+                            "description": "Descriptive code for the product category.",
+                            "type": "string",
+                            "enum": [
+                              "BCA",
+                              "PCA"
+                            ]
+                          },
+                          "ProductName": {
+                            "description": "The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.",
+                            "type": "string"
+                          },
+                          "SecondaryProductIdentifier": {
+                            "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "AccountId",
+                          "ProductIdentifier",
+                          "ProductType"
                         ]
                       },
-                      "ProductName": {
-                        "description": "The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.",
-                        "type": "string"
-                      },
-                      "SecondaryProductIdentifier": {
-                        "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
-                        "type": "string"
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "ProductIdentifier",
-                      "ProductType"
-                    ]
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -2793,181 +2973,190 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "StandingOrder",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "StandingOrder",
-                    "description": "Standing Order",
-                    "properties": {
-                      "AccountId": {
-                        "description": "The date on which the first payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "StandingOrderId": {
-                        "description": "A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Frequency": {
-                        "description": "EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))",
-                        "type": "string",
-                        "pattern": "^((EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"
-                      },
-                      "Reference": {
-                        "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "FirstPaymentDateTime": {
-                        "description": "The date on which the first payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "FirstPaymentAmount": {
-                        "description": "The amount of the first Standing Order",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "StandingOrder": {
+                      "title": "StandingOrder",
+                      "description": "StandingOrder",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "StandingOrder",
+                        "description": "Standing Order",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "StandingOrderId": {
+                            "description": "A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "NextPaymentDateTime": {
-                        "description": "The date on which the next payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "NextPaymentAmount": {
-                        "description": "The amount of the next Standing Order",
-                        "type": "object",
-                        "properties": {
-                          "Amount": {
-                            "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "Frequency": {
+                            "description": "EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "FinalPaymentDateTime": {
-                        "description": "The date on which the final payment for a Standing Order schedule will be made.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "FinalPaymentAmount": {
-                        "description": "The amount of the final Standing Order",
-                        "type": "object",
-                        "properties": {
-                          "Amount": {
-                            "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "pattern": "^((EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                            "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BICFI",
-                              "UKSortCode"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                          "Reference": {
+                            "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 35
+                          },
+                          "FirstPaymentDateTime": {
+                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "FirstPaymentAmount": {
+                            "description": "The amount of the first Standing Order",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "NextPaymentDateTime": {
+                            "description": "The date on which the next payment for a Standing Order schedule will be made.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "NextPaymentAmount": {
+                            "description": "The amount of the next Standing Order",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "FinalPaymentDateTime": {
+                            "description": "The date on which the final payment for a Standing Order schedule will be made.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "FinalPaymentAmount": {
+                            "description": "The amount of the final Standing Order",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Servicer": {
+                            "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BICFI",
+                                  "UKSortCode"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Unique and unambiguous identification of the servicing institution.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "CreditorAccount": {
+                            "description": "Provides the details to identify the beneficiary account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BBAN",
+                                  "IBAN"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              },
+                              "Name": {
+                                "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 70
+                              },
+                              "SecondaryIdentification": {
+                                "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           }
                         },
                         "required": [
-                          "SchemeName",
-                          "Identification"
+                          "AccountId",
+                          "Frequency",
+                          "NextPaymentDateTime",
+                          "NextPaymentAmount"
                         ],
                         "additionalProperties": false
                       },
-                      "CreditorAccount": {
-                        "description": "Provides the details to identify the beneficiary account.",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BBAN",
-                              "IBAN"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          },
-                          "Name": {
-                            "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 70
-                          },
-                          "SecondaryIdentification": {
-                            "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          }
-                        },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "AccountId",
-                      "Frequency",
-                      "NextPaymentDateTime",
-                      "NextPaymentAmount"
-                    ],
-                    "additionalProperties": false
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -3124,77 +3313,86 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "DirectDebit",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "DirectDebit",
-                    "description": "Direct Debit",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "DirectDebitId": {
-                        "description": "A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "MandateIdentification": {
-                        "description": "Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "DirectDebitStatusCode": {
-                        "description": "Specifies the status of the direct debit in code form.",
-                        "type": "string",
-                        "enum": [
-                          "Active",
-                          "Inactive"
-                        ]
-                      },
-                      "Name": {
-                        "description": "Name of Service User",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 70
-                      },
-                      "PreviousPaymentDateTime": {
-                        "description": "Date of most recent direct debit collection.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "PreviousPaymentAmount": {
-                        "description": "The amount of the most recent direct debit collection.",
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "DirectDebit": {
+                      "title": "DirectDebit",
+                      "description": "DirectDebit",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "DirectDebit",
+                        "description": "Direct Debit",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "DirectDebitId": {
+                            "description": "A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
+                            "minLength": 1,
+                            "maxLength": 40
+                          },
+                          "MandateIdentification": {
+                            "description": "Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 35
+                          },
+                          "DirectDebitStatusCode": {
+                            "description": "Specifies the status of the direct debit in code form.",
+                            "type": "string",
+                            "enum": [
+                              "Active",
+                              "Inactive"
+                            ]
+                          },
+                          "Name": {
+                            "description": "Name of Service User",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 70
+                          },
+                          "PreviousPaymentDateTime": {
+                            "description": "Date of most recent direct debit collection.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "PreviousPaymentAmount": {
+                            "description": "The amount of the most recent direct debit collection.",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "type": "string",
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                              },
+                              "Currency": {
+                                "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$"
+                              }
+                            },
+                            "required": [
+                              "Amount",
+                              "Currency"
+                            ],
+                            "additionalProperties": false
                           }
                         },
                         "required": [
-                          "Amount",
-                          "Currency"
+                          "AccountId",
+                          "MandateIdentification",
+                          "Name"
                         ],
                         "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "AccountId",
-                      "MandateIdentification",
-                      "Name"
-                    ],
-                    "additionalProperties": false
+                      },
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -3351,95 +3549,104 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Beneficiary",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Beneficiary",
-                    "description": "Beneficiary",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "BeneficiaryId": {
-                        "description": "A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Reference": {
-                        "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "Servicer": {
-                        "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "Beneficiary": {
+                      "title": "Beneficiary",
+                      "description": "Beneficiary",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "Beneficiary",
+                        "description": "Beneficiary",
                         "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "enum": [
-                              "BICFI",
-                              "UKSortCode"
-                            ]
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Identification": {
-                            "description": "Unique and unambiguous identification of the servicing institution.",
+                          "BeneficiaryId": {
+                            "description": "A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 40
+                          },
+                          "Reference": {
+                            "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 35
+                          },
+                          "Servicer": {
+                            "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account. This is the servicer of the beneficiary account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BICFI",
+                                  "UKSortCode"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Unique and unambiguous identification of the servicing institution.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "CreditorAccount": {
+                            "description": "Provides the details to identify the beneficiary account.",
+                            "type": "object",
+                            "properties": {
+                              "SchemeName": {
+                                "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                                "type": "string",
+                                "enum": [
+                                  "BBAN",
+                                  "IBAN"
+                                ]
+                              },
+                              "Identification": {
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              },
+                              "Name": {
+                                "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 70
+                              },
+                              "SecondaryIdentification": {
+                                "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 34
+                              }
+                            },
+                            "required": [
+                              "SchemeName",
+                              "Identification"
+                            ],
+                            "additionalProperties": false
                           }
                         },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
                         "additionalProperties": false
                       },
-                      "CreditorAccount": {
-                        "description": "Provides the details to identify the beneficiary account.",
-                        "type": "object",
-                        "properties": {
-                          "SchemeName": {
-                            "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                            "type": "string",
-                            "enum": [
-                              "BBAN",
-                              "IBAN"
-                            ]
-                          },
-                          "Identification": {
-                            "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          },
-                          "Name": {
-                            "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 70
-                          },
-                          "SecondaryIdentification": {
-                            "description": "This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 34
-                          }
-                        },
-                        "required": [
-                          "SchemeName",
-                          "Identification"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "additionalProperties": false
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -3610,140 +3817,42 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Transaction",
-                  "description": "Data Section of the Payload",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "TransactionId": {
-                        "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "TransactionReference": {
-                        "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 35
-                      },
-                      "Amount": {
-                        "description": "Amount of money in the cash entry.",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "Transaction": {
+                      "title": "Transaction",
+                      "description": "Transaction",
+                      "type": "array",
+                      "items": {
                         "type": "object",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                          "TransactionId": {
+                            "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "CreditDebitIndicator": {
-                        "description": "Indicates whether the transaction is a credit or a debit entry.",
-                        "type": "string",
-                        "enum": [
-                          "Credit",
-                          "Debit"
-                        ]
-                      },
-                      "Status": {
-                        "description": "Status of a transaction entry on the books of the account servicer.",
-                        "type": "string",
-                        "enum": [
-                          "Booked",
-                          "Pending"
-                        ]
-                      },
-                      "BookingDateTime": {
-                        "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "ValueDateTime": {
-                        "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "TransactionInformation": {
-                        "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 500
-                      },
-                      "AddressLine": {
-                        "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 70
-                      },
-                      "BankTransactionCode": {
-                        "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
-                        "type": "object",
-                        "properties": {
-                          "Code": {
-                            "description": "Specifies the family within a domain.",
-                            "type": "string"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
-                          "SubCode": {
-                            "description": "Specifies the sub-product family within a specific family.",
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "Code",
-                          "SubCode"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "ProprietaryBankTransactionCode": {
-                        "description": "Set of elements to fully identify a proprietary bank transaction code.",
-                        "type": "object",
-                        "properties": {
-                          "Code": {
-                            "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                          "TransactionReference": {
+                            "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 35
                           },
-                          "Issuer": {
-                            "description": "Identification of the issuer of the proprietary bank transaction code.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 35
-                          }
-                        },
-                        "required": [
-                          "Code"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "Balance": {
-                        "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
-                        "type": "object",
-                        "properties": {
                           "Amount": {
-                            "description": "Amount of money of the cash balance after a transaction entry is applied to the account..",
+                            "description": "Amount of money in the cash entry.",
                             "type": "object",
                             "properties": {
                               "Amount": {
                                 "type": "string",
-                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                               },
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
@@ -3758,65 +3867,172 @@
                             "additionalProperties": false
                           },
                           "CreditDebitIndicator": {
-                            "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+                            "description": "Indicates whether the transaction is a credit or a debit entry.",
                             "type": "string",
                             "enum": [
                               "Credit",
                               "Debit"
                             ]
                           },
-                          "Type": {
-                            "description": "Balance type, in a coded form.",
+                          "Status": {
+                            "description": "Status of a transaction entry on the books of the account servicer.",
                             "type": "string",
                             "enum": [
-                              "ClosingAvailable",
-                              "ClosingBooked",
-                              "Expected",
-                              "ForwardAvailable",
-                              "Information",
-                              "InterimAvailable",
-                              "InterimBooked",
-                              "OpeningAvailable",
-                              "OpeningBooked",
-                              "PreviouslyClosedBooked"
+                              "Booked",
+                              "Pending"
                             ]
+                          },
+                          "BookingDateTime": {
+                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "ValueDateTime": {
+                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "TransactionInformation": {
+                            "description": "Further details of the transaction. This is the transaction narrative, which is unstructured text.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "AddressLine": {
+                            "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 70
+                          },
+                          "BankTransactionCode": {
+                            "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Specifies the family within a domain.",
+                                "type": "string"
+                              },
+                              "SubCode": {
+                                "description": "Specifies the sub-product family within a specific family.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "Code",
+                              "SubCode"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "ProprietaryBankTransactionCode": {
+                            "description": "Set of elements to fully identify a proprietary bank transaction code.",
+                            "type": "object",
+                            "properties": {
+                              "Code": {
+                                "description": "Proprietary bank transaction code to identify the underlying transaction.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              },
+                              "Issuer": {
+                                "description": "Identification of the issuer of the proprietary bank transaction code.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 35
+                              }
+                            },
+                            "required": [
+                              "Code"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Balance": {
+                            "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
+                            "type": "object",
+                            "properties": {
+                              "Amount": {
+                                "description": "Amount of money of the cash balance after a transaction entry is applied to the account..",
+                                "type": "object",
+                                "properties": {
+                                  "Amount": {
+                                    "type": "string",
+                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                  },
+                                  "Currency": {
+                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{3}$"
+                                  }
+                                },
+                                "required": [
+                                  "Amount",
+                                  "Currency"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "CreditDebitIndicator": {
+                                "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
+                                "type": "string",
+                                "enum": [
+                                  "Credit",
+                                  "Debit"
+                                ]
+                              },
+                              "Type": {
+                                "description": "Balance type, in a coded form.",
+                                "type": "string",
+                                "enum": [
+                                  "ClosingAvailable",
+                                  "ClosingBooked",
+                                  "Expected",
+                                  "ForwardAvailable",
+                                  "Information",
+                                  "InterimAvailable",
+                                  "InterimBooked",
+                                  "OpeningAvailable",
+                                  "OpeningBooked",
+                                  "PreviouslyClosedBooked"
+                                ]
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Amount",
+                              "CreditDebitIndicator",
+                              "Type"
+                            ]
+                          },
+                          "MerchantDetails": {
+                            "description": "Details of the merchant involved in the transaction.",
+                            "type": "object",
+                            "properties": {
+                              "MerchantName": {
+                                "description": "Name by which the merchant is known.",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 350
+                              },
+                              "MerchantCategoryCode": {
+                                "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                                "type": "string",
+                                "minLength": 3,
+                                "maxLength": 4
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
                         "additionalProperties": false,
                         "required": [
+                          "AccountId",
                           "Amount",
                           "CreditDebitIndicator",
-                          "Type"
+                          "Status",
+                          "BookingDateTime"
                         ]
                       },
-                      "MerchantDetails": {
-                        "description": "Details of the merchant involved in the transaction.",
-                        "type": "object",
-                        "properties": {
-                          "MerchantName": {
-                            "description": "Name by which the merchant is known.",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 350
-                          },
-                          "MerchantCategoryCode": {
-                            "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-                            "type": "string",
-                            "minLength": 3,
-                            "maxLength": 4
-                          }
-                        },
-                        "additionalProperties": false
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "Amount",
-                      "CreditDebitIndicator",
-                      "Status",
-                      "BookingDateTime"
-                    ]
+                      "minItems": 1,
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {
@@ -3851,7 +4067,7 @@
                   ]
                 },
                 "Meta": {
-                  "title": "Meta",
+                  "title": "MetaData",
                   "type": "object",
                   "description": "Meta Data relevant to the payload",
                   "properties": {
@@ -3973,82 +4189,32 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Balance",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Balance",
-                    "description": "Balance",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "Amount": {
-                        "description": "Amount of money of the cash balance.",
+                  "title": "Data",
+                  "description": "Data",
+                  "type": "object",
+                  "properties": {
+                    "Balance": {
+                      "title": "Balance",
+                      "description": "Balance",
+                      "type": "array",
+                      "items": {
                         "type": "object",
+                        "title": "Balance",
+                        "description": "Balance",
                         "properties": {
-                          "Amount": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
-                            "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
-                          },
-                          "Currency": {
-                            "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                            "type": "string",
-                            "pattern": "^[A-Z]{3}$"
-                          }
-                        },
-                        "required": [
-                          "Amount",
-                          "Currency"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "CreditDebitIndicator": {
-                        "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
-                        "type": "string",
-                        "enum": [
-                          "Credit",
-                          "Debit"
-                        ]
-                      },
-                      "Type": {
-                        "description": "Balance type, in a coded form.",
-                        "type": "string",
-                        "enum": [
-                          "ClosingAvailable",
-                          "ClosingBooked",
-                          "Expected",
-                          "ForwardAvailable",
-                          "Information",
-                          "InterimAvailable",
-                          "InterimBooked",
-                          "OpeningAvailable",
-                          "OpeningBooked",
-                          "PreviouslyClosedBooked"
-                        ]
-                      },
-                      "DateTime": {
-                        "description": "Indicates the date (and time) of the balance.",
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "CreditLine": {
-                        "type": "object",
-                        "properties": {
-                          "Included": {
-                            "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
-                            "type": "boolean"
+                            "minLength": 1,
+                            "maxLength": 40
                           },
                           "Amount": {
-                            "description": "Active Or Historic Currency Code and Amount",
+                            "description": "Amount of money of the cash balance.",
                             "type": "object",
                             "properties": {
                               "Amount": {
                                 "type": "string",
-                                "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                                "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                               },
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
@@ -4062,32 +4228,91 @@
                             ],
                             "additionalProperties": false
                           },
-                          "Type": {
-                            "description": "Limit type, in a coded form.",
+                          "CreditDebitIndicator": {
+                            "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.",
                             "type": "string",
                             "enum": [
-                              "Pre-Agreed",
-                              "Emergency",
-                              "Temporary"
+                              "Credit",
+                              "Debit"
+                            ]
+                          },
+                          "Type": {
+                            "description": "Balance type, in a coded form.",
+                            "type": "string",
+                            "enum": [
+                              "ClosingAvailable",
+                              "ClosingBooked",
+                              "Expected",
+                              "ForwardAvailable",
+                              "Information",
+                              "InterimAvailable",
+                              "InterimBooked",
+                              "OpeningAvailable",
+                              "OpeningBooked",
+                              "PreviouslyClosedBooked"
+                            ]
+                          },
+                          "DateTime": {
+                            "description": "Indicates the date (and time) of the balance.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "CreditLine": {
+                            "type": "object",
+                            "properties": {
+                              "Included": {
+                                "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+                                "type": "boolean"
+                              },
+                              "Amount": {
+                                "description": "Active Or Historic Currency Code and Amount",
+                                "type": "object",
+                                "properties": {
+                                  "Amount": {
+                                    "type": "string",
+                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                  },
+                                  "Currency": {
+                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                    "type": "string",
+                                    "pattern": "^[A-Z]{3}$"
+                                  }
+                                },
+                                "required": [
+                                  "Amount",
+                                  "Currency"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "Type": {
+                                "description": "Limit type, in a coded form.",
+                                "type": "string",
+                                "enum": [
+                                  "Pre-Agreed",
+                                  "Emergency",
+                                  "Temporary"
+                                ]
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "Included"
                             ]
                           }
                         },
                         "additionalProperties": false,
                         "required": [
-                          "Included"
+                          "AccountId",
+                          "Amount",
+                          "CreditDebitIndicator",
+                          "DateTime",
+                          "Type"
                         ]
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "Amount",
-                      "CreditDebitIndicator",
-                      "DateTime",
-                      "Type"
-                    ]
-                  },
-                  "minItems": 1
+                      },
+                      "minItems": 1,
+                      "additionalProperties": false
+                    }
+                  }
                 },
                 "Links": {
                   "title": "Links",
@@ -4243,46 +4468,55 @@
               "type": "object",
               "properties": {
                 "Data": {
-                  "title": "Product",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "title": "Product",
-                    "description": "Product",
-                    "properties": {
-                      "AccountId": {
-                        "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 40
-                      },
-                      "ProductIdentifier": {
-                        "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
-                        "type": "string"
-                      },
-                      "ProductType": {
-                        "description": "Descriptive code for the product category.",
-                        "type": "string",
-                        "enum": [
-                          "BCA",
-                          "PCA"
+                  "title": "Data",
+                  "type": "object",
+                  "description": "Data",
+                  "properties": {
+                    "Product": {
+                      "title": "Product",
+                      "description": "Product",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "title": "Product",
+                        "description": "Product",
+                        "properties": {
+                          "AccountId": {
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 40
+                          },
+                          "ProductIdentifier": {
+                            "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
+                            "type": "string"
+                          },
+                          "ProductType": {
+                            "description": "Descriptive code for the product category.",
+                            "type": "string",
+                            "enum": [
+                              "BCA",
+                              "PCA"
+                            ]
+                          },
+                          "ProductName": {
+                            "description": "The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.",
+                            "type": "string"
+                          },
+                          "SecondaryProductIdentifier": {
+                            "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "AccountId",
+                          "ProductIdentifier",
+                          "ProductType"
                         ]
                       },
-                      "ProductName": {
-                        "description": "The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.",
-                        "type": "string"
-                      },
-                      "SecondaryProductIdentifier": {
-                        "description": "Identifier within the parent organisation for the product. Must be unique in the organisation.",
-                        "type": "string"
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "AccountId",
-                      "ProductIdentifier",
-                      "ProductType"
-                    ]
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "Links": {

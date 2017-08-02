@@ -894,6 +894,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Links relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meta</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.</p></td>
@@ -947,7 +959,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -960,6 +972,80 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>First</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Last</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Next</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Prev</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_metadata" class="paragraph">
+<p><strong>MetaData</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1171,6 +1257,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Links relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meta</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.</p></td>
@@ -1224,7 +1322,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -1237,6 +1335,80 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_links" class="paragraph">
+<p><strong>Links</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>First</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Last</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Next</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Prev</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_metadata" class="paragraph">
+<p><strong>MetaData</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1579,8 +1751,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_account">Account</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -1593,6 +1765,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_account">Account</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -1994,8 +2191,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_account">Account</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -2008,6 +2205,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Account</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Account</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_account">Account</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -2409,8 +2631,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balance">Balance</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -2423,6 +2645,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balance</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Balance</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balance">Balance</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -2502,7 +2749,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2571,7 +2818,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2851,8 +3098,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_beneficiary">Beneficiary</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -2865,6 +3112,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Beneficiary</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Beneficiary</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_beneficiary">Beneficiary</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -3266,8 +3538,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_directdebit">DirectDebit</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -3280,6 +3552,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DirectDebit</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">DirectDebit</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_directdebit">DirectDebit</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -3368,7 +3665,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -3648,8 +3945,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_product">Product</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -3662,6 +3959,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Product</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Product</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_product">Product</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -3983,8 +4305,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_standingorder">StandingOrder</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -3997,6 +4319,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StandingOrder</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">StandingOrder</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_standingorder">StandingOrder</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -4161,7 +4508,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4193,7 +4540,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4225,7 +4572,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4551,8 +4898,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Data Section of the Payload</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_accounts_accountid_transactions_get_data">Data</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -4564,12 +4911,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meta</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_meta">Meta</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data" class="paragraph">
+<div id="_data" class="paragraph">
 <p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Transaction</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Transaction</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_data_transaction">Transaction</a> &gt; array</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data_transaction" class="paragraph">
+<p><strong>Transaction</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -4603,19 +4975,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money in the cash entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balance</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_balance">Balance</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_balance">Balance</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to fully identify the type of underlying transaction resulting in an entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_banktransactioncode">BankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_banktransactioncode">BankTransactionCode</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDateTime</strong><br>
@@ -4633,13 +5005,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantDetails</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Details of the merchant involved in the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_merchantdetails">MerchantDetails</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_merchantdetails">MerchantDetails</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ProprietaryBankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements to fully identify a proprietary bank transaction code.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
@@ -4676,7 +5048,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data_amount" class="paragraph">
+<div id="_data_transaction_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4696,7 +5068,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4708,7 +5080,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data_balance" class="paragraph">
+<div id="_data_transaction_balance" class="paragraph">
 <p><strong>Balance</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4729,7 +5101,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money of the cash balance after a transaction entry is applied to the account..</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_accounts_accountid_transactions_get_data_balance_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_balance_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
@@ -4745,7 +5117,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data_balance_amount" class="paragraph">
+<div id="_data_transaction_balance_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4765,7 +5137,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4777,7 +5149,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data_banktransactioncode" class="paragraph">
+<div id="_data_transaction_banktransactioncode" class="paragraph">
 <p><strong>BankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4808,7 +5180,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data_merchantdetails" class="paragraph">
+<div id="_data_transaction_merchantdetails" class="paragraph">
 <p><strong>MerchantDetails</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4841,7 +5213,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_accounts_accountid_transactions_get_data_proprietarybanktransactioncode" class="paragraph">
+<div id="_data_transaction_proprietarybanktransactioncode" class="paragraph">
 <p><strong>ProprietaryBankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -4916,8 +5288,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_meta" class="paragraph">
-<p><strong>Meta</strong></p>
+<div id="_metadata" class="paragraph">
+<p><strong>MetaData</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5135,8 +5507,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balance">Balance</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -5149,6 +5521,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balance</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Balance</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balance">Balance</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -5228,7 +5625,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -5297,7 +5694,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -5570,8 +5967,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_beneficiary">Beneficiary</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -5584,6 +5981,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Beneficiary</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Beneficiary</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_beneficiary">Beneficiary</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -5978,8 +6400,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_directdebit">DirectDebit</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -5992,6 +6414,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DirectDebit</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">DirectDebit</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_directdebit">DirectDebit</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -6080,7 +6527,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -6353,8 +6800,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_product">Product</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -6367,6 +6814,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Product</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Product</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_product">Product</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -6681,8 +7153,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_standingorder">StandingOrder</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -6695,6 +7167,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data" class="paragraph">
+<p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StandingOrder</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">StandingOrder</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_standingorder">StandingOrder</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -6859,7 +7356,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -6891,7 +7388,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -6923,7 +7420,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -7242,8 +7739,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Data Section of the Payload</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_transactions_get_data">Data</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data">Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -7255,12 +7752,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meta</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data relevant to the payload</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_meta">Meta</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_metadata">MetaData</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data" class="paragraph">
+<div id="_data" class="paragraph">
 <p><strong>Data</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Transaction</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Transaction</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_data_transaction">Transaction</a> &gt; array</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_data_transaction" class="paragraph">
+<p><strong>Transaction</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -7294,19 +7816,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money in the cash entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Balance</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_balance">Balance</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_balance">Balance</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements used to fully identify the type of underlying transaction resulting in an entry.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_banktransactioncode">BankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_banktransactioncode">BankTransactionCode</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDateTime</strong><br>
@@ -7324,13 +7846,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantDetails</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Details of the merchant involved in the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_merchantdetails">MerchantDetails</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_merchantdetails">MerchantDetails</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ProprietaryBankTransactionCode</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Set of elements to fully identify a proprietary bank transaction code.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_proprietarybanktransactioncode">ProprietaryBankTransactionCode</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
@@ -7367,7 +7889,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data_amount" class="paragraph">
+<div id="_data_transaction_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -7387,7 +7909,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -7399,7 +7921,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data_balance" class="paragraph">
+<div id="_data_transaction_balance" class="paragraph">
 <p><strong>Balance</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -7420,7 +7942,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money of the cash balance after a transaction entry is applied to the account..</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_transactions_get_data_balance_amount">Amount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_data_transaction_balance_amount">Amount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditDebitIndicator</strong><br>
@@ -7436,7 +7958,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data_balance_amount" class="paragraph">
+<div id="_data_transaction_balance_amount" class="paragraph">
 <p><strong>Amount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -7456,7 +7978,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -7468,7 +7990,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data_banktransactioncode" class="paragraph">
+<div id="_data_transaction_banktransactioncode" class="paragraph">
 <p><strong>BankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -7499,7 +8021,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data_merchantdetails" class="paragraph">
+<div id="_data_transaction_merchantdetails" class="paragraph">
 <p><strong>MerchantDetails</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -7532,7 +8054,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_transactions_get_data_proprietarybanktransactioncode" class="paragraph">
+<div id="_data_transaction_proprietarybanktransactioncode" class="paragraph">
 <p><strong>ProprietaryBankTransactionCode</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -7607,8 +8129,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_meta" class="paragraph">
-<p><strong>Meta</strong></p>
+<div id="_metadata" class="paragraph">
+<p><strong>MetaData</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
