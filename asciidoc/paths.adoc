@@ -825,7 +825,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -852,7 +852,7 @@ __optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1188,7 +1188,7 @@ __optional__|Date of most recent direct debit collection.|string (date-time)
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1519,7 +1519,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1532,7 +1532,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1545,7 +1545,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1738,7 +1738,7 @@ __optional__|Date and time at which assets become available to the account owner
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1765,7 +1765,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1959,7 +1959,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1986,7 +1986,7 @@ __optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2318,7 +2318,7 @@ __optional__|Date of most recent direct debit collection.|string (date-time)
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2645,7 +2645,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2658,7 +2658,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2671,7 +2671,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2862,7 +2862,7 @@ __optional__|Date and time at which assets become available to the account owner
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -2889,7 +2889,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
