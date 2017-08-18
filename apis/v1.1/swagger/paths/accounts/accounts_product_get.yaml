@@ -12,7 +12,7 @@ get:
     200:
       description: Account Product successfully retrieved
       schema:
-        $ref: ../../../../../compiled/schemas/v1.0/products/product.get.200.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.1/products/product.get.200.response.schema.yaml
       headers:
         x-jws-signature:
           type: string

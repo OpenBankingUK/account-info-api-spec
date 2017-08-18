@@ -15,7 +15,7 @@ post:
     201:
       description: Account Request resource successfully created
       schema:
-        $ref: ../../../../../compiled/schemas/v1.0/accounts_requests/account_request.post.201.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.1/accounts_requests/account_request.post.201.response.schema.yaml
       headers:
         x-jws-signature:
           type: string

@@ -4,7 +4,7 @@ const utils = require('./utils');
 const path = require('path');
 const compiled = path.resolve('../compiled');
 const dist = path.resolve('../dist');
-const swaggerIndex = path.resolve('../apis/v1.0/swagger/index.yaml');
+const swaggerIndex = path.resolve('../apis/v1.1/swagger/index.yaml');
 const debuglogfile = path.resolve('../debug/log.json');
 
 // Convenient method name shortenings
