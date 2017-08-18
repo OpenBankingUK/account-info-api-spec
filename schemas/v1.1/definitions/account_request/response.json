@@ -1,0 +1,44 @@
+{
+  "title": "Account Request Response",
+  "description": "Account Request Response",
+  "type": "object",
+  "properties": {
+    "AccountRequestId": {
+      "description": "Unique identification as assigned to identify the account request resource.",
+      "$ref": "../common/max_128_text.json"
+    },
+    "Status": {
+      "description": "Specifies the status of the account request resource.",
+      "$ref": "ob_external_request_status_code.json"
+    },
+    "CreationDateTime": {
+      "description": "Date and time at which the resource was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "Permissions": {
+      "$ref": "permissions.json"
+    },
+    "ExpirationDateTime": {
+      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionFromDateTime": {
+      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "TransactionToDateTime": {
+      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountRequestId",
+    "CreationDateTime",
+    "Permissions"
+  ]
+}

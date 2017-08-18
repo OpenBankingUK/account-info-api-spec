@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "title": "Balance",
+  "description": "Balance",
+  "properties": {
+    "AccountId": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+      "$ref": "./account_id.json"
+    },
+    "Amount": {
+      "description": "Amount of money of the cash balance.",
+      "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "CreditDebitIndicator": {
+      "$ref": "./balances/credit_debit_code.json"
+    },
+    "Type": {
+      "$ref": "./balances/balance_type_code.json"
+    },
+    "DateTime": {
+      "description": "Indicates the date (and time) of the balance.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "CreditLine": {
+      "$ref": "./balances/credit_line.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "AccountId",
+    "Amount",
+    "CreditDebitIndicator",
+    "DateTime",
+    "Type"
+  ]
+}

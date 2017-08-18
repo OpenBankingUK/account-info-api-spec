@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "description": "Meta Data relevant to the payload",
+  "properties": {
+    "TotalPages": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "FirstAvailableDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "LastAvailableDateTime": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

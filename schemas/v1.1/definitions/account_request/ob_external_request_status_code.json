@@ -1,0 +1,11 @@
+{
+  "description": "Specifies the status of the account request resource.",
+  "type": "string",
+  "enum": [    
+    "Authorised",
+    "AwaitingAuthentication",
+    "AwaitingAuthorisation",
+    "Rejected",
+    "Revoked"
+  ]
+}

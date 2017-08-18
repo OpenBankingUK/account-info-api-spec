@@ -1,0 +1,4 @@
+{
+  "title": "Product GET response",
+  "$ref": "../definitions/data/product.json"
+}

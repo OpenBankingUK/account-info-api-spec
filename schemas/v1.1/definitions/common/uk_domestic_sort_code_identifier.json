@@ -1,0 +1,5 @@
+{
+  "description": "UK Domestic Sort Code Identifier",
+  "type": "string",
+  "pattern": "^SC[0-9]{6,6}$"
+}
