@@ -9,6 +9,7 @@
     type: string
     required: false
     description: The time when the PSU last logged in with the TPP.
+    pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(, )(\d{2})( )(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( )(\d{4})( )(\d{2})(:)(\d{2})(:)(\d{2})( )([A-Z]{3})$
   - in: header
     name: x-fapi-customer-ip-address
     type: string
