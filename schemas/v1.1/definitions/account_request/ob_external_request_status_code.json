@@ -3,7 +3,6 @@
   "type": "string",
   "enum": [    
     "Authorised",
-    "AwaitingAuthentication",
     "AwaitingAuthorisation",
     "Rejected",
     "Revoked"

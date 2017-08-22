@@ -176,7 +176,6 @@
                       "type": "string",
                       "enum": [
                         "Authorised",
-                        "AwaitingAuthentication",
                         "AwaitingAuthorisation",
                         "Rejected",
                         "Revoked"
@@ -419,7 +418,6 @@
                       "type": "string",
                       "enum": [
                         "Authorised",
-                        "AwaitingAuthentication",
                         "AwaitingAuthorisation",
                         "Rejected",
                         "Revoked"
