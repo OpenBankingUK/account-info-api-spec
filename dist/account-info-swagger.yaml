@@ -4,13 +4,13 @@ info:
   description: Swagger specification for Account Information APIs
   termsOfService: 'https://www.openbanking.org.uk/terms'
   contact:
-    name: Craig Greenhouse
-    email: Craig.Greenhouse@openbanking.org.uk
+    name: Service Desk
+    email: ServiceDesk@openbanking.org.uk
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.0.1
-basePath: /open-banking/v1.0
+  version: v1.1.0
+basePath: /open-banking/v1.1
 schemes:
   - https
 produces:
@@ -507,7 +507,7 @@ paths:
                             Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the
                             initiating party needs to identify which currency needs to be used for settlement on the account.
                           type: string
-                          pattern: '^[A-Z]{3}$'
+                          pattern: '^[A-Z]{3,3}$'
                         Nickname:
                           description: 'The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.'
                           type: string
@@ -683,7 +683,7 @@ paths:
                             Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the
                             initiating party needs to identify which currency needs to be used for settlement on the account.
                           type: string
-                          pattern: '^[A-Z]{3}$'
+                          pattern: '^[A-Z]{3,3}$'
                         Nickname:
                           description: 'The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.'
                           type: string
@@ -881,7 +881,7 @@ paths:
                                 A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard
                                 ISO 4217 'Codes for the representation of currencies and funds'
                               type: string
-                              pattern: '^[A-Z]{3}$'
+                              pattern: '^[A-Z]{3,3}$'
                           required:
                             - Amount
                             - Currency
@@ -970,7 +970,7 @@ paths:
                                     A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international
                                     standard ISO 4217 'Codes for the representation of currencies and funds'
                                   type: string
-                                  pattern: '^[A-Z]{3}$'
+                                  pattern: '^[A-Z]{3,3}$'
                               required:
                                 - Amount
                                 - Currency
@@ -1307,7 +1307,7 @@ paths:
                                 A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard
                                 ISO 4217 'Codes for the representation of currencies and funds'
                               type: string
-                              pattern: '^[A-Z]{3}$'
+                              pattern: '^[A-Z]{3,3}$'
                           required:
                             - Amount
                             - Currency
@@ -1356,7 +1356,7 @@ paths:
                                     A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international
                                     standard ISO 4217 'Codes for the representation of currencies and funds'
                                   type: string
-                                  pattern: '^[A-Z]{3}$'
+                                  pattern: '^[A-Z]{3,3}$'
                               required:
                                 - Amount
                                 - Currency
@@ -1517,7 +1517,7 @@ paths:
                                 A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard
                                 ISO 4217 'Codes for the representation of currencies and funds'
                               type: string
-                              pattern: '^[A-Z]{3}$'
+                              pattern: '^[A-Z]{3,3}$'
                           required:
                             - Amount
                             - Currency
@@ -1675,7 +1675,7 @@ paths:
                                 A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard
                                 ISO 4217 'Codes for the representation of currencies and funds'
                               type: string
-                              pattern: '^[A-Z]{3}$'
+                              pattern: '^[A-Z]{3,3}$'
                           required:
                             - Amount
                             - Currency
@@ -1696,7 +1696,7 @@ paths:
                                 A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard
                                 ISO 4217 'Codes for the representation of currencies and funds'
                               type: string
-                              pattern: '^[A-Z]{3}$'
+                              pattern: '^[A-Z]{3,3}$'
                           required:
                             - Amount
                             - Currency
@@ -1717,7 +1717,7 @@ paths:
                                 A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard
                                 ISO 4217 'Codes for the representation of currencies and funds'
                               type: string
-                              pattern: '^[A-Z]{3}$'
+                              pattern: '^[A-Z]{3,3}$'
                           required:
                             - Amount
                             - Currency

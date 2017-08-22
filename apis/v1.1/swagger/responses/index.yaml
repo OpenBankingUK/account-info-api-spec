@@ -1,34 +1,34 @@
 400ErrorResponse:
   description: Bad Request
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-400.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-400.schema.yaml
 
 401ErrorResponse:
   description: Unauthorized
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-401.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-401.schema.yaml
 
 403ErrorResponse:
   description: Forbidden
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-403.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-403.schema.yaml
 
 405ErrorResponse:
   description: Method Not Allowed
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-405.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-405.schema.yaml
 
 406ErrorResponse:
   description: Not Acceptable
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-406.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-406.schema.yaml
 
 429ErrorResponse:
   description: Too Many Requests
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-429.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-429.schema.yaml
 
 500ErrorResponse:
   description: Internal Server Error
   # schema:
-  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-500.schema.yaml
+  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-500.schema.yaml

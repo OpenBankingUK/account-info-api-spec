@@ -12,7 +12,7 @@ get:
     200:
       description: Account Beneficiaries successfully retrieved
       schema:
-        $ref: ../../../../../compiled/schemas/v1.0/balances/balances.get.200.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.1/balances/balances.get.200.response.schema.yaml
       headers:
         x-jws-signature:
           type: string

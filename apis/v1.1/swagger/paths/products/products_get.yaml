@@ -11,7 +11,7 @@ get:
     200:
       description: Products successfully retrieved
       schema:
-        $ref: ../../../../../compiled/schemas/v1.0/products/products.get.200.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v1.1/products/products.get.200.response.schema.yaml
       headers:
         x-jws-signature:
           type: string
