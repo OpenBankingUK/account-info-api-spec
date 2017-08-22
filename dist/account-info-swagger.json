@@ -1961,46 +1961,49 @@
                             "format": "date-time"
                           },
                           "CreditLine": {
-                            "type": "object",
-                            "properties": {
-                              "Included": {
-                                "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
-                                "type": "boolean"
-                              },
-                              "Amount": {
-                                "description": "Active Or Historic Currency Code and Amount",
-                                "type": "object",
-                                "properties": {
-                                  "Amount": {
-                                    "type": "string",
-                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
-                                  },
-                                  "Currency": {
-                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                                    "type": "string",
-                                    "pattern": "^[A-Z]{3,3}$"
-                                  }
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Included": {
+                                  "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+                                  "type": "boolean"
                                 },
-                                "required": [
-                                  "Amount",
-                                  "Currency"
-                                ],
-                                "additionalProperties": false
+                                "Amount": {
+                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "type": "object",
+                                  "properties": {
+                                    "Amount": {
+                                      "type": "string",
+                                      "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                    },
+                                    "Currency": {
+                                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                      "type": "string",
+                                      "pattern": "^[A-Z]{3,3}$"
+                                    }
+                                  },
+                                  "required": [
+                                    "Amount",
+                                    "Currency"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "Type": {
+                                  "description": "Limit type, in a coded form.",
+                                  "type": "string",
+                                  "enum": [
+                                    "Pre-Agreed",
+                                    "Emergency",
+                                    "Temporary"
+                                  ]
+                                }
                               },
-                              "Type": {
-                                "description": "Limit type, in a coded form.",
-                                "type": "string",
-                                "enum": [
-                                  "Pre-Agreed",
-                                  "Emergency",
-                                  "Temporary"
-                                ]
-                              }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                              "Included"
-                            ]
+                              "additionalProperties": false,
+                              "required": [
+                                "Included"
+                              ]
+                            }
                           }
                         },
                         "additionalProperties": false,
@@ -4258,46 +4261,49 @@
                             "format": "date-time"
                           },
                           "CreditLine": {
-                            "type": "object",
-                            "properties": {
-                              "Included": {
-                                "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
-                                "type": "boolean"
-                              },
-                              "Amount": {
-                                "description": "Active Or Historic Currency Code and Amount",
-                                "type": "object",
-                                "properties": {
-                                  "Amount": {
-                                    "type": "string",
-                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
-                                  },
-                                  "Currency": {
-                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                                    "type": "string",
-                                    "pattern": "^[A-Z]{3,3}$"
-                                  }
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Included": {
+                                  "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+                                  "type": "boolean"
                                 },
-                                "required": [
-                                  "Amount",
-                                  "Currency"
-                                ],
-                                "additionalProperties": false
+                                "Amount": {
+                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "type": "object",
+                                  "properties": {
+                                    "Amount": {
+                                      "type": "string",
+                                      "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                    },
+                                    "Currency": {
+                                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                      "type": "string",
+                                      "pattern": "^[A-Z]{3,3}$"
+                                    }
+                                  },
+                                  "required": [
+                                    "Amount",
+                                    "Currency"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "Type": {
+                                  "description": "Limit type, in a coded form.",
+                                  "type": "string",
+                                  "enum": [
+                                    "Pre-Agreed",
+                                    "Emergency",
+                                    "Temporary"
+                                  ]
+                                }
                               },
-                              "Type": {
-                                "description": "Limit type, in a coded form.",
-                                "type": "string",
-                                "enum": [
-                                  "Pre-Agreed",
-                                  "Emergency",
-                                  "Temporary"
-                                ]
-                              }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                              "Included"
-                            ]
+                              "additionalProperties": false,
+                              "required": [
+                                "Included"
+                              ]
+                            }
                           }
                         },
                         "additionalProperties": false,

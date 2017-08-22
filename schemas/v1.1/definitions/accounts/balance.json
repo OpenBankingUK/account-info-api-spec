@@ -23,7 +23,10 @@
       "format": "date-time"
     },
     "CreditLine": {
-      "$ref": "./balances/credit_line.json"
+      "type": "array",
+      "items": {
+        "$ref": "./balances/credit_line.json"
+      }
     }
   },
   "additionalProperties": false,
