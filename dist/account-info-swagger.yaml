@@ -525,8 +525,8 @@ paths:
                               description: 'Name of the identification scheme, in a coded form as published in an external list.'
                               type: string
                               enum:
-                                - BBAN
                                 - IBAN
+                                - SortCodeAccountNumber
                             Identification:
                               description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                               type: string
@@ -700,8 +700,8 @@ paths:
                               description: 'Name of the identification scheme, in a coded form as published in an external list.'
                               type: string
                               enum:
-                                - BBAN
                                 - IBAN
+                                - SortCodeAccountNumber
                             Identification:
                               description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                               type: string
@@ -1168,8 +1168,8 @@ paths:
                               description: 'Name of the identification scheme, in a coded form as published in an external list.'
                               type: string
                               enum:
-                                - BBAN
                                 - IBAN
+                                - SortCodeAccountNumber
                             Identification:
                               description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                               type: string
@@ -1762,8 +1762,8 @@ paths:
                               description: 'Name of the identification scheme, in a coded form as published in an external list.'
                               type: string
                               enum:
-                                - BBAN
                                 - IBAN
+                                - SortCodeAccountNumber
                             Identification:
                               description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                               type: string
