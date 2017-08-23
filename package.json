@@ -22,6 +22,7 @@
     "serve": "npm run open-localhost && spectacle -s ./dist/account-info-swagger.json -t ./dist/public -p 8080 ",
     "test": "mocha test",
     "test:watch": "mocha test --watch",
+    "test:debug": "mocha test --inspect --watch",
     "start": "npm run build && npm run serve"
   },
   "repository": {
