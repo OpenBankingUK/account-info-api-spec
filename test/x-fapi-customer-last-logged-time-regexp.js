@@ -25,6 +25,11 @@ describe('x-fapi-customer-last-logged-time regexp', function() {
     done();
   });
 
+  it('does not match date with non GMT|UTC timezone', (done) => {
+    assert(!"Sun, 06 Nov 1994 08:49:37 MST".match(regexp));
+    done();
+  });
+
   it('does not match RFC7231 example obsolete dates', (done) => {
     assert(!"Sunday, 06-Nov-94 08:49:37 GMT".match(regexp));
     assert(!"Sun Nov  6 08:49:37 1994".match(regexp));
