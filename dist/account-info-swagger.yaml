@@ -557,7 +557,6 @@ paths:
                               type: string
                               enum:
                                 - BICFI
-                                - UKSortCode
                             Identification:
                               description: Unique and unambiguous identification of the servicing institution.
                               type: string
@@ -733,7 +732,6 @@ paths:
                               type: string
                               enum:
                                 - BICFI
-                                - UKSortCode
                             Identification:
                               description: Unique and unambiguous identification of the servicing institution.
                               type: string
@@ -1148,7 +1146,6 @@ paths:
                               type: string
                               enum:
                                 - BICFI
-                                - UKSortCode
                             Identification:
                               description: Unique and unambiguous identification of the servicing institution.
                               type: string
@@ -1743,7 +1740,6 @@ paths:
                               type: string
                               enum:
                                 - BICFI
-                                - UKSortCode
                             Identification:
                               description: Unique and unambiguous identification of the servicing institution.
                               type: string

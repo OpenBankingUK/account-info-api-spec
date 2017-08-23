@@ -7,12 +7,12 @@ Swagger specification for Account Information APIs
 
 
 ### Version information
-*Version* : v1.0.1
+*Version* : v1.1.0
 
 
 ### Contact information
-*Contact* : Craig Greenhouse  
-*Contact Email* : Craig.Greenhouse@openbanking.org.uk
+*Contact* : Service Desk  
+*Contact Email* : ServiceDesk@openbanking.org.uk
 
 
 ### License information
@@ -22,7 +22,7 @@ Swagger specification for Account Information APIs
 
 
 ### URI scheme
-*BasePath* : /open-banking/v1.0  
+*BasePath* : /open-banking/v1.1  
 *Schemes* : HTTPS
 
 
@@ -116,7 +116,7 @@ Create an Account Request
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
 
@@ -215,7 +215,7 @@ Get an account request
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**ExpirationDateTime**  <br>*optional*|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)|
 |**Permissions**  <br>*required*|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array|
-|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)|
+|**Status**  <br>*optional*|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)|
 |**TransactionFromDateTime**  <br>*optional*|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)|
 |**TransactionToDateTime**  <br>*optional*|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)|
 
@@ -360,7 +360,7 @@ Get a list of accounts
 |---|---|---|
 |**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#account-account)|
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 |**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
 |**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#account-servicer)|
 
@@ -380,7 +380,7 @@ Get a list of accounts
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="links"></a>
 **Links**
@@ -476,7 +476,7 @@ Get an account
 |---|---|---|
 |**Account**  <br>*optional*|Provides the details to identify an account.|[Account](#account-account)|
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
-|**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 |**Nickname**  <br>*optional*|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.  <br>**Length** : `1 - 70`|string|
 |**Servicer**  <br>*optional*|Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.|[Servicer](#account-servicer)|
 
@@ -496,7 +496,7 @@ Get an account
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="links"></a>
 **Links**
@@ -593,7 +593,7 @@ Get Balances related to an account
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
+|**CreditLine**  <br>*optional*||< [CreditLine](#balance-creditline) > array|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance.|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
@@ -603,7 +603,7 @@ Get Balances related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="balance-creditline"></a>
 **CreditLine**
@@ -620,7 +620,7 @@ Get Balances related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="links"></a>
 **Links**
@@ -736,7 +736,7 @@ Get Beneficiaries related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="links"></a>
 **Links**
@@ -844,7 +844,7 @@ Get Direct Debits related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="links"></a>
 **Links**
@@ -1042,7 +1042,7 @@ Get Standing Orders related to an account
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)|
 |**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standingorder-firstpaymentamount)|
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
-|**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
+|**Frequency**  <br>*required*|EvryDay - Every day<br>EvryWorkgDay - Every working day<br>IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)<br>WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)<br>IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)<br>QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)<br>Patterns: <br>EvryDay (ScheduleCode)<br>EvryWorkgDay (ScheduleCode)<br>IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)<br>WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)<br>IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)<br>QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay<br><br>The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:<br>EvryDay<br>EvryWorkgDay<br>IntrvlWkDay:0[1-9]:0[1-7]<br>WkInMnthDay:0[1-5]:0[1-7]<br>IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01])<br>QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)  <br>**Pattern** : `"^(EvryDay)$\|^(EvryWorkgDay)$\|^(IntrvlWkDay:0[1-9]:0[1-7])$\|^(WkInMnthDay:0[1-5]:0[1-7])$\|^(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))$\|^(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))$"`|string|
 |**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standingorder-nextpaymentamount)|
 |**NextPaymentDateTime**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
@@ -1065,7 +1065,7 @@ Get Standing Orders related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="standingorder-firstpaymentamount"></a>
 **FirstPaymentAmount**
@@ -1073,7 +1073,7 @@ Get Standing Orders related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="standingorder-nextpaymentamount"></a>
 **NextPaymentAmount**
@@ -1081,7 +1081,7 @@ Get Standing Orders related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="standingorder-servicer"></a>
 **Servicer**
@@ -1089,7 +1089,7 @@ Get Standing Orders related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="links"></a>
 **Links**
@@ -1206,7 +1206,7 @@ Get transactions related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="data-transaction-balance"></a>
 **Balance**
@@ -1223,7 +1223,7 @@ Get transactions related to an account
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="data-transaction-banktransactioncode"></a>
 **BankTransactionCode**
@@ -1343,7 +1343,7 @@ Get Balances
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||[CreditLine](#balance-creditline)|
+|**CreditLine**  <br>*optional*||< [CreditLine](#balance-creditline) > array|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance.|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
@@ -1353,7 +1353,7 @@ Get Balances
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="balance-creditline"></a>
 **CreditLine**
@@ -1370,7 +1370,7 @@ Get Balances
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="links"></a>
 **Links**
@@ -1485,7 +1485,7 @@ Get Beneficiaries
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="links"></a>
 **Links**
@@ -1592,7 +1592,7 @@ Get Direct Debits
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="links"></a>
 **Links**
@@ -1788,7 +1788,7 @@ Get Standing Orders
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)|
 |**FirstPaymentAmount**  <br>*optional*|The amount of the first Standing Order|[FirstPaymentAmount](#standingorder-firstpaymentamount)|
 |**FirstPaymentDateTime**  <br>*optional*|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)|
-|**Frequency**  <br>*required*|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))  <br>**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string|
+|**Frequency**  <br>*required*|EvryDay - Every day<br>EvryWorkgDay - Every working day<br>IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)<br>WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)<br>IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)<br>QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)<br>Patterns: <br>EvryDay (ScheduleCode)<br>EvryWorkgDay (ScheduleCode)<br>IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)<br>WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)<br>IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)<br>QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay<br><br>The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:<br>EvryDay<br>EvryWorkgDay<br>IntrvlWkDay:0[1-9]:0[1-7]<br>WkInMnthDay:0[1-5]:0[1-7]<br>IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01])<br>QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)  <br>**Pattern** : `"^(EvryDay)$\|^(EvryWorkgDay)$\|^(IntrvlWkDay:0[1-9]:0[1-7])$\|^(WkInMnthDay:0[1-5]:0[1-7])$\|^(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))$\|^(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))$"`|string|
 |**NextPaymentAmount**  <br>*required*|The amount of the next Standing Order|[NextPaymentAmount](#standingorder-nextpaymentamount)|
 |**NextPaymentDateTime**  <br>*required*|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)|
 |**Reference**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
@@ -1811,7 +1811,7 @@ Get Standing Orders
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="standingorder-firstpaymentamount"></a>
 **FirstPaymentAmount**
@@ -1819,7 +1819,7 @@ Get Standing Orders
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="standingorder-nextpaymentamount"></a>
 **NextPaymentAmount**
@@ -1827,7 +1827,7 @@ Get Standing Orders
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="standingorder-servicer"></a>
 **Servicer**
@@ -1835,7 +1835,7 @@ Get Standing Orders
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of the servicing institution.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="links"></a>
 **Links**
@@ -1951,7 +1951,7 @@ Get Transactions
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="data-transaction-balance"></a>
 **Balance**
@@ -1968,7 +1968,7 @@ Get Transactions
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="data-transaction-banktransactioncode"></a>
 **BankTransactionCode**

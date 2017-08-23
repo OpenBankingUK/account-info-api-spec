@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "SchemeName": {
-      "$ref": "ob_external_financial_institution_identification_code.json"
+      "$ref": "ob_external_financial_institution_identification_code_2.json"
     },
     "Identification": {
       "description": "Unique and unambiguous identification of the servicing institution.",

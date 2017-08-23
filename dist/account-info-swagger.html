@@ -611,14 +611,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_version_information">1.1. Version information</h3>
 <div class="paragraph">
-<p><em>Version</em> : v1.0.1</p>
+<p><em>Version</em> : v1.1.0</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_contact_information">1.2. Contact information</h3>
 <div class="paragraph">
-<p><em>Contact</em> : Craig Greenhouse<br>
-<em>Contact Email</em> : <a href="mailto:Craig.Greenhouse@openbanking.org.uk">Craig.Greenhouse@openbanking.org.uk</a></p>
+<p><em>Contact</em> : Service Desk<br>
+<em>Contact Email</em> : <a href="mailto:ServiceDesk@openbanking.org.uk">ServiceDesk@openbanking.org.uk</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -632,7 +632,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_uri_scheme">1.4. URI scheme</h3>
 <div class="paragraph">
-<p><em>BasePath</em> : /open-banking/v1.0<br>
+<p><em>BasePath</em> : /open-banking/v1.1<br>
 <em>Schemes</em> : HTTPS</p>
 </div>
 </div>
@@ -959,7 +959,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -1322,7 +1322,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the account request resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
@@ -1827,7 +1827,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1919,7 +1919,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2267,7 +2267,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2359,7 +2359,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2713,7 +2713,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditLine</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balance_creditline">CreditLine</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balance_creditline">CreditLine</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
@@ -2756,7 +2756,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -2825,7 +2825,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -3266,7 +3266,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -3672,7 +3672,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -4404,8 +4404,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Frequency</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))<br>
-<strong>Pattern</strong> : <code>"^EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">EvryDay - Every day
+EvryWorkgDay - Every working day
+IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)
+WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)
+IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)
+QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+Patterns:
+EvryDay (ScheduleCode)
+EvryWorkgDay (ScheduleCode)
+IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)
+WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)
+IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)
+QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay
+</p><p class="tableblock">The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:
+EvryDay
+EvryWorkgDay
+IntrvlWkDay:0[1-9]:0[1-7]
+WkInMnthDay:0[1-5]:0[1-7]
+IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
+<strong>Pattern</strong> : <code>"<sup>(EvryDay)$|</sup>(EvryWorkgDay)$|<sup>(IntrvlWkDay:0[1-9]:0[1-7])$|</sup>(WkInMnthDay:0[1-5]:0[1-7])$|<sup>(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|</sup>(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4515,7 +4534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -4547,7 +4566,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -4579,7 +4598,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -4612,7 +4631,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -5075,7 +5094,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -5144,7 +5163,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -5589,7 +5608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditLine</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_balance_creditline">CreditLine</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_balance_creditline">CreditLine</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
@@ -5632,7 +5651,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -5701,7 +5720,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -6135,7 +6154,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -6534,7 +6553,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -7252,8 +7271,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Frequency</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))<br>
-<strong>Pattern</strong> : <code>"^EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">EvryDay - Every day
+EvryWorkgDay - Every working day
+IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)
+WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)
+IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)
+QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+Patterns:
+EvryDay (ScheduleCode)
+EvryWorkgDay (ScheduleCode)
+IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)
+WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)
+IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)
+QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay
+</p><p class="tableblock">The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:
+EvryDay
+EvryWorkgDay
+IntrvlWkDay:0[1-9]:0[1-7]
+WkInMnthDay:0[1-5]:0[1-7]
+IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
+<strong>Pattern</strong> : <code>"<sup>(EvryDay)$|</sup>(EvryWorkgDay)$|<sup>(IntrvlWkDay:0[1-9]:0[1-7])$|</sup>(WkInMnthDay:0[1-5]:0[1-7])$|<sup>(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|</sup>(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -7363,7 +7401,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -7395,7 +7433,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -7427,7 +7465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -7460,7 +7498,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -7916,7 +7954,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -7985,7 +8023,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
