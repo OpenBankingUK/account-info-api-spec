@@ -268,6 +268,11 @@ paths:
           description: Not Acceptable
         '429': &ref_10
           description: Too Many Requests
+          headers:
+            Retry-After:
+              schema:
+                type: string
+              description: Number in seconds to wait
         '500': &ref_11
           description: Internal Server Error
       security:

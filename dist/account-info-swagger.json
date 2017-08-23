@@ -329,7 +329,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -572,7 +580,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -642,7 +658,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -899,7 +923,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1163,7 +1195,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1557,7 +1597,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1818,7 +1866,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2108,7 +2164,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2352,7 +2416,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2699,7 +2771,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2912,7 +2992,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -3252,7 +3340,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -3489,7 +3585,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -3743,7 +3847,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4130,7 +4242,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4413,7 +4533,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4619,7 +4747,15 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Number in seconds to wait"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4673,7 +4809,15 @@
       "description": "Not Acceptable"
     },
     "429ErrorResponse": {
-      "description": "Too Many Requests"
+      "description": "Too Many Requests",
+      "headers": {
+        "Retry-After": {
+          "schema": {
+            "type": "string"
+          },
+          "description": "Number in seconds to wait"
+        }
+      }
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"
