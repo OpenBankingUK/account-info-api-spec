@@ -825,13 +825,19 @@ paths:
           name: fromBookingDateTime
           type: string
           format: date-time
-          description: 'The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date'
+          description: |-
+            The UTC ISO 8601 Date Time to filter transactions FROM 
+            NB Time component is optional - set to 00:00:00 for just Date.  
+            The parameter must NOT have a timezone set
         - &ref_18
           in: query
           name: toBookingDateTime
           type: string
           format: date-time
-          description: 'The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date'
+          description: |-
+            The UTC ISO 8601 Date Time to filter transactions TO 
+            NB Time component is optional - set to 00:00:00 for just Date.  
+            The parameter must NOT have a timezone set
         - *ref_0
         - *ref_1
         - *ref_2

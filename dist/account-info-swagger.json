@@ -1239,14 +1239,14 @@
             "name": "fromBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions FROM \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           },
           {
             "in": "query",
             "name": "toBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions TO \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           },
           {
             "in": "header",
@@ -3920,14 +3920,14 @@
             "name": "fromBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions FROM \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           },
           {
             "in": "query",
             "name": "toBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions TO \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           }
         ],
         "responses": {
