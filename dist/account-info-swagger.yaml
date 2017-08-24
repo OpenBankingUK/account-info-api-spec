@@ -63,19 +63,35 @@ paths:
                     minProperties: 1
                     additionalProperties: false
                   ExpirationDateTime:
-                    description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
+                    description: |-
+                      Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. 
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   TransactionFromDateTime:
                     description: >-
                       Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available
-                      transaction.
+                      transaction. 
+
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                      All date-time fields in responses must include the timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   TransactionToDateTime:
                     description: >-
                       Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available
-                      transaction.
+                      transaction. 
+
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                      All date-time fields in responses must include the timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -102,7 +118,10 @@ paths:
           name: x-fapi-customer-last-logged-time
           type: string
           required: false
-          description: The time when the PSU last logged in with the TPP.
+          description: |-
+            The time when the PSU last logged in with the TPP. 
+            All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: 
+            Sun, 10 Sep 2017 19:43:31 UTC
           pattern: '^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)$'
         - &ref_2
           in: header
@@ -153,7 +172,11 @@ paths:
                       - Rejected
                       - Revoked
                   CreationDateTime:
-                    description: Date and time at which the resource was created.
+                    description: |-
+                      Date and time at which the resource was created. 
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   Permissions:
@@ -179,19 +202,35 @@ paths:
                     minProperties: 1
                     additionalProperties: false
                   ExpirationDateTime:
-                    description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
+                    description: |-
+                      Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. 
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   TransactionFromDateTime:
                     description: >-
                       Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available
-                      transaction.
+                      transaction. 
+
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                      All date-time fields in responses must include the timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   TransactionToDateTime:
                     description: >-
                       Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available
-                      transaction.
+                      transaction. 
+
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                      All date-time fields in responses must include the timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -237,9 +276,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -323,7 +372,11 @@ paths:
                       - Rejected
                       - Revoked
                   CreationDateTime:
-                    description: Date and time at which the resource was created.
+                    description: |-
+                      Date and time at which the resource was created. 
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   Permissions:
@@ -349,19 +402,35 @@ paths:
                     minProperties: 1
                     additionalProperties: false
                   ExpirationDateTime:
-                    description: 'Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.'
+                    description: |-
+                      Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. 
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   TransactionFromDateTime:
                     description: >-
                       Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available
-                      transaction.
+                      transaction. 
+
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                      All date-time fields in responses must include the timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   TransactionToDateTime:
                     description: >-
                       Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available
-                      transaction.
+                      transaction. 
+
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                      All date-time fields in responses must include the timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -407,9 +476,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -608,9 +687,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -783,9 +872,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -909,14 +1008,26 @@ paths:
                         BookingDateTime:
                           description: >-
                             Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is
-                            booked, in which case it is the actual booking date.
+                            booked, in which case it is the actual booking date. 
+
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                            All date-time fields in responses must include the timezone. An example is below:
+
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         ValueDateTime:
                           description: >-
                             Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. 
                             Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and
-                            for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.
+                            for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days. 
+
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+
+                            All date-time fields in responses must include the timezone. An example is below:
+
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         TransactionInformation:
@@ -1064,9 +1175,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -1234,9 +1355,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -1340,7 +1471,11 @@ paths:
                             - OpeningBooked
                             - PreviouslyClosedBooked
                         DateTime:
-                          description: Indicates the date (and time) of the balance.
+                          description: |-
+                            Indicates the date (and time) of the balance. 
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                            All date-time fields in responses must include the timezone. An example is below:
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         CreditLine:
@@ -1421,9 +1556,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -1511,7 +1656,11 @@ paths:
                           minLength: 1
                           maxLength: 70
                         PreviousPaymentDateTime:
-                          description: Date of most recent direct debit collection.
+                          description: |-
+                            Date of most recent direct debit collection. 
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                            All date-time fields in responses must include the timezone. An example is below:
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         PreviousPaymentAmount:
@@ -1569,9 +1718,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -1678,7 +1837,11 @@ paths:
                           minLength: 1
                           maxLength: 35
                         FirstPaymentDateTime:
-                          description: The date on which the first payment for a Standing Order schedule will be made.
+                          description: |-
+                            The date on which the first payment for a Standing Order schedule will be made. 
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                            All date-time fields in responses must include the timezone. An example is below:
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         FirstPaymentAmount:
@@ -1699,7 +1862,11 @@ paths:
                             - Currency
                           additionalProperties: false
                         NextPaymentDateTime:
-                          description: The date on which the next payment for a Standing Order schedule will be made.
+                          description: |-
+                            The date on which the next payment for a Standing Order schedule will be made. 
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                            All date-time fields in responses must include the timezone. An example is below:
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         NextPaymentAmount:
@@ -1720,7 +1887,11 @@ paths:
                             - Currency
                           additionalProperties: false
                         FinalPaymentDateTime:
-                          description: The date on which the final payment for a Standing Order schedule will be made.
+                          description: |-
+                            The date on which the final payment for a Standing Order schedule will be made. 
+                            All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                            All date-time fields in responses must include the timezone. An example is below:
+                            2017-04-05T10:43:07+00:00
                           type: string
                           format: date-time
                         FinalPaymentAmount:
@@ -1833,9 +2004,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -1954,9 +2135,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false
@@ -2246,9 +2437,19 @@ paths:
                     type: integer
                     format: int32
                   FirstAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                   LastAvailableDateTime:
+                    description: |2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601 date-time format. 
+                      All date-time fields in responses must include the timezone. An example is below:
+                      2017-04-05T10:43:07+00:00
                     type: string
                     format: date-time
                 additionalProperties: false

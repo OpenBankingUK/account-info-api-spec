@@ -20,7 +20,7 @@
       "$ref": "../common/max_35_text.json"
     },
     "FirstPaymentDateTime": {
-      "description": "The date on which the first payment for a Standing Order schedule will be made.",
+      "description": "The date on which the first payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
       "type": "string",
       "format": "date-time"
     },
@@ -29,7 +29,7 @@
       "$ref": "../common/active_or_historic_currency_code_and_amount.json"
     },
     "NextPaymentDateTime": {
-      "description": "The date on which the next payment for a Standing Order schedule will be made.",
+      "description": "The date on which the next payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
       "type": "string",
       "format": "date-time"
     },
@@ -38,7 +38,7 @@
       "$ref": "../common/active_or_historic_currency_code_and_amount.json"
     },
     "FinalPaymentDateTime": {
-      "description": "The date on which the final payment for a Standing Order schedule will be made.",
+      "description": "The date on which the final payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
       "type": "string",
       "format": "date-time"
     },

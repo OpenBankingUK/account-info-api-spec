@@ -75,17 +75,17 @@
                       "additionalProperties": false
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionFromDateTime": {
-                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionToDateTime": {
-                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -122,7 +122,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -183,7 +183,7 @@
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -213,17 +213,17 @@
                       "additionalProperties": false
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionFromDateTime": {
-                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionToDateTime": {
-                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -283,10 +283,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -380,7 +382,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -434,7 +436,7 @@
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -464,17 +466,17 @@
                       "additionalProperties": false
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionFromDateTime": {
-                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionToDateTime": {
-                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -534,10 +536,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -702,7 +706,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -878,10 +882,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -974,7 +980,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -1150,10 +1156,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1260,7 +1268,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -1359,12 +1367,12 @@
                             ]
                           },
                           "BookingDateTime": {
-                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
                           "ValueDateTime": {
-                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -1552,10 +1560,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1648,7 +1658,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -1821,10 +1831,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1917,7 +1929,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -2014,7 +2026,7 @@
                             ]
                           },
                           "DateTime": {
-                            "description": "Indicates the date (and time) of the balance.",
+                            "description": "Indicates the date (and time) of the balance. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2119,10 +2131,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2215,7 +2229,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -2294,7 +2308,7 @@
                             "maxLength": 70
                           },
                           "PreviousPaymentDateTime": {
-                            "description": "Date of most recent direct debit collection.",
+                            "description": "Date of most recent direct debit collection. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2371,10 +2385,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2467,7 +2483,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -2537,7 +2553,7 @@
                             "maxLength": 35
                           },
                           "FirstPaymentDateTime": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the first payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2562,7 +2578,7 @@
                             "additionalProperties": false
                           },
                           "NextPaymentDateTime": {
-                            "description": "The date on which the next payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the next payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2587,7 +2603,7 @@
                             "additionalProperties": false
                           },
                           "FinalPaymentDateTime": {
-                            "description": "The date on which the final payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the final payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2726,10 +2742,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2822,7 +2840,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -2947,10 +2965,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3036,7 +3056,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -3106,7 +3126,7 @@
                             "maxLength": 35
                           },
                           "FirstPaymentDateTime": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the first payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3131,7 +3151,7 @@
                             "additionalProperties": false
                           },
                           "NextPaymentDateTime": {
-                            "description": "The date on which the next payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the next payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3156,7 +3176,7 @@
                             "additionalProperties": false
                           },
                           "FinalPaymentDateTime": {
-                            "description": "The date on which the final payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the final payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3295,10 +3315,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3384,7 +3406,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -3463,7 +3485,7 @@
                             "maxLength": 70
                           },
                           "PreviousPaymentDateTime": {
-                            "description": "Date of most recent direct debit collection.",
+                            "description": "Date of most recent direct debit collection. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3540,10 +3562,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3629,7 +3653,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -3802,10 +3826,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3891,7 +3917,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -4004,12 +4030,12 @@
                             ]
                           },
                           "BookingDateTime": {
-                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
                           "ValueDateTime": {
-                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -4197,10 +4223,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -4286,7 +4314,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -4383,7 +4411,7 @@
                             ]
                           },
                           "DateTime": {
-                            "description": "Indicates the date (and time) of the balance.",
+                            "description": "Indicates the date (and time) of the balance. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -4488,10 +4516,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -4577,7 +4607,7 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP.",
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
             "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
@@ -4702,10 +4732,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
