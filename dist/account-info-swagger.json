@@ -334,10 +334,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -587,10 +585,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -665,10 +661,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -932,10 +926,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -1206,10 +1198,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -1610,10 +1600,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -1881,10 +1869,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -2181,10 +2167,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -2435,10 +2419,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -2792,10 +2774,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -3015,10 +2995,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -3365,10 +3343,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -3612,10 +3588,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -3876,10 +3850,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -4273,10 +4245,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -4566,10 +4536,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -4782,10 +4750,8 @@
             "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Number in seconds to wait"
+                "description": "Number in seconds to wait",
+                "type": "integer"
               }
             }
           },
@@ -4844,10 +4810,8 @@
       "description": "Too Many Requests",
       "headers": {
         "Retry-After": {
-          "schema": {
-            "type": "string"
-          },
-          "description": "Number in seconds to wait"
+          "description": "Number in seconds to wait",
+          "type": "integer"
         }
       }
     },

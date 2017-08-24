@@ -611,7 +611,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_version_information">1.1. Version information</h3>
 <div class="paragraph">
-<p><em>Version</em> : v1.1.0</p>
+<p><em>Version</em> : v1.1-rc1</p>
 </div>
 </div>
 <div class="sect2">
@@ -701,7 +701,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -785,7 +787,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ExpirationDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -797,13 +802,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionToDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -860,7 +871,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -940,13 +953,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ExpirationDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -964,13 +983,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionToDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -1022,12 +1047,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -1035,16 +1062,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -1145,7 +1179,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1223,7 +1259,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1303,13 +1341,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ExpirationDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -1327,13 +1371,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionFromDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TransactionToDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -1385,12 +1435,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -1398,16 +1450,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -1554,7 +1613,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1650,7 +1711,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1721,7 +1784,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -1880,7 +1945,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -1970,12 +2035,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -1983,16 +2050,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -2083,7 +2157,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2161,7 +2237,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -2320,7 +2398,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -2410,12 +2488,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -2423,16 +2503,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -2523,7 +2610,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2601,7 +2690,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -2718,7 +2809,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates the date (and time) of the balance.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates the date (and time) of the balance.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -2877,12 +2971,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -2890,16 +2986,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -2990,7 +3093,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -3068,7 +3173,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -3227,7 +3334,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -3317,12 +3424,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -3330,16 +3439,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -3430,7 +3546,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -3508,7 +3626,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -3640,7 +3760,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -3724,12 +3847,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -3737,16 +3862,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -3837,7 +3969,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -3915,7 +4049,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -4084,12 +4220,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -4097,16 +4235,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -4197,7 +4342,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4275,7 +4422,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -4386,7 +4535,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -4398,7 +4550,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -4436,7 +4591,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -4496,7 +4654,7 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -4682,12 +4840,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -4695,16 +4855,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -4795,7 +4962,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -4823,14 +4992,18 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>fromBookingDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions FROM
+NB Time component is optional - set to 00:00:00 for just Date.<br>
+The parameter must NOT have a timezone set</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>toBookingDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions TO
+NB Time component is optional - set to 00:00:00 for just Date.<br>
+The parameter must NOT have a timezone set</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -4887,7 +5060,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -5011,7 +5186,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when a transaction entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when a transaction entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -5062,7 +5240,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ValueDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -5312,12 +5493,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -5325,16 +5508,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -5425,7 +5615,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -5496,7 +5688,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -5613,7 +5807,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates the date (and time) of the balance.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Indicates the date (and time) of the balance.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -5772,12 +5969,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -5785,16 +5984,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -5885,7 +6091,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -5956,7 +6164,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -6115,7 +6325,7 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -6205,12 +6415,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -6218,16 +6430,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -6318,7 +6537,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -6389,7 +6610,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -6521,7 +6744,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PreviousPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date of most recent direct debit collection.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -6605,12 +6831,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -6618,16 +6846,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -6718,7 +6953,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -6789,7 +7026,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -6958,12 +7197,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -6971,16 +7212,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -7071,7 +7319,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -7142,7 +7392,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -7253,7 +7505,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FinalPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the final payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -7265,7 +7520,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstPaymentDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the first payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -7303,7 +7561,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>NextPaymentDateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The date on which the next payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -7363,7 +7624,7 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -7549,12 +7810,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -7562,16 +7825,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
@@ -7662,7 +7932,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Header</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>x-fapi-customer-last-logged-time</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -7683,14 +7955,18 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>fromBookingDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions FROM
+NB Time component is optional - set to 00:00:00 for just Date.<br>
+The parameter must NOT have a timezone set</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Query</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>toBookingDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The UTC ISO 8601 Date Time to filter transactions TO
+NB Time component is optional - set to 00:00:00 for just Date.<br>
+The parameter must NOT have a timezone set</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -7747,7 +8023,9 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests<br>
+<strong>Headers</strong> : <br>
+<code>Retry-After</code> (integer) : Number in seconds to wait.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
@@ -7871,7 +8149,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BookingDateTime</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when a transaction entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time when a transaction entry is posted to an account on the account servicer&#8217;s books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
@@ -7922,7 +8203,10 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ValueDateTime</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 </tbody>
@@ -8172,12 +8456,14 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -8185,16 +8471,23 @@ QtrDay:(ENGLISH|SCOTTISH|RECEIVED)<br>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>FirstAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>LastAvailableDateTime</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>

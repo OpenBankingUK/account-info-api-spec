@@ -319,9 +319,8 @@ paths:
           description: Too Many Requests
           headers:
             Retry-After:
-              schema:
-                type: string
               description: Number in seconds to wait
+              type: integer
         '500': &ref_11
           description: Internal Server Error
       security:
