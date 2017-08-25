@@ -3,7 +3,7 @@
   "properties": {
     "SchemeName": {
       "description": "Name of the identification scheme, in a coded form as published in an external list.",
-       "$ref": "external_account_identification_code.json"
+       "$ref": "external_account_identification_code_2.json"
      },
      "Identification": {
        "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",

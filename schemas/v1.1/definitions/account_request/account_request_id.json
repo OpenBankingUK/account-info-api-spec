@@ -1,4 +1,0 @@
-{
-  "$ref": "../common/max_35_text.json",
-  "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource."
-}

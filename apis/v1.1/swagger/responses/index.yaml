@@ -25,8 +25,12 @@
 
 429ErrorResponse:
   description: Too Many Requests
-  # schema:
-  #   $ref: ../../../../compiled/schemas/v1.1/shared/http-error-429.schema.yaml
+  headers:
+    Retry-After:
+      description: Number in seconds to wait
+      type: integer
+  #schema:
+  #  $ref: ../../../../compiled/schemas/v1.1/shared/http-error-429.schema.yaml
 
 500ErrorResponse:
   description: Internal Server Error

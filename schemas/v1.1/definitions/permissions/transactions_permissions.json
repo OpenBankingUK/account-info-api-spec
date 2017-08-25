@@ -16,12 +16,12 @@
     "readFromDate": {
       "type": "string",
       "format": "date-time",
-      "description": "Allow read access to all transactions starting from the specified date"
+      "description": "Allow read access to all transactions starting from the specified date. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
     },
     "readToDate": {
       "type": "string",
       "format": "date-time",
-      "description": "Allow read access to all transactions ending on the specified date, if not provided "
+      "description": "Allow read access to all transactions ending on the specified date, if not provided. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
     }
   },
   "required": [
