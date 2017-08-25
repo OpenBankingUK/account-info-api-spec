@@ -20,7 +20,7 @@ Create an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -225,7 +225,7 @@ Get an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -382,7 +382,7 @@ Delete an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
@@ -443,7 +443,7 @@ Get a list of accounts
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -624,7 +624,7 @@ Get an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -807,7 +807,7 @@ Get Balances related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -1001,7 +1001,7 @@ Get Beneficiaries related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -1184,7 +1184,7 @@ Get Direct Debits related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -1356,7 +1356,7 @@ Get Product related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -1505,7 +1505,7 @@ Get Standing Orders related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -1771,7 +1771,7 @@ Get transactions related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -2036,7 +2036,7 @@ Get Balances
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -2228,7 +2228,7 @@ Get Beneficiaries
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -2409,7 +2409,7 @@ Get Direct Debits
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -2579,7 +2579,7 @@ Get Products
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -2726,7 +2726,7 @@ Get Standing Orders
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
@@ -2990,7 +2990,7 @@ Get Transactions
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
