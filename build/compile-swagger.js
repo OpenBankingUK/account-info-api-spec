@@ -58,7 +58,7 @@ SwaggerParser.dereference(swaggerIndex, SwaggerParserOptions,
     fWrite(YAML.safeDump(api, {lineWidth: 200}), dist + '/account-info-swagger.yaml');
     fWrite(JSON.stringify(api, null, 2), dist + '/account-info-swagger.json');
 
-    fWrite(YAML.safeDump(api, {lineWidth: 200}), distV + '/account-info-swagger.json');
+    fWrite(YAML.safeDump(api, {lineWidth: 200}), distV + '/account-info-swagger.yaml');
   }
 );
 
