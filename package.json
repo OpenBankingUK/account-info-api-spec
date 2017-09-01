@@ -4,7 +4,7 @@
   "description": "Tools to compile and flatten JSON schemas, and generate Swagger Docs",
   "main": "index.js",
   "scripts": {
-    "flatten-schemas": "cd build && ./flatten-schemas.sh v1.1",
+    "flatten-schemas": "cd build && ./flatten-schemas.sh",
     "compile-swagger": "cd build && node compile-swagger.js",
     "build:swagger": "npm run flatten-schemas && npm run compile-swagger",
     "build": "npm run build:swagger && npm run build:spectacle",

@@ -21,8 +21,14 @@ It's now possible to see a debug log of the inner reference fixes
 set the environment variable *SWAGGER_DEBUG=true* and a json file of old / fixes / and fixed 
 partials will appear in the path *debug/log.json*
 
+# Versions
+The buid scripts depend on a version being set in an environment variable 
+e.g. export `VERSION=v1.0`  
+The Master list of allowable versions is stored in the /build/versions.js file 
+and must be maintained there as new versions are created.
 
-****WIP Documentation****
+
+**** WIP Documentation ****
 To convert SwaggerSpec to MARKDOWN
 You need to have
 1) swagger2markup-cli-1.3.1.jar  -> http://swagger2markup.github.io/swagger2markup/1.3.1/#_command_line_interface
