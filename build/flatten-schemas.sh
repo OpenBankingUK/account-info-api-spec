@@ -1,6 +1,14 @@
 #!/bin/sh
-# arg1 = version number to compile
-rm -rf ../compiled/schemas/$1
-mkdir ../compiled/schemas/$1
 
-node flatten-json.js ../schemas/$1 ../compiled/schemas/$1 ../
+set -e
+node versions.js
+
+echo   "*****************************************"
+echo   "*********   Building Version   **********"
+printf "*********   $VERSION               **********\n"
+echo   "*****************************************"
+
+rm -rf ../compiled/schemas/$VERSION
+mkdir ../compiled/schemas/$VERSION
+
+node flatten-json.js ../schemas/$VERSION ../compiled/schemas/$VERSION ../
