@@ -1,0 +1,18 @@
+{
+  "description": "Set of elements to fully identify a proprietary bank transaction code.",
+  "type": "object",
+  "properties": {
+    "Code": {
+      "description": "Proprietary bank transaction code to identify the underlying transaction.",
+      "$ref": "../../common/max_35_text.json"
+    },
+    "Issuer": {
+      "description": "Identification of the issuer of the proprietary bank transaction code.",
+      "$ref": "../../common/max_35_text.json"
+    }
+  },
+  "required": [
+    "Code"
+  ],
+  "additionalProperties": false
+}

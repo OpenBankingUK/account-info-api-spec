@@ -1,0 +1,5 @@
+{
+  "description": "UK Bank Account Number",
+  "type": "string",
+  "pattern": "^[0-9]{8,8}$"
+}

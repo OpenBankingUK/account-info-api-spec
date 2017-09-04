@@ -1,0 +1,7 @@
+type: oauth2
+flow: accessCode
+tokenUrl: 'https://authserver.example/token'
+authorizationUrl: 'https://authserver.example/authorization'
+scopes:
+  accounts: Ability to read Accounts information
+description: OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU

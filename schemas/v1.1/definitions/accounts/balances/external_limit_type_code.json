@@ -1,0 +1,9 @@
+{
+  "description": "Limit type, in a coded form.",
+  "type": "string",
+  "enum": [
+    "Pre-Agreed",
+    "Emergency",
+    "Temporary"
+  ]
+}

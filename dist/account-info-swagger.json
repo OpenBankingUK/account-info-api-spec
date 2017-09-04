@@ -1,20 +1,20 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Account Information APIs",
-    "description": "Swagger specification for Account Information APIs",
+    "title": "Account and Transaction API Specification",
+    "description": "Swagger for Account and Transaction API Specification",
     "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
-      "name": "Craig Greenhouse",
-      "email": "Craig.Greenhouse@openbanking.org.uk"
+      "name": "Service Desk",
+      "email": "ServiceDesk@openbanking.org.uk"
     },
     "license": {
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0.1"
+    "version": "v1.1.0"
   },
-  "basePath": "/open-banking/v1.0",
+  "basePath": "/open-banking/v1.1",
   "schemes": [
     "https"
   ],
@@ -75,17 +75,17 @@
                       "additionalProperties": false
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionFromDateTime": {
-                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionToDateTime": {
-                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -122,7 +122,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -140,7 +141,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -176,14 +177,13 @@
                       "type": "string",
                       "enum": [
                         "Authorised",
-                        "AwaitingAuthentication",
                         "AwaitingAuthorisation",
                         "Rejected",
                         "Revoked"
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -213,17 +213,17 @@
                       "additionalProperties": false
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionFromDateTime": {
-                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionToDateTime": {
-                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -283,10 +283,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -329,7 +331,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -372,7 +380,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -390,7 +399,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -419,14 +428,13 @@
                       "type": "string",
                       "enum": [
                         "Authorised",
-                        "AwaitingAuthentication",
                         "AwaitingAuthorisation",
                         "Rejected",
                         "Revoked"
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -456,17 +464,17 @@
                       "additionalProperties": false
                     },
                     "ExpirationDateTime": {
-                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.",
+                      "description": "Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionFromDateTime": {
-                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.",
+                      "description": "Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "TransactionToDateTime": {
-                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.",
+                      "description": "Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -526,10 +534,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -572,7 +582,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -603,7 +619,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -642,7 +658,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -678,7 +700,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -696,7 +719,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -732,7 +755,7 @@
                           "Currency": {
                             "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
+                            "pattern": "^[A-Z]{3,3}$"
                           },
                           "Nickname": {
                             "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
@@ -748,8 +771,8 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BBAN",
-                                  "IBAN"
+                                  "IBAN",
+                                  "SortCodeAccountNumber"
                                 ]
                               },
                               "Identification": {
@@ -785,8 +808,7 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BICFI",
-                                  "UKSortCode"
+                                  "BICFI"
                                 ]
                               },
                               "Identification": {
@@ -854,10 +876,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -899,7 +923,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -942,7 +972,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -960,7 +991,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -996,7 +1027,7 @@
                           "Currency": {
                             "description": "Identification of the currency in which the account is held.  Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.",
                             "type": "string",
-                            "pattern": "^[A-Z]{3}$"
+                            "pattern": "^[A-Z]{3,3}$"
                           },
                           "Nickname": {
                             "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.",
@@ -1012,8 +1043,8 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BBAN",
-                                  "IBAN"
+                                  "IBAN",
+                                  "SortCodeAccountNumber"
                                 ]
                               },
                               "Identification": {
@@ -1049,8 +1080,7 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BICFI",
-                                  "UKSortCode"
+                                  "BICFI"
                                 ]
                               },
                               "Identification": {
@@ -1118,10 +1148,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1163,7 +1195,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1199,14 +1237,14 @@
             "name": "fromBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions FROM \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           },
           {
             "in": "query",
             "name": "toBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions TO \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           },
           {
             "in": "header",
@@ -1220,7 +1258,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -1238,7 +1277,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -1292,7 +1331,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -1318,12 +1357,12 @@
                             ]
                           },
                           "BookingDateTime": {
-                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
                           "ValueDateTime": {
-                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -1395,7 +1434,7 @@
                                   "Currency": {
                                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                     "type": "string",
-                                    "pattern": "^[A-Z]{3}$"
+                                    "pattern": "^[A-Z]{3,3}$"
                                   }
                                 },
                                 "required": [
@@ -1511,10 +1550,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1556,7 +1597,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1599,7 +1646,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -1617,7 +1665,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -1670,8 +1718,7 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BICFI",
-                                  "UKSortCode"
+                                  "BICFI"
                                 ]
                               },
                               "Identification": {
@@ -1695,8 +1742,8 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BBAN",
-                                  "IBAN"
+                                  "IBAN",
+                                  "SortCodeAccountNumber"
                                 ]
                               },
                               "Identification": {
@@ -1772,10 +1819,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1817,7 +1866,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1860,7 +1915,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -1878,7 +1934,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -1922,7 +1978,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -1956,51 +2012,54 @@
                             ]
                           },
                           "DateTime": {
-                            "description": "Indicates the date (and time) of the balance.",
+                            "description": "Indicates the date (and time) of the balance. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
                           "CreditLine": {
-                            "type": "object",
-                            "properties": {
-                              "Included": {
-                                "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
-                                "type": "boolean"
-                              },
-                              "Amount": {
-                                "description": "Active Or Historic Currency Code and Amount",
-                                "type": "object",
-                                "properties": {
-                                  "Amount": {
-                                    "type": "string",
-                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
-                                  },
-                                  "Currency": {
-                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                                    "type": "string",
-                                    "pattern": "^[A-Z]{3}$"
-                                  }
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Included": {
+                                  "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+                                  "type": "boolean"
                                 },
-                                "required": [
-                                  "Amount",
-                                  "Currency"
-                                ],
-                                "additionalProperties": false
+                                "Amount": {
+                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "type": "object",
+                                  "properties": {
+                                    "Amount": {
+                                      "type": "string",
+                                      "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                    },
+                                    "Currency": {
+                                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                      "type": "string",
+                                      "pattern": "^[A-Z]{3,3}$"
+                                    }
+                                  },
+                                  "required": [
+                                    "Amount",
+                                    "Currency"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "Type": {
+                                  "description": "Limit type, in a coded form.",
+                                  "type": "string",
+                                  "enum": [
+                                    "Pre-Agreed",
+                                    "Emergency",
+                                    "Temporary"
+                                  ]
+                                }
                               },
-                              "Type": {
-                                "description": "Limit type, in a coded form.",
-                                "type": "string",
-                                "enum": [
-                                  "Pre-Agreed",
-                                  "Emergency",
-                                  "Temporary"
-                                ]
-                              }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                              "Included"
-                            ]
+                              "additionalProperties": false,
+                              "required": [
+                                "Included"
+                              ]
+                            }
                           }
                         },
                         "additionalProperties": false,
@@ -2058,10 +2117,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2103,7 +2164,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2146,7 +2213,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -2164,7 +2232,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -2224,7 +2292,7 @@
                             "maxLength": 70
                           },
                           "PreviousPaymentDateTime": {
-                            "description": "Date of most recent direct debit collection.",
+                            "description": "Date of most recent direct debit collection. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2239,7 +2307,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -2301,10 +2369,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2346,7 +2416,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2389,7 +2465,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -2407,7 +2484,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -2447,9 +2524,9 @@
                             "maxLength": 40
                           },
                           "Frequency": {
-                            "description": "EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))",
+                            "description": "EvryDay - Every day\nEvryWorkgDay - Every working day\nIntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)\nWkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)\nIntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)\nQtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)\nPatterns: \nEvryDay (ScheduleCode)\nEvryWorkgDay (ScheduleCode)\nIntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)\nWkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)\nIntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)\nQtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay\n\nThe regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:\nEvryDay\nEvryWorkgDay\nIntrvlWkDay:0[1-9]:0[1-7]\nWkInMnthDay:0[1-5]:0[1-7]\nIntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])\nQtrDay:(ENGLISH|SCOTTISH|RECEIVED)\n",
                             "type": "string",
-                            "pattern": "^((EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"
+                            "pattern": "^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$"
                           },
                           "Reference": {
                             "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
@@ -2458,7 +2535,7 @@
                             "maxLength": 35
                           },
                           "FirstPaymentDateTime": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the first payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2473,7 +2550,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -2483,7 +2560,7 @@
                             "additionalProperties": false
                           },
                           "NextPaymentDateTime": {
-                            "description": "The date on which the next payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the next payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2498,7 +2575,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -2508,7 +2585,7 @@
                             "additionalProperties": false
                           },
                           "FinalPaymentDateTime": {
-                            "description": "The date on which the final payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the final payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -2523,7 +2600,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -2540,8 +2617,7 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BICFI",
-                                  "UKSortCode"
+                                  "BICFI"
                                 ]
                               },
                               "Identification": {
@@ -2565,8 +2641,8 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BBAN",
-                                  "IBAN"
+                                  "IBAN",
+                                  "SortCodeAccountNumber"
                                 ]
                               },
                               "Identification": {
@@ -2648,10 +2724,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2693,7 +2771,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2736,7 +2820,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -2754,7 +2839,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -2860,10 +2945,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2905,7 +2992,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2941,7 +3034,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -2959,7 +3053,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -2999,9 +3093,9 @@
                             "maxLength": 40
                           },
                           "Frequency": {
-                            "description": "EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 & 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]) QtrDay:(ENGLISH|SCOTTISH|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1- 6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))",
+                            "description": "EvryDay - Every day\nEvryWorkgDay - Every working day\nIntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)\nWkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)\nIntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)\nQtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)\nPatterns: \nEvryDay (ScheduleCode)\nEvryWorkgDay (ScheduleCode)\nIntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)\nWkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)\nIntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)\nQtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay\n\nThe regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:\nEvryDay\nEvryWorkgDay\nIntrvlWkDay:0[1-9]:0[1-7]\nWkInMnthDay:0[1-5]:0[1-7]\nIntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])\nQtrDay:(ENGLISH|SCOTTISH|RECEIVED)\n",
                             "type": "string",
-                            "pattern": "^((EvryWorkgDay)|(IntrvlWkDay:0[1-9]:0[1-5])|(WkInMnthDay:0[1-5]:0[1-5])|(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))|(QtrDay:(ENGLISH|SCOTTISH|RECEIVED)))$"
+                            "pattern": "^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$"
                           },
                           "Reference": {
                             "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
@@ -3010,7 +3104,7 @@
                             "maxLength": 35
                           },
                           "FirstPaymentDateTime": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the first payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3025,7 +3119,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -3035,7 +3129,7 @@
                             "additionalProperties": false
                           },
                           "NextPaymentDateTime": {
-                            "description": "The date on which the next payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the next payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3050,7 +3144,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -3060,7 +3154,7 @@
                             "additionalProperties": false
                           },
                           "FinalPaymentDateTime": {
-                            "description": "The date on which the final payment for a Standing Order schedule will be made.",
+                            "description": "The date on which the final payment for a Standing Order schedule will be made. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3075,7 +3169,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -3092,8 +3186,7 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BICFI",
-                                  "UKSortCode"
+                                  "BICFI"
                                 ]
                               },
                               "Identification": {
@@ -3117,8 +3210,8 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BBAN",
-                                  "IBAN"
+                                  "IBAN",
+                                  "SortCodeAccountNumber"
                                 ]
                               },
                               "Identification": {
@@ -3200,10 +3293,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3245,7 +3340,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -3281,7 +3382,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -3299,7 +3401,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -3359,7 +3461,7 @@
                             "maxLength": 70
                           },
                           "PreviousPaymentDateTime": {
-                            "description": "Date of most recent direct debit collection.",
+                            "description": "Date of most recent direct debit collection. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3374,7 +3476,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -3436,10 +3538,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3481,7 +3585,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -3517,7 +3627,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -3535,7 +3646,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -3588,8 +3699,7 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BICFI",
-                                  "UKSortCode"
+                                  "BICFI"
                                 ]
                               },
                               "Identification": {
@@ -3613,8 +3723,8 @@
                                 "description": "Name of the identification scheme, in a coded form as published in an external list.",
                                 "type": "string",
                                 "enum": [
-                                  "BBAN",
-                                  "IBAN"
+                                  "IBAN",
+                                  "SortCodeAccountNumber"
                                 ]
                               },
                               "Identification": {
@@ -3690,10 +3800,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -3735,7 +3847,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -3771,7 +3889,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -3789,7 +3908,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -3799,14 +3918,14 @@
             "name": "fromBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions FROM \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           },
           {
             "in": "query",
             "name": "toBookingDateTime",
             "type": "string",
             "format": "date-time",
-            "description": "The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date"
+            "description": "The UTC ISO 8601 Date Time to filter transactions TO \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
           }
         ],
         "responses": {
@@ -3857,7 +3976,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -3883,12 +4002,12 @@
                             ]
                           },
                           "BookingDateTime": {
-                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.",
+                            "description": "Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
                           "ValueDateTime": {
-                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days.",
+                            "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry.  Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the  number of availability days. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
@@ -3960,7 +4079,7 @@
                                   "Currency": {
                                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                     "type": "string",
-                                    "pattern": "^[A-Z]{3}$"
+                                    "pattern": "^[A-Z]{3,3}$"
                                   }
                                 },
                                 "required": [
@@ -4076,10 +4195,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -4121,7 +4242,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4157,7 +4284,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -4175,7 +4303,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -4219,7 +4347,7 @@
                               "Currency": {
                                 "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
                                 "type": "string",
-                                "pattern": "^[A-Z]{3}$"
+                                "pattern": "^[A-Z]{3,3}$"
                               }
                             },
                             "required": [
@@ -4253,51 +4381,54 @@
                             ]
                           },
                           "DateTime": {
-                            "description": "Indicates the date (and time) of the balance.",
+                            "description": "Indicates the date (and time) of the balance. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                             "type": "string",
                             "format": "date-time"
                           },
                           "CreditLine": {
-                            "type": "object",
-                            "properties": {
-                              "Included": {
-                                "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
-                                "type": "boolean"
-                              },
-                              "Amount": {
-                                "description": "Active Or Historic Currency Code and Amount",
-                                "type": "object",
-                                "properties": {
-                                  "Amount": {
-                                    "type": "string",
-                                    "pattern": "^\\d{1,13}\\.\\d{1,5}$"
-                                  },
-                                  "Currency": {
-                                    "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                                    "type": "string",
-                                    "pattern": "^[A-Z]{3}$"
-                                  }
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Included": {
+                                  "description": "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.",
+                                  "type": "boolean"
                                 },
-                                "required": [
-                                  "Amount",
-                                  "Currency"
-                                ],
-                                "additionalProperties": false
+                                "Amount": {
+                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "type": "object",
+                                  "properties": {
+                                    "Amount": {
+                                      "type": "string",
+                                      "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+                                    },
+                                    "Currency": {
+                                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                                      "type": "string",
+                                      "pattern": "^[A-Z]{3,3}$"
+                                    }
+                                  },
+                                  "required": [
+                                    "Amount",
+                                    "Currency"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "Type": {
+                                  "description": "Limit type, in a coded form.",
+                                  "type": "string",
+                                  "enum": [
+                                    "Pre-Agreed",
+                                    "Emergency",
+                                    "Temporary"
+                                  ]
+                                }
                               },
-                              "Type": {
-                                "description": "Limit type, in a coded form.",
-                                "type": "string",
-                                "enum": [
-                                  "Pre-Agreed",
-                                  "Emergency",
-                                  "Temporary"
-                                ]
-                              }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                              "Included"
-                            ]
+                              "additionalProperties": false,
+                              "required": [
+                                "Included"
+                              ]
+                            }
                           }
                         },
                         "additionalProperties": false,
@@ -4355,10 +4486,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -4400,7 +4533,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4436,7 +4575,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -4454,7 +4594,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -4560,10 +4700,12 @@
                       "format": "int32"
                     },
                     "FirstAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
                     "LastAvailableDateTime": {
+                      "description": " \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -4605,7 +4747,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -4659,7 +4807,13 @@
       "description": "Not Acceptable"
     },
     "429ErrorResponse": {
-      "description": "Too Many Requests"
+      "description": "Too Many Requests",
+      "headers": {
+        "Retry-After": {
+          "description": "Number in seconds to wait",
+          "type": "integer"
+        }
+      }
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"

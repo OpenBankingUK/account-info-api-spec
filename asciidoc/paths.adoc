@@ -20,12 +20,14 @@ Create an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -59,13 +61,22 @@ __required__|The Risk payload is sent by the initiating party to the ASPSP. It i
 |===
 |Name|Description|Schema
 |**ExpirationDateTime** +
-__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Permissions** +
 __required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**TransactionFromDateTime** +
-__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
+__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TransactionToDateTime** +
-__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 
@@ -83,7 +94,9 @@ __optional__|Specified end date and time for the transaction query period. If th
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -113,17 +126,29 @@ __required__|The Risk payload is sent by the initiating party to the ASPSP. It i
 __required__|Unique identification as assigned to identify the account request resource. +
 **Length** : `1 - 128`|string
 |**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+__required__|Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**ExpirationDateTime** +
-__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Permissions** +
 __required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**Status** +
-__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)
+__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)
 |**TransactionFromDateTime** +
-__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
+__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TransactionToDateTime** +
-__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 [[_links]]
@@ -147,15 +172,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -196,12 +225,14 @@ Get an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -225,7 +256,9 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -255,17 +288,29 @@ __required__|The Risk payload is sent by the initiating party to the ASPSP. It i
 __required__|Unique identification as assigned to identify the account request resource. +
 **Length** : `1 - 128`|string
 |**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+__required__|Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**ExpirationDateTime** +
-__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.|string (date-time)
+__optional__|Specified date and time the permissions will expire. If this is not populated, the permissions will be open ended.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Permissions** +
 __required__|Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.|< enum (ReadAccountsBasic, ReadAccountsDetail, ReadBalances, ReadBeneficiariesBasic, ReadBeneficiariesDetail, ReadDirectDebits, ReadProducts, ReadStandingOrdersBasic, ReadStandingOrdersDetail, ReadTransactionsBasic, ReadTransactionsCredits, ReadTransactionsDebits, ReadTransactionsDetail) > array
 |**Status** +
-__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthentication, AwaitingAuthorisation, Rejected, Revoked)
+__optional__|Specifies the status of the account request resource.|enum (Authorised, AwaitingAuthorisation, Rejected, Revoked)
 |**TransactionFromDateTime** +
-__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.|string (date-time)
+__optional__|Specified start date and time for the transaction query period. If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TransactionToDateTime** +
-__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.|string (date-time)
+__optional__|Specified end date and time for the transaction query period. If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 [[_links]]
@@ -289,15 +334,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -333,7 +382,7 @@ Delete an account request
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
@@ -355,7 +404,9 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -392,12 +443,14 @@ Get a list of accounts
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -419,7 +472,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -460,7 +515,7 @@ __required__|A unique and immutable identifier used to identify the account reso
 **Length** : `1 - 40`|string
 |**Currency** +
 __required__|Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account. +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |**Nickname** +
 __optional__|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account. +
 **Length** : `1 - 70`|string
@@ -481,7 +536,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
 **Length** : `1 - 34`|string
@@ -497,7 +552,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 __required__|Unique and unambiguous identification of the servicing institution. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_links]]
@@ -521,15 +576,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -565,12 +624,14 @@ Get an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -594,7 +655,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -635,7 +698,7 @@ __required__|A unique and immutable identifier used to identify the account reso
 **Length** : `1 - 40`|string
 |**Currency** +
 __required__|Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account. +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |**Nickname** +
 __optional__|The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account. +
 **Length** : `1 - 70`|string
@@ -656,7 +719,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
 **Length** : `1 - 34`|string
@@ -672,7 +735,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 __required__|Unique and unambiguous identification of the servicing institution. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_links]]
@@ -696,15 +759,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -740,12 +807,14 @@ Get Balances related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -769,7 +838,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -811,9 +882,12 @@ __required__|Amount of money of the cash balance.|<<_balance_amount,Amount>>
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**CreditLine** +
-__optional__||<<_balance_creditline,CreditLine>>
+__optional__||< <<_balance_creditline,CreditLine>> > array
 |**DateTime** +
-__required__|Indicates the date (and time) of the balance.|string (date-time)
+__required__|Indicates the date (and time) of the balance.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Type** +
 __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
@@ -828,7 +902,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_balance_creditline]]
@@ -855,7 +929,7 @@ __optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_links]]
@@ -879,15 +953,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -923,12 +1001,14 @@ Get Beneficiaries related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -952,7 +1032,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1014,7 +1096,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
 **Length** : `1 - 34`|string
@@ -1030,7 +1112,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 __required__|Unique and unambiguous identification of the servicing institution. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_links]]
@@ -1054,15 +1136,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -1098,12 +1184,14 @@ Get Direct Debits related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -1127,7 +1215,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1178,7 +1268,10 @@ __required__|Name of Service User +
 |**PreviousPaymentAmount** +
 __optional__|The amount of the most recent direct debit collection.|<<_directdebit_previouspaymentamount,PreviousPaymentAmount>>
 |**PreviousPaymentDateTime** +
-__optional__|Date of most recent direct debit collection.|string (date-time)
+__optional__|Date of most recent direct debit collection.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 [[_directdebit_previouspaymentamount]]
@@ -1191,7 +1284,7 @@ __optional__|Date of most recent direct debit collection.|string (date-time)
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_links]]
@@ -1215,15 +1308,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -1259,12 +1356,14 @@ Get Product related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -1288,7 +1387,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1356,15 +1457,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -1400,12 +1505,14 @@ Get Standing Orders related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -1429,7 +1536,9 @@ __required__|A unique identifier used to identify the account resource.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1471,18 +1580,47 @@ __optional__|Provides the details to identify the beneficiary account.|<<_standi
 |**FinalPaymentAmount** +
 __optional__|The amount of the final Standing Order|<<_standingorder_finalpaymentamount,FinalPaymentAmount>>
 |**FinalPaymentDateTime** +
-__optional__|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)
+__optional__|The date on which the final payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**FirstPaymentAmount** +
 __optional__|The amount of the first Standing Order|<<_standingorder_firstpaymentamount,FirstPaymentAmount>>
 |**FirstPaymentDateTime** +
-__optional__|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)
+__optional__|The date on which the first payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Frequency** +
-__required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)) +
-**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string
+__required__|EvryDay - Every day
+EvryWorkgDay - Every working day
+IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)
+WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)
+IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)
+QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+Patterns:
+EvryDay (ScheduleCode)
+EvryWorkgDay (ScheduleCode)
+IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)
+WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)
+IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)
+QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay
+
+The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:
+EvryDay
+EvryWorkgDay
+IntrvlWkDay:0[1-9]:0[1-7]
+WkInMnthDay:0[1-5]:0[1-7]
+IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01])
+QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) +
+**Pattern** : `"^(EvryDay)$\|^(EvryWorkgDay)$\|^(IntrvlWkDay:0[1-9]:0[1-7])$\|^(WkInMnthDay:0[1-5]:0[1-7])$\|^(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))$\|^(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))$"`|string
 |**NextPaymentAmount** +
 __required__|The amount of the next Standing Order|<<_standingorder_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDateTime** +
-__required__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
+__required__|The date on which the next payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Reference** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
@@ -1506,7 +1644,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
 **Length** : `1 - 34`|string
@@ -1522,7 +1660,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_standingorder_firstpaymentamount]]
@@ -1535,7 +1673,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_standingorder_nextpaymentamount]]
@@ -1548,7 +1686,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_standingorder_servicer]]
@@ -1561,7 +1699,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 __required__|Unique and unambiguous identification of the servicing institution. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_links]]
@@ -1585,15 +1723,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -1629,12 +1771,14 @@ Get transactions related to an account
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -1642,9 +1786,13 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**Path**|**AccountId** +
 __required__|A unique identifier used to identify the account resource.|string
 |**Query**|**fromBookingDateTime** +
-__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+__optional__|The UTC ISO 8601 Date Time to filter transactions FROM
+NB Time component is optional - set to 00:00:00 for just Date. +
+The parameter must NOT have a timezone set|string (date-time)
 |**Query**|**toBookingDateTime** +
-__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+__optional__|The UTC ISO 8601 Date Time to filter transactions TO
+NB Time component is optional - set to 00:00:00 for just Date. +
+The parameter must NOT have a timezone set|string (date-time)
 |===
 
 
@@ -1662,7 +1810,9 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1709,7 +1859,10 @@ __optional__|Set of elements used to define the balance as a numerical represent
 |**BankTransactionCode** +
 __optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_data_transaction_banktransactioncode,BankTransactionCode>>
 |**BookingDateTime** +
-__required__|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|string (date-time)
+__required__|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**CreditDebitIndicator** +
 __required__|Indicates whether the transaction is a credit or a debit entry.|enum (Credit, Debit)
 |**MerchantDetails** +
@@ -1728,7 +1881,10 @@ __optional__|Further details of the transaction. This is the transaction narrati
 __optional__|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context. +
 **Length** : `1 - 35`|string
 |**ValueDateTime** +
-__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|string (date-time)
+__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 [[_data_transaction_amount]]
@@ -1741,7 +1897,7 @@ __optional__|Date and time at which assets become available to the account owner
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_data_transaction_balance]]
@@ -1768,7 +1924,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_data_transaction_banktransactioncode]]
@@ -1832,15 +1988,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -1876,12 +2036,14 @@ Get Balances
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -1903,7 +2065,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1945,9 +2109,12 @@ __required__|Amount of money of the cash balance.|<<_balance_amount,Amount>>
 |**CreditDebitIndicator** +
 __required__|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)
 |**CreditLine** +
-__optional__||<<_balance_creditline,CreditLine>>
+__optional__||< <<_balance_creditline,CreditLine>> > array
 |**DateTime** +
-__required__|Indicates the date (and time) of the balance.|string (date-time)
+__required__|Indicates the date (and time) of the balance.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Type** +
 __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)
 |===
@@ -1962,7 +2129,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_balance_creditline]]
@@ -1989,7 +2156,7 @@ __optional__|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_links]]
@@ -2013,15 +2180,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -2057,12 +2228,14 @@ Get Beneficiaries
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -2084,7 +2257,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2146,7 +2321,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
 **Length** : `1 - 34`|string
@@ -2162,7 +2337,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 __required__|Unique and unambiguous identification of the servicing institution. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_links]]
@@ -2186,15 +2361,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -2230,12 +2409,14 @@ Get Direct Debits
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -2257,7 +2438,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2308,7 +2491,10 @@ __required__|Name of Service User +
 |**PreviousPaymentAmount** +
 __optional__|The amount of the most recent direct debit collection.|<<_directdebit_previouspaymentamount,PreviousPaymentAmount>>
 |**PreviousPaymentDateTime** +
-__optional__|Date of most recent direct debit collection.|string (date-time)
+__optional__|Date of most recent direct debit collection.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 [[_directdebit_previouspaymentamount]]
@@ -2321,7 +2507,7 @@ __optional__|Date of most recent direct debit collection.|string (date-time)
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_links]]
@@ -2345,15 +2531,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -2389,12 +2579,14 @@ Get Products
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -2416,7 +2608,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2484,15 +2678,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -2528,12 +2726,14 @@ Get Standing Orders
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -2555,7 +2755,9 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2597,18 +2799,47 @@ __optional__|Provides the details to identify the beneficiary account.|<<_standi
 |**FinalPaymentAmount** +
 __optional__|The amount of the final Standing Order|<<_standingorder_finalpaymentamount,FinalPaymentAmount>>
 |**FinalPaymentDateTime** +
-__optional__|The date on which the final payment for a Standing Order schedule will be made.|string (date-time)
+__optional__|The date on which the final payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**FirstPaymentAmount** +
 __optional__|The amount of the first Standing Order|<<_standingorder_firstpaymentamount,FirstPaymentAmount>>
 |**FirstPaymentDateTime** +
-__optional__|The date on which the first payment for a Standing Order schedule will be made.|string (date-time)
+__optional__|The date on which the first payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Frequency** +
-__required__|EvryWorkgDay - PSC070 IntrvlWkDay:PSC110:PSC080 (PSC070 code + PSC110 + PSC080) WkInMnthDay:PSC100:PSC080 (PSC070 code + PSC100 + PSC080) IntrvlMnthDay:PSC120:PSC090 (PSC070 code + PSC120 + PSC090) QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) PSC070 + PSC130 The following response codes may be generated by this data element: PSC070: T221 - Schedule code must be a valid enumeration value. PSC070: T245 - Must be provided for standing order only. PSC080: T222 - Day in week must be within defined bounds (range 1 to 5). PSC080: T229 - Must be present if Schedule Code = IntrvlWkDay. PSC080: T231 - Must be present if Schedule Code = WkInMnthDay. PSC090: T223 - Day in month must be within defined bounds (range -5 to 31 excluding: 0 &amp; 00). PSC090: T233 - Must be present if Schedule Code = IntrvlMnthDay. PSC100: T224 - Week in month must be within defined bounds (range 1 to 5). PSC100: T232 - Must be present if Schedule Code = WkInMnthDay. PSC110: T225 - Interval in weeks must be within defined bounds (range 1 to 9). PSC110: T230 - Must be present if Schedule Code = IntrvlWkDay. PSC120: T226 - Interval in months must be a valid enumeration value (range 1 to 6, 12 and 24). PSC120: T234 - Must be present if Schedule Code = IntrvlMnthDay. PSC130: T227 - Quarter Day must be a valid enumeration value. PSC130: T235 - Must be present if Schedule Code = QtrDay. The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here: EvryWorkgDay IntrvlWkDay:0[1-9]:0[1-5] WkInMnthDay:0[1-5]:0[1-5] IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]) QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) Mandatory/Conditional/Optional/Parent/Leaf: OL Type: 35 char string Regular Expression(s): (EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1- 6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)) +
-**Pattern** : `"^((EvryWorkgDay)\|(IntrvlWkDay:0[1-9]:0[1-5])\|(WkInMnthDay:0[1-5]:0[1-5])\|(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))\|(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED)))$"`|string
+__required__|EvryDay - Every day
+EvryWorkgDay - Every working day
+IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)
+WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)
+IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)
+QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+Patterns:
+EvryDay (ScheduleCode)
+EvryWorkgDay (ScheduleCode)
+IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)
+WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)
+IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)
+QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay
+
+The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:
+EvryDay
+EvryWorkgDay
+IntrvlWkDay:0[1-9]:0[1-7]
+WkInMnthDay:0[1-5]:0[1-7]
+IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01])
+QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED) +
+**Pattern** : `"^(EvryDay)$\|^(EvryWorkgDay)$\|^(IntrvlWkDay:0[1-9]:0[1-7])$\|^(WkInMnthDay:0[1-5]:0[1-7])$\|^(IntrvlMnthDay:(0[1-6]\|12\|24):(-0[1-5]\|0[1-9]\|[12][0-9]\|3[01]))$\|^(QtrDay:(ENGLISH\|SCOTTISH\|RECEIVED))$"`|string
 |**NextPaymentAmount** +
 __required__|The amount of the next Standing Order|<<_standingorder_nextpaymentamount,NextPaymentAmount>>
 |**NextPaymentDateTime** +
-__required__|The date on which the next payment for a Standing Order schedule will be made.|string (date-time)
+__required__|The date on which the next payment for a Standing Order schedule will be made.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Reference** +
 __optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
 **Length** : `1 - 35`|string
@@ -2632,7 +2863,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination). +
 **Length** : `1 - 34`|string
@@ -2648,7 +2879,7 @@ __optional__|This is secondary identification of the account, as assigned by the
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_standingorder_firstpaymentamount]]
@@ -2661,7 +2892,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_standingorder_nextpaymentamount]]
@@ -2674,7 +2905,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_standingorder_servicer]]
@@ -2687,7 +2918,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 __required__|Unique and unambiguous identification of the servicing institution. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_links]]
@@ -2711,15 +2942,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 
@@ -2755,20 +2990,26 @@ Get Transactions
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**authorization** +
+|**Header**|**Authorization** +
 __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
 |**Query**|**fromBookingDateTime** +
-__optional__|The UTC ISO 8601 Date Time to filter transactions FROM - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+__optional__|The UTC ISO 8601 Date Time to filter transactions FROM
+NB Time component is optional - set to 00:00:00 for just Date. +
+The parameter must NOT have a timezone set|string (date-time)
 |**Query**|**toBookingDateTime** +
-__optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time component is optional - set to 00:00:00 for just Date|string (date-time)
+__optional__|The UTC ISO 8601 Date Time to filter transactions TO
+NB Time component is optional - set to 00:00:00 for just Date. +
+The parameter must NOT have a timezone set|string (date-time)
 |===
 
 
@@ -2786,7 +3027,9 @@ __optional__|The UTC ISO 8601 Date Time to filter transactions TO - NB Time comp
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -2833,7 +3076,10 @@ __optional__|Set of elements used to define the balance as a numerical represent
 |**BankTransactionCode** +
 __optional__|Set of elements used to fully identify the type of underlying transaction resulting in an entry.|<<_data_transaction_banktransactioncode,BankTransactionCode>>
 |**BookingDateTime** +
-__required__|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.|string (date-time)
+__required__|Date and time when a transaction entry is posted to an account on the account servicer's books. Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**CreditDebitIndicator** +
 __required__|Indicates whether the transaction is a credit or a debit entry.|enum (Credit, Debit)
 |**MerchantDetails** +
@@ -2852,7 +3098,10 @@ __optional__|Further details of the transaction. This is the transaction narrati
 __optional__|Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context. +
 **Length** : `1 - 35`|string
 |**ValueDateTime** +
-__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.|string (date-time)
+__optional__|Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit entry. Usage: If entry status is pending and value date is present, then the value date refers to an expected/requested value date. For entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |===
 
 [[_data_transaction_amount]]
@@ -2865,7 +3114,7 @@ __optional__|Date and time at which assets become available to the account owner
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_data_transaction_balance]]
@@ -2892,7 +3141,7 @@ __required__|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooke
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_data_transaction_banktransactioncode]]
@@ -2956,15 +3205,19 @@ __required__|string (uri)
 [[_metadata]]
 **MetaData**
 
-[options="header", cols=".^3,.^4"]
+[options="header", cols=".^3,.^11,.^4"]
 |===
-|Name|Schema
+|Name|Description|Schema
 |**FirstAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**LastAvailableDateTime** +
-__optional__|string (date-time)
+__optional__|All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**TotalPages** +
-__optional__|integer (int32)
+__optional__||integer (int32)
 |===
 
 

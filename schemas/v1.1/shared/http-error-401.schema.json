@@ -1,0 +1,24 @@
+{
+  "title": "HTTP 401 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "401" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "Unauthorised" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The request requires user authentication." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

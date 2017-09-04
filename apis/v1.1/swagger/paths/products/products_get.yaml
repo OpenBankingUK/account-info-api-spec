@@ -1,0 +1,38 @@
+get:
+  summary: Get Products
+  description: Get Products
+  operationId: GetProducts
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+    - $ref: ../../headers/fapi.yaml
+    - $ref: ../../headers/auth.yaml
+  responses:
+    200:
+      description: Products successfully retrieved
+      schema:
+        $ref: ../../../../../compiled/schemas/v1.1/products/products.get.200.response.schema.yaml
+      headers:
+        x-jws-signature:
+          type: string
+          description: Header containing a detached JWS signature of the body of the payload.
+        x-fapi-interaction-id:
+          type: string
+          description: An RFC4122 UID used as a correlation id.
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      $ref: ../../index.yaml#/responses/403ErrorResponse
+    405:
+      $ref: ../../index.yaml#/responses/405ErrorResponse
+    406:
+      $ref: ../../index.yaml#/responses/406ErrorResponse
+    429:
+      $ref: ../../index.yaml#/responses/429ErrorResponse
+    500:
+      $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - PSUOAuth2Security:
+      - accounts

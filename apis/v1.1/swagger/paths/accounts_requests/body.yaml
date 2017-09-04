@@ -1,0 +1,6 @@
+  - name: body
+    in: body
+    description: Create an Account Request
+    required: true
+    schema:
+      $ref: ../../../../../compiled/schemas/v1.1/accounts_requests/account_request.post.request.schema.yaml

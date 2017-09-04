@@ -1,0 +1,17 @@
+{
+  "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+  "type": "object",
+  "properties": {
+    "Code": {
+      "$ref": "external_bank_transaction_family_code.json"
+    },
+    "SubCode": {
+      "$ref": "external_bank_transaction_sub_family_code.json"
+    }
+  },
+  "required": [
+    "Code",
+    "SubCode"
+  ],
+  "additionalProperties": false
+}

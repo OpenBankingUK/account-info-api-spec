@@ -1,20 +1,20 @@
-= Account Information APIs
+= Account and Transaction API Specification
 
 
 [[_overview]]
 == Overview
-Swagger specification for Account Information APIs
+Swagger for Account and Transaction API Specification
 
 
 === Version information
 [%hardbreaks]
-__Version__ : v1.0.1
+__Version__ : v1.1.0
 
 
 === Contact information
 [%hardbreaks]
-__Contact__ : Craig Greenhouse
-__Contact Email__ : Craig.Greenhouse@openbanking.org.uk
+__Contact__ : Service Desk
+__Contact Email__ : ServiceDesk@openbanking.org.uk
 
 
 === License information
@@ -26,7 +26,7 @@ __Terms of service__ : https://www.openbanking.org.uk/terms
 
 === URI scheme
 [%hardbreaks]
-__BasePath__ : /open-banking/v1.0
+__BasePath__ : /open-banking/v1.1
 __Schemes__ : HTTPS
 
 
