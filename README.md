@@ -1,7 +1,7 @@
 # account-info-api-spec
 
 # Version
-This is version v1.1-rc1
+This is version v1.1.0
 A Minor Release
 
 # Usage

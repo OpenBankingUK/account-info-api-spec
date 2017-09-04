@@ -1,13 +1,13 @@
-# Account Information APIs
+# Account and Transaction API Specification
 
 
 <a name="overview"></a>
 ## Overview
-Swagger specification for Account Information APIs
+Swagger for Account and Transaction API Specification
 
 
 ### Version information
-*Version* : v1.1-rc1
+*Version* : v1.1.0
 
 
 ### Contact information

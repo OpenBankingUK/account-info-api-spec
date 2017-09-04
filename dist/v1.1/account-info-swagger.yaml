@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: Account Information APIs
-  description: Swagger specification for Account Information APIs
+  title: Account and Transaction API Specification
+  description: Swagger for Account and Transaction API Specification
   termsOfService: 'https://www.openbanking.org.uk/terms'
   contact:
     name: Service Desk
@@ -9,7 +9,7 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.1-rc1
+  version: v1.1.0
 basePath: /open-banking/v1.1
 schemes:
   - https

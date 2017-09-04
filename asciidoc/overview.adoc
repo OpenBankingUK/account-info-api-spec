@@ -1,14 +1,14 @@
-= Account Information APIs
+= Account and Transaction API Specification
 
 
 [[_overview]]
 == Overview
-Swagger specification for Account Information APIs
+Swagger for Account and Transaction API Specification
 
 
 === Version information
 [%hardbreaks]
-__Version__ : v1.1-rc1
+__Version__ : v1.1.0
 
 
 === Contact information
