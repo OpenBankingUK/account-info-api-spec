@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "Data": {
+      "title": "Data",
+      "description": "Data",
+      "type": "object",
+      "properties": {
+        "Balance": {
+          "title": "Balance",
+          "description": "Balance",
+          "type": "array",
+          "items": {
+            "$ref": "../accounts/balance.json"
+          },
+          "minItems": 1,
+          "additionalProperties": false
+        }
+      }
+    },
+    "Links": {
+      "title": "Links",
+      "$ref": "../common/links_self.json"
+    },
+    "Meta": {
+      "title": "MetaData",
+      "$ref": "../common/meta.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Data",
+    "Links",
+    "Meta"
+  ]
+}

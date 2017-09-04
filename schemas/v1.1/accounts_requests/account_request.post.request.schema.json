@@ -1,0 +1,5 @@
+{
+  "title": "Account Request POST request",
+  "description": "Allows setup of an account access request",
+  "$ref": "../definitions/data/account_request_request.json"
+}

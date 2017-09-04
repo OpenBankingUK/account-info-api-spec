@@ -1,0 +1,6 @@
+AccountId:
+  name: AccountId
+  in: path
+  description: A unique identifier used to identify the account resource.
+  required: true
+  type: string

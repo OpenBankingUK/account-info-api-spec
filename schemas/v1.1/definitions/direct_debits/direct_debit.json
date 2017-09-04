@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "title": "DirectDebit",
+  "description": "Direct Debit",
+  "properties": {
+    "AccountId": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+      "$ref": "../accounts/account_id.json"
+    },
+    "DirectDebitId": {
+      "description": "A unique and immutable identifier used to identify the direct debit resource. This identifier has no meaning to the account owner.",
+      "$ref": "../common/max_40_text.json"
+    },
+    "MandateIdentification": {
+      "description": "Direct Debit reference. For AUDDIS service users provide Core Reference. For non AUDDIS service users provide Core reference if possible or last used reference.",
+      "$ref": "../common/max_35_text.json"
+    },
+    "DirectDebitStatusCode": {
+      "description": "Specifies the status of the direct debit in code form.",
+      "$ref": "ob_external_direct_debit_status_code.json"
+    },
+    "Name": {
+      "description": "Name of Service User",
+      "$ref": "../common/max_70_text.json"
+    },
+    "PreviousPaymentDateTime": {
+      "description": "Date of most recent direct debit collection. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
+      "type": "string",
+      "format": "date-time"
+    },
+    "PreviousPaymentAmount": {
+      "description": "The amount of the most recent direct debit collection.",
+      "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+    }
+  },
+  "required": [
+    "AccountId",
+    "MandateIdentification",
+    "Name"
+  ],
+  "additionalProperties": false
+}

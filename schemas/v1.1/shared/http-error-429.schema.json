@@ -1,0 +1,36 @@
+{
+  "title": "HTTP 429 Error",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "429"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [
+        "Too Many Requests"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [
+        "I only allow 50 requests per hour to this Web site per logged in user.  Try again soon."
+      ]
+    },
+    "headers": {
+      "Retry-After": {
+        "description": "Number in seconds to wait",
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

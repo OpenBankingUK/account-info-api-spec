@@ -1,0 +1,4 @@
+{
+  "title": "Standing Orders GET response",
+  "$ref": "../definitions/data/standing_order.json"
+}

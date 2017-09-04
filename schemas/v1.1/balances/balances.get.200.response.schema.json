@@ -1,0 +1,4 @@
+{
+  "title": "Balances GET response",
+  "$ref": "../definitions/data/balance.json"
+}

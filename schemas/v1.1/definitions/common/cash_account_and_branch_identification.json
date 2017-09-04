@@ -1,0 +1,17 @@
+{
+  "description": "Provides the details to identify an account.",
+  "type": "object",
+  "properties": {
+    "Account": {
+      "$ref": "creditor_cash_account.json"
+    },
+    "Servicer": {
+      "$ref": "ob_branch_and_financial_institution_identification.json"
+    }
+  },
+  "required": [
+    "Account",
+    "Servicer"
+  ],
+  "additionalProperties": false
+}

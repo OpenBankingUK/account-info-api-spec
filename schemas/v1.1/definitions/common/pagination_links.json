@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "Self": {
+      "type": "string",
+      "format": "uri"
+    },
+    "First": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Prev": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Next": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Last": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Self"
+  ]
+}

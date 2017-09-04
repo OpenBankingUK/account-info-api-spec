@@ -1,0 +1,6 @@
+# parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+    description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750

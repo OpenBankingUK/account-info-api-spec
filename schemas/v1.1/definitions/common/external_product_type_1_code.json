@@ -1,0 +1,8 @@
+{
+  "description": "Descriptive code for the product category.",
+  "type": "string",
+  "enum": [
+    "BCA",
+    "PCA"
+  ]
+}

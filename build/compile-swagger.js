@@ -3,8 +3,10 @@ const SwaggerParser = require('swagger-parser');
 const utils = require('./utils');
 const path = require('path');
 const compiled = path.resolve('../compiled');
+const version = process.env.VERSION;
 const dist = path.resolve('../dist');
-const swaggerIndex = path.resolve('../apis/v1.0/swagger/index.yaml');
+const distV = path.resolve('../dist/' + version);
+const swaggerIndex = path.resolve('../apis/' + version + '/swagger/index.yaml');
 const debuglogfile = path.resolve('../debug/log.json');
 
 // Convenient method name shortenings
@@ -55,6 +57,8 @@ SwaggerParser.dereference(swaggerIndex, SwaggerParserOptions,
     // temporary....
     fWrite(YAML.safeDump(api, {lineWidth: 200}), dist + '/account-info-swagger.yaml');
     fWrite(JSON.stringify(api, null, 2), dist + '/account-info-swagger.json');
+
+    fWrite(YAML.safeDump(api, {lineWidth: 200}), distV + '/account-info-swagger.yaml');
   }
 );
 

@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "Data": {
+      "title": "Data",
+      "description": "Data",
+      "type": "object",
+      "properties": {
+        "Account": {
+          "title": "Account",
+          "description": "Account",
+          "type": "array",
+          "items": {
+            "$ref": "../accounts/account.json"
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "Links": {
+      "title": "Links",
+      "$ref": "../common/links_self.json"
+    },
+    "Meta": {
+      "title": "MetaData",
+      "$ref": "../common/meta.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "Data",
+    "Links",
+    "Meta"
+  ]
+}
