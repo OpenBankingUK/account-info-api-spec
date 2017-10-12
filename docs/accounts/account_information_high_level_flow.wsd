@@ -6,7 +6,7 @@ participant ASPSP Resource Server
 par Account Information Data Sharing
 PSU -> AISP: Opens Aggregation App
 AISP -> ASPSP Authorisation Server: Establish TLS 1.2 MA
-AISP -> ASPSP Authorisation Server: /token { client_id , client_secret,  scope: "account_request:manage"  }
+AISP -> ASPSP Authorisation Server: /token { client_id , client_secret,  scope: "accounts"  }
 ASPSP Authorisation Server -> AISP: access token
 AISP -> ASPSP Resource Server: POST /account-requests { PermissionCodes: "ReadTransactions", "ReadAccounts" "ReadBalances" ... }
 ASPSP Resource Server -> ASPSP Resource Server: validate and stores account request consent payload

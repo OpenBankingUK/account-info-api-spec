@@ -7,7 +7,7 @@ Swagger for Account and Transaction API Specification
 
 
 ### Version information
-*Version* : v1.1.0
+*Version* : v1.1.1
 
 
 ### Contact information
@@ -155,7 +155,7 @@ Create an Account Request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|accounts|
 
 
 ***
@@ -249,7 +249,7 @@ Get an account request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|accounts|
 
 
 ***
@@ -297,7 +297,7 @@ Delete an account request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|accounts|
 
 
 ***
@@ -2045,7 +2045,7 @@ TPP client credential authorisation flow with the ASPSP
 
 |Name|Description|
 |---|---|
-|tpp_client_credential|TPP Client Credential Scope|
+|accounts|Ability to read Accounts information|
 
 
 <a name="psuoauth2security"></a>

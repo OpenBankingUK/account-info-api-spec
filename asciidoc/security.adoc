@@ -15,7 +15,7 @@ __Token URL__ : https://authserver.example/token
 [options="header", cols=".^3,.^17"]
 |===
 |Name|Description
-|tpp_client_credential|TPP Client Credential Scope
+|accounts|Ability to read Accounts information
 |===
 
 

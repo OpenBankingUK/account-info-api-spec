@@ -39,4 +39,4 @@ post:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - TPPOAuth2Security:
-      - tpp_client_credential
+      - accounts

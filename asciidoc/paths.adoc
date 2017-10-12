@@ -203,7 +203,7 @@ __optional__||integer (int32)
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|accounts
 |===
 
 
@@ -360,7 +360,7 @@ __optional__||integer (int32)
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|accounts
 |===
 
 
@@ -421,7 +421,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 [options="header", cols=".^3,.^4,.^13"]
 |===
 |Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|accounts
 |===
 
 

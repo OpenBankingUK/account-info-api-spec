@@ -1,8 +1,13 @@
 # account-info-api-spec
 
+
 # Version
-This is version v1.1.0
-A Minor Release
+This is version v1.1.1  
+A Patch Release
+
+## Change Control
+Change since v1.1.0
+* Remove `tpp_client_credential` scope and replace with `accounts` scope
 
 # Usage
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format

@@ -12,7 +12,7 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.1.0"
+    "version": "v1.1.1"
   },
   "basePath": "/open-banking/v1.1",
   "schemes": [
@@ -346,7 +346,7 @@
         "security": [
           {
             "TPPOAuth2Security": [
-              "tpp_client_credential"
+              "accounts"
             ]
           }
         ]
@@ -597,7 +597,7 @@
         "security": [
           {
             "TPPOAuth2Security": [
-              "tpp_client_credential"
+              "accounts"
             ]
           }
         ]
@@ -673,7 +673,7 @@
         "security": [
           {
             "TPPOAuth2Security": [
-              "tpp_client_credential"
+              "accounts"
             ]
           }
         ]
@@ -4785,7 +4785,7 @@
       "flow": "application",
       "tokenUrl": "https://authserver.example/token",
       "scopes": {
-        "tpp_client_credential": "TPP Client Credential Scope"
+        "accounts": "Ability to read Accounts information"
       },
       "description": "TPP client credential authorisation flow with the ASPSP"
     }

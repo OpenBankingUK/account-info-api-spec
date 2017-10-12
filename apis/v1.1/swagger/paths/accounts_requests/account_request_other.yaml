@@ -36,7 +36,7 @@ get:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - TPPOAuth2Security:
-      - tpp_client_credential
+      - accounts
 
 delete:
   summary: Delete an account request
@@ -75,4 +75,4 @@ delete:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - TPPOAuth2Security:
-      - tpp_client_credential
+      - accounts
