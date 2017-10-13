@@ -9,6 +9,6 @@ printf "*********   $VERSION               **********\n"
 echo   "*****************************************"
 
 rm -rf ../compiled/schemas/$VERSION
-mkdir ../compiled/schemas/$VERSION
+mkdir -p ../compiled/schemas/$VERSION
 
 node flatten-json.js ../schemas/$VERSION ../compiled/schemas/$VERSION ../
