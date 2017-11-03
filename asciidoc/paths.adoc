@@ -33,7 +33,7 @@ __required__|The unique id of the ASPSP to which the request is issued. The uniq
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
 |**Header**|**x-jws-signature** +
-__required__|Header containing a detached JWS signature of the body of the payload.|string
+__optional__|Header containing a detached JWS signature of the body of the payload.|string
 |===
 
 
