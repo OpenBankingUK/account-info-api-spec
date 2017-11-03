@@ -776,7 +776,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "description": "The data dictionary is the correct version in these four instances.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -1048,7 +1048,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "description": "The data dictionary is the correct version in these four instances.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -1747,7 +1747,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "description": "The data dictionary is the correct version in these four instances.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -2512,7 +2512,7 @@
                         "description": "Standing Order",
                         "properties": {
                           "AccountId": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 40
@@ -2646,7 +2646,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "description": "The data dictionary is the correct version in these four instances.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -3081,7 +3081,7 @@
                         "description": "Standing Order",
                         "properties": {
                           "AccountId": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 40
@@ -3215,7 +3215,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "description": "The data dictionary is the correct version in these four instances.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -3728,7 +3728,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                                "description": "The data dictionary is the correct version in these four instances.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
