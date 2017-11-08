@@ -145,7 +145,7 @@ paths:
           name: x-jws-signature
           type: string
           required: false
-          description: Header containing a detached JWS signature of the body of the payload.
+          description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
       responses:
         '201':
           description: Account Request resource successfully created
@@ -301,7 +301,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -500,7 +500,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -710,7 +710,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -895,7 +895,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1198,7 +1198,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1378,7 +1378,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1579,7 +1579,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1741,7 +1741,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2027,7 +2027,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2158,7 +2158,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2192,7 +2192,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2226,7 +2226,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2260,7 +2260,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2296,7 +2296,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2330,7 +2330,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2460,7 +2460,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.

@@ -33,7 +33,7 @@ __required__|The unique id of the ASPSP to which the request is issued. The uniq
 |**Header**|**x-fapi-interaction-id** +
 __optional__|An RFC4122 UID used as a correlation id.|string
 |**Header**|**x-jws-signature** +
-__optional__|Header containing a detached JWS signature of the body of the payload.|string
+__optional__|DO NOT USE. Header containing a detached JWS signature of the body of the payload.|string
 |===
 
 
@@ -87,7 +87,7 @@ All date-time fields in responses must include the timezone. An example is below
 |HTTP Code|Description|Schema
 |**201**|Account Request resource successfully created +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_request_post_response,Account Request POST response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -249,7 +249,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |HTTP Code|Description|Schema
 |**200**|Account Request resource successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_request_get_response,Account Request GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -465,7 +465,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |HTTP Code|Description|Schema
 |**200**|Accounts successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -648,7 +648,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |HTTP Code|Description|Schema
 |**200**|Account resource successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -831,7 +831,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |HTTP Code|Description|Schema
 |**200**|Account Beneficiaries successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_balances_get_response,Balances GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -1025,7 +1025,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |HTTP Code|Description|Schema
 |**200**|Account Beneficiaries successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_beneficiaries_get_response,Beneficiaries GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -1208,7 +1208,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |HTTP Code|Description|Schema
 |**200**|Account Direct Debits successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -1380,7 +1380,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |HTTP Code|Description|Schema
 |**200**|Account Product successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_product_get_response,Product GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -1529,7 +1529,7 @@ __required__|A unique identifier used to identify the account resource.|string
 |HTTP Code|Description|Schema
 |**200**|Account Standing Orders successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_standing_orders_get_response,Standing Orders GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -1803,7 +1803,7 @@ The parameter must NOT have a timezone set|string (date-time)
 |HTTP Code|Description|Schema
 |**200**|Account Transactions successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_transactions_get_response,Account Transactions GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -2058,7 +2058,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |HTTP Code|Description|Schema
 |**200**|Balances successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_balances_get_response,Balances GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -2250,7 +2250,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |HTTP Code|Description|Schema
 |**200**|Beneficiaries successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_beneficiaries_get_response,Beneficiaries GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -2431,7 +2431,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |HTTP Code|Description|Schema
 |**200**|Direct Debits successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_get_response,Account GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -2601,7 +2601,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |HTTP Code|Description|Schema
 |**200**|Products successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_products_get_response,Products GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -2748,7 +2748,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |HTTP Code|Description|Schema
 |**200**|Standing Orders successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_standing_orders_get_response,Standing Orders GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -3020,7 +3020,7 @@ The parameter must NOT have a timezone set|string (date-time)
 |HTTP Code|Description|Schema
 |**200**|Transactions successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_account_transactions_get_response,Account Transactions GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
