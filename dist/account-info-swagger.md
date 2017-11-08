@@ -369,7 +369,7 @@ Get a list of accounts
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|The data dictionary is the correct version in these four instances.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -485,7 +485,7 @@ Get an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|The data dictionary is the correct version in these four instances.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -593,7 +593,7 @@ Get Balances related to an account
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||< [CreditLine](#balance-creditline) > array|
+|**CreditLine**  <br>*optional*|Set of elements used to provide details on the credit line.|< [CreditLine](#balance-creditline) > array|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
@@ -725,7 +725,7 @@ Get Beneficiaries related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|The data dictionary is the correct version in these four instances.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -1054,7 +1054,7 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|The data dictionary is the correct version in these four instances.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -1343,7 +1343,7 @@ Get Balances
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||< [CreditLine](#balance-creditline) > array|
+|**CreditLine**  <br>*optional*|Set of elements used to provide details on the credit line.|< [CreditLine](#balance-creditline) > array|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
@@ -1474,7 +1474,7 @@ Get Beneficiaries
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|The data dictionary is the correct version in these four instances.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|
@@ -1800,7 +1800,7 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**Identification**  <br>*required*|The data dictionary is the correct version in these four instances.  <br>**Length** : `1 - 34`|string|
+|**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|This is secondary identification of the account, as assigned by the account servicing institution.  This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).  <br>**Length** : `1 - 34`|string|

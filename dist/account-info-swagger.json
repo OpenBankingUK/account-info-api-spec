@@ -776,7 +776,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "The data dictionary is the correct version in these four instances.",
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -1048,7 +1048,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "The data dictionary is the correct version in these four instances.",
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -1747,7 +1747,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "The data dictionary is the correct version in these four instances.",
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -2017,6 +2017,7 @@
                             "format": "date-time"
                           },
                           "CreditLine": {
+                            "description": "Set of elements used to provide details on the credit line.",
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -2646,7 +2647,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "The data dictionary is the correct version in these four instances.",
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -3215,7 +3216,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "The data dictionary is the correct version in these four instances.",
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -3728,7 +3729,7 @@
                                 ]
                               },
                               "Identification": {
-                                "description": "The data dictionary is the correct version in these four instances.",
+                                "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 34
@@ -4386,6 +4387,7 @@
                             "format": "date-time"
                           },
                           "CreditLine": {
+                            "description": "Set of elements used to provide details on the credit line.",
                             "type": "array",
                             "items": {
                               "type": "object",
