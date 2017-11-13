@@ -912,7 +912,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__optional__|Active Or Historic Currency Code and Amount|<<_balance_creditline_amount,Amount>>
+__optional__|Amount of money of the credit line.|<<_balance_creditline_amount,Amount>>
 |**Included** +
 __required__|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean
 |**Type** +
@@ -2139,7 +2139,7 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |Name|Description|Schema
 |**Amount** +
-__optional__|Active Or Historic Currency Code and Amount|<<_balance_creditline_amount,Amount>>
+__optional__|Amount of money of the credit line.|<<_balance_creditline_amount,Amount>>
 |**Included** +
 __required__|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean
 |**Type** +

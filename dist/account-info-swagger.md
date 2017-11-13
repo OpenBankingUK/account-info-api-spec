@@ -610,7 +610,7 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
+|**Amount**  <br>*optional*|Amount of money of the credit line.|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)|
 
@@ -1360,7 +1360,7 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
+|**Amount**  <br>*optional*|Amount of money of the credit line.|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)|
 

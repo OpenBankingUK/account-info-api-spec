@@ -2027,7 +2027,7 @@
                                   "type": "boolean"
                                 },
                                 "Amount": {
-                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "description": "Amount of money of the credit line.",
                                   "type": "object",
                                   "properties": {
                                     "Amount": {
@@ -4397,7 +4397,7 @@
                                   "type": "boolean"
                                 },
                                 "Amount": {
-                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "description": "Amount of money of the credit line.",
                                   "type": "object",
                                   "properties": {
                                     "Amount": {
