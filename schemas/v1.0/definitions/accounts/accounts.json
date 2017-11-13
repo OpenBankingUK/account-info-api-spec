@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "Account": {
+      "title": "Account",
+      "type": "array",
+      "items": {
+        "$ref": "../accounts/account.json"
+      },
+      "minItems": 1
+    },
+  },
+  "additionalProperties": false,
+  "required": [
+    "Account"
+  ]
+}

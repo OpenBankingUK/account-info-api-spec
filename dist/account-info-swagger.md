@@ -7,7 +7,7 @@ Swagger for Account and Transaction API Specification
 
 
 ### Version information
-*Version* : v1.1.0
+*Version* : v1.1.1
 
 
 ### Contact information
@@ -58,7 +58,7 @@ Create an account request
 |**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP. <br>All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: <br>Sun, 10 Sep 2017 19:43:31 UTC|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
-|**Header**|**x-jws-signature**  <br>*required*|Header containing a detached JWS signature of the body of the payload.|string|
+|**Header**|**x-jws-signature**  <br>*optional*|DO NOT USE. Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -88,7 +88,7 @@ Create an Account Request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Account Request resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request POST response](#account-request-post-response)|
+|**201**|Account Request resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request POST response](#account-request-post-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -155,7 +155,7 @@ Create an Account Request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|accounts|
 
 
 ***
@@ -187,7 +187,7 @@ Get an account request
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Request resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request GET response](#account-request-get-response)|
+|**200**|Account Request resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Request GET response](#account-request-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -249,7 +249,7 @@ Get an account request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|accounts|
 
 
 ***
@@ -297,7 +297,7 @@ Delete an account request
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|accounts|
 
 
 ***
@@ -328,7 +328,7 @@ Get a list of accounts
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Accounts successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
+|**200**|Accounts successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -444,7 +444,7 @@ Get an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
+|**200**|Account resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -560,7 +560,7 @@ Get Balances related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Beneficiaries successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Balances GET response](#balances-get-response)|
+|**200**|Account Beneficiaries successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Balances GET response](#balances-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -593,7 +593,7 @@ Get Balances related to an account
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||< [CreditLine](#balance-creditline) > array|
+|**CreditLine**  <br>*optional*|Set of elements used to provide details on the credit line.|< [CreditLine](#balance-creditline) > array|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
@@ -610,7 +610,7 @@ Get Balances related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
+|**Amount**  <br>*optional*|Amount of money of the credit line.|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)|
 
@@ -684,7 +684,7 @@ Get Beneficiaries related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Beneficiaries  successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Beneficiaries GET response](#beneficiaries-get-response)|
+|**200**|Account Beneficiaries  successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Beneficiaries GET response](#beneficiaries-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -800,7 +800,7 @@ Get Direct Debits related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Direct Debits successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
+|**200**|Account Direct Debits successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -908,7 +908,7 @@ Get Product related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Product successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Product GET response](#product-get-response)|
+|**200**|Account Product successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Product GET response](#product-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1006,7 +1006,7 @@ Get Standing Orders related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Standing Orders successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Standing Orders GET response](#standing-orders-get-response)|
+|**200**|Account Standing Orders successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Standing Orders GET response](#standing-orders-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1036,7 +1036,7 @@ Get Standing Orders related to an account
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standingorder-creditoraccount)|
 |**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standingorder-finalpaymentamount)|
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
@@ -1155,7 +1155,7 @@ Get transactions related to an account
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Account Transactions successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Transactions GET response](#account-transactions-get-response)|
+|**200**|Account Transactions successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Transactions GET response](#account-transactions-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1310,7 +1310,7 @@ Get Balances
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Balances successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Balances GET response](#balances-get-response)|
+|**200**|Balances successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Balances GET response](#balances-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1343,7 +1343,7 @@ Get Balances
 |**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**Amount**  <br>*required*|Amount of money of the cash balance.|[Amount](#balance-amount)|
 |**CreditDebitIndicator**  <br>*required*|Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance.|enum (Credit, Debit)|
-|**CreditLine**  <br>*optional*||< [CreditLine](#balance-creditline) > array|
+|**CreditLine**  <br>*optional*|Set of elements used to provide details on the credit line.|< [CreditLine](#balance-creditline) > array|
 |**DateTime**  <br>*required*|Indicates the date (and time) of the balance. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**Type**  <br>*required*|Balance type, in a coded form.|enum (ClosingAvailable, ClosingBooked, Expected, ForwardAvailable, Information, InterimAvailable, InterimBooked, OpeningAvailable, OpeningBooked, PreviouslyClosedBooked)|
 
@@ -1360,7 +1360,7 @@ Get Balances
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*optional*|Active Or Historic Currency Code and Amount|[Amount](#balance-creditline-amount)|
+|**Amount**  <br>*optional*|Amount of money of the credit line.|[Amount](#balance-creditline-amount)|
 |**Included**  <br>*required*|Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.|boolean|
 |**Type**  <br>*optional*|Limit type, in a coded form.|enum (Pre-Agreed, Emergency, Temporary)|
 
@@ -1433,7 +1433,7 @@ Get Beneficiaries
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Beneficiaries successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Beneficiaries GET response](#beneficiaries-get-response)|
+|**200**|Beneficiaries successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Beneficiaries GET response](#beneficiaries-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1548,7 +1548,7 @@ Get Direct Debits
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Direct Debits successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
+|**200**|Direct Debits successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account GET response](#account-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1655,7 +1655,7 @@ Get Products
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Products successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Products GET response](#products-get-response)|
+|**200**|Products successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Products GET response](#products-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1752,7 +1752,7 @@ Get Standing Orders
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Standing Orders successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Standing Orders GET response](#standing-orders-get-response)|
+|**200**|Standing Orders successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Standing Orders GET response](#standing-orders-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -1782,7 +1782,7 @@ Get Standing Orders
 
 |Name|Description|Schema|
 |---|---|---|
-|**AccountId**  <br>*required*|The date on which the first payment for a Standing Order schedule will be made.  <br>**Length** : `1 - 40`|string|
+|**AccountId**  <br>*required*|A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.  <br>**Length** : `1 - 40`|string|
 |**CreditorAccount**  <br>*optional*|Provides the details to identify the beneficiary account.|[CreditorAccount](#standingorder-creditoraccount)|
 |**FinalPaymentAmount**  <br>*optional*|The amount of the final Standing Order|[FinalPaymentAmount](#standingorder-finalpaymentamount)|
 |**FinalPaymentDateTime**  <br>*optional*|The date on which the final payment for a Standing Order schedule will be made. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
@@ -1900,7 +1900,7 @@ Get Transactions
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Transactions successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Transactions GET response](#account-transactions-get-response)|
+|**200**|Transactions successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Account Transactions GET response](#account-transactions-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -2045,7 +2045,7 @@ TPP client credential authorisation flow with the ASPSP
 
 |Name|Description|
 |---|---|
-|tpp_client_credential|TPP Client Credential Scope|
+|accounts|Ability to read Accounts information|
 
 
 <a name="psuoauth2security"></a>

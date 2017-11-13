@@ -6,6 +6,7 @@
       "type": "boolean"
     },
     "Amount": {
+      "description": "Amount of money of the credit line.",
       "$ref": "../../common/active_or_historic_currency_code_and_amount.json"
     },
     "Type": {

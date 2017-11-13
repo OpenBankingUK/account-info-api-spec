@@ -12,7 +12,7 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.1.0"
+    "version": "v1.1.1"
   },
   "basePath": "/open-banking/v1.1",
   "schemes": [
@@ -150,8 +150,8 @@
             "in": "header",
             "name": "x-jws-signature",
             "type": "string",
-            "required": true,
-            "description": "Header containing a detached JWS signature of the body of the payload."
+            "required": false,
+            "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
           }
         ],
         "responses": {
@@ -307,7 +307,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -346,7 +346,7 @@
         "security": [
           {
             "TPPOAuth2Security": [
-              "tpp_client_credential"
+              "accounts"
             ]
           }
         ]
@@ -558,7 +558,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -597,7 +597,7 @@
         "security": [
           {
             "TPPOAuth2Security": [
-              "tpp_client_credential"
+              "accounts"
             ]
           }
         ]
@@ -673,7 +673,7 @@
         "security": [
           {
             "TPPOAuth2Security": [
-              "tpp_client_credential"
+              "accounts"
             ]
           }
         ]
@@ -899,7 +899,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -1171,7 +1171,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -1573,7 +1573,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -1842,7 +1842,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -2017,6 +2017,7 @@
                             "format": "date-time"
                           },
                           "CreditLine": {
+                            "description": "Set of elements used to provide details on the credit line.",
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -2026,7 +2027,7 @@
                                   "type": "boolean"
                                 },
                                 "Amount": {
-                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "description": "Amount of money of the credit line.",
                                   "type": "object",
                                   "properties": {
                                     "Amount": {
@@ -2140,7 +2141,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -2392,7 +2393,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -2512,7 +2513,7 @@
                         "description": "Standing Order",
                         "properties": {
                           "AccountId": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 40
@@ -2747,7 +2748,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -2968,7 +2969,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -3081,7 +3082,7 @@
                         "description": "Standing Order",
                         "properties": {
                           "AccountId": {
-                            "description": "The date on which the first payment for a Standing Order schedule will be made.",
+                            "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 40
@@ -3316,7 +3317,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -3561,7 +3562,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -3823,7 +3824,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -4218,7 +4219,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -4386,6 +4387,7 @@
                             "format": "date-time"
                           },
                           "CreditLine": {
+                            "description": "Set of elements used to provide details on the credit line.",
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -4395,7 +4397,7 @@
                                   "type": "boolean"
                                 },
                                 "Amount": {
-                                  "description": "Active Or Historic Currency Code and Amount",
+                                  "description": "Amount of money of the credit line.",
                                   "type": "object",
                                   "properties": {
                                     "Amount": {
@@ -4509,7 +4511,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -4723,7 +4725,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -4785,7 +4787,7 @@
       "flow": "application",
       "tokenUrl": "https://authserver.example/token",
       "scopes": {
-        "tpp_client_credential": "TPP Client Credential Scope"
+        "accounts": "Ability to read Accounts information"
       },
       "description": "TPP client credential authorisation flow with the ASPSP"
     }

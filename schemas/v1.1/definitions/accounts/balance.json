@@ -23,6 +23,7 @@
       "format": "date-time"
     },
     "CreditLine": {
+      "description": "Set of elements used to provide details on the credit line.",
       "type": "array",
       "items": {
         "$ref": "./balances/credit_line.json"

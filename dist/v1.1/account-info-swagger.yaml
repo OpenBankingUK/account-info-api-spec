@@ -9,7 +9,7 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.1.0
+  version: v1.1.1
 basePath: /open-banking/v1.1
 schemes:
   - https
@@ -144,8 +144,8 @@ paths:
         - in: header
           name: x-jws-signature
           type: string
-          required: true
-          description: Header containing a detached JWS signature of the body of the payload.
+          required: false
+          description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
       responses:
         '201':
           description: Account Request resource successfully created
@@ -301,7 +301,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -325,7 +325,7 @@ paths:
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
-            - tpp_client_credential
+            - accounts
   '/account-requests/{AccountRequestId}':
     get:
       summary: Get an account request
@@ -500,7 +500,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -513,7 +513,7 @@ paths:
         '500': *ref_11
       security:
         - TPPOAuth2Security:
-            - tpp_client_credential
+            - accounts
     delete:
       summary: Delete an account request
       description: Delete an account request
@@ -544,7 +544,7 @@ paths:
         '500': *ref_11
       security:
         - TPPOAuth2Security:
-            - tpp_client_credential
+            - accounts
   /accounts:
     get:
       summary: Get Accounts
@@ -710,7 +710,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -895,7 +895,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1198,7 +1198,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1378,7 +1378,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1478,6 +1478,7 @@ paths:
                           type: string
                           format: date-time
                         CreditLine:
+                          description: Set of elements used to provide details on the credit line.
                           type: array
                           items:
                             type: object
@@ -1488,7 +1489,7 @@ paths:
                                   account.
                                 type: boolean
                               Amount:
-                                description: Active Or Historic Currency Code and Amount
+                                description: Amount of money of the credit line.
                                 type: object
                                 properties:
                                   Amount:
@@ -1579,7 +1580,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1741,7 +1742,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1791,7 +1792,7 @@ paths:
                       description: Standing Order
                       properties:
                         AccountId:
-                          description: The date on which the first payment for a Standing Order schedule will be made.
+                          description: A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
                           type: string
                           minLength: 1
                           maxLength: 40
@@ -2027,7 +2028,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2158,7 +2159,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2192,7 +2193,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2226,7 +2227,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2260,7 +2261,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2296,7 +2297,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2330,7 +2331,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2460,7 +2461,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -2488,7 +2489,7 @@ securityDefinitions:
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
-      tpp_client_credential: TPP Client Credential Scope
+      accounts: Ability to read Accounts information
     description: TPP client credential authorisation flow with the ASPSP
 responses:
   400ErrorResponse: *ref_5

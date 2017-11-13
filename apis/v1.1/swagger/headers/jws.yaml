@@ -2,5 +2,5 @@
   - in: header
     name: x-jws-signature
     type: string
-    required: true
-    description: Header containing a detached JWS signature of the body of the payload.
+    required: false
+    description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
