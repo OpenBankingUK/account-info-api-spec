@@ -3,6 +3,7 @@
   "type": "object",
   "properties": {
     "Amount": {
+      "description" : "Amount of money of the credit line.",
       "type": "string",
       "pattern": "^\\d{1,13}\\.\\d{1,5}$"
     },
