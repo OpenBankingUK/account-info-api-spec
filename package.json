@@ -36,21 +36,25 @@
   "homepage": "https://github.com/OpenBankingUK/account-info-api-spec-build#readme",
   "dependencies": {},
   "devDependencies": {
-    "mkdirp": "*",
     "ajv": "^4.10.0",
     "ajv-cli": "1.1.1",
     "chai": "^3.5.0",
+    "csv-parse": "^2.0.4",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "glob": "^7.1.1",
     "js-beautify": "*",
     "js-yaml": "3.7.0",
     "json-schema-ref-parser": "3.1.2",
+    "json2yaml": "*",
+    "mkdirp": "*",
     "mocha": "^3.2.0",
     "mocha-junit-reporter": "^1.12.1",
-    "supertest": "^2.0.1",
-    "glob": "^7.1.1",
-    "json2yaml": "*",
-    "swagger-parser": "beta",
+    "open": "*",
     "spectacle-docs": "*",
-    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams",
-    "open": "*"
+    "supertest": "^2.0.1",
+    "swagger-parser": "beta",
+    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams"
   }
 }
