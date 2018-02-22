@@ -69,6 +69,24 @@ const topLevelSchema = {
   },
 };
 
+const secondLevelSchema = {
+  OBReadData1: {
+    type: 'object',
+    properties: {
+      Permissions:
+        { $ref: '#/definitions/OBExternalPermissions1Code' },
+      ExpirationDateTime:
+        { $ref: '#/definitions/ExpirationDateTime_ISODateTime' },
+      TransactionFromDateTime:
+        { $ref: '#/definitions/TransactionFromDateTime_ISODateTime' },
+      TransactionToDateTime:
+        { $ref: '#/definitions/TransactionToDateTime_ISODateTime' },
+    },
+    additionalProperties: false,
+    required: ['Permissions'],
+  },
+};
+
 describe('convertRows', () => {
   const schemas = convertRows(input);
 
@@ -78,8 +96,30 @@ describe('convertRows', () => {
     const { properties } = topLevelSchema.OBReadRequest1;
     const { required } = topLevelSchema.OBReadRequest1;
 
-    it('with key matching first row name', () =>
-      assert.equal(Object.keys(schemaObject)[0], input[0].Name));
+    it('with key matching first row Class', () =>
+      assert.equal(Object.keys(schemaObject)[0], input[0].Class));
+
+    it('with type "object"', () =>
+      assert.equal(schema.type, 'object'));
+
+    it('with correct top level properties', () =>
+      assert.deepEqual(schema.properties, properties));
+
+    it('with correct required properties', () =>
+      assert.deepEqual(schema.required, required));
+
+    it('with additionalProperties false', () =>
+      assert.equal(schema.additionalProperties, false));
+  });
+
+  describe('creates 1st second level schema from rows', () => {
+    const schemaObject = schemas[1];
+    const schema = Object.values(schemaObject)[0];
+    const { properties } = secondLevelSchema.OBReadData1;
+    const { required } = secondLevelSchema.OBReadData1;
+
+    it('with key matching row Class', () =>
+      assert.equal(Object.keys(schemaObject)[0], input[1].Class));
 
     it('with type "object"', () =>
       assert.equal(schema.type, 'object'));
