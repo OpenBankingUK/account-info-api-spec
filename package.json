@@ -34,7 +34,9 @@
     "url": "https://github.com/OpenBankingUK/account-info-api-spec-build/issues"
   },
   "homepage": "https://github.com/OpenBankingUK/account-info-api-spec-build#readme",
-  "dependencies": {},
+  "dependencies": {
+    "flatten": "^1.0.2"
+  },
   "devDependencies": {
     "ajv": "^4.10.0",
     "ajv-cli": "1.1.1",

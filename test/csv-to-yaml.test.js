@@ -87,6 +87,42 @@ const secondLevelSchema = {
   },
 };
 
+const leafSchema = {
+  ExpirationDateTime_ISODateTime: {
+    description: 'Specified date and time the permissions will expire.\nIf this is not populated, the permissions will be open ended.',
+    type: 'string',
+    format: 'date-time',
+  },
+};
+
+const arraySchema = {
+  OBExternalPermissions1Code: {
+    description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.',
+    type: 'array',
+    items: {
+      description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.',
+      type: 'string',
+      enum: [
+        'ReadAccountsBasic',
+        'ReadAccountsDetail',
+        'ReadBalances',
+        'ReadBeneficiariesBasic',
+        'ReadBeneficiariesDetail',
+        'ReadDirectDebits',
+        'ReadProducts',
+        'ReadStandingOrdersBasic',
+        'ReadStandingOrdersDetail',
+        'ReadTransactionsBasic',
+        'ReadTransactionsCredits',
+        'ReadTransactionsDebits',
+        'ReadTransactionsDetail',
+      ],
+    },
+    minProperties: 1,
+    additionalProperties: false,
+  },
+};
+
 describe('convertRows', () => {
   const schemas = convertRows(input);
 
@@ -132,5 +168,49 @@ describe('convertRows', () => {
 
     it('with additionalProperties false', () =>
       assert.equal(schema.additionalProperties, false));
+  });
+
+  describe('creates array schema from rows', () => {
+    const schemaObject = schemas[2];
+    const schema = Object.values(schemaObject)[0];
+    const {
+      description, items, type, minProperties, additionalProperties,
+    } = arraySchema.OBExternalPermissions1Code;
+
+    it('with key matching row Class', () =>
+      assert.equal(Object.keys(schemaObject)[0], 'OBExternalPermissions1Code'));
+
+    it('with correct type', () =>
+      assert.equal(schema.type, type));
+
+    it('with correct description', () =>
+      assert.equal(schema.description, description));
+
+    it('with additionalProperties false', () =>
+      assert.equal(schema.additionalProperties, additionalProperties));
+
+    it('with minProperties false', () =>
+      assert.equal(schema.minProperties, minProperties));
+
+    it('with items', () =>
+      assert.deepEqual(schema.items, items));
+  });
+
+  describe('creates leaf schema from rows', () => {
+    const schemaObject = schemas[3];
+    const schema = Object.values(schemaObject)[0];
+    const { description, type, format } = leafSchema.ExpirationDateTime_ISODateTime;
+
+    it('with key matching row Class', () =>
+      assert.equal(Object.keys(schemaObject)[0], 'ExpirationDateTime_ISODateTime'));
+
+    it('with correct type', () =>
+      assert.equal(schema.type, type));
+
+    it('with correct format', () =>
+      assert.equal(schema.format, format));
+
+    it('with correct description', () =>
+      assert.equal(schema.description, description));
   });
 });
