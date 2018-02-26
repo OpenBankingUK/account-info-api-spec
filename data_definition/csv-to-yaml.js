@@ -115,6 +115,13 @@ const minLengthFor = (property) => {
   return 1;
 };
 
+const patternFor = (property) => {
+  if (property.Pattern && property.Pattern.length > 0) {
+    return { pattern: property.Pattern };
+  }
+  return null;
+};
+
 const topLevelFilter = row => row.XPath.split('/').length === 2;
 
 const nextLevelFilter = p => row => row.XPath.startsWith(`${p.XPath}/`);
@@ -159,6 +166,9 @@ const makeSchema = (property, rows, propertyFilter) => {
   }
   if (formatFor(property)) {
     Object.assign(schema, formatFor(property));
+  }
+  if (patternFor(property)) {
+    Object.assign(schema, patternFor(property));
   }
   obj[key] = schema;
   const childSchemas = properties.map(p => makeSchema(p, rows));
