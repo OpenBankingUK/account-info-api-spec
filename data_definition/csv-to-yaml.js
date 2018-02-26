@@ -107,18 +107,21 @@ const makeSchema = (property, rows, propertyFilter) => {
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
   const schema = {};
   const type = typeFor(property);
+  if (descriptionFor(property)) {
+    Object.assign(schema, descriptionFor(property));
+  }
+  Object.assign(schema, { type });
   if (type === 'object') {
     Object.assign(schema, {
       properties: propertiesObj(properties),
+    });
+    Object.assign(schema, {
+      additionalProperties: false,
     });
     if (requiredProp(properties).length > 0) {
       Object.assign(schema, { required: requiredProp(properties) });
     }
   }
-  if (descriptionFor(property)) {
-    Object.assign(schema, descriptionFor(property));
-  }
-  Object.assign(schema, { type });
   if (type === 'array') {
     Object.assign(schema, itemsFor(property));
   } else if (property.Codes && property.Codes.length > 0) {
@@ -127,11 +130,6 @@ const makeSchema = (property, rows, propertyFilter) => {
   if (minPropertiesFor(property)) {
     Object.assign(schema, {
       minProperties: minPropertiesFor(property),
-      additionalProperties: false,
-    });
-  }
-  if (type === 'object') {
-    Object.assign(schema, {
       additionalProperties: false,
     });
   }
