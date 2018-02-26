@@ -3,25 +3,34 @@ const fs = require('fs');
 const flatten = require('flatten');
 
 const classFor = (property) => {
-  if (property.Class && (
-    property.Class === 'ISODateTime' ||
-    property.Class.endsWith('Text')
+  const type = property.Class;
+  if (type && (
+    type === 'ISODateTime' ||
+    type.endsWith('Text')
   )) {
-    return `${property.Name}_${property.Class}`;
+    return `${property.Name}_${type}`;
+  } else if (
+    type === 'xs:boolean' ||
+    type === 'xs:string'
+  ) {
+    return property.Name;
   }
-  return property.Class;
+  return type;
 };
 
 const typeFor = (property) => {
+  const type = property.Class;
   if (property.Occurrence === '1..n') {
     return 'array';
-  }
-  if (property.Class && (
-    property.Class === 'ISODateTime' ||
-    property.Class.endsWith('Text') ||
-    property.Class.endsWith('Code')
+  } else if (type && (
+    type === 'ISODateTime' ||
+    type === 'xs:string' ||
+    type.endsWith('Text') ||
+    type.endsWith('Code')
   )) {
     return 'string';
+  } else if (type === 'xs:boolean') {
+    return 'boolean';
   }
   return 'object';
 };
@@ -164,3 +173,5 @@ const convertCSV = (file) => {
 exports.makeSchema = makeSchema;
 exports.convertCSV = convertCSV;
 exports.convertRows = convertRows;
+exports.classFor = classFor;
+exports.typeFor = typeFor;
