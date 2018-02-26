@@ -3,14 +3,20 @@ const fs = require('fs');
 const flatten = require('flatten');
 
 const classFor = (property) => {
-  if (property.Class === 'ISODateTime') {
+  if (property.Class && (
+    property.Class === 'ISODateTime' ||
+    property.Class.endsWith('Text')
+  )) {
     return `${property.Name}_${property.Class}`;
   }
   return property.Class;
 };
 
 const typeFor = (property) => {
-  if (property.Class === 'ISODateTime') {
+  if (property.Class && (
+    property.Class === 'ISODateTime' ||
+    property.Class.endsWith('Text')
+  )) {
     return 'string';
   }
   if (property.Occurrence === '1..n') {
@@ -64,13 +70,33 @@ const requiredProp = (list) => {
   return required.map(p => p.Name);
 };
 
+const maxPattern = /Max(\d+)\D/;
+
+const maxLengthFor = (property) => {
+  const maxMatch = maxPattern.exec(property.Class);
+  if (maxMatch) {
+    return parseInt(maxMatch[1], 10);
+  }
+  return null;
+};
+
+const minPattern = /Min(\d+)\D/;
+
+const minLengthFor = (property) => {
+  const minMatch = minPattern.exec(property.Class);
+  if (minMatch) {
+    return parseInt(minMatch[1], 10);
+  }
+  return 1;
+};
+
 const topLevelFilter = row => row.XPath.split('/').length === 2;
 
 const nextLevelFilter = p => row => row.XPath.startsWith(`${p.XPath}/`);
 
 const makeSchema = (property, rows, propertyFilter) => {
   const obj = {};
-  const properties = rows.filter(propertyFilter);
+  const properties = rows.filter(propertyFilter || nextLevelFilter(property));
   const schema = {};
   const type = typeFor(property);
   if (type === 'object') {
@@ -98,10 +124,16 @@ const makeSchema = (property, rows, propertyFilter) => {
     Object.assign(schema, itemsFor(property));
   }
   Object.assign(schema, { type });
+  if (maxLengthFor(property)) {
+    Object.assign(schema, {
+      minLength: minLengthFor(property),
+      maxLength: maxLengthFor(property),
+    });
+  }
   obj[classFor(property)] = schema;
-  const childSchemas = properties.map(p =>
-    makeSchema(p, rows, nextLevelFilter(p)));
-  return [obj].concat(childSchemas);
+  const childSchemas = properties.map(p => makeSchema(p, rows));
+  const schemas = [obj].concat(childSchemas);
+  return schemas;
 };
 
 const convertRows = (rows) => {
@@ -117,5 +149,6 @@ const convertCSV = (file) => {
   convertRows(lines);
 };
 
+exports.makeSchema = makeSchema;
 exports.convertCSV = convertCSV;
 exports.convertRows = convertRows;

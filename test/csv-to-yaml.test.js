@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const { convertRows } = require('../data_definition/csv-to-yaml.js');
+const { convertRows, makeSchema } = require('../data_definition/csv-to-yaml.js');
 
 const input = [
   {
@@ -213,4 +213,39 @@ describe('convertRows', () => {
     it('with correct description', () =>
       assert.equal(schema.description, description));
   });
+});
+
+describe('makeSchema creates text schema', () => {
+  const textInput = [
+    {
+      Name: 'AccountRequestId',
+      Occurrence: '1..1',
+      XPath: 'OBReadResponse1/Data/AccountRequestId',
+      EnhancedDefinition: 'Unique identification as assigned to identify the account request resource.',
+      Class: 'Max128Text',
+    },
+  ];
+  const property = textInput[0];
+  const rows = textInput;
+  const result = makeSchema(property, rows);
+  const schemaObject = result[0];
+  const schema = Object.values(schemaObject)[0];
+
+  it('with key matching row Name and Class', () =>
+    assert.equal(Object.keys(schemaObject)[0], 'AccountRequestId_Max128Text'));
+
+  it('with correct type', () =>
+    assert.equal(schema.type, 'string'));
+
+  it('without additionalProperties', () =>
+    assert.equal(schema.additionalProperties, null));
+
+  it('with description', () =>
+    assert.equal(schema.description, textInput[0].EnhancedDefinition));
+
+  it('with minLength', () =>
+    assert.equal(schema.minLength, 1));
+
+  it('with maxLength', () =>
+    assert.equal(schema.maxLength, 128));
 });
