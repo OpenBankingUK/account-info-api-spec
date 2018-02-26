@@ -307,3 +307,61 @@ describe('makeSchema creates text schema', () => {
   it('with maxLength', () =>
     assert.equal(schema.maxLength, 128));
 });
+
+const amountInput = [
+  {
+    Name: 'Amount',
+    Occurrence: '1..1',
+    XPath: 'OBReadBalance1/Data/Balance/Amount',
+    EnhancedDefinition: 'Amount of money of the cash balance.',
+    Class: 'ActiveOrHistoricCurrencyAndAmount',
+    Codes: '',
+    Pattern: 'TotalDigits: 18\nFractionDigits: 5',
+    TotalDigits: '18',
+    FractionDigits: '5',
+  },
+  {
+    Name: 'Currency',
+    Occurrence: '1..1',
+    XPath: 'OBReadBalance1/Data/Balance/Amount/Currency',
+    EnhancedDefinition: 'A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".',
+    Class: 'ActiveOrHistoricCurrencyCode',
+    Codes: '',
+    Pattern: '^[A-Z]{3,3}$',
+    TotalDigits: '',
+    FractionDigits: '',
+  },
+];
+
+describe('makeSchema adds Amount to ActiveOrHistoricCurrencyAndAmount', () => {
+  const property = amountInput[0];
+  const rows = amountInput;
+  const result = makeSchema(property, rows);
+  const schemaObject = result[0];
+  const schema = Object.values(schemaObject)[0];
+
+  it('with key matching row Class', () =>
+    assert.equal(Object.keys(schemaObject)[0], amountInput[0].Class));
+
+  it('with correct type', () =>
+    assert.equal(schema.type, 'object'));
+
+  it('with description', () =>
+    assert.equal(schema.description, amountInput[0].EnhancedDefinition));
+
+  it('with Amount added to properties', () =>
+    assert.deepEqual(Object.keys(schema.properties), ['Amount', 'Currency']));
+
+  it('with Amount added to required properties', () =>
+    assert.deepEqual(schema.required, ['Amount', 'Currency']));
+
+  it('adds Amount schema', () => {
+    const amountSchema = result[2];
+    assert.deepEqual(amountSchema, {
+      Amount: {
+        type: 'string',
+        pattern: '^\\d{1,13}\\.\\d{1,5}$',
+      },
+    });
+  });
+});

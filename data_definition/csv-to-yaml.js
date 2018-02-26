@@ -74,17 +74,25 @@ const itemsFor = property => ({
   ),
 });
 
-const propertiesObj = (list) => {
+const propertiesObj = (list, key) => {
   const obj = {};
   list.forEach((p) => {
     obj[p.Name] = { $ref: `#/definitions/${classFor(p)}` };
   });
+  if (key === 'ActiveOrHistoricCurrencyAndAmount' && !obj.Amount) {
+    return Object.assign({ Amount: { $ref: '#/defintions/Amount' } }, obj);
+  }
   return obj;
 };
 
-const requiredProp = (list) => {
+const requiredProp = (list, key) => {
   const required = list.filter(p => !p.Occurrence.startsWith('0'));
-  return required.map(p => p.Name);
+  const requiredList = required.map(p => p.Name);
+  if (key === 'ActiveOrHistoricCurrencyAndAmount' &&
+    !requiredList.includes('Amount')) {
+    return ['Amount'].concat(requiredList);
+  }
+  return requiredList;
 };
 
 const maxPattern = /Max(\d+)\D/;
@@ -115,6 +123,7 @@ const makeSchema = (property, rows, propertyFilter) => {
   const obj = {};
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
   const schema = {};
+  const key = classFor(property);
   const type = typeFor(property);
   if (descriptionFor(property)) {
     Object.assign(schema, descriptionFor(property));
@@ -122,13 +131,13 @@ const makeSchema = (property, rows, propertyFilter) => {
   Object.assign(schema, { type });
   if (type === 'object') {
     Object.assign(schema, {
-      properties: propertiesObj(properties),
+      properties: propertiesObj(properties, key),
     });
     Object.assign(schema, {
       additionalProperties: false,
     });
-    if (requiredProp(properties).length > 0) {
-      Object.assign(schema, { required: requiredProp(properties) });
+    if (requiredProp(properties, key).length > 0) {
+      Object.assign(schema, { required: requiredProp(properties, key) });
     }
   }
   if (type === 'array') {
@@ -151,9 +160,17 @@ const makeSchema = (property, rows, propertyFilter) => {
   if (formatFor(property)) {
     Object.assign(schema, formatFor(property));
   }
-  obj[classFor(property)] = schema;
+  obj[key] = schema;
   const childSchemas = properties.map(p => makeSchema(p, rows));
-  const schemas = [obj].concat(childSchemas);
+  let schemas = [obj].concat(childSchemas);
+  if (key === 'ActiveOrHistoricCurrencyAndAmount') {
+    schemas = schemas.concat({
+      Amount: {
+        type: 'string',
+        pattern: '^\\d{1,13}\\.\\d{1,5}$',
+      },
+    });
+  }
   return schemas;
 };
 
