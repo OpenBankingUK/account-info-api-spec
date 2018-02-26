@@ -4,6 +4,7 @@
   "description": "Tools to compile and flatten JSON schemas, and generate Swagger Docs",
   "main": "index.js",
   "scripts": {
+    "csvtoyaml": "node ./data_definition/convert.js",
     "flatten-schemas": "cd build && ./flatten-schemas.sh",
     "compile-swagger": "cd build && node compile-swagger.js",
     "build:swagger": "npm run flatten-schemas && npm run compile-swagger",
