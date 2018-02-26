@@ -13,25 +13,25 @@ const classFor = (property) => {
 };
 
 const typeFor = (property) => {
-  if (property.Class && (
-    property.Class === 'ISODateTime' ||
-    property.Class.endsWith('Text')
-  )) {
-    return 'string';
-  }
   if (property.Occurrence === '1..n') {
     return 'array';
+  }
+  if (property.Class && (
+    property.Class === 'ISODateTime' ||
+    property.Class.endsWith('Text') ||
+    property.Class.endsWith('Code')
+  )) {
+    return 'string';
   }
   return 'object';
 };
 
-const itemsFor = property => ({
-  items: {
-    description: property.EnhancedDefinition,
-    type: 'string',
-    enum: property.Codes.split('\n'),
-  },
-});
+const enumFor = (property) => {
+  if (property.Codes) {
+    return { enum: property.Codes.split('\n') };
+  }
+  return null;
+};
 
 const minPropertiesFor = (property) => {
   if (property.Occurrence === '1..n') {
@@ -56,6 +56,14 @@ const descriptionFor = (property) => {
   }
   return null;
 };
+
+const itemsFor = property => ({
+  items: Object.assign(
+    descriptionFor(property),
+    { type: 'string' },
+    enumFor(property),
+  ),
+});
 
 const propertiesObj = (list) => {
   const obj = {};
@@ -113,6 +121,8 @@ const makeSchema = (property, rows, propertyFilter) => {
   Object.assign(schema, { type });
   if (type === 'array') {
     Object.assign(schema, itemsFor(property));
+  } else if (property.Codes && property.Codes.length > 0) {
+    Object.assign(schema, enumFor(property));
   }
   if (minPropertiesFor(property)) {
     Object.assign(schema, {

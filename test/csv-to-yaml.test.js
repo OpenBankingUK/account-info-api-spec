@@ -215,6 +215,42 @@ describe('convertRows', () => {
   });
 });
 
+describe('makeSchame creates codes schema', () => {
+  const codesInput = [
+    {
+      Name: 'Status',
+      Occurrence: '0..1',
+      XPath: 'OBReadResponse1/Data/Status',
+      EnhancedDefinition: 'Specifies the status of the account request resource.',
+      Class: 'OBExternalRequestStatus1Code',
+      Codes: 'Authorised\nAwaitingAuthorisation\nRejected\nRevoked',
+    },
+  ];
+  const property = codesInput[0];
+  const rows = codesInput;
+  const result = makeSchema(property, rows);
+  const schemaObject = result[0];
+  const schema = Object.values(schemaObject)[0];
+
+  it('with key matching row Class', () =>
+    assert.equal(Object.keys(schemaObject)[0], codesInput[0].Class));
+
+  it('with correct type', () =>
+    assert.equal(schema.type, 'string'));
+
+  it('without additionalProperties', () =>
+    assert.equal(schema.additionalProperties, null));
+
+  it('with description', () =>
+    assert.equal(schema.description, codesInput[0].EnhancedDefinition));
+
+  it('with enum', () =>
+    assert.deepEqual(
+      schema.enum,
+      ['Authorised', 'AwaitingAuthorisation', 'Rejected', 'Revoked'],
+    ));
+});
+
 describe('makeSchema creates text schema', () => {
   const textInput = [
     {
