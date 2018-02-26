@@ -1,6 +1,8 @@
 const assert = require('assert');
 
-const { convertRows, makeSchema } = require('../data_definition/csv-to-yaml.js');
+const {
+  convertRows, makeSchema, classFor, typeFor,
+} = require('../data_definition/csv-to-yaml.js');
 
 const input = [
   {
@@ -215,7 +217,27 @@ describe('convertRows', () => {
   });
 });
 
-describe('makeSchame creates codes schema', () => {
+describe('given property with Class xs:boolean', () => {
+  const property = { Class: 'xs:boolean', Name: 'Included' };
+
+  it('classFor returns property Name', () =>
+    assert.equal(classFor(property), 'Included'));
+
+  it('typeFor returns boolean', () =>
+    assert.equal(typeFor(property), 'boolean'));
+});
+
+describe('given property with Class xs:string', () => {
+  const property = { Class: 'xs:string', Name: 'ProductIdentifier' };
+
+  it('classFor returns property Name', () =>
+    assert.equal(classFor(property), 'ProductIdentifier'));
+
+  it('typeFor returns string', () =>
+    assert.equal(typeFor(property), 'string'));
+});
+
+describe('makeSchema creates codes schema', () => {
   const codesInput = [
     {
       Name: 'Status',
