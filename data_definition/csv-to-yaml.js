@@ -1,6 +1,32 @@
 const parse = require('csv-parse/lib/sync'); // eslint-disable-line
 const fs = require('fs');
 const flatten = require('flatten');
+const { YAML } = require('swagger-parser'); // eslint-disable-line
+
+const commonTypes = [ // eslint-disable-line
+  'OBExternalRequestStatus1Code',
+  'CreationDateTime_ISODateTime',
+  'OBRisk2',
+  'Amount',
+  'Links',
+  'ISODateTime',
+  'Meta',
+  'x-fapi-financial-id-Param',
+  'x-fapi-customer-ip-address-Param',
+  'x-fapi-interaction-id-Param',
+  'x-fapi-customer-last-logged-time-Param',
+  'AuthorizationParam',
+  'x-jws-signature-Param',
+  '400ErrorResponse',
+  '401ErrorResponse',
+  '403ErrorResponse',
+  '405ErrorResponse',
+  '406ErrorResponse',
+  '429ErrorResponse',
+  '500ErrorResponse',
+  'PSU_OAuth2Security',
+  'TPP_OAuth2Security',
+];
 
 const classFor = (property) => {
   const type = property.Class;
@@ -190,15 +216,39 @@ const convertRows = (rows) => {
   return schemas;
 };
 
-const convertCSV = (file) => {
+const convertCSV = (dir, file) => {
+  console.log('==='); // eslint-disable-line
+  console.log(file); // eslint-disable-line
+  console.log('---'); // eslint-disable-line
   const text = fs.readFileSync(file);
   const lines = parse(text, { columns: true, delimiter: ';' });
   console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  convertRows(lines);
+  const schemas = convertRows(lines);
+  schemas.forEach((schema) => {
+    const key = Object.keys(schema)[0];
+    const defDir = `${dir}/definitions`;
+    const subdir = `${defDir}/${commonTypes.includes(key) ? 'common' : 'accounts'}`;
+    if (!fs.existsSync(defDir)) {
+      fs.mkdirSync(defDir);
+    }
+    if (!fs.existsSync(subdir)) {
+      fs.mkdirSync(subdir);
+    }
+    const outFile = `${subdir}/${Object.keys(schema)[0]}.yaml`;
+    fs.writeFileSync(outFile, YAML.stringify(schema));
+  });
+};
+
+const convertCSVs = (dir = './data_definition/v1.1') => {
+  const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
+    && f !== 'Enumerations.csv'
+    && f !== 'Permissions.csv');
+  files.forEach(file => convertCSV(dir, `${dir}/${file}`));
 };
 
 exports.makeSchema = makeSchema;
 exports.convertCSV = convertCSV;
+exports.convertCSVs = convertCSVs;
 exports.convertRows = convertRows;
 exports.classFor = classFor;
 exports.typeFor = typeFor;
