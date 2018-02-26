@@ -333,6 +333,26 @@ const amountInput = [
   },
 ];
 
+describe('makeSchema with "patterned" property', () => {
+  const property = amountInput[1];
+  const rows = amountInput;
+  const result = makeSchema(property, rows);
+  const schemaObject = result[0];
+  const schema = Object.values(schemaObject)[0];
+
+  it('with key matching row Class', () =>
+    assert.equal(Object.keys(schemaObject)[0], amountInput[1].Class));
+
+  it('with correct type', () =>
+    assert.equal(schema.type, 'string'));
+
+  it('with description', () =>
+    assert.equal(schema.description, amountInput[1].EnhancedDefinition));
+
+  it('with pattern', () =>
+    assert.deepEqual(schema.pattern, amountInput[1].Pattern));
+});
+
 describe('makeSchema adds Amount to ActiveOrHistoricCurrencyAndAmount', () => {
   const property = amountInput[0];
   const rows = amountInput;
