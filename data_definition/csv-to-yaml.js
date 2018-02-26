@@ -28,17 +28,17 @@ const typeFor = (property) => {
 const itemsFor = property => ({
   items: {
     description: property.EnhancedDefinition,
-    enum: property.Codes.split('\n'),
     type: 'string',
+    enum: property.Codes.split('\n'),
   },
 });
 
 const minPropertiesFor = (property) => {
   if (property.Occurrence === '1..n') {
-    return '1';
+    return 1;
   }
   if (property.Occurrence === '0..n') {
-    return '0';
+    return 0;
   }
   return null;
 };
@@ -101,7 +101,6 @@ const makeSchema = (property, rows, propertyFilter) => {
   const type = typeFor(property);
   if (type === 'object') {
     Object.assign(schema, {
-      additionalProperties: false,
       properties: propertiesObj(properties),
     });
     if (requiredProp(properties).length > 0) {
@@ -111,24 +110,29 @@ const makeSchema = (property, rows, propertyFilter) => {
   if (descriptionFor(property)) {
     Object.assign(schema, descriptionFor(property));
   }
-  if (minPropertiesFor(property)) {
-    Object.assign(schema, {
-      additionalProperties: false,
-      minProperties: minPropertiesFor(property),
-    });
-  }
-  if (formatFor(property)) {
-    Object.assign(schema, formatFor(property));
-  }
+  Object.assign(schema, { type });
   if (type === 'array') {
     Object.assign(schema, itemsFor(property));
   }
-  Object.assign(schema, { type });
+  if (minPropertiesFor(property)) {
+    Object.assign(schema, {
+      minProperties: minPropertiesFor(property),
+      additionalProperties: false,
+    });
+  }
+  if (type === 'object') {
+    Object.assign(schema, {
+      additionalProperties: false,
+    });
+  }
   if (maxLengthFor(property)) {
     Object.assign(schema, {
       minLength: minLengthFor(property),
       maxLength: maxLengthFor(property),
     });
+  }
+  if (formatFor(property)) {
+    Object.assign(schema, formatFor(property));
   }
   obj[classFor(property)] = schema;
   const childSchemas = properties.map(p => makeSchema(p, rows));
