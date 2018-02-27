@@ -234,7 +234,7 @@ const convertCSV = (dir, file) => {
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
     const defDir = `${dir}/definitions`;
-    const subdir = `${defDir}/${commonTypes.includes(key) ? 'common' : 'accounts'}`;
+    const subdir = `${defDir}/${commonTypes.includes(key) ? 'readwrite' : 'accounts'}`;
     if (!fs.existsSync(defDir)) {
       fs.mkdirSync(defDir);
     }
