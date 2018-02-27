@@ -216,12 +216,19 @@ const convertRows = (rows) => {
   return schemas;
 };
 
+const normalizeHeaders = text => Buffer.from(text, 'utf-8')
+  .toString('utf-8')
+  .replace(/"Composition or Attribute\//g, '"')
+  .replace(/"Notes\//g, '"')
+  .replace(/"Class, data type of a composition or attribute\/Name/g, '"Class')
+  .replace(/"Class, data type of a composition or attribute\//g, '"');
+
 const convertCSV = (dir, file) => {
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
   const text = fs.readFileSync(file);
-  const lines = parse(text, { columns: true, delimiter: ';' });
+  const lines = parse(normalizeHeaders(text), { columns: true, delimiter: ';' });
   console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
   const schemas = convertRows(lines);
   schemas.forEach((schema) => {
