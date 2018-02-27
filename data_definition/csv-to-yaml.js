@@ -40,6 +40,10 @@ const classFor = (property) => {
     type === 'xs:string'
   ) {
     return property.Name;
+  } else if (type === 'ActiveOrHistoricCurrencyAndAmount') {
+    const path = property.XPath.split('/');
+    const parent = path[path.length - 2];
+    return `${parent}_${type}`;
   }
   return type;
 };
@@ -105,7 +109,7 @@ const propertiesObj = (list, key) => {
   list.forEach((p) => {
     obj[p.Name] = { $ref: `#/definitions/${classFor(p)}` };
   });
-  if (key === 'ActiveOrHistoricCurrencyAndAmount' && !obj.Amount) {
+  if (key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
     return Object.assign({ Amount: { $ref: '#/defintions/Amount' } }, obj);
   }
   return obj;
@@ -114,7 +118,7 @@ const propertiesObj = (list, key) => {
 const requiredProp = (list, key) => {
   const required = list.filter(p => !p.Occurrence.startsWith('0'));
   const requiredList = required.map(p => p.Name);
-  if (key === 'ActiveOrHistoricCurrencyAndAmount' &&
+  if (key.endsWith('ActiveOrHistoricCurrencyAndAmount') &&
     !requiredList.includes('Amount')) {
     return ['Amount'].concat(requiredList);
   }
@@ -199,7 +203,7 @@ const makeSchema = (property, rows, propertyFilter) => {
   obj[key] = schema;
   const childSchemas = properties.map(p => makeSchema(p, rows));
   let schemas = [obj].concat(childSchemas);
-  if (key === 'ActiveOrHistoricCurrencyAndAmount') {
+  if (key.endsWith('ActiveOrHistoricCurrencyAndAmount')) {
     schemas = schemas.concat({
       Amount: {
         type: 'string',
