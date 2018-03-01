@@ -75,8 +75,10 @@ const secondLevelSchema = {
   OBReadData1: {
     type: 'object',
     properties: {
-      Permissions:
-        { $ref: '#/definitions/OBExternalPermissions1Code' },
+      Permissions: {
+        items: { $ref: '#/definitions/OBExternalPermissions1Code' },
+        type: 'array',
+      },
       ExpirationDateTime:
         { $ref: '#/definitions/ExpirationDateTime_ISODateTime' },
       TransactionFromDateTime:

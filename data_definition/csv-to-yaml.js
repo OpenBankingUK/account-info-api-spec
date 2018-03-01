@@ -4,28 +4,19 @@ const flatten = require('flatten');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 
 const commonTypes = [ // eslint-disable-line
+  'Balance_ActiveOrHistoricCurrencyAndAmount',
   'OBExternalRequestStatus1Code',
   'CreationDateTime_ISODateTime',
   'OBRisk2',
-  'Amount',
   'Links',
   'ISODateTime',
   'Meta',
-  'x-fapi-financial-id-Param',
-  'x-fapi-customer-ip-address-Param',
-  'x-fapi-interaction-id-Param',
-  'x-fapi-customer-last-logged-time-Param',
-  'AuthorizationParam',
-  'x-jws-signature-Param',
-  '400ErrorResponse',
-  '401ErrorResponse',
-  '403ErrorResponse',
-  '405ErrorResponse',
-  '406ErrorResponse',
-  '429ErrorResponse',
-  '500ErrorResponse',
-  'PSU_OAuth2Security',
-  'TPP_OAuth2Security',
+  'OBExternalAccountIdentification2Code',
+  'Identification_Max34Text',
+  'Identification_Max35Text',
+  'SecondaryIdentification_Max34Text',
+  'OBBranchAndFinancialInstitutionIdentification2',
+  'ActiveOrHistoricCurrencyCode',
 ];
 
 const classFor = (property) => {
@@ -107,9 +98,17 @@ const itemsFor = property => ({
 const propertiesObj = (list, key) => {
   const obj = {};
   list.forEach((p) => {
-    obj[p.Name] = { $ref: `#/definitions/${classFor(p)}` };
+    const ref = { $ref: `#/definitions/${classFor(p)}` };
+    if (p.Occurrence && p.Occurrence.endsWith('..n')) {
+      obj[p.Name] = {
+        items: ref,
+        type: 'array',
+      };
+    } else {
+      obj[p.Name] = ref;
+    }
   });
-  if (key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
+  if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
     return Object.assign({ Amount: { $ref: '#/defintions/Amount' } }, obj);
   }
   return obj;
@@ -154,27 +153,66 @@ const patternFor = (property) => {
 
 const topLevelFilter = row => row.XPath.split('/').length === 2;
 
-const nextLevelFilter = p => row => row.XPath.startsWith(`${p.XPath}/`);
+const nextLevelPattern = p => new RegExp(`^${p.XPath}/[^/]+$`);
 
-const makeSchema = (property, rows, propertyFilter) => {
+const nextLevelFilter = p => row => row.XPath.match(nextLevelPattern(p));
+
+const detailPermissionProperties = (permissions, property, properties) => {
+  const list = (permissions && permissions.filter(p => p.XPath.startsWith(property.XPath))) || [];
+  const detailXPaths = list.map(p => p.XPath);
+  const detailProperties = properties.filter(p => detailXPaths.includes(p.XPath));
+  return detailProperties;
+};
+
+const mandatoryForKey = (key) => {
+  if (key === 'OBAccount1') {
+    return ['Account'];
+  }
+  return [];
+};
+
+const extendBasicPropertiesObj = (key, detailProperties) => ({
+  allOf: [
+    { $ref: `#/definitions/${key}Basic` },
+    {
+      properties: propertiesObj(detailProperties),
+    },
+  ],
+});
+
+const makeDetailSchema = key => ({
+  [`${key}Detail`]: {
+    type: 'object',
+    allOf: [
+      { $ref: `#/definitions/${key}` },
+      { required: mandatoryForKey(key) },
+    ],
+  },
+});
+
+const makeSchema = (property, rows, propertyFilter, permissions, allProperties = []) => {
   const obj = {};
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
+  const detailProperties = detailPermissionProperties(permissions, property, properties);
   const schema = {};
   const key = classFor(property);
+  allProperties.push({
+    xpath: property.XPath, key, description: property.EnhancedDefinition,
+  }); // eslint-disable-line
   const type = typeFor(property);
   if (descriptionFor(property)) {
     Object.assign(schema, descriptionFor(property));
   }
   Object.assign(schema, { type });
   if (type === 'object') {
-    Object.assign(schema, {
-      properties: propertiesObj(properties, key),
-    });
-    Object.assign(schema, {
-      additionalProperties: false,
-    });
-    if (requiredProp(properties, key).length > 0) {
-      Object.assign(schema, { required: requiredProp(properties, key) });
+    if (detailProperties.length > 0) {
+      Object.assign(schema, extendBasicPropertiesObj(key, detailProperties));
+    } else {
+      Object.assign(schema, { properties: propertiesObj(properties, key) });
+      Object.assign(schema, { additionalProperties: false });
+      if (requiredProp(properties, key).length > 0) {
+        Object.assign(schema, { required: requiredProp(properties, key) });
+      }
     }
   }
   if (type === 'array') {
@@ -201,10 +239,21 @@ const makeSchema = (property, rows, propertyFilter) => {
     Object.assign(schema, patternFor(property));
   }
   obj[key] = schema;
-  const childSchemas = properties.map(p => makeSchema(p, rows));
-  let schemas = [obj].concat(childSchemas);
+  const schemas = [];
+  if (schema.allOf) {
+    const baseSchema = Object.values(makeSchema(property, rows, null, [])[0])[0];
+    const detailKeys = Object.keys(schema.allOf[1].properties);
+    detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
+    schemas.push({ [`${key}Basic`]: baseSchema });
+    schemas.push(obj);
+    schemas.push(makeDetailSchema(key));
+  } else {
+    schemas.push(obj);
+  }
+  const childSchemas = properties.map(p => makeSchema(p, rows, null, permissions, allProperties));
+  schemas.push(childSchemas);
   if (key.endsWith('ActiveOrHistoricCurrencyAndAmount')) {
-    schemas = schemas.concat({
+    schemas.push({
       Amount: {
         type: 'string',
         pattern: '^\\d{1,13}\\.\\d{1,5}$',
@@ -214,8 +263,8 @@ const makeSchema = (property, rows, propertyFilter) => {
   return schemas;
 };
 
-const convertRows = (rows) => {
-  const schemas = flatten(makeSchema(rows[0], rows, topLevelFilter));
+const convertRows = (rows, permissions, allProperties = []) => {
+  const schemas = flatten(makeSchema(rows[0], rows, topLevelFilter, permissions, allProperties));
   console.log(JSON.stringify(schemas, null, 2)); // eslint-disable-line
   return schemas;
 };
@@ -227,34 +276,52 @@ const normalizeHeaders = text => Buffer.from(text, 'utf-8')
   .replace(/"Class, data type of a composition or attribute\/Name/g, '"Class')
   .replace(/"Class, data type of a composition or attribute\//g, '"');
 
-const convertCSV = (dir, file) => {
+const parseCsv = (file) => {
+  const text = fs.readFileSync(file);
+  const lines = parse(normalizeHeaders(text), { columns: true, delimiter: ';' });
+  return lines;
+};
+
+const convertCSV = (dir, file, outdir, permissions, allProperties) => {
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
-  const text = fs.readFileSync(file);
-  const lines = parse(normalizeHeaders(text), { columns: true, delimiter: ';' });
+  const lines = parseCsv(file);
   console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  const schemas = convertRows(lines);
+  const schemas = convertRows(lines, permissions, allProperties);
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
-    const defDir = `${dir}/definitions`;
-    const subdir = `${defDir}/${commonTypes.includes(key) ? 'readwrite' : 'accounts'}`;
+    const path = commonTypes.includes(key) ? 'readwrite' : 'accounts';
+    const defDir = `${outdir}/${path}/definitions`;
     if (!fs.existsSync(defDir)) {
       fs.mkdirSync(defDir);
     }
-    if (!fs.existsSync(subdir)) {
-      fs.mkdirSync(subdir);
-    }
-    const outFile = `${subdir}/${Object.keys(schema)[0]}.yaml`;
+    const outFile = `${defDir}/${Object.keys(schema)[0]}.yaml`;
     fs.writeFileSync(outFile, YAML.stringify(schema));
   });
 };
 
-const convertCSVs = (dir = './data_definition/v1.1') => {
+const convertCSVs = (dir = './data_definition/v1.1', outdir) => {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
     && f !== 'Permissions.csv');
-  files.forEach(file => convertCSV(dir, `${dir}/${file}`));
+  const permissionsFile = `${dir}/Permissions.csv`;
+  const permissions = parseCsv(permissionsFile);
+  const allProperties = [];
+  files.forEach(file => convertCSV(dir, `${dir}/${file}`, outdir, permissions, allProperties));
+  console.log(YAML.stringify(allProperties)); // eslint-disable-line
+  const keyToDescription = [];
+  allProperties.forEach((x) => {
+    const { key, description } = x;
+    keyToDescription[key] = (keyToDescription[key] || new Set()).add(description);
+  });
+  const descriptions = Object.keys(keyToDescription).map(key => ({
+    key,
+    d: Array.from(keyToDescription[key]),
+  }));
+  const dups = descriptions.filter(x => x.d.length > 1);
+  console.log(JSON.stringify(dups, null, 2)); // eslint-disable-line
+  console.log('dup keys count:' + dups.length); // eslint-disable-line
 };
 
 exports.makeSchema = makeSchema;
