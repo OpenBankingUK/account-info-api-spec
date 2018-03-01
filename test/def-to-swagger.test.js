@@ -1,9 +1,7 @@
 const assert = require('assert');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 
-const {
-  convertRows, makeSchema, classFor, typeFor,
-} = require('../data_definition/csv-to-yaml.js');
+const { convertRows } = require('../data_definition/csv-to-yaml.js');
 
 // ./data_definition/v1.1/Permissions.csv
 const permissions = [
@@ -160,9 +158,9 @@ const cashAccountSchema = YAML.parse(`
     type: object
     properties:
       SchemeName:
-        $ref: '#/definitions/OBExternalFinancialInstitutionIdentification2Code'
+        $ref: '#/definitions/OBExternalAccountIdentification2Code'
       Identification:
-        $ref: '#/definitions/Identification_Max35Text'
+        $ref: '#/definitions/Identification_Max34Text'
       Name:
         $ref: '#/definitions/Name_Max70Text'
       SecondaryIdentification:
@@ -199,15 +197,6 @@ const accountDetailSchema = YAML.parse(`
 
 describe('convertRows', () => {
   const schemas = convertRows(dataDef, permissions);
-
-  it('print YAML', () => {
-    // console.log(YAML.stringify(payloadSchema)); // eslint-disable-line
-    // console.log(YAML.stringify(dataSchema)); // eslint-disable-line
-    console.log(YAML.stringify(accountSchema)); // eslint-disable-line
-    // console.log(YAML.stringify(accountBasicSchema)); // eslint-disable-line
-    // console.log(YAML.stringify(accountDetailSchema)); // eslint-disable-line
-    // console.log(YAML.stringify(cashAccountSchema)); // eslint-disable-line
-  });
 
   const setup = (index, expectedSchema) => {
     const root = Object.keys(expectedSchema)[0];
@@ -291,5 +280,12 @@ describe('convertRows', () => {
     expectedSchema: accountDetailSchema,
     type: 'object',
     expectedKey: `${dataDef[2].Class}Detail`,
+  }));
+
+  describe('creates cash account schema', checkSchema({
+    index: 8,
+    expectedSchema: cashAccountSchema,
+    type: 'object',
+    expectedKey: dataDef[6].Class,
   }));
 });
