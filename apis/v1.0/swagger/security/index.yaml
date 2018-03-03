@@ -1,4 +1,4 @@
 PSUOAuth2Security:
-  $ref: ./PSU_OAuth2Security.yaml
+  $ref: ./PSU_OAuth2security.yaml
 TPPOAuth2Security:
-  $ref: ./TPP_OAuth2Security.yaml
+  $ref: ./TPP_OAuth2security.yaml
