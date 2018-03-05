@@ -101,30 +101,25 @@ const leafSchema = {
   },
 };
 
-const arraySchema = {
+const arrayItemSchema = {
   OBExternalPermissions1Code: {
     description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.',
-    type: 'array',
-    items: {
-      description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.',
-      type: 'string',
-      enum: [
-        'ReadAccountsBasic',
-        'ReadAccountsDetail',
-        'ReadBalances',
-        'ReadBeneficiariesBasic',
-        'ReadBeneficiariesDetail',
-        'ReadDirectDebits',
-        'ReadProducts',
-        'ReadStandingOrdersBasic',
-        'ReadStandingOrdersDetail',
-        'ReadTransactionsBasic',
-        'ReadTransactionsCredits',
-        'ReadTransactionsDebits',
-        'ReadTransactionsDetail',
-      ],
-    },
-    minProperties: 1,
+    type: 'string',
+    enum: [
+      'ReadAccountsBasic',
+      'ReadAccountsDetail',
+      'ReadBalances',
+      'ReadBeneficiariesBasic',
+      'ReadBeneficiariesDetail',
+      'ReadDirectDebits',
+      'ReadProducts',
+      'ReadStandingOrdersBasic',
+      'ReadStandingOrdersDetail',
+      'ReadTransactionsBasic',
+      'ReadTransactionsCredits',
+      'ReadTransactionsDebits',
+      'ReadTransactionsDetail',
+    ],
   },
 };
 
@@ -147,10 +142,10 @@ describe('convertRows', () => {
     schemas,
   }));
 
-  describe('creates array schema from rows', checkSchema({
+  describe('creates array item schema from rows', checkSchema({
     index: 2,
-    expectedSchema: arraySchema,
-    type: 'array',
+    expectedSchema: arrayItemSchema,
+    type: 'string',
     expectedKey: 'OBExternalPermissions1Code',
     schemas,
   }));

@@ -47,9 +47,7 @@ const classFor = (property) => {
 
 const typeFor = (property) => {
   const type = property.Class;
-  if (property.Occurrence === '1..n') {
-    return 'array';
-  } else if (type && (
+  if (type && (
     type === 'ISODateTime' ||
     type === 'xs:string' ||
     type.endsWith('Text') ||

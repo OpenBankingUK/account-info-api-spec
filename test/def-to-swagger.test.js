@@ -266,6 +266,9 @@ const checkSchema = ({
   if (items) {
     it('with items', () =>
       assert.deepEqual(schema.items, items));
+  } else {
+    it('without items', () =>
+      assert.equal(schema.items, null, `items should not be present\nactual: ${YAML.stringify(schema)}`));
   }
 
   if (format) {
