@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
-
+const { checkSchema } = require('./def-to-swagger.test');
 const {
   convertRows, makeSchema, classFor, typeFor,
 } = require('../data_definition/csv-to-yaml.js');
@@ -130,93 +130,37 @@ const arraySchema = {
 describe('convertRows', () => {
   const schemas = convertRows(input);
 
-  describe('creates top level schema', () => {
-    const schemaObject = schemas[0];
-    const schema = Object.values(schemaObject)[0];
-    const { properties } = topLevelSchema.OBReadRequest1;
-    const { required } = topLevelSchema.OBReadRequest1;
+  describe('creates top level schema', checkSchema({
+    index: 0,
+    expectedSchema: topLevelSchema,
+    type: 'object',
+    expectedKey: input[0].Class,
+    schemas,
+  }));
 
-    it('with key matching first row Class', () =>
-      assert.equal(Object.keys(schemaObject)[0], input[0].Class));
+  describe('creates 1st second level schema from rows', checkSchema({
+    index: 1,
+    expectedSchema: secondLevelSchema,
+    type: 'object',
+    expectedKey: input[1].Class,
+    schemas,
+  }));
 
-    it('with type "object"', () =>
-      assert.equal(schema.type, 'object'));
+  describe('creates array schema from rows', checkSchema({
+    index: 2,
+    expectedSchema: arraySchema,
+    type: 'array',
+    expectedKey: 'OBExternalPermissions1Code',
+    schemas,
+  }));
 
-    it('with correct top level properties', () =>
-      assert.deepEqual(schema.properties, properties));
-
-    it('with correct required properties', () =>
-      assert.deepEqual(schema.required, required));
-
-    xit('with additionalProperties false', () =>
-      assert.equal(schema.additionalProperties, false));
-  });
-
-  describe('creates 1st second level schema from rows', () => {
-    const schemaObject = schemas[1];
-    const schema = Object.values(schemaObject)[0];
-    const { properties } = secondLevelSchema.OBReadData1;
-    const { required } = secondLevelSchema.OBReadData1;
-
-    it('with key matching row Class', () =>
-      assert.equal(Object.keys(schemaObject)[0], input[1].Class));
-
-    it('with type "object"', () =>
-      assert.equal(schema.type, 'object'));
-
-    it('with correct top level properties', () =>
-      assert.deepEqual(schema.properties, properties));
-
-    it('with correct required properties', () =>
-      assert.deepEqual(schema.required, required));
-
-    xit('with additionalProperties false', () =>
-      assert.equal(schema.additionalProperties, false));
-  });
-
-  describe('creates array schema from rows', () => {
-    const schemaObject = schemas[2];
-    const schema = Object.values(schemaObject)[0];
-    const {
-      description, items, type, minProperties, additionalProperties,
-    } = arraySchema.OBExternalPermissions1Code;
-
-    it('with key matching row Class', () =>
-      assert.equal(Object.keys(schemaObject)[0], 'OBExternalPermissions1Code'));
-
-    it('with correct type', () =>
-      assert.equal(schema.type, type));
-
-    it('with correct description', () =>
-      assert.equal(schema.description, description));
-
-    xit('with additionalProperties false', () =>
-      assert.equal(schema.additionalProperties, additionalProperties));
-
-    it('with minProperties false', () =>
-      assert.equal(schema.minProperties, minProperties));
-
-    it('with items', () =>
-      assert.deepEqual(schema.items, items));
-  });
-
-  describe('creates leaf schema from rows', () => {
-    const schemaObject = schemas[3];
-    const schema = Object.values(schemaObject)[0];
-    const { description, type, format } = leafSchema.ExpirationDateTime_ISODateTime;
-
-    it('with key matching row Class', () =>
-      assert.equal(Object.keys(schemaObject)[0], 'ExpirationDateTime_ISODateTime'));
-
-    it('with correct type', () =>
-      assert.equal(schema.type, type));
-
-    it('with correct format', () =>
-      assert.equal(schema.format, format));
-
-    it('with correct description', () =>
-      assert.equal(schema.description, description));
-  });
+  describe('creates leaf schema from rows', checkSchema({
+    index: 3,
+    expectedSchema: leafSchema,
+    type: 'string',
+    expectedKey: 'ExpirationDateTime_ISODateTime',
+    schemas,
+  }));
 });
 
 describe('given property with Class xs:boolean', () => {

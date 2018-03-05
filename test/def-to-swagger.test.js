@@ -212,12 +212,15 @@ const accountDetailSchema = YAML.parse(`
           - Account
 `);
 
-describe('convertRows', () => {
-  const schemas = convertRows(dataDef, permissions);
-
-  const setup = (index, expectedSchema) => {
-    const root = Object.keys(expectedSchema)[0];
-    const { allOf, properties, required } = expectedSchema[root];
+const checkSchema = ({
+  index, expectedSchema, type, expectedKey, schemas,
+}) => () => {
+  const setup = (i, schema) => {
+    const root = Object.keys(schema)[0];
+    const {
+      allOf, properties, required,
+      description, minProperties, items, format,
+    } = expectedSchema[root];
     const schemaObject = schemas[index];
     return {
       schemaKey: Object.keys(schemaObject)[0],
@@ -225,50 +228,74 @@ describe('convertRows', () => {
       allOf,
       properties,
       required,
+      description,
+      minProperties,
+      items,
+      format,
     };
   };
 
-  const checkSchema = ({
-    index, expectedSchema, type, expectedKey,
-  }) => () => {
-    const {
-      schemaKey, schema, allOf, properties, required,
-    } = setup(index, expectedSchema);
+  const {
+    schemaKey, schema, allOf, properties, required,
+    description, minProperties, items, format,
+  } = setup(index, expectedSchema);
 
-    it('with schema key correct', () =>
-      assert.equal(schemaKey, expectedKey));
+  it('with schema key correct', () =>
+    assert.equal(schemaKey, expectedKey));
 
-    it('with type "object"', () =>
-      assert.equal(schema.type, type));
+  it(`with type "${type}"`, () =>
+    assert.equal(schema.type, type));
 
-    if (properties) {
-      it('with top level properties', () => {
-        assert.deepEqual(schema.properties, properties);
-      });
-    }
+  if (properties) {
+    it('with properties', () =>
+      assert.deepEqual(schema.properties, properties));
+  }
 
-    if (required) {
-      it('with required properties', () => {
-        assert.deepEqual(schema.required, required);
-      });
-    }
+  if (description) {
+    it('with description', () =>
+      assert.equal(schema.description, description));
+  }
 
-    if (allOf) {
-      it('with correct allOf', () => {
-        assert.ok(schema.allOf, `should be present:\nallOf: ${JSON.stringify(allOf, null, 2)}`);
-        assert.deepEqual(schema.allOf, allOf);
-      });
-    }
+  if (required) {
+    it('with required properties', () =>
+      assert.deepEqual(schema.required, required));
+  }
 
-    xit('with additionalProperties false', () =>
-      assert.equal(schema.additionalProperties, false));
-  };
+  if (minProperties) {
+    it('with minProperties false', () =>
+      assert.equal(schema.minProperties, minProperties));
+  }
+
+  if (items) {
+    it('with items', () =>
+      assert.deepEqual(schema.items, items));
+  }
+
+  if (format) {
+    it('with correct format', () =>
+      assert.equal(schema.format, format));
+  }
+
+  if (allOf) {
+    it('with correct allOf', () => {
+      assert.ok(schema.allOf, `should be present:\nallOf: ${JSON.stringify(allOf, null, 2)}`);
+      assert.deepEqual(schema.allOf, allOf);
+    });
+  }
+
+  xit('with additionalProperties false', () =>
+    assert.equal(schema.additionalProperties, false));
+};
+
+describe('convertRows', () => {
+  const schemas = convertRows(dataDef, permissions);
 
   describe('creates payload schema', checkSchema({
     index: 0,
     expectedSchema: payloadSchema,
     type: 'object',
     expectedKey: dataDef[0].Class,
+    schemas,
   }));
 
   describe('creates data schema', checkSchema({
@@ -276,6 +303,7 @@ describe('convertRows', () => {
     expectedSchema: dataSchema,
     type: 'object',
     expectedKey: dataDef[1].Class,
+    schemas,
   }));
 
   describe('creates basic account schema', checkSchema({
@@ -283,6 +311,7 @@ describe('convertRows', () => {
     expectedSchema: accountBasicSchema,
     type: 'object',
     expectedKey: `${dataDef[2].Class}Basic`,
+    schemas,
   }));
 
   describe('creates account schema', checkSchema({
@@ -290,6 +319,7 @@ describe('convertRows', () => {
     expectedSchema: accountSchema,
     type: 'object',
     expectedKey: dataDef[2].Class,
+    schemas,
   }));
 
   describe('creates detail account schema', checkSchema({
@@ -297,6 +327,7 @@ describe('convertRows', () => {
     expectedSchema: accountDetailSchema,
     type: 'object',
     expectedKey: `${dataDef[2].Class}Detail`,
+    schemas,
   }));
 
   describe('creates cash account schema', checkSchema({
@@ -304,5 +335,8 @@ describe('convertRows', () => {
     expectedSchema: cashAccountSchema,
     type: 'object',
     expectedKey: dataDef[6].Class,
+    schemas,
   }));
 });
+
+exports.checkSchema = checkSchema;
