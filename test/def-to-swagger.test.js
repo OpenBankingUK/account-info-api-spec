@@ -8,7 +8,7 @@ const permissions = [
   {
     'Permission (Detail)': 'ReadAccountsDetail',
     Name: 'Account',
-    Occurrence: '0..1',
+    Occurrence: '1..1',
     XPath: 'OBReadAccount1/Data/Account/Account',
   },
   {
@@ -50,7 +50,7 @@ const dataDef = [
     Name: 'Currency',
     Occurrence: '1..1',
     XPath: 'OBReadAccount1/Data/Account/Currency',
-    EnhancedDefinition: 'Identification of the currency in which the account is held. \n\nUsage: Currency should only be used in case one and the same account number covers several currencies\nand the initiating party needs to identify which currency needs to be used for settlement on the account.',
+    EnhancedDefinition: 'Identification of the currency in which the account is held. \nUsage: Currency should only be used in case one and the same account number covers several currencies\nand the initiating party needs to identify which currency needs to be used for settlement on the account.',
     Class: 'ActiveOrHistoricCurrencyCode',
     Pattern: '^[A-Z]{3,3}$',
   },
@@ -160,11 +160,20 @@ const cashAccountSchema = YAML.parse(`
       SchemeName:
         $ref: '#/definitions/OBExternalAccountIdentification2Code'
       Identification:
-        $ref: '#/definitions/Identification_Max34Text'
+        description: "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+        maxLength: 34
+        minLength: 1
+        type: "string"
       Name:
-        $ref: '#/definitions/Name_Max70Text'
+        description: "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\\n\\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+        maxLength: 70
+        minLength: 1
+        type: "string"
       SecondaryIdentification:
-        $ref: '#/definitions/SecondaryIdentification_Max34Text'
+        description: "This is secondary identification of the account, as assigned by the account servicing institution. \\nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+        maxLength: 34
+        minLength: 1
+        type: "string"
     required:
       - SchemeName
       - Identification
@@ -175,11 +184,19 @@ const accountBasicSchema = YAML.parse(`
     type: object
     properties:
       AccountId:
-        $ref: '#/definitions/AccountId_Max40Text'
+        description: "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner."
+        maxLength: 40
+        minLength: 1
+        type: "string"
       Currency:
-        $ref: '#/definitions/ActiveOrHistoricCurrencyCode'
+        description: "Identification of the currency in which the account is held. \\nUsage: Currency should only be used in case one and the same account number covers several currencies\\nand the initiating party needs to identify which currency needs to be used for settlement on the account."
+        pattern: "^[A-Z]{3,3}$"
+        type: "string"
       Nickname:
-        $ref: '#/definitions/Nickname_Max70Text'
+        description: "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account."
+        maxLength: 70
+        minLength: 1
+        type: "string"
     additionalProperties: false
     required:
       - AccountId

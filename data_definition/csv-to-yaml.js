@@ -4,7 +4,6 @@ const flatten = require('flatten');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 
 const commonTypes = [ // eslint-disable-line
-  'Balance_ActiveOrHistoricCurrencyAndAmount',
   'OBExternalRequestStatus1Code',
   'CreationDateTime_ISODateTime',
   'OBRisk2',
@@ -15,8 +14,6 @@ const commonTypes = [ // eslint-disable-line
   'Identification_Max34Text',
   'Identification_Max35Text',
   'SecondaryIdentification_Max34Text',
-  'OBBranchAndFinancialInstitutionIdentification2',
-  'ActiveOrHistoricCurrencyCode',
 ];
 
 const classFor = (property) => {
@@ -95,17 +92,22 @@ const itemsFor = property => ({
   ),
 });
 
-const propertiesObj = (list, key) => {
+const propertiesObj = (list, key, childSchemas) => {
   const obj = {};
   list.forEach((p) => {
-    const ref = { $ref: `#/definitions/${classFor(p)}` };
-    if (p.Occurrence && p.Occurrence.endsWith('..n')) {
-      obj[p.Name] = {
-        items: ref,
-        type: 'array',
-      };
+    if (p.Class.startsWith('OB') || !childSchemas) {
+      const ref = { $ref: `#/definitions/${classFor(p)}` };
+      if (p.Occurrence && p.Occurrence.endsWith('..n')) {
+        obj[p.Name] = {
+          items: ref,
+          type: 'array',
+        };
+      } else {
+        obj[p.Name] = ref;
+      }
     } else {
-      obj[p.Name] = ref;
+      const schema = childSchemas.filter(s => Object.keys(s)[0] === classFor(p))[0];
+      obj[p.Name] = Object.values(schema)[0]; // eslint-disable-line
     }
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
@@ -200,6 +202,9 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
     xpath: property.XPath, key, description: property.EnhancedDefinition,
   }); // eslint-disable-line
   const type = typeFor(property);
+
+  const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, allProperties))); // eslint-disable-line
+
   if (descriptionFor(property)) {
     Object.assign(schema, descriptionFor(property));
   }
@@ -208,8 +213,8 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
     if (detailProperties.length > 0) {
       Object.assign(schema, extendBasicPropertiesObj(key, detailProperties));
     } else {
-      Object.assign(schema, { properties: propertiesObj(properties, key) });
-      Object.assign(schema, { additionalProperties: false });
+      Object.assign(schema, { properties: propertiesObj(properties, key, childSchemas) });
+      // Object.assign(schema, { additionalProperties: false });
       if (requiredProp(properties, key).length > 0) {
         Object.assign(schema, { required: requiredProp(properties, key) });
       }
@@ -223,7 +228,7 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
   if (minPropertiesFor(property)) {
     Object.assign(schema, {
       minProperties: minPropertiesFor(property),
-      additionalProperties: false,
+      // additionalProperties: false,
     });
   }
   if (maxLengthFor(property)) {
@@ -250,7 +255,6 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
   } else {
     schemas.push(obj);
   }
-  const childSchemas = properties.map(p => makeSchema(p, rows, null, permissions, allProperties));
   schemas.push(childSchemas);
   if (key.endsWith('ActiveOrHistoricCurrencyAndAmount')) {
     schemas.push({
