@@ -120,7 +120,7 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
     }
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
-    return Object.assign({ Amount: { $ref: '#/defintions/Amount' } }, obj);
+    return Object.assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
   }
   return obj;
 };
@@ -191,15 +191,22 @@ const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions) =>
   ],
 });
 
-const makeDetailSchema = key => ({
-  [`${key}Detail`]: {
-    type: 'object',
-    allOf: [
-      { $ref: `#/definitions/${key}` },
-      { required: mandatoryForKey(key) },
-    ],
-  },
-});
+const makeDetailSchema = (key) => {
+  const required = mandatoryForKey(key);
+  const label = `${key}Detail`;
+  const detail = {
+    [label]: {
+      type: 'object',
+      allOf: [
+        { $ref: `#/definitions/${key}` },
+      ],
+    },
+  };
+  if (required.length > 0) {
+    detail[label].allOf.push({ required });
+  }
+  return detail;
+};
 
 const makeSchema = (
   property, rows, propertyFilter, permissions,
@@ -303,13 +310,12 @@ const parseCsv = (file) => {
   return lines;
 };
 
-const convertCSV = (dir, file, outdir, permissions, allProperties) => {
+const convertCSV = (dir, file, outdir, permissions, separateDefinitions, allProperties) => {
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
   const lines = parseCsv(file);
   console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  const separateDefinitions = ['AccountId'];
   const schemas = convertRows(lines, permissions, separateDefinitions, allProperties);
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
@@ -323,14 +329,14 @@ const convertCSV = (dir, file, outdir, permissions, allProperties) => {
   });
 };
 
-const convertCSVs = (dir = './data_definition/v1.1', outdir) => {
+const convertCSVs = (dir = './data_definition/v1.1', outdir, separateDefinitions) => {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
     && f !== 'Permissions.csv');
   const permissionsFile = `${dir}/Permissions.csv`;
   const permissions = parseCsv(permissionsFile);
   const allProperties = [];
-  files.forEach(file => convertCSV(dir, `${dir}/${file}`, outdir, permissions, allProperties));
+  files.forEach(file => convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, allProperties));
   console.log(YAML.stringify(allProperties)); // eslint-disable-line
   const keyToDescription = [];
   allProperties.forEach((x) => {
