@@ -1,4 +1,5 @@
 const { YAML } = require('swagger-parser'); // eslint-disable-line
+const SwaggerParser = require('swagger-parser'); // eslint-disable-line
 const fs = require('fs');
 
 const readYaml = file => YAML.parse(fs.readFileSync(file));
@@ -38,7 +39,13 @@ const writeOutput = (outFile, api) => {
   fs.writeFileSync(`${outFile}.json`, JSON.stringify(api, null, 2));
 };
 
-const process = (file, outFile) => {
+const logE = (e) => {
+  console.log(e.message); // eslint-disable-line
+  console.log(Object.keys(e)); // eslint-disable-line
+  console.log(e); // eslint-disable-line
+};
+
+const process = async (file, outFile) => {
   try {
     const dir = file.replace('/index.yaml', '');
     const api = readYaml(file);
@@ -48,9 +55,11 @@ const process = (file, outFile) => {
     importSection(api, dir, 'responses');
     importSection(api, dir, 'securityDefinitions');
     writeOutput(outFile, api);
+    console.log('VALIDATE');
+    const valid = await SwaggerParser.validate(api);
+    console.log('API name: %s, Version: %s', valid.info.title, valid.info.version);
   } catch (e) {
-    console.log(Object.keys(e)); // eslint-disable-line
-    console.log(e); // eslint-disable-line
+    logE(e); // eslint-disable-line
   }
 };
 
@@ -58,6 +67,5 @@ try {
   process('./inputs/v1.1/accounts/index.yaml', './dist/v1.1/account-info-swagger');
   // process('./inputs/v2.0/accounts/index.yaml', './dist/v2.0/account-info-swagger');
 } catch (e) {
-  console.log(Object.keys(e)); // eslint-disable-line
-  console.log(e); // eslint-disable-line
+  logE(e); // eslint-disable-line
 }
