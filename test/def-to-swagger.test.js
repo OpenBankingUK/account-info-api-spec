@@ -332,7 +332,7 @@ describe('convertRows', () => {
   }));
 
   describe('creates cash account schema', checkSchema({
-    index: 8,
+    index: 6,
     expectedSchema: cashAccountSchema,
     type: 'object',
     expectedKey: dataDef[6].Class,

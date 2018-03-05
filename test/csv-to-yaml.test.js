@@ -93,14 +93,6 @@ const secondLevelSchema = YAML.parse(`
       - Permissions
 `);
 
-const leafSchema = {
-  ExpirationDateTime_ISODateTime: {
-    description: 'Specified date and time the permissions will expire.\nIf this is not populated, the permissions will be open ended.',
-    type: 'string',
-    format: 'date-time',
-  },
-};
-
 const arrayItemSchema = {
   OBExternalPermissions1Code: {
     description: 'Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.',
@@ -147,14 +139,6 @@ describe('convertRows', () => {
     expectedSchema: arrayItemSchema,
     type: 'string',
     expectedKey: 'OBExternalPermissions1Code',
-    schemas,
-  }));
-
-  describe('creates leaf schema from rows', checkSchema({
-    index: 3,
-    expectedSchema: leafSchema,
-    type: 'string',
-    expectedKey: 'ExpirationDateTime_ISODateTime',
     schemas,
   }));
 });

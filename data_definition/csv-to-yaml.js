@@ -99,10 +99,14 @@ const itemsFor = property => ({
   ),
 });
 
+const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
+  klass.startsWith('OB') ||
+  (separateDefinitions.includes(name) && klass !== 'ActiveOrHistoricCurrencyAndAmount');
+
 const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
   const obj = {};
   list.forEach((p) => {
-    if (p.Class.startsWith('OB') || !childSchemas || separateDefinitions.includes(p.Name)) {
+    if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
       const ref = { $ref: `#/definitions/${classFor(p)}` };
       if (p.Occurrence && p.Occurrence.endsWith('..n')) {
         obj[p.Name] = {
@@ -294,8 +298,12 @@ const convertRows = (rows, permissions, separateDefinitions = [], allProperties 
     rows[0], rows, topLevelFilter, permissions,
     separateDefinitions, allProperties,
   ));
-  console.log(JSON.stringify(schemas, null, 2)); // eslint-disable-line
-  return schemas;
+  const filtered = schemas.filter((s) => {
+    const key = Object.keys(s)[0];
+    return useSeparateDefinition(key, key, separateDefinitions);
+  });
+  console.log(JSON.stringify(filtered, null, 2)); // eslint-disable-line
+  return filtered;
 };
 
 const normalizeHeaders = text => Buffer.from(text, 'utf-8')
