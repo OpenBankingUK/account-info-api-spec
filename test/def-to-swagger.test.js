@@ -184,10 +184,7 @@ const accountBasicSchema = YAML.parse(`
     type: object
     properties:
       AccountId:
-        description: "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner."
-        maxLength: 40
-        minLength: 1
-        type: "string"
+        $ref: '#/definitions/AccountId'
       Currency:
         description: "Identification of the currency in which the account is held. \\nUsage: Currency should only be used in case one and the same account number covers several currencies\\nand the initiating party needs to identify which currency needs to be used for settlement on the account."
         pattern: "^[A-Z]{3,3}$"
@@ -288,7 +285,8 @@ const checkSchema = ({
 };
 
 describe('convertRows', () => {
-  const schemas = convertRows(dataDef, permissions);
+  const separateDefinitions = ['AccountId'];
+  const schemas = convertRows(dataDef, permissions, separateDefinitions);
 
   describe('creates payload schema', checkSchema({
     index: 0,

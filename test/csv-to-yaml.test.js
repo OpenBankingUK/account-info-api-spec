@@ -236,7 +236,7 @@ describe('makeSchema creates text schema', () => {
   const schema = Object.values(schemaObject)[0];
 
   it('with key matching row Name and Class', () =>
-    assert.equal(Object.keys(schemaObject)[0], 'AccountRequestId_Max128Text'));
+    assert.equal(Object.keys(schemaObject)[0], 'AccountRequestId'));
 
   it('with correct type', () =>
     assert.equal(schema.type, 'string'));

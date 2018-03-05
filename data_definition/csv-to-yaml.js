@@ -18,9 +18,11 @@ const commonTypes = [ // eslint-disable-line
 
 const classFor = (property) => {
   const type = property.Class;
-  if (type && (
-    type === 'ISODateTime' ||
-    type.endsWith('Text')
+
+  if (type && type.endsWith('Text')) {
+    return property.Name;
+  } else if (type && (
+    type === 'ISODateTime'
   )) {
     return `${property.Name}_${type}`;
   } else if (
@@ -99,10 +101,10 @@ const itemsFor = property => ({
   ),
 });
 
-const propertiesObj = (list, key, childSchemas) => {
+const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
   const obj = {};
   list.forEach((p) => {
-    if (p.Class.startsWith('OB') || !childSchemas) {
+    if (p.Class.startsWith('OB') || !childSchemas || separateDefinitions.includes(p.Name)) {
       const ref = { $ref: `#/definitions/${classFor(p)}` };
       if (p.Occurrence && p.Occurrence.endsWith('..n')) {
         obj[p.Name] = {
@@ -180,11 +182,11 @@ const mandatoryForKey = (key) => {
   return [];
 };
 
-const extendBasicPropertiesObj = (key, detailProperties) => ({
+const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions) => ({
   allOf: [
     { $ref: `#/definitions/${key}Basic` },
     {
-      properties: propertiesObj(detailProperties),
+      properties: propertiesObj(detailProperties, key, null, separateDefinitions),
     },
   ],
 });
@@ -199,7 +201,10 @@ const makeDetailSchema = key => ({
   },
 });
 
-const makeSchema = (property, rows, propertyFilter, permissions, allProperties = []) => {
+const makeSchema = (
+  property, rows, propertyFilter, permissions,
+  separateDefinitions, allProperties = [],
+) => {
   const obj = {};
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
   const detailProperties = detailPermissionProperties(permissions, property, properties);
@@ -210,7 +215,7 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
   }); // eslint-disable-line
   const type = typeFor(property);
 
-  const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, allProperties))); // eslint-disable-line
+  const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, separateDefinitions, allProperties))); // eslint-disable-line
 
   if (descriptionFor(property)) {
     Object.assign(schema, descriptionFor(property));
@@ -218,9 +223,10 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
   Object.assign(schema, { type });
   if (type === 'object') {
     if (detailProperties.length > 0) {
-      Object.assign(schema, extendBasicPropertiesObj(key, detailProperties));
+      Object.assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions));
     } else {
-      Object.assign(schema, { properties: propertiesObj(properties, key, childSchemas) });
+      const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions);
+      Object.assign(schema, { properties: childProperties });
       // Object.assign(schema, { additionalProperties: false });
       if (requiredProp(properties, key).length > 0) {
         Object.assign(schema, { required: requiredProp(properties, key) });
@@ -253,7 +259,8 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
   obj[key] = schema;
   const schemas = [];
   if (schema.allOf) {
-    const baseSchema = Object.values(makeSchema(property, rows, null, [])[0])[0];
+    const base = makeSchema(property, rows, null, [], separateDefinitions);
+    const baseSchema = Object.values(base[0])[0];
     const detailKeys = Object.keys(schema.allOf[1].properties);
     detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
     schemas.push({ [`${key}Basic`]: baseSchema });
@@ -274,8 +281,11 @@ const makeSchema = (property, rows, propertyFilter, permissions, allProperties =
   return schemas;
 };
 
-const convertRows = (rows, permissions, allProperties = []) => {
-  const schemas = flatten(makeSchema(rows[0], rows, topLevelFilter, permissions, allProperties));
+const convertRows = (rows, permissions, separateDefinitions = [], allProperties = []) => {
+  const schemas = flatten(makeSchema(
+    rows[0], rows, topLevelFilter, permissions,
+    separateDefinitions, allProperties,
+  ));
   console.log(JSON.stringify(schemas, null, 2)); // eslint-disable-line
   return schemas;
 };
@@ -299,7 +309,8 @@ const convertCSV = (dir, file, outdir, permissions, allProperties) => {
   console.log('---'); // eslint-disable-line
   const lines = parseCsv(file);
   console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  const schemas = convertRows(lines, permissions, allProperties);
+  const separateDefinitions = ['AccountId'];
+  const schemas = convertRows(lines, permissions, separateDefinitions, allProperties);
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
     const path = commonTypes.includes(key) ? 'readwrite' : 'accounts';
