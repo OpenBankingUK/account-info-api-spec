@@ -111,6 +111,9 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
           items: ref,
           type: 'array',
         };
+        if (minPropertiesFor(p)) {
+          obj[p.Name].minProperties = minPropertiesFor(p);
+        }
       } else {
         obj[p.Name] = ref;
       }

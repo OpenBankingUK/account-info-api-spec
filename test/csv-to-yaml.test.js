@@ -76,6 +76,7 @@ const secondLevelSchema = YAML.parse(`
         items:
           $ref: '#/definitions/OBExternalPermissions1Code'
         type: array
+        minProperties: 1
       ExpirationDateTime:
         description: "Specified date and time the permissions will expire.\\nIf this is not populated, the permissions will be open ended."
         format: date-time
