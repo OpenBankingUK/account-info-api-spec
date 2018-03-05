@@ -28,10 +28,17 @@ const classFor = (property) => {
     type === 'xs:string'
   ) {
     return property.Name;
-  } else if (type === 'ActiveOrHistoricCurrencyAndAmount') {
+  } else if (
+    type === 'ActiveOrHistoricCurrencyAndAmount' ||
+    type === 'ActiveOrHistoricCurrencyCode'
+  ) { // # aka rule 3
     const path = property.XPath.split('/');
     const parent = path[path.length - 2];
     return `${parent}_${type}`;
+  } else if (type === 'ActiveOrHistoricCurrencyAndAmount') { // # aka rule 4
+    const path = property.XPath.split('/');
+    const parent = path[path.length - 2];
+    return `${parent}_${property.Name}_${type}`;
   }
   return type;
 };
