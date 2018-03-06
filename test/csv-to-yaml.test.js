@@ -121,7 +121,6 @@ describe('convertRows', () => {
   describe('creates top level schema', checkSchema({
     index: 0,
     expectedSchema: topLevelSchema,
-    type: 'object',
     expectedKey: input[0].Class,
     schemas,
   }));
@@ -129,7 +128,6 @@ describe('convertRows', () => {
   describe('creates 1st second level schema from rows', checkSchema({
     index: 1,
     expectedSchema: secondLevelSchema,
-    type: 'object',
     expectedKey: input[1].Class,
     schemas,
   }));
@@ -137,7 +135,6 @@ describe('convertRows', () => {
   describe('creates array item schema from rows', checkSchema({
     index: 2,
     expectedSchema: arrayItemSchema,
-    type: 'string',
     expectedKey: 'OBExternalPermissions1Code',
     schemas,
   }));

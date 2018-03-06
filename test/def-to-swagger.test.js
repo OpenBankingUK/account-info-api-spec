@@ -138,7 +138,6 @@ const payloadSchema = YAML.parse(`
 
 const accountSchema = YAML.parse(`
   OBAccount1:
-    type: object
     allOf:
       - $ref: '#/definitions/OBAccount1Basic'
       - properties:
@@ -151,6 +150,7 @@ const accountSchema = YAML.parse(`
 const cashAccountSchema = YAML.parse(`
   OBCashAccount1:
     type: object
+    description: Provides the details to identify an account.
     properties:
       SchemeName:
         $ref: '#/definitions/OBExternalAccountIdentification2Code'
@@ -177,6 +177,7 @@ const cashAccountSchema = YAML.parse(`
 const accountBasicSchema = YAML.parse(`
   OBAccount1Basic:
     type: object
+    description: Unambiguous identification of the account to which credit and debit entries are made.
     properties:
       AccountId:
         $ref: '#/definitions/AccountId'
@@ -197,7 +198,6 @@ const accountBasicSchema = YAML.parse(`
 
 const accountDetailSchema = YAML.parse(`
   OBAccount1Detail:
-    type: object
     allOf:
       - $ref: '#/definitions/OBAccount1'
       - required:
@@ -205,12 +205,12 @@ const accountDetailSchema = YAML.parse(`
 `);
 
 const checkSchema = ({
-  index, expectedSchema, type, expectedKey, schemas,
+  index, expectedSchema, expectedKey, schemas,
 }) => () => {
   const setup = (i, schema) => {
     const root = Object.keys(schema)[0];
     const {
-      allOf, properties, required,
+      type, allOf, properties, required,
       description, minProperties, items, format,
     } = expectedSchema[root];
     const schemaObject = schemas[index];
@@ -224,19 +224,27 @@ const checkSchema = ({
       minProperties,
       items,
       format,
+      type,
     };
   };
 
+  const notPresentMessage = (key, schema) => `${key} should not be present\nactual: ${YAML.stringify(schema)}`;
+
   const {
     schemaKey, schema, allOf, properties, required,
-    description, minProperties, items, format,
+    description, minProperties, items, format, type,
   } = setup(index, expectedSchema);
 
   it('with schema key correct', () =>
     assert.equal(schemaKey, expectedKey));
 
-  it(`with type "${type}"`, () =>
-    assert.equal(schema.type, type));
+  if (type) {
+    it(`with type "${type}"`, () =>
+      assert.equal(schema.type, type));
+  } else {
+    it('without type', () =>
+      assert.equal(schema.type, null, notPresentMessage('type', schema)));
+  }
 
   if (properties) {
     it('with properties', () =>
@@ -246,6 +254,9 @@ const checkSchema = ({
   if (description) {
     it('with description', () =>
       assert.equal(schema.description, description));
+  } else {
+    it('without description', () =>
+      assert.equal(schema.description, null, notPresentMessage('description', schema)));
   }
 
   if (required) {
@@ -263,7 +274,7 @@ const checkSchema = ({
       assert.deepEqual(schema.items, items));
   } else {
     it('without items', () =>
-      assert.equal(schema.items, null, `items should not be present\nactual: ${YAML.stringify(schema)}`));
+      assert.equal(schema.items, null, notPresentMessage('items', schema)));
   }
 
   if (format) {
@@ -289,7 +300,6 @@ describe('convertRows', () => {
   describe('creates payload schema', checkSchema({
     index: 0,
     expectedSchema: payloadSchema,
-    type: 'object',
     expectedKey: dataDef[0].Class,
     schemas,
   }));
@@ -297,7 +307,6 @@ describe('convertRows', () => {
   describe('creates basic account schema', checkSchema({
     index: 1,
     expectedSchema: accountBasicSchema,
-    type: 'object',
     expectedKey: `${dataDef[2].Class}Basic`,
     schemas,
   }));
@@ -305,7 +314,6 @@ describe('convertRows', () => {
   describe('creates account schema', checkSchema({
     index: 2,
     expectedSchema: accountSchema,
-    type: 'object',
     expectedKey: dataDef[2].Class,
     schemas,
   }));
@@ -313,7 +321,6 @@ describe('convertRows', () => {
   describe('creates detail account schema', checkSchema({
     index: 3,
     expectedSchema: accountDetailSchema,
-    type: 'object',
     expectedKey: `${dataDef[2].Class}Detail`,
     schemas,
   }));
@@ -321,7 +328,6 @@ describe('convertRows', () => {
   describe('creates cash account schema', checkSchema({
     index: 5,
     expectedSchema: cashAccountSchema,
-    type: 'object',
     expectedKey: dataDef[6].Class,
     schemas,
   }));

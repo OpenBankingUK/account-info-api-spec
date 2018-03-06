@@ -210,7 +210,6 @@ const makeDetailSchema = (key) => {
   const label = `${key}Detail`;
   const detail = {
     [label]: {
-      type: 'object',
       allOf: [
         { $ref: `#/definitions/${key}` },
       ],
@@ -285,6 +284,8 @@ const makeSchema = (
     const detailKeys = Object.keys(schema.allOf[1].properties);
     detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
     schemas.push({ [`${key}Basic`]: baseSchema });
+    delete obj[key].type; // type is on base schema
+    delete obj[key].description; // description is on base schema
     schemas.push(obj);
     schemas.push(makeDetailSchema(key));
   } else {
