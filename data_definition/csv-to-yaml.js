@@ -16,6 +16,8 @@ const commonTypes = [ // eslint-disable-line
   'SecondaryIdentification_Max34Text',
 ];
 
+const assign = (schema, obj) => Object.assign(schema, obj);
+
 const classFor = (property) => {
   const type = property.Class;
 
@@ -92,7 +94,7 @@ const descriptionFor = (property) => {
 };
 
 const itemsFor = property => ({
-  items: Object.assign(
+  items: assign(
     descriptionFor(property),
     { type: 'string' },
     enumFor(property),
@@ -134,7 +136,7 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
     }
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
-    return Object.assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
+    return assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
   }
   return obj;
 };
@@ -238,43 +240,43 @@ const makeSchema = (
   const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, separateDefinitions, allProperties))); // eslint-disable-line
 
   if (descriptionFor(property)) {
-    Object.assign(schema, descriptionFor(property));
+    assign(schema, descriptionFor(property));
   }
-  Object.assign(schema, { type });
+  assign(schema, { type });
   if (type === 'object') {
     if (detailProperties.length > 0) {
-      Object.assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions));
+      assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions));
     } else {
       const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions);
-      Object.assign(schema, { properties: childProperties });
-      // Object.assign(schema, { additionalProperties: false });
+      assign(schema, { properties: childProperties });
+      // assign(schema, { additionalProperties: false });
       if (requiredProp(properties, key).length > 0) {
-        Object.assign(schema, { required: requiredProp(properties, key) });
+        assign(schema, { required: requiredProp(properties, key) });
       }
     }
   }
   if (type === 'array') {
-    Object.assign(schema, itemsFor(property));
+    assign(schema, itemsFor(property));
   } else if (property.Codes && property.Codes.length > 0) {
-    Object.assign(schema, enumFor(property));
+    assign(schema, enumFor(property));
   }
   if (minPropertiesFor(property)) {
-    Object.assign(schema, {
+    assign(schema, {
       minProperties: minPropertiesFor(property),
       // additionalProperties: false,
     });
   }
   if (maxLengthFor(property)) {
-    Object.assign(schema, {
+    assign(schema, {
       minLength: minLengthFor(property),
       maxLength: maxLengthFor(property),
     });
   }
   if (formatFor(property)) {
-    Object.assign(schema, formatFor(property));
+    assign(schema, formatFor(property));
   }
   if (patternFor(property)) {
-    Object.assign(schema, patternFor(property));
+    assign(schema, patternFor(property));
   }
   obj[key] = schema;
   const schemas = [];
