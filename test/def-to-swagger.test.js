@@ -132,8 +132,10 @@ const payloadSchema = YAML.parse(`
             type: array
             items:
               $ref: '#/definitions/OBAccount1'
+        additionalProperties: false
     required:
       - Data
+    additionalProperties: false
 `);
 
 const accountSchema = YAML.parse(`
@@ -172,6 +174,7 @@ const cashAccountSchema = YAML.parse(`
     required:
       - SchemeName
       - Identification
+    additionalProperties: false
 `);
 
 const accountBasicSchema = YAML.parse(`
@@ -190,10 +193,10 @@ const accountBasicSchema = YAML.parse(`
         maxLength: 70
         minLength: 1
         type: "string"
-    additionalProperties: false
     required:
       - AccountId
       - Currency
+    additionalProperties: false
 `);
 
 const accountDetailSchema = YAML.parse(`
@@ -289,8 +292,13 @@ const checkSchema = ({
     });
   }
 
-  xit('with additionalProperties false', () =>
-    assert.equal(schema.additionalProperties, false));
+  if (type === 'object') {
+    it('with additionalProperties false', () =>
+      assert.equal(schema.additionalProperties, false));
+  } else {
+    it('without additionalProperties', () =>
+      assert.equal(schema.additionalProperties, null, notPresentMessage('additionalProperties', schema)));
+  }
 };
 
 describe('convertRows', () => {

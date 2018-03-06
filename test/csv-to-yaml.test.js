@@ -66,6 +66,7 @@ const topLevelSchema = YAML.parse(`
     required:
       - Data
       - Risk
+    additionalProperties: false
 `);
 
 const secondLevelSchema = YAML.parse(`
@@ -91,6 +92,7 @@ const secondLevelSchema = YAML.parse(`
         type: string
     required:
       - Permissions
+    additionalProperties: false
 `);
 
 const arrayItemSchema = {
@@ -183,7 +185,7 @@ describe('makeSchema creates codes schema', () => {
   it('with correct type', () =>
     assert.equal(schema.type, 'string'));
 
-  xit('without additionalProperties', () =>
+  it('without additionalProperties', () =>
     assert.equal(schema.additionalProperties, null));
 
   it('with description', () =>
@@ -218,7 +220,7 @@ describe('makeSchema creates text schema', () => {
   it('with correct type', () =>
     assert.equal(schema.type, 'string'));
 
-  xit('without additionalProperties', () =>
+  it('without additionalProperties', () =>
     assert.equal(schema.additionalProperties, null));
 
   it('with description', () =>

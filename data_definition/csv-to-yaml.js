@@ -249,10 +249,10 @@ const makeSchema = (
     } else {
       const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions);
       assign(schema, { properties: childProperties });
-      // assign(schema, { additionalProperties: false });
       if (requiredProp(properties, key).length > 0) {
         assign(schema, { required: requiredProp(properties, key) });
       }
+      assign(schema, { additionalProperties: false });
     }
   }
   if (type === 'array') {
@@ -263,7 +263,6 @@ const makeSchema = (
   if (minPropertiesFor(property)) {
     assign(schema, {
       minProperties: minPropertiesFor(property),
-      // additionalProperties: false,
     });
   }
   if (maxLengthFor(property)) {
