@@ -126,19 +126,14 @@ const payloadSchema = YAML.parse(`
     type: object
     properties:
       Data:
-        $ref: '#/definitions/OBReadDataAccount1'
+        type: object
+        properties:
+          Account:
+            type: array
+            items:
+              $ref: '#/definitions/OBAccount1'
     required:
       - Data
-`);
-
-const dataSchema = YAML.parse(`
-  OBReadDataAccount1:
-    type: object
-    properties:
-      Account:
-        type: array
-        items:
-          $ref: '#/definitions/OBAccount1'
 `);
 
 const accountSchema = YAML.parse(`
@@ -299,16 +294,8 @@ describe('convertRows', () => {
     schemas,
   }));
 
-  describe('creates data schema', checkSchema({
-    index: 1,
-    expectedSchema: dataSchema,
-    type: 'object',
-    expectedKey: dataDef[1].Class,
-    schemas,
-  }));
-
   describe('creates basic account schema', checkSchema({
-    index: 2,
+    index: 1,
     expectedSchema: accountBasicSchema,
     type: 'object',
     expectedKey: `${dataDef[2].Class}Basic`,
@@ -316,7 +303,7 @@ describe('convertRows', () => {
   }));
 
   describe('creates account schema', checkSchema({
-    index: 3,
+    index: 2,
     expectedSchema: accountSchema,
     type: 'object',
     expectedKey: dataDef[2].Class,
@@ -324,7 +311,7 @@ describe('convertRows', () => {
   }));
 
   describe('creates detail account schema', checkSchema({
-    index: 4,
+    index: 3,
     expectedSchema: accountDetailSchema,
     type: 'object',
     expectedKey: `${dataDef[2].Class}Detail`,
@@ -332,7 +319,7 @@ describe('convertRows', () => {
   }));
 
   describe('creates cash account schema', checkSchema({
-    index: 6,
+    index: 5,
     expectedSchema: cashAccountSchema,
     type: 'object',
     expectedKey: dataDef[6].Class,

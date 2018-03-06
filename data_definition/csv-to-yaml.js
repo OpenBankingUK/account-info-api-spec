@@ -100,8 +100,17 @@ const itemsFor = property => ({
 });
 
 const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
-  klass.startsWith('OB') ||
-  (separateDefinitions.includes(name) && klass !== 'ActiveOrHistoricCurrencyAndAmount');
+  (
+    klass.startsWith('OB') &&
+    (
+      !klass.startsWith('OBReadData')
+      || ['OBReadData1', 'OBReadDataResponse1'].includes(klass)
+    )
+  ) ||
+  (
+    separateDefinitions.includes(name) &&
+    klass !== 'ActiveOrHistoricCurrencyAndAmount'
+  );
 
 const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
   const obj = {};
