@@ -45,6 +45,34 @@ const logE = (e) => {
   console.log(e); // eslint-disable-line
 };
 
+const deduplicateRequestResponse = (api, req, res) => {
+  if (api.definitions[req] && api.definitions[res]) {
+    const request = api.definitions[req];
+    const response = api.definitions[res];
+    Object.keys(request.properties).forEach((p) => {
+      const match = request.properties[p].description === response.properties[p].description;
+      if (match) {
+        delete response.properties[p];
+      }
+    });
+    request.required.forEach((r) => {
+      const index = response.required.indexOf(r);
+      if (index !== -1) {
+        response.required.splice(index, 1);
+      }
+    });
+    const newSchema = { // eslint-disable-line
+      allOf: [
+        { $ref: `#/definitions/${req}` },
+        { properties: response.properties },
+        { required: response.required },
+      ],
+    };
+    console.log(JSON.stringify(newSchema, null, 2));
+    api.definitions[res] = newSchema; // eslint-disable-line
+  }
+};
+
 const process = async (file, outFile) => {
   try {
     const dir = file.replace('/index.yaml', '');
@@ -54,6 +82,7 @@ const process = async (file, outFile) => {
     importSection(api, dir, 'parameters');
     importSection(api, dir, 'responses');
     importSection(api, dir, 'securityDefinitions');
+    deduplicateRequestResponse(api, 'OBReadData1', 'OBReadDataResponse1');
     writeOutput(outFile, api);
     console.log('VALIDATE');
     const valid = await SwaggerParser.validate(api);

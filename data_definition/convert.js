@@ -3,6 +3,7 @@ const { convertCSVs } = require('./csv-to-yaml'); // eslint-disable-line
 const separateDefinitions = [
   'AccountId',
   'Amount',
+  'CurrencyAndAmount',
   'TransactionInformation',
 ];
 
