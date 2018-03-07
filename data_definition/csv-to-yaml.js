@@ -20,18 +20,20 @@ const assign = (schema, obj) => Object.assign(schema, obj);
 
 const classFor = (property) => {
   const type = property.Class;
+  const name = property.Name;
 
   if (type && type.endsWith('Text')) {
-    return property.Name;
+    return name;
   } else if (type && (
     type === 'ISODateTime'
   )) {
-    return `${property.Name}_${type}`;
+    return `${name}_${type}`;
   } else if (
     type === 'xs:boolean' ||
-    type === 'xs:string'
+    type === 'xs:string' ||
+    type === 'xs:ID'
   ) {
-    return property.Name;
+    return name;
   } else if (
     type === 'ActiveOrHistoricCurrencyAndAmount' ||
     type === 'ActiveOrHistoricCurrencyCode'
@@ -42,7 +44,7 @@ const classFor = (property) => {
   } else if (type === 'ActiveOrHistoricCurrencyAndAmount') { // # aka rule 4
     const path = property.XPath.split('/');
     const parent = path[path.length - 2];
-    return `${parent}_${property.Name}_${type}`;
+    return `${parent}_${name}_${type}`;
   }
   return type;
 };
@@ -114,11 +116,20 @@ const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
     klass !== 'ActiveOrHistoricCurrencyAndAmount'
   );
 
+const embedDescription = klass =>
+  [
+    'OBCashAccount1',
+    'OBBranchAndFinancialInstitutionIdentification2',
+    'OBCreditDebitCode',
+    'OBCashAccount2',
+  ].includes(klass);
+
 const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
   const obj = {};
   list.forEach((p) => {
     if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
-      const ref = { $ref: `#/definitions/${classFor(p)}` };
+      const klass = classFor(p);
+      const ref = { $ref: `#/definitions/${klass}` };
       if (p.Occurrence && p.Occurrence.endsWith('..n')) {
         obj[p.Name] = {
           items: ref,
@@ -127,6 +138,13 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
         if (minPropertiesFor(p)) {
           obj[p.Name].minProperties = minPropertiesFor(p);
         }
+      } else if (embedDescription(klass)) {
+        obj[p.Name] = {
+          allOf: [
+            ref,
+            descriptionFor(p),
+          ],
+        };
       } else {
         obj[p.Name] = ref;
       }
@@ -232,14 +250,17 @@ const makeSchema = (
   const detailProperties = detailPermissionProperties(permissions, property, properties);
   const schema = {};
   const key = classFor(property);
-  allProperties.push({
-    xpath: property.XPath, key, description: property.EnhancedDefinition,
-  }); // eslint-disable-line
+  if (useSeparateDefinition(property.Class, property.Name, separateDefinitions)
+    && !embedDescription(key)) {
+    allProperties.push({
+      xpath: property.XPath, key, description: property.EnhancedDefinition,
+    }); // eslint-disable-line
+  }
   const type = typeFor(property);
 
   const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, separateDefinitions, allProperties))); // eslint-disable-line
 
-  if (descriptionFor(property)) {
+  if (descriptionFor(property) && !embedDescription(key)) {
     assign(schema, descriptionFor(property));
   }
   assign(schema, { type });
@@ -290,6 +311,7 @@ const makeSchema = (
     schemas.push(obj);
     schemas.push(makeDetailSchema(key));
   } else {
+    obj.property = property;
     schemas.push(obj);
   }
   schemas.push(childSchemas);
@@ -311,9 +333,12 @@ const convertRows = (rows, permissions, separateDefinitions = [], allProperties 
   ));
   const filtered = schemas.filter((s) => {
     const key = Object.keys(s)[0];
+    const { property } = s;
+    if (property) {
+      return useSeparateDefinition(property.Class, property.Name, separateDefinitions);
+    }
     return useSeparateDefinition(key, key, separateDefinitions);
   });
-  console.log(JSON.stringify(filtered, null, 2)); // eslint-disable-line
   return filtered;
 };
 
@@ -330,21 +355,30 @@ const parseCsv = (file) => {
   return lines;
 };
 
+const schemaFile = (key, outdir) => {
+  const path = commonTypes.includes(key) ? 'readwrite' : 'accounts';
+  const defDir = `${outdir}/${path}/definitions`;
+  if (!fs.existsSync(defDir)) {
+    fs.mkdirSync(defDir);
+  }
+  const outFile = `${defDir}/${key}.yaml`;
+  console.log(outFile);
+  return outFile;
+};
+
 const convertCSV = (dir, file, outdir, permissions, separateDefinitions, allProperties) => {
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
   const lines = parseCsv(file);
-  console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
+  // console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
   const schemas = convertRows(lines, permissions, separateDefinitions, allProperties);
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
-    const path = commonTypes.includes(key) ? 'readwrite' : 'accounts';
-    const defDir = `${outdir}/${path}/definitions`;
-    if (!fs.existsSync(defDir)) {
-      fs.mkdirSync(defDir);
+    const outFile = schemaFile(key, outdir);
+    if (schema.property) {
+      delete schema.property; // eslint-disable-line
     }
-    const outFile = `${defDir}/${Object.keys(schema)[0]}.yaml`;
     fs.writeFileSync(outFile, YAML.stringify(schema));
   });
 };
@@ -368,8 +402,20 @@ const convertCSVs = (dir = './data_definition/v1.1', outdir, separateDefinitions
     d: Array.from(keyToDescription[key]),
   }));
   const dups = descriptions.filter(x => x.d.length > 1);
-  console.log(JSON.stringify(dups, null, 2)); // eslint-disable-line
-  console.log('dup keys count:' + dups.length); // eslint-disable-line
+  if (dups.length > 0) {
+    console.log(JSON.stringify(dups, null, 2)); // eslint-disable-line
+    console.log('dup keys count:' + dups.length); // eslint-disable-line
+    dups.forEach((dup) => {
+      const { key } = dup;
+      try {
+        const file = schemaFile(key, outdir);
+        console.log(`delete: ${file}`);
+        fs.unlinkSync(file);
+      } catch (e) {
+        console.log(e.message);
+      }
+    });
+  }
 };
 
 exports.makeSchema = makeSchema;

@@ -83,7 +83,8 @@ const process = async (file) => {
     importSection(api, dir, 'securityDefinitions');
     deduplicateRequestResponse(api, 'OBReadData1', 'OBReadDataResponse1');
     console.log('VALIDATE');
-    const valid = await SwaggerParser.validate(Object.assign({}, api));
+    const copy = JSON.parse(JSON.stringify(api));
+    const valid = await SwaggerParser.validate(copy);
     const { version } = valid.info;
     console.log('API name: %s, Version: %s', valid.info.title, version);
     writeOutput(`./dist/${version}/account-info-swagger`, api);

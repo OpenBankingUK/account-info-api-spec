@@ -144,15 +144,18 @@ const accountSchema = YAML.parse(`
       - $ref: '#/definitions/OBAccount1Basic'
       - properties:
           Account:
-            $ref: '#/definitions/OBCashAccount1'
+            allOf:
+              - $ref: '#/definitions/OBCashAccount1'
+              - description: Provides the details to identify an account.
           Servicer:
-            $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification2'
+            allOf:
+              - $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification2'
+              - description: Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.
 `);
 
 const cashAccountSchema = YAML.parse(`
   OBCashAccount1:
     type: object
-    description: Provides the details to identify an account.
     properties:
       SchemeName:
         $ref: '#/definitions/OBExternalAccountIdentification2Code'
@@ -160,17 +163,17 @@ const cashAccountSchema = YAML.parse(`
         description: "Identification assigned by an institution to identify an account. This identification is known by the account owner."
         maxLength: 34
         minLength: 1
-        type: "string"
+        type: string
       Name:
         description: "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\\n\\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
         maxLength: 70
         minLength: 1
-        type: "string"
+        type: string
       SecondaryIdentification:
         description: "This is secondary identification of the account, as assigned by the account servicing institution. \\nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
         maxLength: 34
         minLength: 1
-        type: "string"
+        type: string
     required:
       - SchemeName
       - Identification
@@ -187,12 +190,12 @@ const accountBasicSchema = YAML.parse(`
       Currency:
         description: "Identification of the currency in which the account is held. \\nUsage: Currency should only be used in case one and the same account number covers several currencies\\nand the initiating party needs to identify which currency needs to be used for settlement on the account."
         pattern: "^[A-Z]{3,3}$"
-        type: "string"
+        type: string
       Nickname:
         description: "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account."
         maxLength: 70
         minLength: 1
-        type: "string"
+        type: string
     required:
       - AccountId
       - Currency
