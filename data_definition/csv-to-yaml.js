@@ -10,6 +10,14 @@ const commonTypes = [ // eslint-disable-line
   'Meta',
 ];
 
+const embedDescription = klass =>
+  [
+    'OBCashAccount1',
+    'OBBranchAndFinancialInstitutionIdentification2',
+    'OBCreditDebitCode',
+    'OBCashAccount2',
+  ].includes(klass);
+
 const assign = (schema, obj) => Object.assign(schema, obj);
 
 const classFor = (property) => {
@@ -48,6 +56,7 @@ const typeFor = (property) => {
   if (type && (
     type === 'ISODateTime' ||
     type === 'xs:string' ||
+    type === 'xs:ID' ||
     type.endsWith('Text') ||
     type.endsWith('Code')
   )) {
@@ -110,42 +119,49 @@ const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
     klass !== 'ActiveOrHistoricCurrencyAndAmount'
   );
 
-const embedDescription = klass =>
-  [
-    'OBCashAccount1',
-    'OBBranchAndFinancialInstitutionIdentification2',
-    'OBCreditDebitCode',
-    'OBCashAccount2',
-  ].includes(klass);
+const isArray = p => p.Occurrence && p.Occurrence.endsWith('..n');
+
+const arrayProperty = (ref, p) => {
+  const obj = {
+    items: ref,
+    type: 'array',
+  };
+  if (minPropertiesFor(p)) {
+    assign(obj, { minProperties: minPropertiesFor(p) });
+  }
+  return obj;
+};
+
+const refPlusDescription = (ref, p) => ({
+  allOf: [
+    ref,
+    descriptionFor(p),
+  ],
+});
+
+const propertyRef = (klass, p) => {
+  const ref = { $ref: `#/definitions/${klass}` };
+  if (isArray(p)) {
+    return arrayProperty(ref, p);
+  } else if (embedDescription(klass)) {
+    return refPlusDescription(ref, p);
+  }
+  return ref;
+};
+
+const propertyDef = (p, childSchemas, separateDefinitions) => {
+  const klass = classFor(p);
+  if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
+    return propertyRef(klass, p);
+  }
+  const schema = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
+  return Object.values(schema)[0]; // eslint-disable-line
+};
 
 const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
   const obj = {};
   list.forEach((p) => {
-    if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
-      const klass = classFor(p);
-      const ref = { $ref: `#/definitions/${klass}` };
-      if (p.Occurrence && p.Occurrence.endsWith('..n')) {
-        obj[p.Name] = {
-          items: ref,
-          type: 'array',
-        };
-        if (minPropertiesFor(p)) {
-          obj[p.Name].minProperties = minPropertiesFor(p);
-        }
-      } else if (embedDescription(klass)) {
-        obj[p.Name] = {
-          allOf: [
-            ref,
-            descriptionFor(p),
-          ],
-        };
-      } else {
-        obj[p.Name] = ref;
-      }
-    } else {
-      const schema = childSchemas.filter(s => Object.keys(s)[0] === classFor(p))[0];
-      obj[p.Name] = Object.values(schema)[0]; // eslint-disable-line
-    }
+    obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions);
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
     return assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);

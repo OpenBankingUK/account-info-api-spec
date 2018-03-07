@@ -1,6 +1,7 @@
 compiled/*
 node_modules/*
 .DS_Store
+.~lock*
 
 # Logs
 logs
