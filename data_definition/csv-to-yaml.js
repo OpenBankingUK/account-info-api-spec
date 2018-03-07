@@ -253,7 +253,7 @@ const makeDetailSchema = (key) => {
 
 const makeSchema = (
   property, rows, propertyFilter, permissions,
-  separateDefinitions, allProperties = [],
+  separateDefinitions, definedProperties = [],
 ) => {
   const obj = {};
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
@@ -262,13 +262,13 @@ const makeSchema = (
   const key = classFor(property);
   if (useSeparateDefinition(property.Class, property.Name, separateDefinitions)
     && !embedDescription(key)) {
-    allProperties.push({
+    definedProperties.push({
       xpath: property.XPath, key, description: property.EnhancedDefinition,
     }); // eslint-disable-line
   }
   const type = typeFor(property);
 
-  const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, separateDefinitions, allProperties))); // eslint-disable-line
+  const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, separateDefinitions, definedProperties))); // eslint-disable-line
 
   if (descriptionFor(property) && !embedDescription(key)) {
     assign(schema, descriptionFor(property));
@@ -336,10 +336,10 @@ const makeSchema = (
   return schemas;
 };
 
-const convertRows = (rows, permissions, separateDefinitions = [], allProperties = []) => {
+const convertRows = (rows, permissions, separateDefinitions = [], definedProperties = []) => {
   const schemas = flatten(makeSchema(
     rows[0], rows, topLevelFilter, permissions,
-    separateDefinitions, allProperties,
+    separateDefinitions, definedProperties,
   ));
   const filtered = schemas.filter((s) => {
     const key = Object.keys(s)[0];
@@ -375,13 +375,13 @@ const schemaFile = (key, outdir) => {
   return outFile;
 };
 
-const convertCSV = (dir, file, outdir, permissions, separateDefinitions, allProperties) => {
+const convertCSV = (dir, file, outdir, permissions, separateDefinitions, definedProperties) => {
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
   const lines = parseCsv(file);
   // console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  const schemas = convertRows(lines, permissions, separateDefinitions, allProperties);
+  const schemas = convertRows(lines, permissions, separateDefinitions, definedProperties);
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
     if (!commonTypes.includes(key)) {
@@ -400,11 +400,11 @@ const convertCSVs = (dir = './data_definition/v1.1', outdir, separateDefinitions
     && f !== 'Permissions.csv');
   const permissionsFile = `${dir}/Permissions.csv`;
   const permissions = parseCsv(permissionsFile);
-  const allProperties = [];
-  files.forEach(file => convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, allProperties));
-  console.log(YAML.stringify(allProperties)); // eslint-disable-line
+  const definedProperties = [];
+  files.forEach(file => convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, definedProperties));
+  console.log(YAML.stringify(definedProperties)); // eslint-disable-line
   const keyToDescription = [];
-  allProperties.forEach((x) => {
+  definedProperties.forEach((x) => {
     const { key, description } = x;
     keyToDescription[key] = (keyToDescription[key] || new Set()).add(description);
   });
