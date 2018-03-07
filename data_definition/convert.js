@@ -1,4 +1,5 @@
 const { convertCSVs } = require('./csv-to-yaml'); // eslint-disable-line
+const fs = require('fs');
 
 const separateDefinitions = [
   'AccountId',
@@ -7,5 +8,7 @@ const separateDefinitions = [
   'TransactionInformation',
 ];
 
-convertCSVs('./data_definition/v1.1', './inputs/v1.1', separateDefinitions);
-convertCSVs('./data_definition/v2.0', './inputs/v2.0', separateDefinitions);
+const versions = fs.readdirSync('./data_definition').filter(d => d.startsWith('v'));
+
+versions.forEach(version =>
+  convertCSVs(`./data_definition/${version}`, `./inputs/${version}`, separateDefinitions));

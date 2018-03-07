@@ -68,12 +68,11 @@ const deduplicateRequestResponse = (api, req, res) => {
         { required: response.required },
       ],
     };
-    console.log(JSON.stringify(newSchema, null, 2));
     api.definitions[res] = newSchema; // eslint-disable-line
   }
 };
 
-const process = async (file, outFile) => {
+const process = async (file) => {
   try {
     const dir = file.replace('/index.yaml', '');
     const api = readYaml(file);
@@ -83,18 +82,21 @@ const process = async (file, outFile) => {
     importSection(api, dir, 'responses');
     importSection(api, dir, 'securityDefinitions');
     deduplicateRequestResponse(api, 'OBReadData1', 'OBReadDataResponse1');
-    writeOutput(outFile, api);
     console.log('VALIDATE');
-    const valid = await SwaggerParser.validate(api);
-    console.log('API name: %s, Version: %s', valid.info.title, valid.info.version);
+    const valid = await SwaggerParser.validate(Object.assign({}, api));
+    const { version } = valid.info;
+    console.log('API name: %s, Version: %s', valid.info.title, version);
+    writeOutput(`./dist/${version}/account-info-swagger`, api);
   } catch (e) {
     logE(e); // eslint-disable-line
   }
 };
 
 try {
-  process('./inputs/v1.1/accounts/index.yaml', './dist/v1.1/account-info-swagger');
-  // process('./inputs/v2.0/accounts/index.yaml', './dist/v2.0/account-info-swagger');
+  const versions = fs.readdirSync('./inputs').filter(d => d.startsWith('v'));
+
+  versions.forEach(version =>
+    process(`./inputs/${version}/accounts/index.yaml`));
 } catch (e) {
   logE(e); // eslint-disable-line
 }
