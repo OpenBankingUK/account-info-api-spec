@@ -4,16 +4,10 @@ const flatten = require('flatten');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 
 const commonTypes = [ // eslint-disable-line
-  'OBExternalRequestStatus1Code',
-  'CreationDateTime_ISODateTime',
   'OBRisk2',
   'Links',
   'ISODateTime',
   'Meta',
-  'OBExternalAccountIdentification2Code',
-  'Identification_Max34Text',
-  'Identification_Max35Text',
-  'SecondaryIdentification_Max34Text',
 ];
 
 const assign = (schema, obj) => Object.assign(schema, obj);
@@ -356,8 +350,7 @@ const parseCsv = (file) => {
 };
 
 const schemaFile = (key, outdir) => {
-  const path = commonTypes.includes(key) ? 'readwrite' : 'accounts';
-  const defDir = `${outdir}/${path}/definitions`;
+  const defDir = `${outdir}/accounts/definitions`;
   if (!fs.existsSync(defDir)) {
     fs.mkdirSync(defDir);
   }
@@ -375,11 +368,13 @@ const convertCSV = (dir, file, outdir, permissions, separateDefinitions, allProp
   const schemas = convertRows(lines, permissions, separateDefinitions, allProperties);
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
-    const outFile = schemaFile(key, outdir);
-    if (schema.property) {
-      delete schema.property; // eslint-disable-line
+    if (!commonTypes.includes(key)) {
+      const outFile = schemaFile(key, outdir);
+      if (schema.property) {
+        delete schema.property; // eslint-disable-line
+      }
+      fs.writeFileSync(outFile, YAML.stringify(schema));
     }
-    fs.writeFileSync(outFile, YAML.stringify(schema));
   });
 };
 
