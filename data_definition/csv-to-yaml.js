@@ -291,7 +291,7 @@ const makeSchema = (
   } else if (property.Codes && property.Codes.length > 0) {
     assign(schema, enumFor(property));
   }
-  if (minPropertiesFor(property)) {
+  if (minPropertiesFor(property) && type !== 'string') {
     assign(schema, {
       minProperties: minPropertiesFor(property),
     });
