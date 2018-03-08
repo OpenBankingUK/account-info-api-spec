@@ -126,8 +126,11 @@ const arrayProperty = (ref, p) => {
     items: ref,
     type: 'array',
   };
-  if (minPropertiesFor(p)) {
-    assign(obj, { minProperties: minPropertiesFor(p) });
+  if (descriptionFor(p)) {
+    assign(obj, descriptionFor(p));
+  }
+  if (minOccurrenceFor(p)) {
+    assign(obj, { minItems: minOccurrenceFor(p) });
   }
   return obj;
 };
@@ -291,9 +294,9 @@ const makeSchema = (
   } else if (property.Codes && property.Codes.length > 0) {
     assign(schema, enumFor(property));
   }
-  if (minPropertiesFor(property) && type !== 'string') {
+  if (minOccurrenceFor(property) && type === 'object') {
     assign(schema, {
-      minProperties: minPropertiesFor(property),
+      minProperties: minOccurrenceFor(property),
     });
   }
   if (maxLengthFor(property)) {

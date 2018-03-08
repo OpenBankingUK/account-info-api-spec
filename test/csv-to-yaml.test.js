@@ -74,10 +74,11 @@ const secondLevelSchema = YAML.parse(`
     type: object
     properties:
       Permissions:
+        description: Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.
         items:
           $ref: '#/definitions/OBExternalPermissions1Code'
         type: array
-        minProperties: 1
+        minItems: 1
       ExpirationDateTime:
         description: "Specified date and time the permissions will expire.\\nIf this is not populated, the permissions will be open ended."
         format: date-time

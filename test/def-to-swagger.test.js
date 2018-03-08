@@ -129,6 +129,7 @@ const payloadSchema = YAML.parse(`
         type: object
         properties:
           Account:
+            description: Unambiguous identification of the account to which credit and debit entries are made.
             type: array
             items:
               $ref: '#/definitions/OBAccount1'
@@ -216,7 +217,7 @@ const checkSchema = ({
   const setup = (i, schema) => {
     const root = Object.keys(schema)[0];
     const {
-      type, allOf, properties, required,
+      type, allOf, properties, required, minItems,
       description, minProperties, items, format,
     } = expectedSchema[root];
     const schemaObject = schemas[index];
@@ -228,6 +229,7 @@ const checkSchema = ({
       required,
       description,
       minProperties,
+      minItems,
       items,
       format,
       type,
@@ -237,7 +239,7 @@ const checkSchema = ({
   const notPresentMessage = (key, schema) => `${key} should not be present\nactual: ${YAML.stringify(schema)}`;
 
   const {
-    schemaKey, schema, allOf, properties, required,
+    schemaKey, schema, allOf, properties, required, minItems,
     description, minProperties, items, format, type,
   } = setup(index, expectedSchema);
 
@@ -271,8 +273,13 @@ const checkSchema = ({
   }
 
   if (minProperties) {
-    it('with minProperties false', () =>
+    it('with minProperties', () =>
       assert.equal(schema.minProperties, minProperties));
+  }
+
+  if (minItems) {
+    it('with minItems', () =>
+      assert.equal(schema.minItems, minItems));
   }
 
   if (items) {
