@@ -91,16 +91,20 @@ const formatFor = (property) => {
   return null;
 };
 
-const descriptionFor = (property) => {
+const descriptionFor = (property, isoDescription) => {
   if (property.EnhancedDefinition) {
-    return { description: property.EnhancedDefinition.replace(/\n{2,}/g, '\n') };
+    let description = property.EnhancedDefinition.replace(/\n{2,}/g, '\n');
+    if (property.Class === 'ISODateTime') {
+      description = `${description}\n${isoDescription}`;
+    }
+    return { description };
   }
   return null;
 };
 
-const itemsFor = property => ({
+const itemsFor = (property, isoDescription) => ({
   items: assign(
-    descriptionFor(property),
+    descriptionFor(property, isoDescription),
     { type: 'string' },
     enumFor(property),
   ),
@@ -121,13 +125,13 @@ const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
 
 const isArray = p => p.Occurrence && p.Occurrence.endsWith('..n');
 
-const arrayProperty = (ref, p) => {
+const arrayProperty = (ref, p, isoDescription) => {
   const obj = {
     items: ref,
     type: 'array',
   };
-  if (descriptionFor(p)) {
-    assign(obj, descriptionFor(p));
+  if (descriptionFor(p, isoDescription)) {
+    assign(obj, descriptionFor(p, isoDescription));
   }
   if (minOccurrenceFor(p)) {
     assign(obj, { minItems: minOccurrenceFor(p) });
@@ -135,36 +139,36 @@ const arrayProperty = (ref, p) => {
   return obj;
 };
 
-const refPlusDescription = (ref, p) => ({
+const refPlusDescription = (ref, p, isoDescription) => ({
   allOf: [
     ref,
-    descriptionFor(p),
+    descriptionFor(p, isoDescription),
   ],
 });
 
-const propertyRef = (klass, p) => {
+const propertyRef = (klass, p, isoDescription) => {
   const ref = { $ref: `#/definitions/${klass}` };
   if (isArray(p)) {
     return arrayProperty(ref, p);
   } else if (embedDescription(klass)) {
-    return refPlusDescription(ref, p);
+    return refPlusDescription(ref, p, isoDescription);
   }
   return ref;
 };
 
-const propertyDef = (p, childSchemas, separateDefinitions) => {
+const propertyDef = (p, childSchemas, separateDefinitions, isoDescription) => {
   const klass = classFor(p);
   if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
-    return propertyRef(klass, p);
+    return propertyRef(klass, p, isoDescription);
   }
   const schema = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
   return Object.values(schema)[0]; // eslint-disable-line
 };
 
-const propertiesObj = (list, key, childSchemas, separateDefinitions = []) => {
+const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription) => {
   const obj = {};
   list.forEach((p) => {
-    obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions);
+    obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions, isoDescription);
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
     return assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
@@ -232,11 +236,11 @@ const mandatoryForKey = (key) => {
   return [];
 };
 
-const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions) => ({
+const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions, isoDescription) => ({
   allOf: [
     { $ref: `#/definitions/${key}Basic` },
     {
-      properties: propertiesObj(detailProperties, key, null, separateDefinitions),
+      properties: propertiesObj(detailProperties, key, null, separateDefinitions, isoDescription),
     },
   ],
 });
@@ -259,7 +263,7 @@ const makeDetailSchema = (key) => {
 
 const makeSchema = (
   property, rows, propertyFilter, permissions,
-  separateDefinitions, definedProperties = [],
+  separateDefinitions, isoDescription, definedProperties = [],
 ) => {
   const obj = {};
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
@@ -274,17 +278,18 @@ const makeSchema = (
   }
   const type = typeFor(property);
 
-  const childSchemas = flatten(properties.map(p => makeSchema(p, rows, null, permissions, separateDefinitions, definedProperties))); // eslint-disable-line
+  const childSchemas = flatten(properties.map(p =>
+    makeSchema(p, rows, null, permissions, separateDefinitions, isoDescription, definedProperties))); // eslint-disable-line
 
   if (descriptionFor(property) && !embedDescription(key)) {
-    assign(schema, descriptionFor(property));
+    assign(schema, descriptionFor(property, isoDescription));
   }
   assign(schema, { type });
   if (type === 'object') {
     if (detailProperties.length > 0) {
-      assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions));
+      assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions, isoDescription)); // eslint-disable-line
     } else {
-      const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions);
+      const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions, isoDescription); // eslint-disable-line
       assign(schema, { properties: childProperties });
       if (requiredProp(properties, key).length > 0) {
         assign(schema, { required: requiredProp(properties, key) });
@@ -293,7 +298,7 @@ const makeSchema = (
     }
   }
   if (type === 'array') {
-    assign(schema, itemsFor(property));
+    assign(schema, itemsFor(property, isoDescription));
   } else if (property.Codes && property.Codes.length > 0) {
     assign(schema, enumFor(property));
   }
@@ -317,7 +322,7 @@ const makeSchema = (
   obj[key] = schema;
   const schemas = [];
   if (schema.allOf) {
-    const base = makeSchema(property, rows, null, [], separateDefinitions);
+    const base = makeSchema(property, rows, null, [], separateDefinitions, isoDescription);
     const baseSchema = Object.values(base[0])[0];
     const detailKeys = Object.keys(schema.allOf[1].properties);
     detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
@@ -342,10 +347,10 @@ const makeSchema = (
   return schemas;
 };
 
-const convertRows = (rows, permissions, separateDefinitions = [], definedProperties = []) => {
+const convertRows = (rows, permissions, separateDefinitions = [], isoDescription, definedProperties = []) => { // eslint-disable-line
   const schemas = flatten(makeSchema(
     rows[0], rows, topLevelFilter, permissions,
-    separateDefinitions, definedProperties,
+    separateDefinitions, isoDescription, definedProperties,
   ));
   const filtered = schemas.filter((s) => {
     const key = Object.keys(s)[0];
@@ -381,13 +386,13 @@ const schemaFile = (key, outdir) => {
   return outFile;
 };
 
-const convertCSV = (dir, file, outdir, permissions, separateDefinitions, definedProperties) => {
+const convertCSV = (dir, file, outdir, permissions, separateDefinitions, isoDescription, definedProperties) => { // eslint-disable-line
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
   const lines = parseCsv(file);
   // console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  const schemas = convertRows(lines, permissions, separateDefinitions, definedProperties);
+  const schemas = convertRows(lines, permissions, separateDefinitions, isoDescription, definedProperties); // eslint-disable-line
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
     if (!commonTypes.includes(key)) {
@@ -400,6 +405,8 @@ const convertCSV = (dir, file, outdir, permissions, separateDefinitions, defined
   });
 };
 
+const readYaml = file => YAML.parse(fs.readFileSync(file));
+
 const convertCSVs = (dir, outdir, separateDefinitions) => {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
@@ -407,7 +414,9 @@ const convertCSVs = (dir, outdir, separateDefinitions) => {
   const permissionsFile = `${dir}/Permissions.csv`;
   const permissions = parseCsv(permissionsFile);
   const definedProperties = [];
-  files.forEach(file => convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, definedProperties));
+  const isoDescription = readYaml(`${outdir}/readwrite/definitions/ISODateTime.yaml`).ISODateTime.description;
+  files.forEach(file =>
+    convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, isoDescription, definedProperties));
   console.log(YAML.stringify(definedProperties)); // eslint-disable-line
   const keyToDescription = [];
   definedProperties.forEach((x) => {

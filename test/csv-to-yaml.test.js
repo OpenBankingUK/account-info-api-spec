@@ -80,15 +80,15 @@ const secondLevelSchema = YAML.parse(`
         type: array
         minItems: 1
       ExpirationDateTime:
-        description: "Specified date and time the permissions will expire.\\nIf this is not populated, the permissions will be open ended."
+        description: "Specified date and time the permissions will expire.\\nIf this is not populated, the permissions will be open ended.\\nISO date time description."
         format: date-time
         type: string
       TransactionFromDateTime:
-        description: "Specified start date and time for the transaction query period.\\nIf this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction."
+        description: "Specified start date and time for the transaction query period.\\nIf this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.\\nISO date time description."
         format: date-time
         type: string
       TransactionToDateTime:
-        description: "Specified end date and time for the transaction query period.\\nIf this is not populated, the end date will be open ended, and data will be returned to the latest available transaction."
+        description: "Specified end date and time for the transaction query period.\\nIf this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.\\nISO date time description."
         format: date-time
         type: string
     required:
@@ -119,7 +119,10 @@ const arrayItemSchema = {
 };
 
 describe('convertRows', () => {
-  const schemas = convertRows(input);
+  const schemas = convertRows(
+    input, [], [],
+    'ISO date time description.',
+  );
 
   describe('creates top level schema', checkSchema({
     index: 0,

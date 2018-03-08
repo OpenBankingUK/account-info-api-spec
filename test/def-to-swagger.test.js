@@ -313,7 +313,10 @@ const checkSchema = ({
 
 describe('convertRows', () => {
   const separateDefinitions = ['AccountId'];
-  const schemas = convertRows(dataDef, permissions, separateDefinitions);
+  const schemas = convertRows(
+    dataDef, permissions, separateDefinitions,
+    'ISO date time description.',
+  );
 
   describe('creates payload schema', checkSchema({
     index: 0,
