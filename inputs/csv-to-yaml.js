@@ -74,7 +74,7 @@ const enumFor = (property) => {
   return null;
 };
 
-const minPropertiesFor = (property) => {
+const minOccurrenceFor = (property) => {
   if (property.Occurrence === '1..n') {
     return 1;
   }

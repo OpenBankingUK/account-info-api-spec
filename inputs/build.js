@@ -95,7 +95,9 @@ const collapseAllOf = (obj) => {
         Object.keys(item).forEach((section) => {
           const value = item[section];
           const type = typeFor(value);
-          if (type === 'string') {
+          if (type === 'string'
+            || type === 'boolean'
+            || type === 'number') {
             child[section] = value;
           } else if (type === 'array') {
             if (!child[section]) {
