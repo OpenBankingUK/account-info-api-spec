@@ -1,0 +1,163 @@
+swagger: '2.0'
+
+info:
+  title: Account and Transaction API Specification
+  description: Swagger for Account and Transaction API Specification
+  termsOfService: 'https://www.openbanking.org.uk/terms'
+  contact:
+    name: Service Desk
+    email: ServiceDesk@openbanking.org.uk
+  license:
+    name: open-licence
+    url: 'https://www.openbanking.org.uk/open-licence'
+  version: v1.1.1
+
+basePath: /open-banking/v1.1
+
+tags:
+- name: "Account Requests"
+  description: "Account Requests"
+- name: "Accounts"
+  description: "Accounts"
+- name: "Transactions"
+  description: "Transactions"
+- name: "Beneficiaries"
+  description: "Beneficiaries"
+- name: "Balances"
+  description: "Balances"
+- name: "Direct Debits"
+  description: "Direct Debits"
+- name: "Standing Orders"
+  description: "Standing Orders"
+- name: "Products"
+  description: "Products"
+
+schemes: [https]
+
+consumes: [application/json; charset=utf-8]
+produces: [application/json; charset=utf-8]
+
+paths:
+  /account-requests:
+    - $ref: ./paths/CreateAccountRequest.yaml
+  /account-requests/{AccountRequestId}:
+    - $ref: ./paths/GetAccountRequest.yaml
+    - $ref: ./paths/DeleteAccountRequest.yaml
+  /accounts:
+    - $ref: ./paths/GetAccounts.yaml
+  /accounts/{AccountId}:
+    - $ref: ./paths/GetAccount.yaml
+  /accounts/{AccountId}/transactions:
+    - $ref: ./paths/GetAccountTransactions.yaml
+  /accounts/{AccountId}/beneficiaries:
+    - $ref: ./paths/GetAccountBeneficiaries.yaml
+  /accounts/{AccountId}/balances:
+    - $ref: ./paths/GetAccountBalances.yaml
+  /accounts/{AccountId}/direct-debits:
+    - $ref: ./paths/GetAccountDirectDebits.yaml
+  /accounts/{AccountId}/standing-orders:
+    - $ref: ./paths/GetAccountStandingOrders.yaml
+  /accounts/{AccountId}/product:
+    - $ref: ./paths/GetAccountProduct.yaml
+  /standing-orders:
+    - $ref: ./paths/GetStandingOrders.yaml
+  /direct-debits:
+    - $ref: ./paths/GetDirectDebits.yaml
+  /beneficiaries:
+    - $ref: ./paths/GetBeneficiaries.yaml
+  /transactions:
+    - $ref: ./paths/GetTransactions.yaml
+  /balances:
+    - $ref: ./paths/GetBalances.yaml
+  /products:
+    - $ref: ./paths/GetProducts.yaml
+
+definitions:
+  - $ref: ./definitions/AccountId.yaml
+  - $ref: ./definitions/Amount.yaml
+  - $ref: ./definitions/TransactionInformation.yaml
+  - $ref: ./definitions/OBAccount1.yaml
+  - $ref: ./definitions/OBAccount1Basic.yaml
+  - $ref: ./definitions/OBAccount1Detail.yaml
+  - $ref: ./definitions/OBBalanceType1Code.yaml
+  - $ref: ./definitions/OBBankTransactionCodeStructure1.yaml
+  - $ref: ./definitions/OBBeneficiary1.yaml
+  - $ref: ./definitions/OBBeneficiary1Basic.yaml
+  - $ref: ./definitions/OBBeneficiary1Detail.yaml
+  - $ref: ./definitions/OBBranchAndFinancialInstitutionIdentification2.yaml
+  - $ref: ./definitions/OBCashAccount1.yaml
+  - $ref: ./definitions/OBCashBalance1.yaml
+  - $ref: ./definitions/OBCashBalance1.yaml
+  - $ref: ./definitions/OBCreditDebitCode.yaml
+  - $ref: ./definitions/OBCreditLine1.yaml
+  - $ref: ./definitions/OBDirectDebit1.yaml
+  - $ref: ./definitions/OBEntryStatus1Code.yaml
+  - $ref: ./definitions/OBExternalDirectDebitStatus1Code.yaml
+  - $ref: ./definitions/OBExternalFinancialInstitutionIdentification2Code.yaml
+  - $ref: ./definitions/OBExternalLimitType1Code.yaml
+  - $ref: ./definitions/OBExternalPermissions1Code.yaml
+  - $ref: ./definitions/OBExternalProductType1Code.yaml
+  - $ref: ./definitions/OBMerchantDetails1.yaml
+  - $ref: ./definitions/OBProduct1.yaml
+  - $ref: ./definitions/OBReadAccount1.yaml
+  - $ref: ./definitions/OBReadBalance1.yaml
+  - $ref: ./definitions/OBReadBeneficiary1.yaml
+  - $ref: ./definitions/OBReadData1.yaml
+  - $ref: ./definitions/OBReadDataResponse1.yaml
+  - $ref: ./definitions/OBReadDirectDebit1.yaml
+  - $ref: ./definitions/OBReadProduct1.yaml
+  - $ref: ./definitions/OBReadRequest1.yaml
+  - $ref: ./definitions/OBReadResponse1.yaml
+  - $ref: ./definitions/OBReadStandingOrder1.yaml
+  - $ref: ./definitions/OBReadTransaction1.yaml
+  - $ref: ./definitions/OBStandingOrder1.yaml
+  - $ref: ./definitions/OBStandingOrder1Basic.yaml
+  - $ref: ./definitions/OBStandingOrder1Detail.yaml
+  - $ref: ./definitions/OBTransaction1.yaml
+  - $ref: ./definitions/OBTransaction1Basic.yaml
+  - $ref: ./definitions/OBTransaction1Detail.yaml
+  - $ref: ./definitions/OBTransactionCashBalance.yaml
+
+  - $ref: ./definitions/OBExternalRequestStatus1Code.yaml
+  - $ref: ./definitions/OBExternalAccountIdentification2Code.yaml
+
+  - $ref: ../readwrite/definitions/OBRisk2.yaml
+  - $ref: ../readwrite/definitions/Links.yaml
+  - $ref: ../readwrite/definitions/ISODateTime.yaml
+  - $ref: ../readwrite/definitions/Meta.yaml
+
+parameters:
+  - $ref: ./parameters/AccountIdParam.yaml
+  - $ref: ./parameters/AccountRequestIdParam.yaml
+  - $ref: ./parameters/FromBookingDateTimeParam.yaml
+  - $ref: ./parameters/OBReadRequest1Param.yaml
+  - $ref: ./parameters/ToBookingDateTimeParam.yaml
+  - $ref: ../readwrite/parameters/x-fapi-financial-id-Param.yaml
+  - $ref: ../readwrite/parameters/x-fapi-customer-ip-address-Param.yaml
+  - $ref: ../readwrite/parameters/x-fapi-interaction-id-Param.yaml
+  - $ref: ../readwrite/parameters/x-fapi-customer-last-logged-time-Param.yaml
+  - $ref: ../readwrite/parameters/AuthorizationParam.yaml
+  - $ref: ../readwrite/parameters/x-jws-signature-Param.yaml
+
+responses:
+  - $ref: ./responses/200AccountBalancesRead.yaml
+  - $ref: ./responses/200AccountBeneficiariesRead.yaml
+  - $ref: ./responses/200AccountDirectDebitsRead.yaml
+  - $ref: ./responses/200AccountProductRead.yaml
+  - $ref: ./responses/200AccountRead.yaml
+  - $ref: ./responses/200AccountRequestRead.yaml
+  - $ref: ./responses/200AccountStandingOrdersRead.yaml
+  - $ref: ./responses/200AccountTransactionsRead.yaml
+  - $ref: ./responses/201AccountRequestCreated.yaml
+  - $ref: ./responses/204AccountRequestDeleted.yaml
+  - $ref: ../readwrite/responses/400ErrorResponse.yaml
+  - $ref: ../readwrite/responses/401ErrorResponse.yaml
+  - $ref: ../readwrite/responses/403ErrorResponse.yaml
+  - $ref: ../readwrite/responses/405ErrorResponse.yaml
+  - $ref: ../readwrite/responses/406ErrorResponse.yaml
+  - $ref: ../readwrite/responses/429ErrorResponse.yaml
+  - $ref: ../readwrite/responses/500ErrorResponse.yaml
+
+securityDefinitions:
+  - $ref: ../readwrite/securityDefinitions/PSUOAuth2Security.yaml
+  - $ref: ../readwrite/securityDefinitions/TPPOAuth2Security.yaml

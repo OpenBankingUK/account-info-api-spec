@@ -1,0 +1,10 @@
+Name;Occurrence;XPath;EnhancedDefinition;Class;Codes;Pattern;TotalDigits;FractionDigits
+OBReadProduct1;;OBReadProduct1;;OBReadProduct1;;;;
+Data;1..1;OBReadProduct1/Data;;OBReadDataProduct1;;;;
+Product;0..n;OBReadProduct1/Data/Product;;OBProduct1;;;;
+AccountId;1..1;OBReadProduct1/Data/Product/AccountId;A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.;Max40Text;;;;
+ProductIdentifier;1..1;OBReadProduct1/Data/Product/ProductIdentifier;Identifier within the parent organisation for the product. Must be unique in the organisation.;xs:string;;;;
+ProductType;1..1;OBReadProduct1/Data/Product/ProductType;Descriptive code for the product category.;OBExternalProductType1Code;"BCA
+PCA";;;
+ProductName;0..1;OBReadProduct1/Data/Product/ProductName;The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.;xs:string;;;;
+SecondaryProductIdentifier;0..1;OBReadProduct1/Data/Product/SecondaryProductIdentifier;Identifier within the parent organisation for the product. Must be unique in the organisation.;xs:string;;;;

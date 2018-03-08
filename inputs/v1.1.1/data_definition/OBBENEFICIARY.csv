@@ -1,0 +1,24 @@
+Name;Occurrence;XPath;EnhancedDefinition;Class;Codes;Pattern;TotalDigits;FractionDigits
+OBReadBeneficiary1;;OBReadBeneficiary1;;OBReadBeneficiary1;;;;
+Data;1..1;OBReadBeneficiary1/Data;;OBReadDataBeneficiary1;;;;
+Beneficiary;0..n;OBReadBeneficiary1/Data/Beneficiary;;OBBeneficiary1;;;;
+AccountId;0..1;OBReadBeneficiary1/Data/Beneficiary/AccountId;A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.;Max40Text;;;;
+BeneficiaryId;0..1;OBReadBeneficiary1/Data/Beneficiary/BeneficiaryId;A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.;Max40Text;;;;
+Reference;0..1;OBReadBeneficiary1/Data/Beneficiary/Reference;"Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
+
+Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
+
+If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.";Max35Text;;;;
+Servicer;0..1;OBReadBeneficiary1/Data/Beneficiary/Servicer;"Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.
+This is the servicer of the beneficiary account.";OBBranchAndFinancialInstitutionIdentification2;;;;
+SchemeName;1..1;OBReadBeneficiary1/Data/Beneficiary/Servicer/SchemeName;Name of the identification scheme, in a coded form as published in an external list.;OBExternalFinancialInstitutionIdentification2Code;BICFI;;;
+Identification;1..1;OBReadBeneficiary1/Data/Beneficiary/Servicer/Identification;Unique and unambiguous identification of the servicing institution.;Max35Text;;;;
+CreditorAccount;0..1;OBReadBeneficiary1/Data/Beneficiary/CreditorAccount;Provides the details to identify the beneficiary account.;OBCashAccount1;;;;
+SchemeName;1..1;OBReadBeneficiary1/Data/Beneficiary/CreditorAccount/SchemeName;Name of the identification scheme, in a coded form as published in an external list.;OBExternalAccountIdentification2Code;"IBAN
+SortCodeAccountNumber";;;
+Identification;1..1;OBReadBeneficiary1/Data/Beneficiary/CreditorAccount/Identification;Identification assigned by an institution to identify an account. This identification is known by the account owner.;Max34Text;;;;
+Name;0..1;OBReadBeneficiary1/Data/Beneficiary/CreditorAccount/Name;"Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.
+
+Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.";Max70Text;;;;
+SecondaryIdentification;0..1;OBReadBeneficiary1/Data/Beneficiary/CreditorAccount/SecondaryIdentification;"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";Max34Text;;;;
