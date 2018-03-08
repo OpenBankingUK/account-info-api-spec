@@ -2,6 +2,7 @@ compiled/*
 node_modules/*
 .DS_Store
 .~lock*
+account-info-swagger-dereferenced.yaml
 
 # Logs
 logs
