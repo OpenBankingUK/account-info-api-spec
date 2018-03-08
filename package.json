@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "buildswagger": "node ./inputs/build.js",
-    "csvtoyaml": "node ./data_definition/convert.js",
+    "csvtoyaml": "node ./inputs/convert.js",
     "flatten-schemas": "cd build && ./flatten-schemas.sh",
     "compile-swagger": "cd build && node compile-swagger.js",
     "build:swagger": "npm run flatten-schemas && npm run compile-swagger",

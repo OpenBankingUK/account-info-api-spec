@@ -1,9 +1,9 @@
 const assert = require('assert');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 
-const { convertRows } = require('../data_definition/csv-to-yaml.js');
+const { convertRows } = require('../inputs/csv-to-yaml.js');
 
-// ./data_definition/v1.1/Permissions.csv
+// ./inputs/v1.1.1/data_definition/Permissions.csv
 const permissions = [
   {
     'Permission (Detail)': 'ReadAccountsDetail',
@@ -19,7 +19,7 @@ const permissions = [
   },
 ];
 
-// ./data_definition/v1.1/OBACCOUNT.csv
+// ./inputs/v1.1.1/data_definition/OBACCOUNT.csv
 const dataDef = [
   {
     Name: 'OBReadAccount1',

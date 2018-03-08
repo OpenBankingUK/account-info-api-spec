@@ -8,7 +8,7 @@ const separateDefinitions = [
   'TransactionInformation',
 ];
 
-const versions = fs.readdirSync('./data_definition').filter(d => d.startsWith('v'));
+const versions = fs.readdirSync('./inputs').filter(d => d.startsWith('v'));
 
 versions.forEach(version =>
-  convertCSVs(`./data_definition/${version}`, `./inputs/${version}`, separateDefinitions));
+  convertCSVs(`./inputs/${version}/data_definition`, `./inputs/${version}`, separateDefinitions));
