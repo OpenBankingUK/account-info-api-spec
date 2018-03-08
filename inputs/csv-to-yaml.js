@@ -203,7 +203,10 @@ const minLengthFor = (property) => {
 };
 
 const patternFor = (property) => {
-  if (property.Pattern && property.Pattern.length > 0) {
+  const pattern = property.Pattern;
+  if (pattern &&
+    pattern.length > 0 &&
+    pattern.indexOf('TotalDigits') === -1) {
     return { pattern: property.Pattern };
   }
   return null;
