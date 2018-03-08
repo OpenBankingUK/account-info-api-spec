@@ -1,0 +1,65 @@
+Code Class;Name ;Definition ;Standard ISO 20022 Definition
+OBBalanceType1Code;ClosingAvailable ;Closing balance of amount of money that is at the disposal of the account owner on the date specified. ;Yes
+OBBalanceType1Code;ClosingBooked ;Balance of the account at the end of the pre-agreed account reporting period. It is the sum of the opening booked balance at the beginning of the period and all entries booked to the account during the pre-agreed account reporting period. ;Yes
+OBBalanceType1Code;Expected ;Balance, composed of booked entries and pending items known at the time of calculation , which projects the end of day balance if everything is booked on the account and no other entry is posted. ;Yes
+OBBalanceType1Code;ForwardAvailable ;Forward available balance of money that is at the disposal of the account owner on the date specified. ;Yes
+OBBalanceType1Code;Information ;Balance for informational purposes. ;Yes
+OBBalanceType1Code;InterimAvailable ;Available balance calculated in the course of the account servicer's business day, at the time specified, and subject to further changes during the business day. The interim balance is calculated on the basis of booked credit and debit items during the calculation time/period specified. ;Yes
+OBBalanceType1Code;InterimBooked ;Balance calculated in the course of the account servicer's business day, at the time specified, and subject to further changes during the business day. The interim balance is calculated on the basis of booked credit and debit items during the calculation time/period specified. ;Yes
+OBBalanceType1Code;OpeningAvailable ;Opening balance of amount of money that is at the disposal of the account owner on the date specified. ;Yes
+OBBalanceType1Code;OpeningBooked ;Book balance of the account at the beginning of the account reporting period. It always equals the closing book balance from the previous report. ;Yes
+OBBalanceType1Code;PreviouslyClosedBooked ;"Balance of the account at the previously closed account reporting period. The opening booked balance for the new period has to be equal to this balance. 
+Usage: the previously booked closing balance should equal (inclusive date) the booked closing balance of the date it references and equal the actual booked opening balance of the current date. Balance of the account at the previously closed account reporting period. The opening booked balance for the new period has to be equal to this balance. 
+Usage: the previously booked closing balance should equal (inclusive date) the booked closing balance of the date it references and equal the actual booked opening balance of the current date. Balance of the account at the previously closed account reporting period. The opening booked balance for the new period has to be equal to this balance. 
+Usage: the previously booked closing balance should equal (inclusive date) the booked closing balance of the date it references and equal the actual booked opening balance of the current date. ";Yes
+OBCreditDebitCode;Credit;Operation is a credit;"No
+Standard is ""Operation is an increase."" - which may be ambigious.No
+Standard is ""Operation is an increase."" - which may be ambigious.No
+Standard is ""Operation is an increase."" - which may be ambigious."
+OBCreditDebitCode;Debit;Operation is a debit;"No
+Standard is ""Operation is an decrease."" - which may be ambigious.No
+Standard is ""Operation is an decrease."" - which may be ambigious.No
+Standard is ""Operation is an decrease."" - which may be ambigious."
+OBEntryStatus1Code;Booked;"Booked means that the transfer of money has been completed between account servicer and account owner
+Usage :
+Status Booked does not necessarily imply finality of money as this depends on other factors such as the payment system used, the completion of the end- to-end transaction and the terms agreed between account servicer and owner.
+Status Booked is the only status that can be reversed.Booked means that the transfer of money has been completed between account servicer and account owner
+Usage :
+Status Booked does not necessarily imply finality of money as this depends on other factors such as the payment system used, the completion of the end- to-end transaction and the terms agreed between account servicer and owner.
+Status Booked is the only status that can be reversed.Booked means that the transfer of money has been completed between account servicer and account owner
+Usage :
+Status Booked does not necessarily imply finality of money as this depends on other factors such as the payment system used, the completion of the end- to-end transaction and the terms agreed between account servicer and owner.
+Status Booked is the only status that can be reversed.";Yes
+OBEntryStatus1Code;Pending;"Booking on the account owner's account in the account servicer's ledger has not been completed.
+Usage : this can be used for expected items, or for items for which some conditions still need to be fulfilled before they can be booked. If booking takes place, the entry will be included with status Booked in subsequent account report or statement. Status Pending cannot be reversed.Booking on the account owner's account in the account servicer's ledger has not been completed.
+Usage : this can be used for expected items, or for items for which some conditions still need to be fulfilled before they can be booked. If booking takes place, the entry will be included with status Booked in subsequent account report or statement. Status Pending cannot be reversed.Booking on the account owner's account in the account servicer's ledger has not been completed.
+Usage : this can be used for expected items, or for items for which some conditions still need to be fulfilled before they can be booked. If booking takes place, the entry will be included with status Booked in subsequent account report or statement. Status Pending cannot be reversed.";Yes
+OBExternalAccountIdentification2Code;IBAN;"An identifier used internationally by financial institutions to uniquely identify the account of a customer at a financial institution, as described in the latest edition of the international standard ISO 13616. ""Banking and related financial services - International Bank Account Number (IBAN)"".";Yes
+OBExternalAccountIdentification2Code;SortCodeAccountNumber;"Sort Code and Account Number - identifier scheme used in the UK by financial institutions to identify the account of a customer. The identifier is the concatenation of the 6 digit UK sort code and 8 digit account number.
+The regular expression for this identifier is: ^[0-9]{6}[0-9]{8}$Sort Code and Account Number - identifier scheme used in the UK by financial institutions to identify the account of a customer. The identifier is the concatenation of the 6 digit UK sort code and 8 digit account number.
+The regular expression for this identifier is: ^[0-9]{6}[0-9]{8}$";No
+OBExternalDirectDebitStatus1Code;Active;The direct debit mandate is active.;New
+OBExternalDirectDebitStatus1Code;Inactive;The direct debit mandate is inactive.;New
+OBExternalFinancialInstitutionIdentification2Code;BICFI;Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters.;Yes
+OBExternalLimitType1Code;Pre-Agreed;The amount of an arranged lending limit that has been agreed with the account holder;New
+OBExternalLimitType1Code;Temporary;The amount of a temporary lending limit that has been agreed with the account holder;New
+OBExternalLimitType1Code;Emergency;The amount of an arranged lending limit that can be borrowed on top of pre-agreed lending, that has been agreed with the account holder.;New
+OBExternalPermissions1Code;ReadAccountsBasic;Permission to read basic account information.;New
+OBExternalPermissions1Code;ReadAccountsDetail;Access to additional elements in the account payload.;New
+OBExternalPermissions1Code;ReadBalances;Permission to read all balance information.;New
+OBExternalPermissions1Code;ReadBeneficiariesBasic;Permission to read basic beneficiary details.;New
+OBExternalPermissions1Code;ReadBeneficiariesDetail;Access to additional elements in the beneficiaries payload.;New
+OBExternalPermissions1Code;ReadDirectDebits;Permission to read all direct debit information.;New
+OBExternalPermissions1Code;ReadStandingOrdersBasic;Permission to read standing order information.;New
+OBExternalPermissions1Code;ReadStandingOrdersDetail;Access to additional elements in the standing-orders payload.;New
+OBExternalPermissions1Code;ReadTransactionsBasic;Permission to read basic transaction information.;New
+OBExternalPermissions1Code;ReadTransactionsDetail;Access to additional elements in the transactions payload.;New
+OBExternalPermissions1Code;ReadTransactionsCredits;Access to only credit transactions.;New
+OBExternalPermissions1Code;ReadTransactionsDebits;Access to only debit transactions.;New
+OBExternalPermissions1Code;ReadProducts;Permission to read all product information.;New
+OBExternalProductType1Code;BCA;Business Current Account;New
+OBExternalProductType1Code;PCA;Personal Current Account;New
+OBExternalRequestStatus1Code;Authorised;The account request has been successfully authorised.;New
+OBExternalRequestStatus1Code;AwaitingAuthorisation;The account request is awaiting further authorisation.;New
+OBExternalRequestStatus1Code;Rejected;The account request has been rejected.;New
+OBExternalRequestStatus1Code;Revoked;The account request has been revoked via the ASPSP interface.;New

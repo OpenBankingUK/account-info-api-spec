@@ -1,0 +1,7 @@
+OBReadRequest1Param:
+  name: body
+  in: body
+  description: Create an Account Request
+  required: true
+  schema:
+    $ref: '#/definitions/OBReadRequest1'

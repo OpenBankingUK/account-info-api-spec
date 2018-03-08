@@ -1,0 +1,29 @@
+Name;Occurrence;XPath;EnhancedDefinition;Class;Codes;Pattern;TotalDigits;FractionDigits
+OBReadResponse1;;OBReadResponse1;;OBReadResponse1;;;;
+Data;1..1;OBReadResponse1/Data;;OBReadDataResponse1;;;;
+AccountRequestId;1..1;OBReadResponse1/Data/AccountRequestId;Unique identification as assigned to identify the account request resource.;Max128Text;;;;
+Status;0..1;OBReadResponse1/Data/Status;Specifies the status of the account request resource.;OBExternalRequestStatus1Code;"Authorised
+AwaitingAuthorisation
+Rejected
+Revoked";;;
+CreationDateTime;1..1;OBReadResponse1/Data/CreationDateTime;Date and time at which the resource was created.;ISODateTime;;;;
+Permissions;1..n;OBReadResponse1/Data/Permissions;Specifies the Open Banking account request types. This is a list of the data clusters being consented by the PSU, and requested for authorisation with the ASPSP.;OBExternalPermissions1Code;"ReadAccountsBasic
+ReadAccountsDetail
+ReadBalances
+ReadBeneficiariesBasic
+ReadBeneficiariesDetail
+ReadDirectDebits
+ReadProducts
+ReadStandingOrdersBasic
+ReadStandingOrdersDetail
+ReadTransactionsBasic
+ReadTransactionsCredits
+ReadTransactionsDebits
+ReadTransactionsDetail";;;
+ExpirationDateTime;0..1;OBReadResponse1/Data/ExpirationDateTime;"Specified date and time the permissions will expire.
+If this is not populated, the permissions will be open ended.";ISODateTime;;;;
+TransactionFromDateTime;0..1;OBReadResponse1/Data/TransactionFromDateTime;"Specified start date and time for the transaction query period.
+If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.";ISODateTime;;;;
+TransactionToDateTime;0..1;OBReadResponse1/Data/TransactionToDateTime;"Specified end date and time for the transaction query period.
+If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.";ISODateTime;;;;
+Risk;1..1;OBReadResponse1/Risk;The Risk section is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Account Info.;OBRisk2;;;;
