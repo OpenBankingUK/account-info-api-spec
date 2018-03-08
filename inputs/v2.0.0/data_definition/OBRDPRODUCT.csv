@@ -1,0 +1,21 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern"
+"OBReadProduct2";"";"OBReadProduct2";"";"OBReadProduct2";"";""
+"Data";"1..1";"OBReadProduct2/Data";"";"OBReadDataProduct2";"";""
+"Product";"0..n";"OBReadProduct2/Data/Product";"";"OBProduct2";"";""
+"ProductName";"0..1";"OBReadProduct2/Data/Product/ProductName";"The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.";"xs:string";"";""
+"ProductId";"0..1";"OBReadProduct2/Data/Product/ProductId";"Identifier within the parent organisation for the product. Must be unique in the organisation.";"xs:string";"";""
+"AccountId";"1..1";"OBReadProduct2/Data/Product/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";""
+"SecondaryProductId";"0..1";"OBReadProduct2/Data/Product/SecondaryProductId";"Identifier within the parent organisation for the product. Must be unique in the organisation.";"xs:string";"";""
+"ProductType";"1..1";"OBReadProduct2/Data/Product/ProductType";"Descriptive code for the product category. 
+If ProductType - ""Other"" is chosen, the object OtherProductType must be populated with name, and description for the ASPSP's";"OBExternalProductType1Code";"PersonalCurrentAccount
+BusinessCurrentAccount
+CommercialCreditCard
+SMELoan
+Other";""
+"MarketingStateId";"0..1";"OBReadProduct2/Data/Product/MarketingStateId";"Unique and unambiguous identification of a Product Marketing State.";"xs:ID";"";""
+"OtherProductType";"0..1";"OBReadProduct2/Data/Product/OtherProductType";"This field provides extension to the ProductType enumeration.
+If ProductType - ""Other"" is chosen, this field must be populated with name, and description for ASPSP specific product type";"OB_OtherProductType1";"";""
+"Name";"1..1";"OBReadProduct2/Data/Product/OtherProductType/Name";"";"xs:string";"";""
+"Description";"1..1";"OBReadProduct2/Data/Product/OtherProductType/Description";"";"xs:string";"";""
+"PCA";"0..1";"OBReadProduct2/Data/Product/PCA";"";"OBPCAData1";"";""
+"BCA";"0..1";"OBReadProduct2/Data/Product/BCA";"";"OBBCAData1";"";""
