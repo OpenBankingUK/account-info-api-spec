@@ -93,7 +93,7 @@ const formatFor = (property) => {
 
 const descriptionFor = (property) => {
   if (property.EnhancedDefinition) {
-    return { description: property.EnhancedDefinition };
+    return { description: property.EnhancedDefinition.replace(/\n{2,}/g, '\n') };
   }
   return null;
 };
