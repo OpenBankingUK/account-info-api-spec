@@ -394,7 +394,7 @@ const convertCSV = (dir, file, outdir, permissions, separateDefinitions, defined
   });
 };
 
-const convertCSVs = (dir = './data_definition/v1.1', outdir, separateDefinitions) => {
+const convertCSVs = (dir, outdir, separateDefinitions) => {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
     && f !== 'Permissions.csv');
