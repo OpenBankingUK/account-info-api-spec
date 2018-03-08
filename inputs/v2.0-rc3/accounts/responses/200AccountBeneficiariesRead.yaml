@@ -1,0 +1,11 @@
+200AccountBeneficiariesRead:
+  description: Account Beneficiaries  successfully retrieved
+  schema:
+    $ref: '#/definitions/OBReadBeneficiary2'
+  headers:
+    x-jws-signature:
+      type: string
+      description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
+    x-fapi-interaction-id:
+      type: string
+      description: An RFC4122 UID used as a correlation id.

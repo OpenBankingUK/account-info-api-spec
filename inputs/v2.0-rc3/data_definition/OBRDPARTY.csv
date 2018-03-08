@@ -1,0 +1,29 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBReadParty1";"";"OBReadParty1";"";"OBReadParty1";"";"";"";""
+"Data";"1..1";"OBReadParty1/Data";"";"OBReadDataParty1";"";"";"";""
+"Party";"0..1";"OBReadParty1/Data/Party";"";"OBParty1";"";"";"";""
+"PartyId";"1..1";"OBReadParty1/Data/Party/PartyId";"A unique and immutable identifier used to identify the customer resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"PartyNumber";"0..1";"OBReadParty1/Data/Party/PartyNumber";"Number assigned by an agent to identify its customer.";"Max35Text";"";"";"";""
+"PartyType";"0..1";"OBReadParty1/Data/Party/PartyType";"Party type, in a coded form.";"OBExternalPartyType1Code";"Delegate
+Joint
+Sole";"";"";""
+"Name";"0..1";"OBReadParty1/Data/Party/Name";"Name by which a party is known and which is usually used to identify that party.";"Max70Text";"";"";"";""
+"EmailAddress";"0..1";"OBReadParty1/Data/Party/EmailAddress";"Address for electronic mail (e-mail).";"Max256Text";"";"";"";""
+"Phone";"0..1";"OBReadParty1/Data/Party/Phone";"Collection of information that identifies a phone number, as defined by telecom services.";"PhoneNumber";"";"\+[0-9]{1,3}-[0-9()+\-]{1,30}";"";""
+"Mobile";"0..1";"OBReadParty1/Data/Party/Mobile";"Collection of information that identifies a mobile phone number, as defined by telecom services.";"PhoneNumber";"";"\+[0-9]{1,3}-[0-9()+\-]{1,30}";"";""
+"Address";"0..n";"OBReadParty1/Data/Party/Address";"Postal address of a party.";"OBPostalAddress8";"";"";"";""
+"AddressType";"0..1";"OBReadParty1/Data/Party/Address/AddressType";"Identifies the nature of the postal address.";"OBAddressTypeCode";"Business
+Correspondence
+DeliveryTo
+MailTo
+POBox
+Postal
+Residential
+Statement";"";"";""
+"AddressLine";"0..5";"OBReadParty1/Data/Party/Address/AddressLine";"Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.";"Max70Text";"";"";"";""
+"StreetName";"0..1";"OBReadParty1/Data/Party/Address/StreetName";"Name of a street or thoroughfare.";"Max70Text";"";"";"";""
+"BuildingNumber";"0..1";"OBReadParty1/Data/Party/Address/BuildingNumber";"Number that identifies the position of a building on a street.";"Max16Text";"";"";"";""
+"PostCode";"0..1";"OBReadParty1/Data/Party/Address/PostCode";"Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.";"Max16Text";"";"";"";""
+"TownName";"0..1";"OBReadParty1/Data/Party/Address/TownName";"Name of a built-up area, with defined boundaries, and a local government.";"Max35Text";"";"";"";""
+"CountrySubDivision";"0..1";"OBReadParty1/Data/Party/Address/CountrySubDivision";"Identifies a subdivision of a country eg, state, region, county.";"Max35Text";"";"";"";""
+"Country";"1..1";"OBReadParty1/Data/Party/Address/Country";"Nation with its own government, occupying a particular territory.";"CountryCode";"";"^[A-Z]{2,2}$";"";""

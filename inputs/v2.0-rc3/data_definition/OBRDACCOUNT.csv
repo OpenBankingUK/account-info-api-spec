@@ -1,0 +1,34 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBReadAccount2";"";"OBReadAccount2";"";"OBReadAccount2";"";"";"";""
+"Data";"1..1";"OBReadAccount2/Data";"";"OBReadDataAccount2";"";"";"";""
+"Account";"0..n";"OBReadAccount2/Data/Account";"Unambiguous identification of the account to which credit and debit entries are made.";"OBAccount2";"";"";"";""
+"AccountId";"1..1";"OBReadAccount2/Data/Account/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"Currency";"1..1";"OBReadAccount2/Data/Account/Currency";"Identification of the currency in which the account is held. 
+
+Usage: Currency should only be used in case one and the same account number covers several currencies
+and the initiating party needs to identify which currency needs to be used for settlement on the account.";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"AccountType";"1..1";"OBReadAccount2/Data/Account/AccountType";"Specifies the type of account (personal or business).";"OBExternalAccountType1Code";"Business
+Personal";"";"";""
+"AccountSubType";"1..1";"OBReadAccount2/Data/Account/AccountSubType";"Specifies the sub type of account (product family group).";"OBExternalAccountSubType1Code";"ChargeCard
+CreditCard
+CurrentAccount
+EMoney
+Loan
+Mortgage
+PrePaidCard
+Savings";"";"";""
+"Description";"0..1";"OBReadAccount2/Data/Account/Description";"Specifies the description of the account type.";"Max35Text";"";"";"";""
+"Nickname";"0..1";"OBReadAccount2/Data/Account/Nickname";"The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account.";"Max70Text";"";"";"";""
+"Account";"0..n";"OBReadAccount2/Data/Account/Account";"Provides the details to identify an account.";"OBCashAccount2";"";"";"";""
+"SchemeName";"1..1";"OBReadAccount2/Data/Account/Account/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalAccountIdentification3Code";"IBAN
+PAN
+SortCodeAccountNumber";"";"";""
+"Identification";"1..1";"OBReadAccount2/Data/Account/Account/Identification";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"Max34Text";"";"";"";""
+"Name";"0..1";"OBReadAccount2/Data/Account/Account/Name";"Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.
+
+Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBReadAccount2/Data/Account/Account/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""
+"Servicer";"0..1";"OBReadAccount2/Data/Account/Servicer";"Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.";"OBBranchAndFinancialInstitutionIdentification2";"";"";"";""
+"SchemeName";"1..1";"OBReadAccount2/Data/Account/Servicer/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalFinancialInstitutionIdentification2Code";"BICFI";"";"";""
+"Identification";"1..1";"OBReadAccount2/Data/Account/Servicer/Identification";"Unique and unambiguous identification of the servicing institution.";"Max35Text";"";"";"";""

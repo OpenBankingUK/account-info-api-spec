@@ -1,0 +1,6 @@
+AcceptParam:
+  name: Accept
+  in: header
+  description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+  required: false
+  type: string
