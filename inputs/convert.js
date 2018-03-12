@@ -10,5 +10,5 @@ const separateDefinitions = [
 
 const versions = fs.readdirSync('./inputs').filter(d => d.startsWith('v'));
 
-versions.forEach(version =>
+versions.filter(v => v.startsWith('v2')).forEach(version =>
   convertCSVs(`./inputs/${version}/data_definition`, `./inputs/${version}`, separateDefinitions));
