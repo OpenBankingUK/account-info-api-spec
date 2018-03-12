@@ -4,6 +4,6 @@ ToBookingDateTimeParam:
   type: string
   format: date-time
   description: |-
-    The UTC ISO 8601 Date Time to filter transactions TO 
-        NB Time component is optional - set to 00:00:00 for just Date.  
-        The parameter must NOT have a timezone set
+    The UTC ISO 8601 Date Time to filter transactions TO
+    NB Time component is optional - set to 00:00:00 for just Date.
+    If the Date Time contains a timezone, the ASPSP must ignore the timezone component.
