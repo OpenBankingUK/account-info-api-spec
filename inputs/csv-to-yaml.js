@@ -407,6 +407,32 @@ const convertCSV = (dir, file, outdir, permissions, separateDefinitions, isoDesc
 
 const readYaml = file => YAML.parse(fs.readFileSync(file));
 
+const deleteWhenDescriptionErrors = (definedProperties, outdir) => {
+  console.log(YAML.stringify(definedProperties)); // eslint-disable-line
+  const keyToDescription = [];
+  definedProperties.forEach(x =>  // eslint-disable-line
+    keyToDescription[x.key] = (keyToDescription[x.key] || new Set()).add(x.description));
+
+  const descriptions = Object.keys(keyToDescription).map(key => ({
+    key,
+    descriptions: Array.from(keyToDescription[key]),
+  }));
+  const dups = descriptions.filter(x => x.descriptions.length > 1);
+  if (dups.length > 0) {
+    console.log(JSON.stringify(dups, null, 2));
+    console.log(`dup keys count:${dups.length}`);
+    dups.forEach((dup) => {
+      try {
+        const file = schemaFile(dup.key, outdir);
+        console.log(`delete: ${file}`);
+        fs.unlinkSync(file);
+      } catch (e) {
+        console.log(e.message);
+      }
+    });
+  }
+};
+
 const convertCSVs = (dir, outdir, separateDefinitions) => {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
@@ -417,31 +443,7 @@ const convertCSVs = (dir, outdir, separateDefinitions) => {
   const isoDescription = readYaml(`${outdir}/readwrite/definitions/ISODateTime.yaml`).ISODateTime.description;
   files.forEach(file =>
     convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, isoDescription, definedProperties));
-  console.log(YAML.stringify(definedProperties)); // eslint-disable-line
-  const keyToDescription = [];
-  definedProperties.forEach((x) => {
-    const { key, description } = x;
-    keyToDescription[key] = (keyToDescription[key] || new Set()).add(description);
-  });
-  const descriptions = Object.keys(keyToDescription).map(key => ({
-    key,
-    d: Array.from(keyToDescription[key]),
-  }));
-  const dups = descriptions.filter(x => x.d.length > 1);
-  if (dups.length > 0) {
-    console.log(JSON.stringify(dups, null, 2)); // eslint-disable-line
-    console.log('dup keys count:' + dups.length); // eslint-disable-line
-    dups.forEach((dup) => {
-      const { key } = dup;
-      try {
-        const file = schemaFile(key, outdir);
-        console.log(`delete: ${file}`);
-        fs.unlinkSync(file);
-      } catch (e) {
-        console.log(e.message);
-      }
-    });
-  }
+  deleteWhenDescriptionErrors(definedProperties, outdir);
 };
 
 exports.makeSchema = makeSchema;
