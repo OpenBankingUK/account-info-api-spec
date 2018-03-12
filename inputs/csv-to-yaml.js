@@ -2,6 +2,7 @@ const parse = require('csv-parse/lib/sync'); // eslint-disable-line
 const fs = require('fs');
 const flatten = require('flatten');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
+const uniq = require('lodash/array/uniq');
 
 const commonTypes = [ // eslint-disable-line
   'OBRisk2',
@@ -263,23 +264,30 @@ const makeDetailSchema = (key) => {
 
 const makeSchema = (
   property, rows, propertyFilter, permissions,
-  separateDefinitions, isoDescription, definedProperties = [],
+  separateDefinitions, isoDescription, propertiesCache = {},
 ) => {
   const obj = {};
   const properties = rows.filter(propertyFilter || nextLevelFilter(property));
   const detailProperties = detailPermissionProperties(permissions, property, properties);
   const schema = {};
   const key = classFor(property);
-  if (useSeparateDefinition(property.Class, property.Name, separateDefinitions)
-    && !embedDescription(key)) {
-    definedProperties.push({
+  if (propertiesCache.all) {
+    propertiesCache.all.push({
       xpath: property.XPath, key, description: property.EnhancedDefinition,
     }); // eslint-disable-line
+  }
+  if (useSeparateDefinition(property.Class, property.Name, separateDefinitions)
+    && !embedDescription(key)) {
+    if (propertiesCache.defined) {
+      propertiesCache.defined.push({
+        xpath: property.XPath, key, description: property.EnhancedDefinition,
+      }); // eslint-disable-line
+    }
   }
   const type = typeFor(property);
 
   const childSchemas = flatten(properties.map(p =>
-    makeSchema(p, rows, null, permissions, separateDefinitions, isoDescription, definedProperties))); // eslint-disable-line
+    makeSchema(p, rows, null, permissions, separateDefinitions, isoDescription, propertiesCache))); // eslint-disable-line
 
   if (descriptionFor(property) && !embedDescription(key)) {
     assign(schema, descriptionFor(property, isoDescription));
@@ -326,10 +334,16 @@ const makeSchema = (
     const baseSchema = Object.values(base[0])[0];
     const detailKeys = Object.keys(schema.allOf[1].properties);
     detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
+    propertiesCache.defined.push({
+      xpath: property.XPath, key: `${key}Basic`, description: property.EnhancedDefinition,
+    }); // eslint-disable-line
     schemas.push({ [`${key}Basic`]: baseSchema });
     delete obj[key].type; // type is on base schema
     delete obj[key].description; // description is on base schema
     schemas.push(obj);
+    propertiesCache.defined.push({
+      xpath: property.XPath, key: `${key}Detail`, description: property.EnhancedDefinition,
+    }); // eslint-disable-line
     schemas.push(makeDetailSchema(key));
   } else {
     obj.property = property;
@@ -347,10 +361,10 @@ const makeSchema = (
   return schemas;
 };
 
-const convertRows = (rows, permissions, separateDefinitions = [], isoDescription, definedProperties = []) => { // eslint-disable-line
+const convertRows = (rows, permissions, separateDefinitions = [], isoDescription, propertiesCache = {}) => { // eslint-disable-line
   const schemas = flatten(makeSchema(
     rows[0], rows, topLevelFilter, permissions,
-    separateDefinitions, isoDescription, definedProperties,
+    separateDefinitions, isoDescription, propertiesCache,
   ));
   const filtered = schemas.filter((s) => {
     const key = Object.keys(s)[0];
@@ -386,13 +400,13 @@ const schemaFile = (key, outdir) => {
   return outFile;
 };
 
-const convertCSV = (dir, file, outdir, permissions, separateDefinitions, isoDescription, definedProperties) => { // eslint-disable-line
+const convertCSV = (dir, file, outdir, permissions, separateDefinitions, isoDescription, propertiesCache) => { // eslint-disable-line
   console.log('==='); // eslint-disable-line
   console.log(file); // eslint-disable-line
   console.log('---'); // eslint-disable-line
   const lines = parseCsv(file);
   // console.log(JSON.stringify(lines, null, 2)); // eslint-disable-line
-  const schemas = convertRows(lines, permissions, separateDefinitions, isoDescription, definedProperties); // eslint-disable-line
+  const schemas = convertRows(lines, permissions, separateDefinitions, isoDescription, propertiesCache); // eslint-disable-line
   schemas.forEach((schema) => {
     const key = Object.keys(schema)[0];
     if (!commonTypes.includes(key)) {
@@ -407,7 +421,8 @@ const convertCSV = (dir, file, outdir, permissions, separateDefinitions, isoDesc
 
 const readYaml = file => YAML.parse(fs.readFileSync(file));
 
-const deleteWhenDescriptionErrors = (definedProperties, outdir) => {
+const deleteWhenDescriptionErrors = (propertiesCache, outdir) => {
+  const definedProperties = propertiesCache.defined;
   console.log(YAML.stringify(definedProperties)); // eslint-disable-line
   const keyToDescription = [];
   definedProperties.forEach(x =>  // eslint-disable-line
@@ -433,17 +448,46 @@ const deleteWhenDescriptionErrors = (definedProperties, outdir) => {
   }
 };
 
+const normalizeText = text => text.replace(/\r?\n|\r/g, ' ').replace(/ +/g, ' ');
+
+const deleteWhenDescriptionErrors2 = (propertiesCache, outdir) => {
+  deleteWhenDescriptionErrors(propertiesCache, outdir);
+  const outfiles = propertiesCache.defined
+    .map(p => p.key)
+    .filter(k => !commonTypes.includes(k))
+    .map(k => schemaFile(k, outdir));
+  const schemas = uniq(outfiles).map((file) => {
+    // console.log(`file: ${file}`);
+    const text = normalizeText(Buffer.from(fs.readFileSync(file, 'utf8')).toString());
+    if (file.indexOf('OBAccount2Basic') !== -1) {
+      console.log(text);
+    }
+    return text;
+  });
+  propertiesCache.all.forEach((p) => {
+    const description = normalizeText(p.description);
+    const matches = schemas.filter(s => s.indexOf(description) !== -1);
+    if (matches.length === 0) {
+      throw new Error(`no match for: \n${description}\n ${JSON.stringify(p)}`);
+    }
+  });
+  console.log(schemas[0]);
+};
+
 const convertCSVs = (dir, outdir, separateDefinitions) => {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
     && f !== 'Permissions.csv');
   const permissionsFile = `${dir}/Permissions.csv`;
   const permissions = parseCsv(permissionsFile);
-  const definedProperties = [];
+  const propertiesCache = {
+    all: [],
+    defined: [],
+  };
   const isoDescription = readYaml(`${outdir}/readwrite/definitions/ISODateTime.yaml`).ISODateTime.description;
   files.forEach(file =>
-    convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, isoDescription, definedProperties));
-  deleteWhenDescriptionErrors(definedProperties, outdir);
+    convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, isoDescription, propertiesCache));
+  deleteWhenDescriptionErrors2(propertiesCache, outdir);
 };
 
 exports.makeSchema = makeSchema;
