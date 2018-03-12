@@ -14,13 +14,15 @@ This is the servicer of the beneficiary account.";"OBBranchAndFinancialInstituti
 "SchemeName";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalFinancialInstitutionIdentification2Code";"BICFI";"";"";""
 "Identification";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/Identification";"Unique and unambiguous identification of the servicing institution.";"Max35Text";"";"";"";""
 "Name";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/Name";"Name by which an agent is known and which is usually used to identify that agent.";"Max140Text";"";"";"";""
-"PostalAddress";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress";"Information that locates and identifies a specific address, as defined by postal services.";"PostalAddress6";"";"";"";""
-"AddressType";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/AddressType";"Identifies the nature of the postal address.";"AddressType2Code";"ADDR
-BIZZ
-DLVY
-HOME
-MLTO
-PBOX";"";"";""
+"PostalAddress";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress";"Information that locates and identifies a specific address, as defined by postal services.";"OBPostalAddress6";"";"";"";""
+"AddressType";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/AddressType";"Identifies the nature of the postal address.";"OBAddressTypeCode";"Business
+Correspondence
+DeliveryTo
+MailTo
+POBox
+Postal
+Residential
+Statement";"";"";""
 "Department";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/Department";"Identification of a division of a large organisation or building.";"Max70Text";"";"";"";""
 "SubDepartment";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/SubDepartment";"Identification of a sub-division of a large organisation or building.";"Max70Text";"";"";"";""
 "StreetName";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/StreetName";"Name of a street or thoroughfare.";"Max70Text";"";"";"";""
@@ -28,7 +30,7 @@ PBOX";"";"";""
 "PostCode";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/PostCode";"Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.";"Max16Text";"";"";"";""
 "TownName";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/TownName";"Name of a built-up area, with defined boundaries, and a local government.";"Max35Text";"";"";"";""
 "CountrySubDivision";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/CountrySubDivision";"Identifies a subdivision of a country such as state, region, county.";"Max35Text";"";"";"";""
-"Country";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/Country";"Nation with its own government.";"CountryCode";"";"[A-Z]{2,2}";"";""
+"Country";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/Country";"Nation with its own government.";"CountryCode";"";"^[A-Z]{2,2}$";"";""
 "AddressLine";"0..7";"OBReadBeneficiary2/Data/Beneficiary/CreditorAgent/PostalAddress/AddressLine";"Information that locates and identifies a specific address, as defined by postal services, presented in free format text.";"Max70Text";"";"";"";""
 "CreditorAccount";"0..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAccount";"Provides the details to identify the beneficiary account.";"OBCashAccount1";"";"";"";""
 "SchemeName";"1..1";"OBReadBeneficiary2/Data/Beneficiary/CreditorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalAccountIdentification2Code";"IBAN

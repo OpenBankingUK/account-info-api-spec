@@ -143,6 +143,7 @@ definitions:
   - $ref: ./definitions/OBParty1.yaml
   - $ref: ./definitions/OBPostalAddress8.yaml
   - $ref: ./definitions/OBProduct2.yaml
+  - $ref: ./definitions/OBPostalAddress6.yaml
   - $ref: ./definitions/OBReadAccount2.yaml
   - $ref: ./definitions/OBReadBalance1.yaml
   - $ref: ./definitions/OBReadBeneficiary2.yaml
