@@ -25,28 +25,44 @@
       "description": "Accounts"
     },
     {
-      "name": "Transactions",
-      "description": "Transactions"
+      "name": "Balances",
+      "description": "Balances"
     },
     {
       "name": "Beneficiaries",
       "description": "Beneficiaries"
     },
     {
-      "name": "Balances",
-      "description": "Balances"
-    },
-    {
       "name": "Direct Debits",
       "description": "Direct Debits"
+    },
+    {
+      "name": "Offers",
+      "description": "Offers"
+    },
+    {
+      "name": "Party",
+      "description": "Party"
+    },
+    {
+      "name": "Products",
+      "description": "Products"
+    },
+    {
+      "name": "Scheduled Payments",
+      "description": "Scheduled Payments"
     },
     {
       "name": "Standing Orders",
       "description": "Standing Orders"
     },
     {
-      "name": "Products",
-      "description": "Products"
+      "name": "Statements",
+      "description": "Statements"
+    },
+    {
+      "name": "Transactions",
+      "description": "Transactions"
     }
   ],
   "schemes": [
@@ -1072,6 +1088,9 @@
         ],
         "summary": "Get Statement File",
         "description": "Get Statement File related to an account",
+        "produces": [
+          "*/*"
+        ],
         "operationId": "GetAccountStatementFile",
         "parameters": [
           {
@@ -2048,76 +2067,7 @@
           "maxLength": 140
         },
         "PostalAddress": {
-          "description": "Information that locates and identifies a specific address, as defined by postal services.",
-          "type": "object",
-          "properties": {
-            "AddressType": {
-              "description": "Identifies the nature of the postal address.",
-              "type": "string",
-              "enum": [
-                "ADDR",
-                "BIZZ",
-                "DLVY",
-                "HOME",
-                "MLTO",
-                "PBOX"
-              ]
-            },
-            "Department": {
-              "description": "Identification of a division of a large organisation or building.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 70
-            },
-            "SubDepartment": {
-              "description": "Identification of a sub-division of a large organisation or building.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 70
-            },
-            "StreetName": {
-              "description": "Name of a street or thoroughfare.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 70
-            },
-            "BuildingNumber": {
-              "description": "Number that identifies the position of a building on a street.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 16
-            },
-            "PostCode": {
-              "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 16
-            },
-            "TownName": {
-              "description": "Name of a built-up area, with defined boundaries, and a local government.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 35
-            },
-            "CountrySubDivision": {
-              "description": "Identifies a subdivision of a country such as state, region, county.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 35
-            },
-            "Country": {
-              "description": "Nation with its own government.",
-              "type": "string",
-              "pattern": "[A-Z]{2,2}"
-            },
-            "AddressLine": {
-              "description": "Information that locates and identifies a specific address, as defined by postal services, presented in free format text.",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 70
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/OBPostalAddress6"
         }
       },
       "additionalProperties": false
@@ -2907,6 +2857,69 @@
         "AccountId",
         "ProductType"
       ],
+      "additionalProperties": false
+    },
+    "OBPostalAddress6": {
+      "description": "Information that locates and identifies a specific address, as defined by postal services.",
+      "type": "object",
+      "properties": {
+        "AddressType": {
+          "$ref": "#/definitions/OBAddressTypeCode"
+        },
+        "Department": {
+          "description": "Identification of a division of a large organisation or building.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        },
+        "SubDepartment": {
+          "description": "Identification of a sub-division of a large organisation or building.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        },
+        "StreetName": {
+          "description": "Name of a street or thoroughfare.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        },
+        "BuildingNumber": {
+          "description": "Number that identifies the position of a building on a street.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16
+        },
+        "PostCode": {
+          "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16
+        },
+        "TownName": {
+          "description": "Name of a built-up area, with defined boundaries, and a local government.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "CountrySubDivision": {
+          "description": "Identifies a subdivision of a country such as state, region, county.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "Country": {
+          "description": "Nation with its own government.",
+          "type": "string",
+          "pattern": "^[A-Z]{2,2}$"
+        },
+        "AddressLine": {
+          "description": "Information that locates and identifies a specific address, as defined by postal services, presented in free format text.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        }
+      },
       "additionalProperties": false
     },
     "OBReadAccount2": {
@@ -4240,7 +4253,7 @@
       "name": "fromBookingDateTime",
       "type": "string",
       "format": "date-time",
-      "description": "The UTC ISO 8601 Date Time to filter transactions FROM \nNB Time component is optional - set to 00:00:00 for just Date.  \nThe parameter must NOT have a timezone set"
+      "description": "The UTC ISO 8601 Date Time to filter transactions FROM\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
     },
     "OBReadRequest1Param": {
       "name": "OBReadRequest1",
@@ -4263,7 +4276,7 @@
       "name": "toBookingDateTime",
       "type": "string",
       "format": "date-time",
-      "description": "The UTC ISO 8601 Date Time to filter transactions TO \n    NB Time component is optional - set to 00:00:00 for just Date.  \n    The parameter must NOT have a timezone set"
+      "description": "The UTC ISO 8601 Date Time to filter transactions TO\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
     },
     "x-fapi-financial-id-Param": {
       "in": "header",
@@ -4473,7 +4486,8 @@
     "200AccountStatementFileRead": {
       "description": "Account Statement File successfully retrieved",
       "schema": {
-        "$ref": "#/definitions/OBReadStatement1"
+        "type": "file",
+        "description": "Statement File"
       },
       "headers": {
         "x-jws-signature": {
