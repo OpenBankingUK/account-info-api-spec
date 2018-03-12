@@ -2,8 +2,9 @@ get:
   tags:
     - "Statements"
   summary: Get Statement File
-  #need to specify different headers, produces and consumes/
   description: Get Statement File related to an account
+  produces:
+    - "*/*"
   operationId: GetAccountStatementFile
   parameters:
     - $ref: "#/parameters/AccountIdParam"
