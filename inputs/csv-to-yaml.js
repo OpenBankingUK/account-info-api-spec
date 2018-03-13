@@ -42,16 +42,19 @@ const classFor = (property) => {
     type === 'xs:ID'
   ) {
     return name;
-  } else if (
-    type === 'ActiveOrHistoricCurrencyAndAmount' ||
-    type === 'ActiveOrHistoricCurrencyCode'
-  ) { // # aka rule 3
-    const path = property.XPath.split('/');
-    const parent = path[path.length - 2];
+  }
+  const path = property.XPath.split('/');
+  const parent = path[path.length - 2];
+
+  if ([
+    'ActiveOrHistoricCurrencyCode',
+    'CurrencyCode',
+  ].includes(type)) { // # aka rule 3
     return `${parent}_${type}`;
-  } else if (type === 'ActiveOrHistoricCurrencyAndAmount') { // # aka rule 4
-    const path = property.XPath.split('/');
-    const parent = path[path.length - 2];
+  } else if ([
+    'ActiveOrHistoricCurrencyAndAmount',
+    'PhoneNumber',
+  ].includes(type)) { // # aka rule 4
     return `${parent}_${name}_${type}`;
   }
   return type;
@@ -143,36 +146,58 @@ const arrayProperty = (ref, p, isoDescription) => {
   return obj;
 };
 
-const refPlusDescription = (ref, p, isoDescription) => ({
-  allOf: [
-    ref,
-    descriptionFor(p, isoDescription),
-  ],
-});
+const topLevelFilter = row => row.XPath.split('/').length === 2;
 
-const propertyRef = (klass, p, isoDescription) => {
+const nextLevelPattern = p => new RegExp(`^${p.XPath}/[^/]+$`);
+
+const nextLevelFilter = p => row => row.XPath.match(nextLevelPattern(p));
+
+const refPlusDescription = (ref, property, isoDescription, rows) => {
+  const obj = {
+    allOf: [
+      ref,
+      descriptionFor(property, isoDescription),
+    ],
+  };
+  if (embedDescription(property.Class)) {
+    const list = rows.filter(nextLevelFilter(property));
+    const ids = list.filter(p => p.Name === 'Identification');
+    const names = list.filter(p => p.Name === 'Name');
+    const ids2 = list.filter(p => p.Name === 'SecondaryIdentification');
+    if (ids.length > 0 || names.length > 0 || ids2.length > 0) {
+      const properties = {};
+      if (ids.length > 0) { properties.Identification = descriptionFor(ids[0]); }
+      if (names.length > 0) { properties.Name = descriptionFor(names[0]); }
+      if (ids2.length > 0) { properties.SecondaryIdentification = descriptionFor(ids2[0]); }
+      obj.allOf.push({ properties });
+    }
+  }
+  return obj;
+};
+
+const propertyRef = (klass, p, isoDescription, rows) => {
   const ref = { $ref: `#/definitions/${klass}` };
   if (isArray(p)) {
     return arrayProperty(ref, p);
   } else if (embedDescription(klass)) {
-    return refPlusDescription(ref, p, isoDescription);
+    return refPlusDescription(ref, p, isoDescription, rows);
   }
   return ref;
 };
 
-const propertyDef = (p, childSchemas, separateDefinitions, isoDescription) => {
+const propertyDef = (p, childSchemas, separateDefinitions, isoDescription, rows) => {
   const klass = classFor(p);
   if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
-    return propertyRef(klass, p, isoDescription);
+    return propertyRef(klass, p, isoDescription, rows);
   }
   const schema = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
   return Object.values(schema)[0]; // eslint-disable-line
 };
 
-const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription) => {
+const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription, rows) => {
   const obj = {};
   list.forEach((p) => {
-    obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions, isoDescription);
+    obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions, isoDescription, rows);
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
     const newObj = assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
@@ -224,12 +249,6 @@ const patternFor = (property) => {
   return null;
 };
 
-const topLevelFilter = row => row.XPath.split('/').length === 2;
-
-const nextLevelPattern = p => new RegExp(`^${p.XPath}/[^/]+$`);
-
-const nextLevelFilter = p => row => row.XPath.match(nextLevelPattern(p));
-
 const detailPermissionProperties = (permissions, property, properties) => {
   const list = (permissions && permissions.filter(p => p.XPath.startsWith(property.XPath))) || [];
   const detailXPaths = list.map(p => p.XPath);
@@ -244,11 +263,12 @@ const mandatoryForKey = (key) => {
   return [];
 };
 
-const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions, isoDescription) => ({
+const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions, isoDescription, rows) => ({ // eslint-disable-line
   allOf: [
     { $ref: `#/definitions/${key}Basic` },
     {
-      properties: propertiesObj(detailProperties, key, null, separateDefinitions, isoDescription),
+      properties:
+        propertiesObj(detailProperties, key, null, separateDefinitions, isoDescription, rows),
     },
   ],
 });
@@ -303,9 +323,9 @@ const makeSchema = (
   assign(schema, { type });
   if (type === 'object') {
     if (detailProperties.length > 0) {
-      assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions, isoDescription)); // eslint-disable-line
+      assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions, isoDescription, rows)); // eslint-disable-line
     } else {
-      const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions, isoDescription); // eslint-disable-line
+      const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions, isoDescription, rows); // eslint-disable-line
       assign(schema, { properties: childProperties });
       if (requiredProp(properties, key).length > 0) {
         assign(schema, { required: requiredProp(properties, key) });
@@ -334,12 +354,12 @@ const makeSchema = (
     const baseSchema = Object.values(base[0])[0];
     const detailKeys = Object.keys(schema.allOf[1].properties);
     detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
-    cacheProperty(property, { key: `${key}Basic` }, propertiesCache.defined);
+    cacheProperty(property, `${key}Basic`, propertiesCache.defined);
     schemas.push({ [`${key}Basic`]: baseSchema });
     delete obj[key].type; // type is on base schema
     delete obj[key].description; // description is on base schema
     schemas.push(obj);
-    cacheProperty(property, { key: `${key}Detail` }, propertiesCache.defined);
+    cacheProperty(property, `${key}Detail`, propertiesCache.defined);
     schemas.push(makeDetailSchema(key));
   } else {
     obj.property = property;
@@ -452,18 +472,13 @@ const deleteWhenDescriptionErrors2 = (propertiesCache, outdir) => {
     .map(p => p.key)
     .filter(k => !commonTypes.includes(k))
     .map(k => schemaFile(k, outdir));
-  const schemas = uniq(outfiles).map((file) => {
-    // console.log(`file: ${file}`);
-    const text = normalizeText(Buffer.from(fs.readFileSync(file, 'utf8')).toString());
-    if (file.indexOf('OBAccount2Basic') !== -1) {
-      console.log(text);
-    }
-    return text;
-  });
+  const schemas = uniq(outfiles).map(file =>
+    normalizeText(Buffer.from(fs.readFileSync(file, 'utf8')).toString()));
+
   propertiesCache.all.forEach((p) => {
     const description = normalizeText(p.description);
     const matches = schemas.filter(s => s.indexOf(description) !== -1);
-    if (matches.length === 0) {
+    if (matches.length === 0 && p.key !== 'OBRisk2') {
       throw new Error(`no match for: \n${description}\n ${JSON.stringify(p)}`);
     }
   });

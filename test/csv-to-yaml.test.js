@@ -290,7 +290,7 @@ describe('makeSchema adds Amount to ActiveOrHistoricCurrencyAndAmount', () => {
   const schema = Object.values(schemaObject)[0];
 
   it('with key prefixed by XPath Amount parent', () =>
-    assert.equal(Object.keys(schemaObject)[0], `Balance_${amountInput[0].Class}`));
+    assert.equal(Object.keys(schemaObject)[0], `Balance_Amount_${amountInput[0].Class}`));
 
   it('with correct type', () =>
     assert.equal(schema.type, 'object'));

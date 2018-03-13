@@ -148,10 +148,20 @@ const accountSchema = YAML.parse(`
             allOf:
               - $ref: '#/definitions/OBCashAccount1'
               - description: Provides the details to identify an account.
+              - properties:
+                  Identification:
+                    description: "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+                  Name:
+                    description: "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+                  SecondaryIdentification:
+                    description: "This is secondary identification of the account, as assigned by the account servicing institution. \\nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
           Servicer:
             allOf:
               - $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification2'
               - description: Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.
+              - properties:
+                  Identification:
+                    description: Unique and unambiguous identification of the servicing institution.
 `);
 
 const cashAccountSchema = YAML.parse(`
