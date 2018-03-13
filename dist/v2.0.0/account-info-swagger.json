@@ -1842,6 +1842,9 @@
       "description": "Amount of money to be transferred between debtor and creditor, before deduction of charges, expressed in the currency of the debtor's account, and to be transferred in a different currency. \nUsage : Currency of the amount is expressed in the currency of the debtor's account, but the amount to be transferred is in another currency. The first agent will convert the amount and currency to the to be transferred amount and currency, eg, 'pay equivalent of 100000 EUR in JPY'(and account is in EUR).",
       "type": "object",
       "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        },
         "Currency": {
           "description": "Code allocated to a currency, by a maintenance agency, under an international identification scheme as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\". Valid currency codes are registered with the ISO 4217 Maintenance Agency, and consist of three contiguous letters.",
           "type": "string",
@@ -1849,6 +1852,7 @@
         }
       },
       "required": [
+        "Amount",
         "Currency"
       ],
       "additionalProperties": false

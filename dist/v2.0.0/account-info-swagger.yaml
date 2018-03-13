@@ -1016,6 +1016,8 @@ definitions:
       JPY'(and account is in EUR).
     type: object
     properties:
+      Amount:
+        $ref: '#/definitions/Amount'
       Currency:
         description: >-
           Code allocated to a currency, by a maintenance agency, under an
@@ -1026,6 +1028,7 @@ definitions:
         type: string
         pattern: '^[A-Z]{3,3}$'
     required:
+      - Amount
       - Currency
     additionalProperties: false
   OBAccount2:
