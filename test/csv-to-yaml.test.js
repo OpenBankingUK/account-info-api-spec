@@ -2,7 +2,7 @@ const assert = require('assert');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 const { checkSchema } = require('./def-to-swagger.test');
 const {
-  convertRows, makeSchema, classFor, typeFor,
+  convertRows, makeSchema, classFor, typeFor, formatFor,
 } = require('../inputs/csv-to-yaml.js');
 
 const input = [
@@ -164,6 +164,30 @@ describe('given property with Class xs:string', () => {
 
   it('typeFor returns string', () =>
     assert.equal(typeFor(property), 'string'));
+});
+
+describe('given property with Class PhoneNumber and Pattern', () => {
+  const property = { Name: 'Phone', Class: 'PhoneNumber', Pattern: '\\+[0-9]{1,3}-[0-9()+\\-]{1,30}' };
+
+  it('typeFor returns string', () =>
+    assert.equal(typeFor(property), 'string'));
+});
+
+describe('given property with Class Number and FractionDigits 0', () => {
+  const property = { Name: 'Value', Class: 'Number', FractionDigits: '0' };
+
+  it('typeFor returns integer', () =>
+    assert.equal(typeFor(property), 'integer'));
+
+  it('formatFor returns int32', () =>
+    assert.equal(formatFor(property), 'int32'));
+});
+
+describe('given property with Class Number and FractionDigits 2', () => {
+  const property = { Name: 'Value', Class: 'Number', FractionDigits: '2' };
+
+  it('typeFor returns number', () =>
+    assert.equal(typeFor(property), 'number'));
 });
 
 describe('makeSchema creates codes schema', () => {

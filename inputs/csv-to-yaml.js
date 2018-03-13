@@ -63,15 +63,23 @@ const classFor = (property) => {
 const typeFor = (property) => {
   const type = property.Class;
   if (type && (
-    type === 'ISODateTime' ||
-    type === 'xs:string' ||
-    type === 'xs:ID' ||
+    [
+      'ISODateTime',
+      'xs:string',
+      'xs:ID',
+      'PhoneNumber',
+    ].includes(type) ||
     type.endsWith('Text') ||
     type.endsWith('Code')
   )) {
     return 'string';
   } else if (type === 'xs:boolean') {
     return 'boolean';
+  } else if (type === 'Number') {
+    if (property.FractionDigits === '0') {
+      return 'integer';
+    }
+    return 'number';
   }
   return 'object';
 };
@@ -96,6 +104,8 @@ const minOccurrenceFor = (property) => {
 const formatFor = (property) => {
   if (property.Class === 'ISODateTime') {
     return { format: 'date-time' };
+  } else if (property.Class === 'Number' && property.FractionDigits === '0') {
+    return 'int32';
   }
   return null;
 };
@@ -331,6 +341,13 @@ const makeSchema = (
       assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions, isoDescription, rows)); // eslint-disable-line
     } else {
       const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions, isoDescription, rows); // eslint-disable-line
+      if (Object.keys(childProperties).length === 0 &&
+        !property.Class.startsWith('OBRisk') &&
+        !property.Class.startsWith('OBPCAData') &&
+        !property.Class.startsWith('OBBCAData')
+      ) {
+        throw new Error(`Invalid "object" as no properties: ${JSON.stringify(property)}`);
+      }
       assign(schema, { properties: childProperties });
       if (requiredProp(properties, key).length > 0) {
         assign(schema, { required: requiredProp(properties, key) });
@@ -512,3 +529,4 @@ exports.convertCSVs = convertCSVs;
 exports.convertRows = convertRows;
 exports.classFor = classFor;
 exports.typeFor = typeFor;
+exports.formatFor = formatFor;
