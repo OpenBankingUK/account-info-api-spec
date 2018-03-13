@@ -190,14 +190,19 @@ const propertyDef = (p, childSchemas, separateDefinitions, isoDescription, rows)
   if (useSeparateDefinition(p.Class, p.Name, separateDefinitions) || !childSchemas) {
     return propertyRef(klass, p, isoDescription, rows);
   }
-  const schema = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
-  return Object.values(schema)[0]; // eslint-disable-line
+  const schemaObj = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
+  const schema = Object.values(schemaObj)[0];
+  return schema;
 };
 
 const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription, rows) => {
   const obj = {};
   list.forEach((p) => {
-    obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions, isoDescription, rows);
+    const schema = propertyDef(p, childSchemas, separateDefinitions, isoDescription, rows);
+    if (embedDescription(key)) {
+      delete schema.description;
+    }
+    obj[p.Name] = schema;
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
     const newObj = assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);

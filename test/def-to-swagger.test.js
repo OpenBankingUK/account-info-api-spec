@@ -171,17 +171,14 @@ const cashAccountSchema = YAML.parse(`
       SchemeName:
         $ref: '#/definitions/OBExternalAccountIdentification2Code'
       Identification:
-        description: "Identification assigned by an institution to identify an account. This identification is known by the account owner."
         maxLength: 34
         minLength: 1
         type: string
       Name:
-        description: "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
         maxLength: 70
         minLength: 1
         type: string
       SecondaryIdentification:
-        description: "This is secondary identification of the account, as assigned by the account servicing institution. \\nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
         maxLength: 34
         minLength: 1
         type: string
