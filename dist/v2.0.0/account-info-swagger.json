@@ -1874,6 +1874,13 @@
                 },
                 {
                   "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Unique and unambiguous identification of the servicing institution."
+                    }
+                  }
                 }
               ]
             }
@@ -1993,6 +2000,19 @@
                 },
                 {
                   "description": "Provides the details to identify the beneficiary account."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
                 }
               ]
             }
@@ -2035,7 +2055,6 @@
           "$ref": "#/definitions/OBExternalFinancialInstitutionIdentification2Code"
         },
         "Identification": {
-          "description": "Unique and unambiguous identification of a financial institution or a branch of a financial institution.",
           "type": "string",
           "minLength": 1,
           "maxLength": 35
@@ -2079,19 +2098,16 @@
           "$ref": "#/definitions/OBExternalAccountIdentification2Code"
         },
         "Identification": {
-          "description": "Beneficiary account identification.",
           "type": "string",
           "minLength": 1,
           "maxLength": 34
         },
         "Name": {
-          "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
           "type": "string",
           "minLength": 1,
           "maxLength": 70
         },
         "SecondaryIdentification": {
-          "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
           "type": "string",
           "minLength": 1,
           "maxLength": 34
@@ -2110,19 +2126,16 @@
           "$ref": "#/definitions/OBExternalAccountIdentification3Code"
         },
         "Identification": {
-          "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
           "type": "string",
           "minLength": 1,
           "maxLength": 34
         },
         "Name": {
-          "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
           "type": "string",
           "minLength": 1,
           "maxLength": 70
         },
         "SecondaryIdentification": {
-          "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).",
           "type": "string",
           "minLength": 1,
           "maxLength": 34
@@ -2658,7 +2671,7 @@
           "additionalProperties": false
         },
         "Fee": {
-          "description": "Amount of money associated with the offer type.",
+          "description": "Fee associated with the offer type.",
           "type": "object",
           "properties": {
             "Amount": {
@@ -2685,9 +2698,8 @@
         },
         "Value": {
           "description": "Value associated with the offer type.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
+          "type": "integer",
+          "format": "int32"
         },
         "Term": {
           "description": "Further details of the term of the offer.",
@@ -2739,16 +2751,12 @@
         },
         "Phone": {
           "description": "Collection of information that identifies a phone number, as defined by telecom services.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false,
+          "type": "string",
           "pattern": "\\+[0-9]{1,3}-[0-9()+\\-]{1,30}"
         },
         "Mobile": {
-          "description": "Collection of information that identifies a phone number, as defined by telecom services.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false,
+          "description": "Collection of information that identifies a mobile phone number, as defined by telecom services.",
+          "type": "string",
           "pattern": "\\+[0-9]{1,3}-[0-9()+\\-]{1,30}"
         },
         "Address": {
@@ -3276,6 +3284,13 @@
                 },
                 {
                   "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.\nThis is the servicer of the beneficiary account."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Unique and unambiguous identification of the servicing institution."
+                    }
+                  }
                 }
               ]
             },
@@ -3286,6 +3301,19 @@
                 },
                 {
                   "description": "Provides the details to identify the beneficiary account."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Beneficiary account identification."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
                 }
               ]
             }
@@ -3368,6 +3396,13 @@
                 },
                 {
                   "description": "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.\nThis is the servicer of the beneficiary account."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Unique and unambiguous identification of the servicing institution."
+                    }
+                  }
                 }
               ]
             },
@@ -3378,6 +3413,19 @@
                 },
                 {
                   "description": "Provides the details to identify the beneficiary account."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Beneficiary account identification."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
                 }
               ]
             }
@@ -3440,7 +3488,7 @@
           "format": "date-time"
         },
         "NextPaymentAmount": {
-          "description": "The amount of the first Standing Order",
+          "description": "The amount of the next Standing Order",
           "type": "object",
           "properties": {
             "Amount": {
@@ -3464,7 +3512,7 @@
           "format": "date-time"
         },
         "FinalPaymentAmount": {
-          "description": "The amount of the first Standing Order",
+          "description": "The amount of the final Standing Order",
           "type": "object",
           "properties": {
             "Amount": {
@@ -3557,10 +3605,14 @@
           "format": "date-time"
         },
         "StatementDescription": {
-          "description": "Other descriptions that may be available for the statement resource.",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 500
+          "items": {
+            "description": "Other descriptions that may be available for the statement resource.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "type": "array",
+          "description": "Other descriptions that may be available for the statement resource."
         },
         "StatementBenefit": {
           "items": {
@@ -3832,9 +3884,8 @@
       "properties": {
         "Value": {
           "description": "Value associated with the statement value type.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
+          "type": "integer",
+          "format": "int32"
         },
         "Type": {
           "$ref": "#/definitions/OBExternalStatementValueType1Code"
@@ -3869,6 +3920,19 @@
                 },
                 {
                   "description": "Unambiguous identification of the account of the creditor, in the case of a debit transaction."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.\nOB: No name validation is expected for confirmation of payee."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
                 }
               ]
             },
@@ -3879,6 +3943,19 @@
                 },
                 {
                   "description": "Unambiguous identification of the account of the debtor, in the case of a crebit transaction."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
                 }
               ]
             }
@@ -3906,10 +3983,14 @@
           "maxLength": 35
         },
         "StatementReference": {
-          "description": "Unique reference for the statement. This reference may be optionally populated if available.",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 35
+          "items": {
+            "description": "Unique reference for the statement. This reference may be optionally populated if available.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 35
+          },
+          "type": "array",
+          "description": "Unique reference for the statement. This reference may be optionally populated if available."
         },
         "Amount": {
           "description": "Amount of money in the cash transaction entry.",
@@ -3992,7 +4073,7 @@
               "$ref": "#/definitions/CurrencyAndAmount"
             },
             "CurrencyOfTransfer": {
-              "description": "Code allocated to a currency, by a maintenance agency, under an international identification scheme as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\". Valid currency codes are registered with the ISO 4217 Maintenance Agency, and consist of three contiguous letters.",
+              "description": "Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account.",
               "type": "string",
               "pattern": "^[A-Z]{3,3}$"
             }
@@ -4010,6 +4091,13 @@
             },
             {
               "description": "Financial institution servicing an account for the creditor."
+            },
+            {
+              "properties": {
+                "Identification": {
+                  "description": "Unique and unambiguous identification of a financial institution or a branch of a financial institution."
+                }
+              }
             }
           ]
         },
@@ -4020,6 +4108,13 @@
             },
             {
               "description": "Financial institution servicing an account for the debtor."
+            },
+            {
+              "properties": {
+                "Identification": {
+                  "description": "Unique and unambiguous identification of a financial institution or a branch of a financial institution."
+                }
+              }
             }
           ]
         },

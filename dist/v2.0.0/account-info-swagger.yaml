@@ -1045,6 +1045,11 @@ definitions:
                   that is manages the registration and booking of entries on the
                   account, calculates balances on the account and provides
                   information about the account.
+              - properties:
+                  Identification:
+                    description: >-
+                      Unique and unambiguous identification of the servicing
+                      institution.
   OBAccount2Basic:
     description: >-
       Unambiguous identification of the account to which credit and debit
@@ -1141,6 +1146,32 @@ definitions:
             allOf:
               - $ref: '#/definitions/OBCashAccount1'
               - description: Provides the details to identify the beneficiary account.
+              - properties:
+                  Identification:
+                    description: >-
+                      Identification assigned by an institution to identify an
+                      account. This identification is known by the account
+                      owner.
+                  Name:
+                    description: >-
+                      Name of the account, as assigned by the account servicing
+                      institution, in agreement with the account owner in order
+                      to provide an additional means of identification of the
+                      account.
+
+                      Usage: The account name is different from the account
+                      owner name. The account name is used in certain user
+                      communities to provide a means of identifying the account,
+                      in addition to the account owner's identity and the
+                      account number.
+                  SecondaryIdentification:
+                    description: >-
+                      This is secondary identification of the account, as
+                      assigned by the account servicing institution. 
+
+                      This can be used by building societies to additionally
+                      identify accounts with a roll number (in addition to a
+                      sort code and account number combination).
   OBBeneficiary2Basic:
     type: object
     properties:
@@ -1180,9 +1211,6 @@ definitions:
       SchemeName:
         $ref: '#/definitions/OBExternalFinancialInstitutionIdentification2Code'
       Identification:
-        description: >-
-          Unique and unambiguous identification of a financial institution or a
-          branch of a financial institution.
         type: string
         minLength: 1
         maxLength: 35
@@ -1222,31 +1250,14 @@ definitions:
       SchemeName:
         $ref: '#/definitions/OBExternalAccountIdentification2Code'
       Identification:
-        description: Beneficiary account identification.
         type: string
         minLength: 1
         maxLength: 34
       Name:
-        description: >-
-          Name of the account, as assigned by the account servicing institution,
-          in agreement with the account owner in order to provide an additional
-          means of identification of the account.
-
-          Usage: The account name is different from the account owner name. The
-          account name is used in certain user communities to provide a means of
-          identifying the account, in addition to the account owner's identity
-          and the account number.
         type: string
         minLength: 1
         maxLength: 70
       SecondaryIdentification:
-        description: >-
-          This is secondary identification of the account, as assigned by the
-          account servicing institution. 
-
-          This can be used by building societies to additionally identify
-          accounts with a roll number (in addition to a sort code and account
-          number combination).
         type: string
         minLength: 1
         maxLength: 34
@@ -1260,33 +1271,14 @@ definitions:
       SchemeName:
         $ref: '#/definitions/OBExternalAccountIdentification3Code'
       Identification:
-        description: >-
-          Identification assigned by an institution to identify an account. This
-          identification is known by the account owner.
         type: string
         minLength: 1
         maxLength: 34
       Name:
-        description: >-
-          Name of the account, as assigned by the account servicing institution,
-          in agreement with the account owner in order to provide an additional
-          means of identification of the account.
-
-          Usage: The account name is different from the account owner name. The
-          account name is used in certain user communities to provide a means of
-          identifying the account, in addition to the account owner's identity
-          and the account number.
         type: string
         minLength: 1
         maxLength: 70
       SecondaryIdentification:
-        description: >-
-          This is secondary identification of the account, as assigned by the
-          account servicing institution. 
-
-          This can be used by building societies to additionally identify
-          accounts with a roll number (in addition to a sort code and account
-          number combination).
         type: string
         minLength: 1
         maxLength: 34
@@ -1772,7 +1764,7 @@ definitions:
           2017-04-05T10:43:07+00:00
         type: string
         format: date-time
-      Amount: &ref_0
+      Amount:
         description: Amount of money associated with the offer type.
         type: object
         properties:
@@ -1790,7 +1782,24 @@ definitions:
           - Amount
           - Currency
         additionalProperties: false
-      Fee: *ref_0
+      Fee:
+        description: Fee associated with the offer type.
+        type: object
+        properties:
+          Amount:
+            $ref: '#/definitions/Amount'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
       Rate:
         description: Rate associated with the offer type.
         type: string
@@ -1799,9 +1808,8 @@ definitions:
         pattern: '^(-?\d{1,3}){1}(\.\d{1,4}){0,1}$'
       Value:
         description: Value associated with the offer type.
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: integer
+        format: int32
       Term:
         description: Further details of the term of the offer.
         type: string
@@ -1844,15 +1852,18 @@ definitions:
         type: string
         minLength: 1
         maxLength: 256
-      Phone: &ref_1
+      Phone:
         description: >-
           Collection of information that identifies a phone number, as defined
           by telecom services.
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: string
         pattern: '\+[0-9]{1,3}-[0-9()+\-]{1,30}'
-      Mobile: *ref_1
+      Mobile:
+        description: >-
+          Collection of information that identifies a mobile phone number, as
+          defined by telecom services.
+        type: string
+        pattern: '\+[0-9]{1,3}-[0-9()+\-]{1,30}'
       Address:
         items:
           $ref: '#/definitions/OBPostalAddress8'
@@ -2309,10 +2320,38 @@ definitions:
                   information about the account.
 
                   This is the servicer of the beneficiary account.
+              - properties:
+                  Identification:
+                    description: >-
+                      Unique and unambiguous identification of the servicing
+                      institution.
           CreditorAccount:
             allOf:
               - $ref: '#/definitions/OBCashAccount1'
               - description: Provides the details to identify the beneficiary account.
+              - properties:
+                  Identification:
+                    description: Beneficiary account identification.
+                  Name:
+                    description: >-
+                      Name of the account, as assigned by the account servicing
+                      institution, in agreement with the account owner in order
+                      to provide an additional means of identification of the
+                      account.
+
+                      Usage: The account name is different from the account
+                      owner name. The account name is used in certain user
+                      communities to provide a means of identifying the account,
+                      in addition to the account owner's identity and the
+                      account number.
+                  SecondaryIdentification:
+                    description: >-
+                      This is secondary identification of the account, as
+                      assigned by the account servicing institution. 
+
+                      This can be used by building societies to additionally
+                      identify accounts with a roll number (in addition to a
+                      sort code and account number combination).
   OBScheduledPayment1Basic:
     type: object
     properties:
@@ -2404,10 +2443,38 @@ definitions:
                   information about the account.
 
                   This is the servicer of the beneficiary account.
+              - properties:
+                  Identification:
+                    description: >-
+                      Unique and unambiguous identification of the servicing
+                      institution.
           CreditorAccount:
             allOf:
               - $ref: '#/definitions/OBCashAccount1'
               - description: Provides the details to identify the beneficiary account.
+              - properties:
+                  Identification:
+                    description: Beneficiary account identification.
+                  Name:
+                    description: >-
+                      Name of the account, as assigned by the account servicing
+                      institution, in agreement with the account owner in order
+                      to provide an additional means of identification of the
+                      account.
+
+                      Usage: The account name is different from the account
+                      owner name. The account name is used in certain user
+                      communities to provide a means of identifying the account,
+                      in addition to the account owner's identity and the
+                      account number.
+                  SecondaryIdentification:
+                    description: >-
+                      This is secondary identification of the account, as
+                      assigned by the account servicing institution. 
+
+                      This can be used by building societies to additionally
+                      identify accounts with a roll number (in addition to a
+                      sort code and account number combination).
   OBStandingOrder2Basic:
     description: Account to or from which a cash entry is made.
     type: object
@@ -2511,7 +2578,7 @@ definitions:
           2017-04-05T10:43:07+00:00
         type: string
         format: date-time
-      FirstPaymentAmount: &ref_2
+      FirstPaymentAmount:
         description: The amount of the first Standing Order
         type: object
         properties:
@@ -2543,7 +2610,24 @@ definitions:
           2017-04-05T10:43:07+00:00
         type: string
         format: date-time
-      NextPaymentAmount: *ref_2
+      NextPaymentAmount:
+        description: The amount of the next Standing Order
+        type: object
+        properties:
+          Amount:
+            $ref: '#/definitions/Amount'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
       FinalPaymentDateTime:
         description: >-
           The date on which the final payment for a Standing Order schedule will
@@ -2558,7 +2642,24 @@ definitions:
           2017-04-05T10:43:07+00:00
         type: string
         format: date-time
-      FinalPaymentAmount: *ref_2
+      FinalPaymentAmount:
+        description: The amount of the final Standing Order
+        type: object
+        properties:
+          Amount:
+            $ref: '#/definitions/Amount'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
       StandingOrderStatusCode:
         $ref: '#/definitions/OBExternalStandingOrderStatus1Code'
     required:
@@ -2643,10 +2744,13 @@ definitions:
         type: string
         format: date-time
       StatementDescription:
+        items:
+          description: Other descriptions that may be available for the statement resource.
+          type: string
+          minLength: 1
+          maxLength: 500
+        type: array
         description: Other descriptions that may be available for the statement resource.
-        type: string
-        minLength: 1
-        maxLength: 500
       StatementBenefit:
         items:
           $ref: '#/definitions/OBStatementBenefit1'
@@ -2891,9 +2995,8 @@ definitions:
     properties:
       Value:
         description: Value associated with the statement value type.
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: integer
+        format: int32
       Type:
         $ref: '#/definitions/OBExternalStatementValueType1Code'
     required:
@@ -2916,12 +3019,67 @@ definitions:
               - description: >-
                   Unambiguous identification of the account of the creditor, in
                   the case of a debit transaction.
+              - properties:
+                  Identification:
+                    description: >-
+                      Identification assigned by an institution to identify an
+                      account. This identification is known by the account
+                      owner.
+                  Name:
+                    description: >-
+                      Name of the account, as assigned by the account servicing
+                      institution, in agreement with the account owner in order
+                      to provide an additional means of identification of the
+                      account.
+
+                      Usage: The account name is different from the account
+                      owner name. The account name is used in certain user
+                      communities to provide a means of identifying the account,
+                      in addition to the account owner's identity and the
+                      account number.
+
+                      OB: No name validation is expected for confirmation of
+                      payee.
+                  SecondaryIdentification:
+                    description: >-
+                      This is secondary identification of the account, as
+                      assigned by the account servicing institution. 
+
+                      This can be used by building societies to additionally
+                      identify accounts with a roll number (in addition to a
+                      sort code and account number combination).
           DebtorAccount:
             allOf:
               - $ref: '#/definitions/OBCashAccount2'
               - description: >-
                   Unambiguous identification of the account of the debtor, in
                   the case of a crebit transaction.
+              - properties:
+                  Identification:
+                    description: >-
+                      Identification assigned by an institution to identify an
+                      account. This identification is known by the account
+                      owner.
+                  Name:
+                    description: >-
+                      Name of the account, as assigned by the account servicing
+                      institution, in agreement with the account owner in order
+                      to provide an additional means of identification of the
+                      account.
+
+                      Usage: The account name is different from the account
+                      owner name. The account name is used in certain user
+                      communities to provide a means of identifying the account,
+                      in addition to the account owner's identity and the
+                      account number.
+                  SecondaryIdentification:
+                    description: >-
+                      This is secondary identification of the account, as
+                      assigned by the account servicing institution. 
+
+                      This can be used by building societies to additionally
+                      identify accounts with a roll number (in addition to a
+                      sort code and account number combination).
   OBTransaction2Basic:
     description: Provides further details on an entry in the report.
     type: object
@@ -2944,12 +3102,17 @@ definitions:
         minLength: 1
         maxLength: 35
       StatementReference:
+        items:
+          description: >-
+            Unique reference for the statement. This reference may be optionally
+            populated if available.
+          type: string
+          minLength: 1
+          maxLength: 35
+        type: array
         description: >-
           Unique reference for the statement. This reference may be optionally
           populated if available.
-        type: string
-        minLength: 1
-        maxLength: 35
       Amount:
         description: Amount of money in the cash transaction entry.
         type: object
@@ -3062,12 +3225,8 @@ definitions:
             $ref: '#/definitions/CurrencyAndAmount'
           CurrencyOfTransfer:
             description: >-
-              Code allocated to a currency, by a maintenance agency, under an
-              international identification scheme as described in the latest
-              edition of the international standard ISO 4217 "Codes for the
-              representation of currencies and funds". Valid currency codes are
-              registered with the ISO 4217 Maintenance Agency, and consist of
-              three contiguous letters.
+              Specifies the currency of the to be transferred amount, which is
+              different from the currency of the debtor's account.
             type: string
             pattern: '^[A-Z]{3,3}$'
         required:
@@ -3078,10 +3237,20 @@ definitions:
         allOf:
           - $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification2'
           - description: Financial institution servicing an account for the creditor.
+          - properties:
+              Identification:
+                description: >-
+                  Unique and unambiguous identification of a financial
+                  institution or a branch of a financial institution.
       DebtorAgent:
         allOf:
           - $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification2'
           - description: Financial institution servicing an account for the debtor.
+          - properties:
+              Identification:
+                description: >-
+                  Unique and unambiguous identification of a financial
+                  institution or a branch of a financial institution.
       CardInstrument:
         $ref: '#/definitions/OBTransactionCardInstrument1'
     required:
