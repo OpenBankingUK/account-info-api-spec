@@ -2,7 +2,7 @@ const parse = require('csv-parse/lib/sync'); // eslint-disable-line
 const fs = require('fs');
 const flatten = require('flatten');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
-const uniq = require('lodash/array/uniq');
+const uniq = require('lodash/array/uniq'); // eslint-disable-line
 
 const commonTypes = [ // eslint-disable-line
   'OBRisk2',
@@ -19,7 +19,12 @@ const embedDescription = klass =>
     'OBCashAccount2',
   ].includes(klass);
 
-const assign = (schema, obj) => Object.assign(schema, obj);
+const assign = (schema, obj) => {
+  if (obj) {
+    Object.assign(schema, obj);
+  }
+  return schema;
+};
 
 const classFor = (property) => {
   const type = property.Class;
@@ -104,7 +109,7 @@ const descriptionFor = (property, isoDescription) => {
 };
 
 const itemsFor = (property, isoDescription) => ({
-  items: assign(
+  items: Object.assign(
     descriptionFor(property, isoDescription),
     { type: 'string' },
     enumFor(property),
@@ -131,9 +136,7 @@ const arrayProperty = (ref, p, isoDescription) => {
     items: ref,
     type: 'array',
   };
-  if (descriptionFor(p, isoDescription)) {
-    assign(obj, descriptionFor(p, isoDescription));
-  }
+  assign(obj, descriptionFor(p, isoDescription));
   if (minOccurrenceFor(p)) {
     assign(obj, { minItems: minOccurrenceFor(p) });
   }
@@ -172,7 +175,8 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDes
     obj[p.Name] = propertyDef(p, childSchemas, separateDefinitions, isoDescription);
   });
   if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
-    return assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
+    const newObj = assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
+    return newObj;
   }
   return obj;
 };
@@ -192,7 +196,7 @@ const maxPattern = /Max(\d+)\D/;
 const maxLengthFor = (property) => {
   const maxMatch = maxPattern.exec(property.Class);
   if (maxMatch) {
-    return parseInt(maxMatch[1], 10);
+    return { maxLength: parseInt(maxMatch[1], 10) };
   }
   return null;
 };
@@ -201,10 +205,13 @@ const minPattern = /Min(\d+)\D/;
 
 const minLengthFor = (property) => {
   const minMatch = minPattern.exec(property.Class);
-  if (minMatch) {
-    return parseInt(minMatch[1], 10);
+  if (maxLengthFor(property)) {
+    if (minMatch) {
+      return { minLength: parseInt(minMatch[1], 10) };
+    }
+    return { minLength: 1 };
   }
-  return 1;
+  return null;
 };
 
 const patternFor = (property) => {
@@ -316,18 +323,10 @@ const makeSchema = (
       minProperties: minOccurrenceFor(property),
     });
   }
-  if (maxLengthFor(property)) {
-    assign(schema, {
-      minLength: minLengthFor(property),
-      maxLength: maxLengthFor(property),
-    });
-  }
-  if (formatFor(property)) {
-    assign(schema, formatFor(property));
-  }
-  if (patternFor(property)) {
-    assign(schema, patternFor(property));
-  }
+  assign(schema, minLengthFor(property));
+  assign(schema, maxLengthFor(property));
+  assign(schema, formatFor(property));
+  assign(schema, patternFor(property));
   obj[key] = schema;
   const schemas = [];
   if (schema.allOf) {
