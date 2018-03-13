@@ -105,7 +105,7 @@ const formatFor = (property) => {
   if (property.Class === 'ISODateTime') {
     return { format: 'date-time' };
   } else if (property.Class === 'Number' && property.FractionDigits === '0') {
-    return 'int32';
+    return { format: 'int32' };
   }
   return null;
 };

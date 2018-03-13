@@ -180,7 +180,7 @@ describe('given property with Class Number and FractionDigits 0', () => {
     assert.equal(typeFor(property), 'integer'));
 
   it('formatFor returns int32', () =>
-    assert.equal(formatFor(property), 'int32'));
+    assert.equal(formatFor(property).format, 'int32'));
 });
 
 describe('given property with Class Number and FractionDigits 2', () => {
