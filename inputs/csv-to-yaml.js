@@ -60,6 +60,8 @@ const classFor = (property) => {
   return type;
 };
 
+const isArray = p => p.Occurrence && p.Occurrence.endsWith('..n');
+
 const typeFor = (property) => {
   const type = property.Class;
   if (type && (
@@ -142,8 +144,6 @@ const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
     klass !== 'ActiveOrHistoricCurrencyAndAmount'
   );
 
-const isArray = p => p.Occurrence && p.Occurrence.endsWith('..n');
-
 const arrayProperty = (ref, p, isoDescription) => {
   const obj = {
     items: ref,
@@ -202,6 +202,10 @@ const propertyDef = (p, childSchemas, separateDefinitions, isoDescription, rows)
   }
   const schemaObj = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
   const schema = Object.values(schemaObj)[0];
+  if (isArray(p)) {
+    const arraySchema = arrayProperty(schema, p, isoDescription);
+    return arraySchema;
+  }
   return schema;
 };
 
