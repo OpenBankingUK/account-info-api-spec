@@ -262,6 +262,14 @@ const makeDetailSchema = (key) => {
   return detail;
 };
 
+const cacheProperty = (property, key, cache) => {
+  if (cache) {
+    cache.push({
+      xpath: property.XPath, key, description: property.EnhancedDefinition,
+    });
+  }
+};
+
 const makeSchema = (
   property, rows, propertyFilter, permissions,
   separateDefinitions, isoDescription, propertiesCache = {},
@@ -271,18 +279,11 @@ const makeSchema = (
   const detailProperties = detailPermissionProperties(permissions, property, properties);
   const schema = {};
   const key = classFor(property);
-  if (propertiesCache.all) {
-    propertiesCache.all.push({
-      xpath: property.XPath, key, description: property.EnhancedDefinition,
-    }); // eslint-disable-line
-  }
+  cacheProperty(property, key, propertiesCache.all);
+
   if (useSeparateDefinition(property.Class, property.Name, separateDefinitions)
     && !embedDescription(key)) {
-    if (propertiesCache.defined) {
-      propertiesCache.defined.push({
-        xpath: property.XPath, key, description: property.EnhancedDefinition,
-      }); // eslint-disable-line
-    }
+    cacheProperty(property, key, propertiesCache.defined);
   }
   const type = typeFor(property);
 
@@ -334,16 +335,12 @@ const makeSchema = (
     const baseSchema = Object.values(base[0])[0];
     const detailKeys = Object.keys(schema.allOf[1].properties);
     detailKeys.forEach((k) => { delete baseSchema.properties[k]; });
-    propertiesCache.defined.push({
-      xpath: property.XPath, key: `${key}Basic`, description: property.EnhancedDefinition,
-    }); // eslint-disable-line
+    cacheProperty(property, { key: `${key}Basic` }, propertiesCache.defined);
     schemas.push({ [`${key}Basic`]: baseSchema });
     delete obj[key].type; // type is on base schema
     delete obj[key].description; // description is on base schema
     schemas.push(obj);
-    propertiesCache.defined.push({
-      xpath: property.XPath, key: `${key}Detail`, description: property.EnhancedDefinition,
-    }); // eslint-disable-line
+    cacheProperty(property, { key: `${key}Detail` }, propertiesCache.defined);
     schemas.push(makeDetailSchema(key));
   } else {
     obj.property = property;
