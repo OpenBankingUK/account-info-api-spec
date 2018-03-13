@@ -209,6 +209,12 @@ const propertyDef = (p, childSchemas, separateDefinitions, isoDescription, rows)
   return schema;
 };
 
+const missingAmount = key =>
+  key && (
+    key.endsWith('ActiveOrHistoricCurrencyAndAmount') ||
+    key.endsWith('CurrencyAndAmount')
+  );
+
 const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription, rows) => {
   const obj = {};
   list.forEach((p) => {
@@ -218,7 +224,7 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDes
     }
     obj[p.Name] = schema;
   });
-  if (key && key.endsWith('ActiveOrHistoricCurrencyAndAmount') && !obj.Amount) {
+  if (missingAmount(key) && !obj.Amount) {
     const newObj = assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
     return newObj;
   }
@@ -228,8 +234,7 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDes
 const requiredProp = (list, key) => {
   const required = list.filter(p => !p.Occurrence.startsWith('0'));
   const requiredList = required.map(p => p.Name);
-  if (key.endsWith('ActiveOrHistoricCurrencyAndAmount') &&
-    !requiredList.includes('Amount')) {
+  if (missingAmount(key) && !requiredList.includes('Amount')) {
     return ['Amount'].concat(requiredList);
   }
   return requiredList;
@@ -392,7 +397,7 @@ const makeSchema = (
     schemas.push(obj);
   }
   schemas.push(childSchemas);
-  if (key.endsWith('ActiveOrHistoricCurrencyAndAmount')) {
+  if (missingAmount(key)) {
     schemas.push({
       Amount: {
         type: 'string',
