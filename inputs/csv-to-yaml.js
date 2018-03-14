@@ -144,18 +144,6 @@ const useSeparateDefinition = (klass, name, separateDefinitions = []) =>
     klass !== 'ActiveOrHistoricCurrencyAndAmount'
   );
 
-const arrayProperty = (ref, p, isoDescription) => {
-  const obj = {
-    items: ref,
-    type: 'array',
-  };
-  assign(obj, descriptionFor(p, isoDescription));
-  if (minOccurrenceFor(p)) {
-    assign(obj, { minItems: minOccurrenceFor(p) });
-  }
-  return obj;
-};
-
 const topLevelFilter = row => row.XPath.split('/').length === 2;
 
 const nextLevelPattern = p => new RegExp(`^${p.XPath}/[^/]+$`);
@@ -185,10 +173,26 @@ const refPlusDescription = (ref, property, isoDescription, rows) => {
   return obj;
 };
 
+const arrayProperty = (ref, p, isoDescription, klass, rows) => {
+  const obj = { };
+
+  if (embedDescription(klass)) {
+    assign(obj, { items: refPlusDescription(ref, p, isoDescription, rows) });
+  } else {
+    assign(obj, { items: ref });
+  }
+  assign(obj, { type: 'array' });
+  assign(obj, descriptionFor(p, isoDescription));
+  if (minOccurrenceFor(p)) {
+    assign(obj, { minItems: minOccurrenceFor(p) });
+  }
+  return obj;
+};
+
 const propertyRef = (klass, p, isoDescription, rows) => {
   const ref = { $ref: `#/definitions/${klass}` };
   if (isArray(p)) {
-    return arrayProperty(ref, p);
+    return arrayProperty(ref, p, isoDescription, klass, rows);
   } else if (embedDescription(klass)) {
     return refPlusDescription(ref, p, isoDescription, rows);
   }
@@ -203,7 +207,7 @@ const propertyDef = (p, childSchemas, separateDefinitions, isoDescription, rows)
   const schemaObj = childSchemas.filter(s => Object.keys(s)[0] === klass)[0];
   const schema = Object.values(schemaObj)[0];
   if (isArray(p)) {
-    const arraySchema = arrayProperty(schema, p, isoDescription);
+    const arraySchema = arrayProperty(schema, p, isoDescription, klass, rows);
     return arraySchema;
   }
   return schema;
