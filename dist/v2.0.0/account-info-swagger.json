@@ -2949,10 +2949,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -2975,10 +2983,18 @@
             "Balance"
           ],
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -2996,10 +3012,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3088,10 +3112,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3109,10 +3141,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3127,10 +3167,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3148,10 +3196,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3179,11 +3235,19 @@
         },
         "Risk": {
           "$ref": "#/definitions/OBRisk2"
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
         "Data",
-        "Risk"
+        "Risk",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3201,10 +3265,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3223,10 +3295,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3245,10 +3325,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },
@@ -3267,10 +3355,18 @@
             }
           },
           "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
-        "Data"
+        "Data",
+        "Links",
+        "Meta"
       ],
       "additionalProperties": false
     },

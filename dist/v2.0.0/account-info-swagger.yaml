@@ -2032,8 +2032,14 @@ definitions:
               Unambiguous identification of the account to which credit and
               debit entries are made.
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadBalance1:
     type: object
@@ -2050,8 +2056,14 @@ definitions:
         required:
           - Balance
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadBeneficiary2:
     type: object
@@ -2064,8 +2076,14 @@ definitions:
               $ref: '#/definitions/OBBeneficiary2'
             type: array
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadData1:
     type: object
@@ -2185,8 +2203,14 @@ definitions:
             type: array
             description: Account to or from which a cash entry is made.
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadOffer1:
     type: object
@@ -2199,8 +2223,14 @@ definitions:
               $ref: '#/definitions/OBOffer1'
             type: array
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadParty1:
     type: object
@@ -2211,8 +2241,14 @@ definitions:
           Party:
             $ref: '#/definitions/OBParty1'
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadProduct2:
     type: object
@@ -2225,8 +2261,14 @@ definitions:
               $ref: '#/definitions/OBProduct2'
             type: array
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadRequest1:
     type: object
@@ -2246,9 +2288,15 @@ definitions:
         $ref: '#/definitions/OBReadDataResponse1'
       Risk:
         $ref: '#/definitions/OBRisk2'
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
       - Risk
+      - Links
+      - Meta
     additionalProperties: false
   OBReadScheduledPayment1:
     type: object
@@ -2261,8 +2309,14 @@ definitions:
               $ref: '#/definitions/OBScheduledPayment1'
             type: array
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadStandingOrder2:
     type: object
@@ -2276,8 +2330,14 @@ definitions:
             type: array
             description: Account to or from which a cash entry is made.
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadStatement1:
     type: object
@@ -2291,8 +2351,14 @@ definitions:
             type: array
             description: Provides further details on a statement resource.
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBReadTransaction2:
     type: object
@@ -2306,8 +2372,14 @@ definitions:
             type: array
             description: Provides further details on an entry in the report.
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
   OBScheduledPayment1:
     allOf:
