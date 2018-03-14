@@ -215,6 +215,11 @@ const missingAmount = key =>
     key.endsWith('CurrencyAndAmount')
   );
 
+const addMetaLinks = key =>
+  key.startsWith('OBRead') &&
+  !key.startsWith('OBReadData') &&
+  !key.startsWith('OBReadRequest');
+
 const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription, rows) => {
   const obj = {};
   list.forEach((p) => {
@@ -224,6 +229,10 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDes
     }
     obj[p.Name] = schema;
   });
+  if (addMetaLinks(key)) {
+    obj.Links = { $ref: '#/definitions/Links' };
+    obj.Meta = { $ref: '#/definitions/Meta' };
+  }
   if (missingAmount(key) && !obj.Amount) {
     const newObj = assign({ Amount: { $ref: '#/definitions/Amount' } }, obj);
     return newObj;
@@ -234,6 +243,10 @@ const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDes
 const requiredProp = (list, key) => {
   const required = list.filter(p => !p.Occurrence.startsWith('0'));
   const requiredList = required.map(p => p.Name);
+  if (addMetaLinks(key)) {
+    requiredList.push('Links');
+    requiredList.push('Meta');
+  }
   if (missingAmount(key) && !requiredList.includes('Amount')) {
     return ['Amount'].concat(requiredList);
   }

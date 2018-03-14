@@ -134,8 +134,14 @@ const payloadSchema = YAML.parse(`
             items:
               $ref: '#/definitions/OBAccount1'
         additionalProperties: false
+      Links:
+        $ref: '#/definitions/Links'
+      Meta:
+        $ref: '#/definitions/Meta'
     required:
       - Data
+      - Links
+      - Meta
     additionalProperties: false
 `);
 
