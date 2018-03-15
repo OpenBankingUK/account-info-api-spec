@@ -2972,12 +2972,7 @@
         "AnnualPurchasePromo",
         "MonthlyBalanceTransfer",
         "MonthlyCash",
-        "MonthlyPurchase",
-        "code_6",
-        "code_7",
-        "code_8",
-        "code_9",
-        "n"
+        "MonthlyPurchase"
       ]
     },
     "OBExternalStatementType1Code": {

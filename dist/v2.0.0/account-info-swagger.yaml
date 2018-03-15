@@ -2043,11 +2043,6 @@ definitions:
       - MonthlyBalanceTransfer
       - MonthlyCash
       - MonthlyPurchase
-      - code_6
-      - code_7
-      - code_8
-      - code_9
-      - 'n'
   OBExternalStatementType1Code:
     description: 'Statement type, in a coded form.'
     type: string
