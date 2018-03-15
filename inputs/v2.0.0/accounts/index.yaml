@@ -102,6 +102,49 @@ paths:
   /statements:
     - $ref: ./paths/GetStatements.yaml
 
+parameters:
+  - $ref: ./parameters/AcceptParam.yaml
+  - $ref: ./parameters/AccountIdParam.yaml
+  - $ref: ./parameters/AccountRequestIdParam.yaml
+  - $ref: ./parameters/FromBookingDateTimeParam.yaml
+  - $ref: ./parameters/OBReadRequest1Param.yaml
+  - $ref: ./parameters/StatementIdParam.yaml
+  - $ref: ./parameters/ToBookingDateTimeParam.yaml
+  - $ref: ../readwrite/parameters/x-fapi-financial-id-Param.yaml
+  - $ref: ../readwrite/parameters/x-fapi-customer-ip-address-Param.yaml
+  - $ref: ../readwrite/parameters/x-fapi-interaction-id-Param.yaml
+  - $ref: ../readwrite/parameters/x-fapi-customer-last-logged-time-Param.yaml
+  - $ref: ../readwrite/parameters/AuthorizationParam.yaml
+  - $ref: ../readwrite/parameters/x-jws-signature-Param.yaml
+
+responses:
+  - $ref: ./responses/200AccountBalancesRead.yaml
+  - $ref: ./responses/200AccountBeneficiariesRead.yaml
+  - $ref: ./responses/200AccountDirectDebitsRead.yaml
+  - $ref: ./responses/200AccountOffersRead.yaml
+  - $ref: ./responses/200AccountPartyRead.yaml
+  - $ref: ./responses/200AccountProductRead.yaml
+  - $ref: ./responses/200AccountRead.yaml
+  - $ref: ./responses/200AccountRequestRead.yaml
+  - $ref: ./responses/200AccountScheduledPaymentsRead.yaml
+  - $ref: ./responses/200AccountStandingOrdersRead.yaml
+  - $ref: ./responses/200AccountStatementFileRead.yaml
+  - $ref: ./responses/200AccountStatementsRead.yaml
+  - $ref: ./responses/200AccountTransactionsRead.yaml
+  - $ref: ./responses/201AccountRequestCreated.yaml
+  - $ref: ./responses/204AccountRequestDeleted.yaml
+  - $ref: ../readwrite/responses/400ErrorResponse.yaml
+  - $ref: ../readwrite/responses/401ErrorResponse.yaml
+  - $ref: ../readwrite/responses/403ErrorResponse.yaml
+  - $ref: ../readwrite/responses/405ErrorResponse.yaml
+  - $ref: ../readwrite/responses/406ErrorResponse.yaml
+  - $ref: ../readwrite/responses/429ErrorResponse.yaml
+  - $ref: ../readwrite/responses/500ErrorResponse.yaml
+
+securityDefinitions:
+  - $ref: ../readwrite/securityDefinitions/PSUOAuth2Security.yaml
+  - $ref: ../readwrite/securityDefinitions/TPPOAuth2Security.yaml
+
 definitions:
   - $ref: ./definitions/AccountId.yaml
   - $ref: ./definitions/Amount.yaml
@@ -189,57 +232,12 @@ definitions:
   - $ref: ./definitions/OBTransactionCardInstrument1.yaml
   - $ref: ./definitions/OBTransactionCashBalance.yaml
   - $ref: ./definitions/OB_OtherProductType1.yaml
-  - $ref: ./definitions/OBPCAData1.yaml
-  - $ref: ./definitions/OBBCAData1.yaml
   - $ref: ./definitions/TransactionInformation.yaml
-
   - $ref: ./definitions/OBExternalRequestStatus1Code.yaml
   - $ref: ./definitions/OBExternalAccountIdentification2Code.yaml
-
   - $ref: ../readwrite/definitions/OBRisk2.yaml
   - $ref: ../readwrite/definitions/Links.yaml
   - $ref: ../readwrite/definitions/ISODateTime.yaml
   - $ref: ../readwrite/definitions/Meta.yaml
-
-parameters:
-  - $ref: ./parameters/AcceptParam.yaml
-  - $ref: ./parameters/AccountIdParam.yaml
-  - $ref: ./parameters/AccountRequestIdParam.yaml
-  - $ref: ./parameters/FromBookingDateTimeParam.yaml
-  - $ref: ./parameters/OBReadRequest1Param.yaml
-  - $ref: ./parameters/StatementIdParam.yaml
-  - $ref: ./parameters/ToBookingDateTimeParam.yaml
-  - $ref: ../readwrite/parameters/x-fapi-financial-id-Param.yaml
-  - $ref: ../readwrite/parameters/x-fapi-customer-ip-address-Param.yaml
-  - $ref: ../readwrite/parameters/x-fapi-interaction-id-Param.yaml
-  - $ref: ../readwrite/parameters/x-fapi-customer-last-logged-time-Param.yaml
-  - $ref: ../readwrite/parameters/AuthorizationParam.yaml
-  - $ref: ../readwrite/parameters/x-jws-signature-Param.yaml
-
-responses:
-  - $ref: ./responses/200AccountBalancesRead.yaml
-  - $ref: ./responses/200AccountBeneficiariesRead.yaml
-  - $ref: ./responses/200AccountDirectDebitsRead.yaml
-  - $ref: ./responses/200AccountOffersRead.yaml
-  - $ref: ./responses/200AccountPartyRead.yaml
-  - $ref: ./responses/200AccountProductRead.yaml
-  - $ref: ./responses/200AccountRead.yaml
-  - $ref: ./responses/200AccountRequestRead.yaml
-  - $ref: ./responses/200AccountScheduledPaymentsRead.yaml
-  - $ref: ./responses/200AccountStandingOrdersRead.yaml
-  - $ref: ./responses/200AccountStatementFileRead.yaml
-  - $ref: ./responses/200AccountStatementsRead.yaml
-  - $ref: ./responses/200AccountTransactionsRead.yaml
-  - $ref: ./responses/201AccountRequestCreated.yaml
-  - $ref: ./responses/204AccountRequestDeleted.yaml
-  - $ref: ../readwrite/responses/400ErrorResponse.yaml
-  - $ref: ../readwrite/responses/401ErrorResponse.yaml
-  - $ref: ../readwrite/responses/403ErrorResponse.yaml
-  - $ref: ../readwrite/responses/405ErrorResponse.yaml
-  - $ref: ../readwrite/responses/406ErrorResponse.yaml
-  - $ref: ../readwrite/responses/429ErrorResponse.yaml
-  - $ref: ../readwrite/responses/500ErrorResponse.yaml
-
-securityDefinitions:
-  - $ref: ../readwrite/securityDefinitions/PSUOAuth2Security.yaml
-  - $ref: ../readwrite/securityDefinitions/TPPOAuth2Security.yaml
+  - $ref: ./definitions/OBPCAData1.yaml
+  - $ref: ./definitions/OBBCAData1.yaml
