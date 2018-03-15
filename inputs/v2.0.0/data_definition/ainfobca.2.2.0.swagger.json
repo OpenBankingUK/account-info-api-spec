@@ -8,11 +8,11 @@
         "title": "ProductDetails",
         "properties": {
           "Segment": {
-            "description": "Market segmentation is a marketing term referring to the aggregating of prospective buyers into groups, or segments, that have common needs and respond similarly to a marketing action. Market segmentation enables companies to target different categories of consumers who perceive the full value of certain products and services differently from one another.\n\nRead more: Market Segmentation http://www.investopedia.com/terms/m/marketsegmentation.asp#ixzz4gfEEalTd \nFollow us: Investopedia on Facebook\n\nWith respect to BCA products, they are segmented in relation to different markets that they wish to focus on. ",
+            "description": "Market segmentation is a marketing term referring to the aggregating of prospective buyers into groups, or segments, that have common needs and respond similarly to a marketing action. Market segmentation enables companies to target different categories of consumers who perceive the full value of certain products and services differently from one another.\n\nRead more: Market Segmentation http://www.investopedia.com/terms/m/marketsegmentation.asp#ixzz4gfEEalTd \nWith respect to BCA products, they are segmented in relation to different markets that they wish to focus on. ",
             "title": "Segment",
             "type": "array",
             "items": {
-              "description": "Market segmentation is a marketing term referring to the aggregating of prospective buyers into groups, or segments, that have common needs and respond similarly to a marketing action. Market segmentation enables companies to target different categories of consumers who perceive the full value of certain products and services differently from one another.\n\nRead more: Market Segmentation http://www.investopedia.com/terms/m/marketsegmentation.asp#ixzz4gfEEalTd \nFollow us: Investopedia on Facebook\n\nWith respect to BCA products, they are segmented in relation to different markets that they wish to focus on. ",
+              "description": "Market segmentation is a marketing term referring to the aggregating of prospective buyers into groups, or segments, that have common needs and respond similarly to a marketing action. Market segmentation enables companies to target different categories of consumers who perceive the full value of certain products and services differently from one another.\n\nRead more: Market Segmentation http://www.investopedia.com/terms/m/marketsegmentation.asp#ixzz4gfEEalTd \nWith respect to BCA products, they are segmented in relation to different markets that they wish to focus on. ",
               "type": "string",
               "enum": [
                 "ClientAccount",
