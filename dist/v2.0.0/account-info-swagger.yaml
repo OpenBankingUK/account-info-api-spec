@@ -2981,6 +2981,8 @@ definitions:
         type: string
         minLength: 1
         maxLength: 35
+        pattern: >-
+          ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
       Reference:
         description: >-
           Unique reference, as assigned by the creditor, to unambiguously refer
