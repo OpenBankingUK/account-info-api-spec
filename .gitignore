@@ -6,6 +6,9 @@ logs
 *.log
 npm-debug.log*
 
+# Ignore generated yaml
+inputs/v2.0.0/accounts/definitions/*.yaml
+
 # Runtime data
 pids
 *.pid
