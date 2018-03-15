@@ -556,3 +556,4 @@ exports.convertRows = convertRows;
 exports.classFor = classFor;
 exports.typeFor = typeFor;
 exports.formatFor = formatFor;
+exports.schemaFile = schemaFile;
