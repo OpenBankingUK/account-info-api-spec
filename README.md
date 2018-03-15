@@ -9,7 +9,19 @@ A Patch Release
 Change since v1.1.0
 * Remove `tpp_client_credential` scope and replace with `accounts` scope
 
-# Usage
+# Usage (new approach)
+
+To generate swagger from data definition CSV, and then create swagger
+file from inputs/v* run:
+
+```sh
+npm run csvtoyaml && npm run buildswagger
+```
+
+Resulting swagger files are written to dist/v*.
+
+
+# Usage (old approach)
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format
 
 # Scripts
@@ -21,15 +33,15 @@ Change since v1.1.0
 # Debugging
 
 When runnning ```npm run build:all``` the schema flattening was failing
- due to multiple referenced files not being interpreted correctly. 
-It's now possible to see a debug log of the inner reference fixes 
-set the environment variable *SWAGGER_DEBUG=true* and a json file of old / fixes / and fixed 
+ due to multiple referenced files not being interpreted correctly.
+It's now possible to see a debug log of the inner reference fixes
+set the environment variable *SWAGGER_DEBUG=true* and a json file of old / fixes / and fixed
 partials will appear in the path *debug/log.json*
 
 # Versions
-The buid scripts depend on a version being set in an environment variable 
+The buid scripts depend on a version being set in an environment variable
 e.g. export `VERSION=v1.0`  
-The Master list of allowable versions is stored in the /build/versions.js file 
+The Master list of allowable versions is stored in the /build/versions.js file
 and must be maintained there as new versions are created.
 
 
