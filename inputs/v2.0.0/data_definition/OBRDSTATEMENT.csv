@@ -102,12 +102,7 @@ AnnualPurchaseAfterPromo
 AnnualPurchasePromo
 MonthlyBalanceTransfer
 MonthlyCash
-MonthlyPurchase
-code_6
-code_7
-code_8
-code_9
-n";"";"";""
+MonthlyPurchase";"";"";""
 "StatementValue";"0..n";"OBReadStatement1/Data/Statement/StatementValue";"Set of elements used to provide details of a generic number value related to the statement resource.";"OBStatementValue1";"";"";"";""
 "Value";"1..1";"OBReadStatement1/Data/Statement/StatementValue/Value";"Value associated with the statement value type.";"Number";"";"";"18";"0"
 "Type";"1..1";"OBReadStatement1/Data/Statement/StatementValue/Type";"Statement value type, in a coded form.";"OBExternalStatementValueType1Code";"AirMilesPoints
