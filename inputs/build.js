@@ -1,6 +1,7 @@
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 const SwaggerParser = require('swagger-parser'); // eslint-disable-line
 const fs = require('fs');
+const { typeFor, collapseAllOf } = require('./utils');
 
 const readYaml = file => YAML.parse(fs.readFileSync(file));
 
@@ -75,46 +76,6 @@ const deduplicateRequestResponse = (api, req, res) => {
     };
     api.definitions[res] = newSchema; // eslint-disable-line
   }
-};
-
-const typeFor = (obj) => {
-  const type = typeof (obj);
-  if (type === 'object' && obj.length) {
-    return 'array';
-  }
-  return type;
-};
-
-const collapseAllOf = (obj) => {
-  Object.keys(obj).forEach((key) => {
-    const child = obj[key];
-    if (child.allOf) {
-      const list = child.allOf;
-      delete child.allOf;
-      list.forEach((item) => {
-        Object.keys(item).forEach((section) => {
-          const value = item[section];
-          const type = typeFor(value);
-          if (type === 'string'
-            || type === 'boolean'
-            || type === 'number') {
-            child[section] = value;
-          } else if (type === 'array') {
-            if (!child[section]) {
-              child[section] = [];
-            }
-            value.forEach(v => child[section].push(v));
-          } else if (type === 'object') {
-            if (!child[section]) {
-              child[section] = {};
-            }
-            Object.assign(child[section], item[section]);
-          }
-        });
-      });
-    }
-  });
-  return obj;
 };
 
 const sortKeys = (obj) => {
