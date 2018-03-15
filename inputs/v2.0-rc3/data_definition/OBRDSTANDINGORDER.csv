@@ -1,0 +1,61 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBReadStandingOrder2";"";"OBReadStandingOrder2";"";"OBReadStandingOrder2";"";"";"";""
+"Data";"1..1";"OBReadStandingOrder2/Data";"";"OBReadDataStandingOrder2";"";"";"";""
+"StandingOrder";"0..n";"OBReadStandingOrder2/Data/StandingOrder";"Account to or from which a cash entry is made.";"OBStandingOrder2";"";"";"";""
+"AccountId";"1..1";"OBReadStandingOrder2/Data/StandingOrder/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"StandingOrderId";"0..1";"OBReadStandingOrder2/Data/StandingOrder/StandingOrderId";"A unique and immutable identifier used to identify the standing order resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"Frequency";"1..1";"OBReadStandingOrder2/Data/StandingOrder/Frequency";"Individual Definitions:
+EvryDay - Every day
+EvryWorkgDay - Every working day
+IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)
+WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)
+IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)
+QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+
+Individual Patterns:
+EvryDay (ScheduleCode)
+EvryWorkgDay (ScheduleCode)
+IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)
+WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)
+IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)
+QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay
+
+The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:
+EvryDay
+EvryWorkgDay
+IntrvlWkDay:0[1-9]:0[1-7]
+WkInMnthDay:0[1-5]:0[1-7]
+IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
+
+Full Regular Expression:
+^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$";"Max35Text";"";"^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$";"";""
+"Reference";"0..1";"OBReadStandingOrder2/Data/StandingOrder/Reference";"Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
+
+Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
+
+If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.";"Max35Text";"";"";"";""
+"FirstPaymentDateTime";"0..1";"OBReadStandingOrder2/Data/StandingOrder/FirstPaymentDateTime";"The date on which the first payment for a Standing Order schedule will be made.";"ISODateTime";"";"";"";""
+"FirstPaymentAmount";"0..1";"OBReadStandingOrder2/Data/StandingOrder/FirstPaymentAmount";"The amount of the first Standing Order";"ActiveOrHistoricCurrencyAndAmount";"";"";"18";"5"
+"Currency";"1..1";"OBReadStandingOrder2/Data/StandingOrder/FirstPaymentAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"NextPaymentDateTime";"1..1";"OBReadStandingOrder2/Data/StandingOrder/NextPaymentDateTime";"The date on which the next payment for a Standing Order schedule will be made.";"ISODateTime";"";"";"";""
+"NextPaymentAmount";"1..1";"OBReadStandingOrder2/Data/StandingOrder/NextPaymentAmount";"The amount of the next Standing Order";"ActiveOrHistoricCurrencyAndAmount";"";"";"18";"5"
+"Currency";"1..1";"OBReadStandingOrder2/Data/StandingOrder/NextPaymentAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"FinalPaymentDateTime";"0..1";"OBReadStandingOrder2/Data/StandingOrder/FinalPaymentDateTime";"The date on which the final payment for a Standing Order schedule will be made.";"ISODateTime";"";"";"";""
+"FinalPaymentAmount";"0..1";"OBReadStandingOrder2/Data/StandingOrder/FinalPaymentAmount";"The amount of the final Standing Order";"ActiveOrHistoricCurrencyAndAmount";"";"";"18";"5"
+"Currency";"1..1";"OBReadStandingOrder2/Data/StandingOrder/FinalPaymentAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"StandingOrderStatusCode";"0..1";"OBReadStandingOrder2/Data/StandingOrder/StandingOrderStatusCode";"Specifies the status of the standing order in code form.";"OBExternalStandingOrderStatus1Code";"Active
+Inactive";"";"";""
+"CreditorAgent";"0..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAgent";"Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.
+This is the servicer of the beneficiary account.";"OBBranchAndFinancialInstitutionIdentification2";"";"";"";""
+"SchemeName";"1..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAgent/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalFinancialInstitutionIdentification2Code";"BICFI";"";"";""
+"Identification";"1..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAgent/Identification";"Unique and unambiguous identification of the servicing institution.";"Max35Text";"";"";"";""
+"CreditorAccount";"0..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAccount";"Provides the details to identify the beneficiary account.";"OBCashAccount1";"";"";"";""
+"SchemeName";"1..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalAccountIdentification2Code";"IBAN
+SortCodeAccountNumber";"";"";""
+"Identification";"1..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAccount/Identification";"Beneficiary account identification.";"Max34Text";"";"";"";""
+"Name";"0..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAccount/Name";"Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.
+
+Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBReadStandingOrder2/Data/StandingOrder/CreditorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""

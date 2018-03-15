@@ -1,0 +1,31 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBReadScheduledPayment1";"";"OBReadScheduledPayment1";"";"OBReadScheduledPayment1";"";"";"";""
+"Data";"1..1";"OBReadScheduledPayment1/Data";"";"OBReadDataScheduledPayment1";"";"";"";""
+"ScheduledPayment";"0..n";"OBReadScheduledPayment1/Data/ScheduledPayment";"";"OBScheduledPayment1";"";"";"";""
+"AccountId";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"ScheduledPaymentId";"0..1";"OBReadScheduledPayment1/Data/ScheduledPayment/ScheduledPaymentId";"A unique and immutable identifier used to identify the scheduled payment resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"ScheduledPaymentDateTime";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/ScheduledPaymentDateTime";"The date on which the scheduled payment will be made.";"ISODateTime";"";"";"";""
+"ScheduledType";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/ScheduledType";"Specifies the scheduled payment date type requested";"OBExternalScheduleType1Code";"Arrival
+Execution";"";"";""
+"InstructedAmount";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/InstructedAmount";"Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.
+
+Usage: This amount has to be transported unchanged through the transaction chain.";"ActiveOrHistoricCurrencyAndAmount";"";"";"18";"5"
+"Currency";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/InstructedAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"Reference";"0..1";"OBReadScheduledPayment1/Data/ScheduledPayment/Reference";"Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
+
+Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
+
+If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.";"Max35Text";"";"";"";""
+"CreditorAgent";"0..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAgent";"Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.
+This is the servicer of the beneficiary account.";"OBBranchAndFinancialInstitutionIdentification2";"";"";"";""
+"SchemeName";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAgent/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalFinancialInstitutionIdentification2Code";"BICFI";"";"";""
+"Identification";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAgent/Identification";"Unique and unambiguous identification of the servicing institution.";"Max35Text";"";"";"";""
+"CreditorAccount";"0..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAccount";"Provides the details to identify the beneficiary account.";"OBCashAccount1";"";"";"";""
+"SchemeName";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalAccountIdentification2Code";"IBAN
+SortCodeAccountNumber";"";"";""
+"Identification";"1..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAccount/Identification";"Beneficiary account identification.";"Max34Text";"";"";"";""
+"Name";"0..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAccount/Name";"Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.
+
+Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBReadScheduledPayment1/Data/ScheduledPayment/CreditorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""

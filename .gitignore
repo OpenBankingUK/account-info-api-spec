@@ -9,6 +9,10 @@ logs
 *.log
 npm-debug.log*
 
+# Ignore generated yaml
+inputs/v*/accounts/definitions/*.yaml
+account-info-swagger-dereferenced.yaml
+
 # Runtime data
 pids
 *.pid
