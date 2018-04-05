@@ -1,5 +1,5 @@
 Permission (Detail);Name;Occurrence;XPath
-ReadAccountsDetail;Account;1..1;OBReadAccount2/Data/Account/Account
+ReadAccountsDetail;Account;1..n;OBReadAccount2/Data/Account/Account
 ReadAccountsDetail;Servicer;0..1;OBReadAccount2/Data/Account/Servicer
 ReadBeneficiariesDetail;CreditorAgent;0..1;OBReadBeneficiary2/Data/Beneficiary/CreditorAgent
 ReadBeneficiariesDetail;CreditorAccount;1..1;OBReadBeneficiary2/Data/Beneficiary/CreditorAccount
