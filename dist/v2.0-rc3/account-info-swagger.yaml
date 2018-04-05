@@ -1461,6 +1461,8 @@ definitions:
   OBAccount2Detail:
     allOf:
       - $ref: '#/definitions/OBAccount2'
+      - required:
+          - Account
   OBAddressTypeCode:
     description: Identifies the nature of the postal address.
     type: string
@@ -1572,6 +1574,8 @@ definitions:
   OBBeneficiary2Detail:
     allOf:
       - $ref: '#/definitions/OBBeneficiary2'
+      - required:
+          - CreditorAccount
   OBBranchAndFinancialInstitutionIdentification2:
     type: object
     properties:
@@ -2863,6 +2867,8 @@ definitions:
   OBScheduledPayment1Detail:
     allOf:
       - $ref: '#/definitions/OBScheduledPayment1'
+      - required:
+          - CreditorAccount
   OBStandingOrder2:
     allOf:
       - $ref: '#/definitions/OBStandingOrder2Basic'
@@ -3107,6 +3113,8 @@ definitions:
   OBStandingOrder2Detail:
     allOf:
       - $ref: '#/definitions/OBStandingOrder2'
+      - required:
+          - CreditorAccount
   OBStatement1:
     allOf:
       - $ref: '#/definitions/OBStatement1Basic'
