@@ -297,11 +297,13 @@ const detailPermissionProperties = (permissions, property, properties) => {
   return detailProperties;
 };
 
-const mandatoryForKey = (key) => {
-  if (key === 'OBAccount1') {
-    return ['Account'];
-  }
-  return [];
+const mandatoryProperties = (detailProperties, permissions) => {
+  const requiredXpaths = permissions
+    .filter(p => p.Occurrence.startsWith('1..'))
+    .map(p => p.XPath);
+  return detailProperties
+    .filter(p => requiredXpaths.includes(p.XPath))
+    .map(p => p.Name);
 };
 
 const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions, isoDescription, rows) => ({ // eslint-disable-line
@@ -314,8 +316,8 @@ const extendBasicPropertiesObj = (key, detailProperties, separateDefinitions, is
   ],
 });
 
-const makeDetailSchema = (key) => {
-  const required = mandatoryForKey(key);
+const makeDetailSchema = (key, detailProperties, permissions) => {
+  const required = mandatoryProperties(detailProperties, permissions);
   const label = `${key}Detail`;
   const detail = {
     [label]: {
@@ -408,7 +410,7 @@ const makeSchema = (
     delete obj[key].description; // description is on base schema
     schemas.push(obj);
     cacheProperty(property, `${key}Detail`, propertiesCache.defined);
-    schemas.push(makeDetailSchema(key));
+    schemas.push(makeDetailSchema(key, detailProperties, permissions));
   } else {
     obj.property = property;
     schemas.push(obj);

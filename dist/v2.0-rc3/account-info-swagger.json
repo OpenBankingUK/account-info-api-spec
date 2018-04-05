@@ -2335,6 +2335,11 @@
       "allOf": [
         {
           "$ref": "#/definitions/OBAccount2"
+        },
+        {
+          "required": [
+            "Account"
+          ]
         }
       ]
     },
@@ -2449,6 +2454,11 @@
       "allOf": [
         {
           "$ref": "#/definitions/OBBeneficiary2"
+        },
+        {
+          "required": [
+            "CreditorAccount"
+          ]
         }
       ]
     },
@@ -3874,6 +3884,11 @@
       "allOf": [
         {
           "$ref": "#/definitions/OBScheduledPayment1"
+        },
+        {
+          "required": [
+            "CreditorAccount"
+          ]
         }
       ]
     },
@@ -4042,6 +4057,11 @@
       "allOf": [
         {
           "$ref": "#/definitions/OBStandingOrder2"
+        },
+        {
+          "required": [
+            "CreditorAccount"
+          ]
         }
       ]
     },
