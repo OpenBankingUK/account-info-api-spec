@@ -42,7 +42,6 @@ tags:
 
 schemes: [https]
 
-consumes: [application/json; charset=utf-8]
 produces: [application/json; charset=utf-8]
 
 paths:
@@ -103,7 +102,6 @@ paths:
     - $ref: ./paths/GetStatements.yaml
 
 parameters:
-  - $ref: ./parameters/AcceptParam.yaml
   - $ref: ./parameters/AccountIdParam.yaml
   - $ref: ./parameters/AccountRequestIdParam.yaml
   - $ref: ./parameters/FromBookingDateTimeParam.yaml
