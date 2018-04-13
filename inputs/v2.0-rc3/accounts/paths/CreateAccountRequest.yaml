@@ -4,6 +4,8 @@ post:
   summary: Create an account request
   description: Create an account request
   operationId: CreateAccountRequest
+  consumes:
+    - application/json; charset=utf-8
   parameters:
     - $ref: "#/parameters/OBReadRequest1Param"
     - $ref: "#/parameters/x-fapi-financial-id-Param"
