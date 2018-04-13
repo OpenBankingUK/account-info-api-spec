@@ -9,7 +9,6 @@ get:
   parameters:
     - $ref: "#/parameters/AccountIdParam"
     - $ref: "#/parameters/StatementIdParam"
-    - $ref: "#/parameters/AcceptParam"
     - $ref: "#/parameters/x-fapi-financial-id-Param"
     - $ref: "#/parameters/x-fapi-customer-last-logged-time-Param"
     - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
