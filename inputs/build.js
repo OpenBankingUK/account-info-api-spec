@@ -1,4 +1,5 @@
 const { YAML } = require('swagger-parser'); // eslint-disable-line
+const yaml = require('js-yaml'); // eslint-disable-line
 const SwaggerParser = require('swagger-parser'); // eslint-disable-line
 const fs = require('fs');
 const { typeFor, collapseAllOf } = require('./utils');
@@ -37,7 +38,7 @@ const writeOutput = (outFile, api) => {
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
   }
-  fs.writeFileSync(`${outFile}.yaml`, YAML.stringify(api));
+  fs.writeFileSync(`${outFile}.yaml`, yaml.safeDump(api, { noRefs: true }));
   fs.writeFileSync(`${outFile}.json`, JSON.stringify(api, null, 2));
 };
 
