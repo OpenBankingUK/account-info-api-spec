@@ -327,7 +327,7 @@ const makeDetailSchema = (key, detailProperties, permissions) => {
     },
   };
   if (required.length > 0) {
-    detail[label].allOf.push({ required });
+    detail[label].required = required;
   }
   return detail;
 };

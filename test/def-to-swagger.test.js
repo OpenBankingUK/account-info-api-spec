@@ -218,10 +218,10 @@ const accountBasicSchema = YAML.parse(`
 
 const accountDetailSchema = YAML.parse(`
   OBAccount1Detail:
+    required:
+      - Account
     allOf:
       - $ref: '#/definitions/OBAccount1'
-      - required:
-          - Account
 `);
 
 const checkSchema = ({
