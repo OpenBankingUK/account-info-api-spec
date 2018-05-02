@@ -5170,9 +5170,11 @@ definitions:
           - Currency
         additionalProperties: false
       CreditDebitIndicator:
-        allOf:
-          - $ref: '#/definitions/OBCreditDebitCode'
-          - description: Indicates whether the transaction is a credit or a debit entry.
+        type: string
+        enum:
+          - Credit
+          - Debit
+        description: Indicates whether the transaction is a credit or a debit entry.
       Status:
         $ref: '#/definitions/OBEntryStatus1Code'
       BookingDateTime:
