@@ -18,6 +18,18 @@ const removeAllOfFrom = (obj) => {
   }
 };
 
+const customTransactionBasicFix = (api, dereferencedApi) => {
+  ['OBTransaction1Basic', 'OBTransaction2Basic'].forEach((name) => {
+    if (api.definitions[name]) {
+      const indicator = {
+        CreditDebitIndicator: dereferencedApi.definitions[name].properties.CreditDebitIndicator,
+      };
+      collapseAllOf(indicator);
+      Object.assign(api.definitions[name].properties, indicator);
+    }
+  });
+};
+
 const removeAllOf = async (apiObj) => {
   const api = cloneApi(apiObj);
   const dereferencedApi = await SwaggerParser.validate(cloneApi(api));
@@ -35,8 +47,13 @@ const removeAllOf = async (apiObj) => {
       removeAllOfFrom(definition[name].properties);
       Object.assign(definitions, definition);
     });
-  const items = collapseAllOf({ items: api.definitions.OBAccount2.properties.Account.items });
-  Object.assign(api.definitions.OBAccount2.properties.Account, items);
+
+  customTransactionBasicFix(api, dereferencedApi);
+
+  if (api.definitions.OBAccount2) {
+    const items = collapseAllOf({ items: api.definitions.OBAccount2.properties.Account.items });
+    Object.assign(api.definitions.OBAccount2.properties.Account, items);
+  }
   return api;
 };
 

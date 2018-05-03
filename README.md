@@ -15,11 +15,17 @@ To generate swagger from data definition CSV, and then create swagger
 file from inputs/v* run:
 
 ```sh
+npm install
 npm run csvtoyaml && npm run buildswagger
 ```
 
 Resulting swagger files are written to dist/v*.
 
+To run tests:
+
+```sh
+npm run test
+```
 
 # Usage (old approach)
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format

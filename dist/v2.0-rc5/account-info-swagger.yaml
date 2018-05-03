@@ -9,7 +9,7 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v2.0-rc4
+  version: v2.0-rc5
 basePath: /open-banking/v2.0
 tags:
   - name: Account Requests
@@ -1539,8 +1539,8 @@ definitions:
   OBAccount2Detail:
     allOf:
       - $ref: '#/definitions/OBAccount2'
-      - required:
-          - Account
+    required:
+      - Account
   OBAddressTypeCode:
     description: Identifies the nature of the postal address.
     type: string
@@ -1806,8 +1806,8 @@ definitions:
   OBBeneficiary2Detail:
     allOf:
       - $ref: '#/definitions/OBBeneficiary2'
-      - required:
-          - CreditorAccount
+    required:
+      - CreditorAccount
   OBBranchAndFinancialInstitutionIdentification2:
     type: object
     properties:
@@ -3360,8 +3360,8 @@ definitions:
   OBScheduledPayment1Detail:
     allOf:
       - $ref: '#/definitions/OBScheduledPayment1'
-      - required:
-          - CreditorAccount
+    required:
+      - CreditorAccount
   OBStandingOrder2:
     description: Account to or from which a cash entry is made.
     type: object
@@ -3840,8 +3840,8 @@ definitions:
   OBStandingOrder2Detail:
     allOf:
       - $ref: '#/definitions/OBStandingOrder2'
-      - required:
-          - CreditorAccount
+    required:
+      - CreditorAccount
   OBStatement1:
     description: Provides further details on a statement resource.
     type: object
@@ -5170,9 +5170,11 @@ definitions:
           - Currency
         additionalProperties: false
       CreditDebitIndicator:
-        allOf:
-          - $ref: '#/definitions/OBCreditDebitCode'
-          - description: Indicates whether the transaction is a credit or a debit entry.
+        type: string
+        enum:
+          - Credit
+          - Debit
+        description: Indicates whether the transaction is a credit or a debit entry.
       Status:
         $ref: '#/definitions/OBEntryStatus1Code'
       BookingDateTime:
