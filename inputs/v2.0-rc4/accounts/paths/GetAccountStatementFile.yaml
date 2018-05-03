@@ -1,26 +1,28 @@
-post:
+get:
   tags:
-    - "Account Requests"
-  summary: Create an account request
-  description: Create an account request
-  operationId: CreateAccountRequest
+    - "Statements"
+  summary: Get Statement File
+  description: Get Statement File related to an account
+  produces:
+    - "*/*"
+  operationId: GetAccountStatementFile
   parameters:
-    - $ref: "#/parameters/OBReadRequest1Param"
+    - $ref: "#/parameters/AccountIdParam"
+    - $ref: "#/parameters/StatementIdParam"
     - $ref: "#/parameters/x-fapi-financial-id-Param"
     - $ref: "#/parameters/x-fapi-customer-last-logged-time-Param"
     - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
     - $ref: "#/parameters/x-fapi-interaction-id-Param"
     - $ref: "#/parameters/AuthorizationParam"
-    - $ref: "#/parameters/x-jws-signature-Param"
   responses:
-    '201':
-      $ref: "#/responses/201AccountRequestCreated"
+    '200':
+      $ref: "#/responses/200AccountStatementFileRead"
     '400':
       $ref: "#/responses/400ErrorResponse"
     '401':
       $ref: "#/responses/401ErrorResponse"
     '403':
-      $ref: "#/responses/403ErrorResponse"          
+      $ref: "#/responses/403ErrorResponse"
     '405':
       $ref: "#/responses/405ErrorResponse"
     '406':
@@ -30,5 +32,5 @@ post:
     '500':
       $ref: "#/responses/500ErrorResponse"
   security:
-    - TPPOAuth2Security:
+    - PSUOAuth2Security:
         - accounts

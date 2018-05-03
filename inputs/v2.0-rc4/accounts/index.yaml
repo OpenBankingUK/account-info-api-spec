@@ -10,7 +10,7 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v2.0-rc3
+  version: v2.0-rc4
 
 basePath: /open-banking/v2.0
 
@@ -42,7 +42,6 @@ tags:
 
 schemes: [https]
 
-consumes: [application/json; charset=utf-8]
 produces: [application/json; charset=utf-8]
 
 paths:
@@ -103,7 +102,6 @@ paths:
     - $ref: ./paths/GetStatements.yaml
 
 parameters:
-  - $ref: ./parameters/AcceptParam.yaml
   - $ref: ./parameters/AccountIdParam.yaml
   - $ref: ./parameters/AccountRequestIdParam.yaml
   - $ref: ./parameters/FromBookingDateTimeParam.yaml
