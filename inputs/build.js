@@ -1,7 +1,9 @@
 const { YAML } = require('swagger-parser'); // eslint-disable-line
+const yaml = require('js-yaml'); // eslint-disable-line
 const SwaggerParser = require('swagger-parser'); // eslint-disable-line
 const fs = require('fs');
 const { typeFor, collapseAllOf } = require('./utils');
+const { removeAllOf } = require('./remove-all-of');
 
 const readYaml = file => YAML.parse(fs.readFileSync(file));
 
@@ -36,7 +38,7 @@ const writeOutput = (outFile, api) => {
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
   }
-  fs.writeFileSync(`${outFile}.yaml`, YAML.stringify(api));
+  fs.writeFileSync(`${outFile}.yaml`, yaml.safeDump(api, { noRefs: true }));
   fs.writeFileSync(`${outFile}.json`, JSON.stringify(api, null, 2));
 };
 
@@ -102,6 +104,8 @@ const sortKeys = (obj) => {
   return obj;
 };
 
+const cloneApi = api => JSON.parse(JSON.stringify(api));
+
 const process = async (file) => {
   try {
     const dir = file.replace('/index.yaml', '');
@@ -114,13 +118,14 @@ const process = async (file) => {
     deduplicateRequestResponse(api, 'OBReadData1', 'OBReadDataResponse1');
     const { version } = api.info;
     console.log('VALIDATE');
-    const copy = JSON.parse(JSON.stringify(api));
-    const valid = await SwaggerParser.validate(copy);
+    const valid = await SwaggerParser.validate(cloneApi(api));
     console.log('API name: %s, Version: %s', valid.info.title, version);
-    writeOutput(`./dist/${version}/account-info-swagger`, api);
+    writeOutput(`./dist/${version}/account-info-swagger-with-allof`, api);
 
-    const copy2 = JSON.parse(JSON.stringify(api));
-    const deref = await SwaggerParser.dereference(copy2);
+    const withoutAllOf = await removeAllOf(api);
+    writeOutput(`./dist/${version}/account-info-swagger`, withoutAllOf);
+
+    const deref = await SwaggerParser.dereference(cloneApi(api));
     delete deref.definitions;
     delete deref.parameters;
     const successes = Object.keys(deref.responses).filter(k => k.startsWith('20'));

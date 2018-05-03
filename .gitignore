@@ -2,7 +2,11 @@ compiled/*
 node_modules/*
 .DS_Store
 .~lock*
-account-info-swagger-dereferenced.yaml
+
+dist/v1.1.1/
+
+# Ignore generated yaml
+inputs/v1.1.1/accounts/definitions/*.yaml
 
 # Logs
 logs
@@ -12,6 +16,7 @@ npm-debug.log*
 # Ignore generated yaml
 inputs/v*/accounts/definitions/*.yaml
 account-info-swagger-dereferenced.yaml
+account-info-swagger-with-allof.*
 
 # Runtime data
 pids

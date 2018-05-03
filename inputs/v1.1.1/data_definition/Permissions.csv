@@ -1,0 +1,10 @@
+Permission (Detail);Name;Occurrence;XPath
+ReadAccountsDetail;Account;1..1;OBReadAccount1/Data/Account/Account
+ReadAccountsDetail;Servicer;0..1;OBReadAccount1/Data/Account/Servicer
+ReadBeneficiariesDetail;Servicer;0..1;OBReadBeneficiary1/Data/Beneficiary/Servicer
+ReadBeneficiariesDetail;CreditorAccount;1..1;OBReadBeneficiary1/Data/Beneficiary/CreditorAccount
+ReadStandingOrderDetail;Servicer;0..1;OBReadStandingOrder1/Data/StandingOrder/Servicer
+ReadStandingOrderDetail;CreditorAccount;1..1;OBReadStandingOrder1/Data/StandingOrder/CreditorAccount
+ReadTransactionDetail;TransactionInformation;0..1;OBReadTransaction1/Data/Transaction/TransactionInformation
+ReadTransactionDetail;Balance;0..1;OBReadTransaction1/Data/Transaction/Balance
+ReadTransactionDetail;MerchantDetails;0..1;OBReadTransaction1/Data/Transaction/MerchantDetails
