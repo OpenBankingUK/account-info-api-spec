@@ -3,7 +3,7 @@ node_modules/*
 .DS_Store
 .~lock*
 
-dist/v1.1.1/
+# dist/v1.1.1/
 
 # Ignore generated yaml
 inputs/v1.1.1/accounts/definitions/*.yaml
