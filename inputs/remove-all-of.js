@@ -37,7 +37,7 @@ const removeAllOf = async (apiObj) => {
   const { definitions } = api;
   Object
     .entries(definitions)
-    .filter(def => !def[0].endsWith('Basic') && !def[0].endsWith('Detail'))
+    // .filter(def => !def[0].endsWith('Basic') && !def[0].endsWith('Detail'))
     .filter(def => containsAllOf(def[1]))
     .forEach((def) => {
       const name = def[0];
