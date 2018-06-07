@@ -31,6 +31,19 @@ const importPaths = (api, dir) => {
   }
 };
 
+const writePermissionSpecificOutput = (outFile, api, permissionType) => {
+  console.log(permissionType);
+  const permissionTypePattern = new RegExp(`${permissionType}$`);
+  const definitions = Object.keys(api.definitions).filter(k => k.endsWith(permissionType));
+
+  let swagger = JSON.stringify(api, null, 2);
+  definitions.forEach((permissionSpecificSchema) => {
+    const genericSchema = permissionSpecificSchema.replace(permissionTypePattern, '');
+    swagger = swagger.replace(`definitions/${genericSchema}"`, `definitions/${permissionSpecificSchema}"`);
+  });
+  fs.writeFileSync(`${outFile}-${permissionType.toLowerCase()}.json`, swagger);
+};
+
 const writeOutput = (outFile, api) => {
   const path = outFile.split('/');
   path.pop();
@@ -124,6 +137,9 @@ const process = async (file) => {
 
     const withoutAllOf = await removeAllOf(api);
     writeOutput(`./dist/${version}/account-info-swagger`, withoutAllOf);
+
+    writePermissionSpecificOutput(`./dist/${version}/account-info-swagger`, withoutAllOf, 'Basic');
+    writePermissionSpecificOutput(`./dist/${version}/account-info-swagger`, withoutAllOf, 'Detail');
 
     const deref = await SwaggerParser.dereference(cloneApi(api));
     delete deref.definitions;
