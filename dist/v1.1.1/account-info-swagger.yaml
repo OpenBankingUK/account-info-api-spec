@@ -764,10 +764,114 @@ definitions:
       - Currency
     additionalProperties: false
   OBAccount1Detail:
-    allOf:
-      - $ref: '#/definitions/OBAccount1'
     required:
       - Account
+      - AccountId
+      - Currency
+    description: >-
+      Unambiguous identification of the account to which credit and debit
+      entries are made.
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify the account
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      Currency:
+        description: >-
+          Identification of the currency in which the account is held. 
+
+          Usage: Currency should only be used in case one and the same account
+          number covers several currencies
+
+          and the initiating party needs to identify which currency needs to be
+          used for settlement on the account.
+        type: string
+        pattern: '^[A-Z]{3,3}$'
+      Nickname:
+        description: >-
+          The nickname of the account, assigned by the account owner in order to
+          provide an additional means of identification of the account.
+        type: string
+        minLength: 1
+        maxLength: 70
+      Account:
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded form as published in
+              an external list.
+            type: string
+            enum:
+              - IBAN
+              - SortCodeAccountNumber
+          Identification:
+            type: string
+            minLength: 1
+            maxLength: 34
+            description: >-
+              Identification assigned by an institution to identify an account.
+              This identification is known by the account owner.
+          Name:
+            type: string
+            minLength: 1
+            maxLength: 70
+            description: >-
+              Name of the account, as assigned by the account servicing
+              institution, in agreement with the account owner in order to
+              provide an additional means of identification of the account.
+
+              Usage: The account name is different from the account owner name.
+              The account name is used in certain user communities to provide a
+              means of identifying the account, in addition to the account
+              owner's identity and the account number.
+          SecondaryIdentification:
+            type: string
+            minLength: 1
+            maxLength: 34
+            description: >-
+              This is secondary identification of the account, as assigned by
+              the account servicing institution. 
+
+              This can be used by building societies to additionally identify
+              accounts with a roll number (in addition to a sort code and
+              account number combination).
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+        description: Provides the details to identify an account.
+      Servicer:
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded form as published in
+              an external list.
+            type: string
+            enum:
+              - BICFI
+          Identification:
+            type: string
+            minLength: 1
+            maxLength: 35
+            description: >-
+              Unique and unambiguous identification of the servicing
+              institution.
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+        description: >-
+          Party that manages the account on behalf of the account owner, that is
+          manages the registration and booking of entries on the account,
+          calculates balances on the account and provides information about the
+          account.
+    additionalProperties: false
   OBBalanceType1Code:
     description: 'Balance type, in a coded form.'
     type: string
@@ -939,10 +1043,117 @@ definitions:
         maxLength: 35
     additionalProperties: false
   OBBeneficiary1Detail:
-    allOf:
-      - $ref: '#/definitions/OBBeneficiary1'
     required:
       - CreditorAccount
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify the account
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      BeneficiaryId:
+        description: >-
+          A unique and immutable identifier used to identify the beneficiary
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      Reference:
+        description: >-
+          Unique reference, as assigned by the creditor, to unambiguously refer
+          to the payment transaction.
+
+          Usage: If available, the initiating party should provide this
+          reference in the structured remittance information, to enable
+          reconciliation by the creditor upon receipt of the amount of money.
+
+          If the business context requires the use of a creditor reference or a
+          payment remit identification, and only one identifier can be passed
+          through the end-to-end chain, the creditor's reference or payment
+          remittance identification should be quoted in the end-to-end
+          transaction identification.
+        type: string
+        minLength: 1
+        maxLength: 35
+      Servicer:
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded form as published in
+              an external list.
+            type: string
+            enum:
+              - BICFI
+          Identification:
+            type: string
+            minLength: 1
+            maxLength: 35
+            description: >-
+              Unique and unambiguous identification of the servicing
+              institution.
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+        description: >-
+          Party that manages the account on behalf of the account owner, that is
+          manages the registration and booking of entries on the account,
+          calculates balances on the account and provides information about the
+          account.
+
+          This is the servicer of the beneficiary account.
+      CreditorAccount:
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded form as published in
+              an external list.
+            type: string
+            enum:
+              - IBAN
+              - SortCodeAccountNumber
+          Identification:
+            type: string
+            minLength: 1
+            maxLength: 34
+            description: >-
+              Identification assigned by an institution to identify an account.
+              This identification is known by the account owner.
+          Name:
+            type: string
+            minLength: 1
+            maxLength: 70
+            description: >-
+              Name of the account, as assigned by the account servicing
+              institution, in agreement with the account owner in order to
+              provide an additional means of identification of the account.
+
+              Usage: The account name is different from the account owner name.
+              The account name is used in certain user communities to provide a
+              means of identifying the account, in addition to the account
+              owner's identity and the account number.
+          SecondaryIdentification:
+            type: string
+            minLength: 1
+            maxLength: 34
+            description: >-
+              This is secondary identification of the account, as assigned by
+              the account servicing institution. 
+
+              This can be used by building societies to additionally identify
+              accounts with a roll number (in addition to a sort code and
+              account number combination).
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+        description: Provides the details to identify the beneficiary account.
+    additionalProperties: false
   OBBranchAndFinancialInstitutionIdentification2:
     type: object
     properties:
@@ -2108,10 +2319,278 @@ definitions:
       - NextPaymentAmount
     additionalProperties: false
   OBStandingOrder1Detail:
-    allOf:
-      - $ref: '#/definitions/OBStandingOrder1'
     required:
       - CreditorAccount
+      - AccountId
+      - Frequency
+      - NextPaymentDateTime
+      - NextPaymentAmount
+    description: Account to or from which a cash entry is made.
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify the account
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      StandingOrderId:
+        description: >-
+          A unique and immutable identifier used to identify the standing order
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      Frequency:
+        description: >-
+          Individual Definitions:
+
+          EvryDay - Every day
+
+          EvryWorkgDay - Every working day
+
+          IntrvlWkDay - An interval specified in weeks (01 to 09), and the day
+          within the week (01 to 07)
+
+          WkInMnthDay - A monthly interval, specifying the week of the month (01
+          to 05) and day within the week (01 to 07)
+
+          IntrvlMnthDay - An interval specified in months (between 01 to 06, 12,
+          24), specifying the day within the month (-5 to -1, 1 to 31)
+
+          QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+
+          Individual Patterns:
+
+          EvryDay (ScheduleCode)
+
+          EvryWorkgDay (ScheduleCode)
+
+          IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks
+          + DayInWeek)
+
+          WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth +
+          DayInWeek)
+
+          IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode +
+          IntervalInMonths + DayInMonth)
+
+          QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode +
+          QuarterDay
+
+          The regular expression for this element combines five smaller versions
+          for each permitted pattern. To aid legibility - the components are
+          presented individually here:
+
+          EvryDay
+
+          EvryWorkgDay
+
+          IntrvlWkDay:0[1-9]:0[1-7]
+
+          WkInMnthDay:0[1-5]:0[1-7]
+
+          IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+
+          QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
+
+          Full Regular Expression:
+
+          ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+        type: string
+        minLength: 1
+        maxLength: 35
+      Reference:
+        description: >-
+          Unique reference, as assigned by the creditor, to unambiguously refer
+          to the payment transaction.
+
+          Usage: If available, the initiating party should provide this
+          reference in the structured remittance information, to enable
+          reconciliation by the creditor upon receipt of the amount of money.
+
+          If the business context requires the use of a creditor reference or a
+          payment remit identification, and only one identifier can be passed
+          through the end-to-end chain, the creditor's reference or payment
+          remittance identification should be quoted in the end-to-end
+          transaction identification.
+        type: string
+        minLength: 1
+        maxLength: 35
+      FirstPaymentDateTime:
+        description: >-
+          The date on which the first payment for a Standing Order schedule will
+          be made.
+
+          All dates in the JSON payloads are represented in ISO 8601 date-time
+          format.
+
+          All date-time fields in responses must include the timezone. An
+          example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      FirstPaymentAmount:
+        description: The amount of the first Standing Order
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      NextPaymentDateTime:
+        description: >-
+          The date on which the next payment for a Standing Order schedule will
+          be made.
+
+          All dates in the JSON payloads are represented in ISO 8601 date-time
+          format.
+
+          All date-time fields in responses must include the timezone. An
+          example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      NextPaymentAmount:
+        description: The amount of the next Standing Order
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      FinalPaymentDateTime:
+        description: >-
+          The date on which the final payment for a Standing Order schedule will
+          be made.
+
+          All dates in the JSON payloads are represented in ISO 8601 date-time
+          format.
+
+          All date-time fields in responses must include the timezone. An
+          example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      FinalPaymentAmount:
+        description: The amount of the final Standing Order
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      Servicer:
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded form as published in
+              an external list.
+            type: string
+            enum:
+              - BICFI
+          Identification:
+            type: string
+            minLength: 1
+            maxLength: 35
+            description: >-
+              Unique and unambiguous identification of the servicing
+              institution.
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+        description: >-
+          Party that manages the account on behalf of the account owner, that is
+          manages the registration and booking of entries on the account,
+          calculates balances on the account and provides information about the
+          account.
+
+          This is the servicer of the beneficiary account.
+      CreditorAccount:
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded form as published in
+              an external list.
+            type: string
+            enum:
+              - IBAN
+              - SortCodeAccountNumber
+          Identification:
+            type: string
+            minLength: 1
+            maxLength: 34
+            description: Beneficiary account identification.
+          Name:
+            type: string
+            minLength: 1
+            maxLength: 70
+            description: >-
+              Name of the account, as assigned by the account servicing
+              institution, in agreement with the account owner in order to
+              provide an additional means of identification of the account.
+
+              Usage: The account name is different from the account owner name.
+              The account name is used in certain user communities to provide a
+              means of identifying the account, in addition to the account
+              owner's identity and the account number.
+          SecondaryIdentification:
+            type: string
+            minLength: 1
+            maxLength: 34
+            description: >-
+              This is secondary identification of the account, as assigned by
+              the account servicing institution. 
+
+              This can be used by building societies to additionally identify
+              accounts with a roll number (in addition to a sort code and
+              account number combination).
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+        description: Provides the details to identify the beneficiary account.
+    additionalProperties: false
   OBTransaction1:
     description: Provides further details on an entry in the report.
     type: object
@@ -2345,7 +2824,12 @@ definitions:
     type: object
     properties:
       AccountId:
-        $ref: '#/definitions/AccountId'
+        description: >-
+          A unique and immutable identifier used to identify the account
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
       TransactionId:
         description: >-
           Unique identifier for the transaction within an servicing institution.
@@ -2366,7 +2850,8 @@ definitions:
         type: object
         properties:
           Amount:
-            $ref: '#/definitions/Amount'
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -2386,7 +2871,11 @@ definitions:
           - Debit
         description: Indicates whether the transaction is a credit or a debit entry.
       Status:
-        $ref: '#/definitions/OBEntryStatus1Code'
+        description: Status of a transaction entry on the books of the account servicer.
+        type: string
+        enum:
+          - Booked
+          - Pending
       BookingDateTime:
         description: >-
           Date and time when a transaction entry is posted to an account on the
@@ -2436,7 +2925,21 @@ definitions:
         minLength: 1
         maxLength: 70
       BankTransactionCode:
-        $ref: '#/definitions/OBBankTransactionCodeStructure1'
+        description: >-
+          Set of elements used to fully identify the type of underlying
+          transaction resulting in an entry.
+        type: object
+        properties:
+          Code:
+            description: Specifies the family within a domain.
+            type: string
+          SubCode:
+            description: Specifies the sub-product family within a specific family.
+            type: string
+        required:
+          - Code
+          - SubCode
+        additionalProperties: false
       ProprietaryBankTransactionCode:
         description: Set of elements to fully identify a proprietary bank transaction code.
         type: object
@@ -2466,8 +2969,233 @@ definitions:
       - BookingDateTime
     additionalProperties: false
   OBTransaction1Detail:
-    allOf:
-      - $ref: '#/definitions/OBTransaction1'
+    description: Provides further details on an entry in the report.
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify the account
+          resource. This identifier has no meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      TransactionId:
+        description: >-
+          Unique identifier for the transaction within an servicing institution.
+          This identifier is both unique and immutable.
+        type: string
+        minLength: 1
+        maxLength: 40
+      TransactionReference:
+        description: >-
+          Unique reference for the transaction. This reference is optionally
+          populated, and may as an example be the FPID in the Faster Payments
+          context.
+        type: string
+        minLength: 1
+        maxLength: 35
+      Amount:
+        description: Amount of money in the cash transaction entry.
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance Agency under an
+              international identification scheme, as described in the latest
+              edition of the international standard ISO 4217 "Codes for the
+              representation of currencies and funds".
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      CreditDebitIndicator:
+        type: string
+        enum:
+          - Credit
+          - Debit
+        description: Indicates whether the transaction is a credit or a debit entry.
+      Status:
+        description: Status of a transaction entry on the books of the account servicer.
+        type: string
+        enum:
+          - Booked
+          - Pending
+      BookingDateTime:
+        description: >-
+          Date and time when a transaction entry is posted to an account on the
+          account servicer's books.
+
+          Usage: Booking date is the expected booking date, unless the status is
+          booked, in which case it is the actual booking date.
+
+          All dates in the JSON payloads are represented in ISO 8601 date-time
+          format.
+
+          All date-time fields in responses must include the timezone. An
+          example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      ValueDateTime:
+        description: >-
+          Date and time at which assets become available to the account owner in
+          case of a credit entry, or cease to be available to the account owner
+          in case of a debit transaction entry.
+
+          Usage: If transaction entry status is pending and value date is
+          present, then the value date refers to an expected/requested value
+          date.
+
+          For transaction entries subject to availability/float and for which
+          availability information is provided, the value date must not be used.
+          In this case the availability component identifies the number of
+          availability days.
+
+          All dates in the JSON payloads are represented in ISO 8601 date-time
+          format.
+
+          All date-time fields in responses must include the timezone. An
+          example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      AddressLine:
+        description: >-
+          Information that locates and identifies a specific address for a
+          transaction entry, that is presented in free format text.
+        type: string
+        minLength: 1
+        maxLength: 70
+      BankTransactionCode:
+        description: >-
+          Set of elements used to fully identify the type of underlying
+          transaction resulting in an entry.
+        type: object
+        properties:
+          Code:
+            description: Specifies the family within a domain.
+            type: string
+          SubCode:
+            description: Specifies the sub-product family within a specific family.
+            type: string
+        required:
+          - Code
+          - SubCode
+        additionalProperties: false
+      ProprietaryBankTransactionCode:
+        description: Set of elements to fully identify a proprietary bank transaction code.
+        type: object
+        properties:
+          Code:
+            description: >-
+              Proprietary bank transaction code to identify the underlying
+              transaction.
+            type: string
+            minLength: 1
+            maxLength: 35
+          Issuer:
+            description: >-
+              Identification of the issuer of the proprietary bank transaction
+              code.
+            type: string
+            minLength: 1
+            maxLength: 35
+        required:
+          - Code
+        additionalProperties: false
+      TransactionInformation:
+        description: |-
+          Further details of the transaction. 
+          This is the transaction narrative, which is unstructured text.
+        type: string
+        minLength: 1
+        maxLength: 500
+      Balance:
+        description: >-
+          Set of elements used to define the balance as a numerical
+          representation of the net increases and decreases in an account after
+          a transaction entry is applied to the account.
+        type: object
+        properties:
+          Amount:
+            description: >-
+              Amount of money of the cash balance after a transaction entry is
+              applied to the account..
+            type: object
+            properties:
+              Amount:
+                type: string
+                pattern: '^\d{1,13}\.\d{1,5}$'
+              Currency:
+                description: >-
+                  A code allocated to a currency by a Maintenance Agency under
+                  an international identification scheme, as described in the
+                  latest edition of the international standard ISO 4217 "Codes
+                  for the representation of currencies and funds".
+                type: string
+                pattern: '^[A-Z]{3,3}$'
+            required:
+              - Amount
+              - Currency
+            additionalProperties: false
+          CreditDebitIndicator:
+            type: string
+            enum:
+              - Credit
+              - Debit
+            description: |-
+              Indicates whether the balance is a credit or a debit balance. 
+              Usage: A zero balance is considered to be a credit balance.
+          Type:
+            description: 'Balance type, in a coded form.'
+            type: string
+            enum:
+              - ClosingAvailable
+              - ClosingBooked
+              - Expected
+              - ForwardAvailable
+              - Information
+              - InterimAvailable
+              - InterimBooked
+              - OpeningAvailable
+              - OpeningBooked
+              - PreviouslyClosedBooked
+        required:
+          - Amount
+          - CreditDebitIndicator
+          - Type
+        additionalProperties: false
+      MerchantDetails:
+        description: Details of the merchant involved in the transaction.
+        type: object
+        properties:
+          MerchantName:
+            description: Name by which the merchant is known.
+            type: string
+            minLength: 1
+            maxLength: 350
+          MerchantCategoryCode:
+            description: >-
+              Category code conform to ISO 18245, related to the type of
+              services or goods the merchant provides for the transaction.
+            type: string
+            minLength: 3
+            maxLength: 4
+        additionalProperties: false
+    required:
+      - AccountId
+      - Amount
+      - CreditDebitIndicator
+      - Status
+      - BookingDateTime
+    additionalProperties: false
   OBTransactionCashBalance:
     description: >-
       Set of elements used to define the balance as a numerical representation
