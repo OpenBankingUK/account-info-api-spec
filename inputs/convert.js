@@ -34,6 +34,7 @@ const convertJson = (dir, outdir) => {
 // TODO: Fix the version selection...
 versions.filter(v => v.startsWith('v3')).forEach((version) => {
   convertCSVs(`./inputs/${version}/data_definition/account_info`, `./inputs/${version}/account-info`, separateDefinitions);
+  convertCSVs(`./inputs/${version}/data_definition/confirmation-funds`, `./inputs/${version}/confirmation-funds`, separateDefinitions);
   convertCSVs(`./inputs/${version}/data_definition/payment_initiation`, `./inputs/${version}/payment-initiation`, separateDefinitions);
 
   convertJson(`./inputs/${version}/data_definition`, `./inputs/${version}`);

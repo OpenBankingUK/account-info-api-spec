@@ -530,9 +530,6 @@ const deleteWhenDescriptionErrors2 = (propertiesCache, outdir) => {
     .filter(k => !commonTypes.includes(k))
     .map(k => schemaFile(k, outdir));
 
-  // TODO: Remove
-  fs.writeFileSync('./listed-schemas.json', JSON.stringify(outfiles, null, 2));
-
   const schemas = (outfiles).map(file =>
     normalizeText(Buffer.from(fs.readFileSync(file, 'utf8')).toString()));
 

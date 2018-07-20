@@ -61,6 +61,7 @@
     "spectacle-docs": "*",
     "supertest": "^2.0.1",
     "swagger-parser": "beta",
+    "sway": "^2.0.0",
     "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams",
     "yargs": "^12.0.1"
   }

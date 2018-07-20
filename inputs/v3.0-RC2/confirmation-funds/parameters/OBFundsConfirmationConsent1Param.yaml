@@ -1,0 +1,8 @@
+---
+  OBFundsConfirmationConsent1Param: 
+    name: "OBFundsConfirmationConsent1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBFundsConfirmationConsent1"
