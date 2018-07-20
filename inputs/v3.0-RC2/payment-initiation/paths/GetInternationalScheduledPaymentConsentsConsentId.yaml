@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "International Scheduled Payment"
     summary: "Get International Scheduled Payment Consents"
     operationId: "GetInternationalScheduledPaymentConsentsConsentId"
     consumes: 

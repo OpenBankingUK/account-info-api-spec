@@ -2,6 +2,6 @@
   DomesticStandingOrderId: 
     name: "DomesticStandingOrderId"
     in: "path"
-    description: "Default"
+    description: "DomesticStandingOrderId"
     required: true
     type: "string"

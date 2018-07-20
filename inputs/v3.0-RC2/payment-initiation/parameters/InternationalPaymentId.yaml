@@ -2,6 +2,6 @@
   InternationalPaymentId: 
     name: "InternationalPaymentId"
     in: "path"
-    description: "Default"
+    description: "InternationalPaymentId"
     required: true
     type: "string"

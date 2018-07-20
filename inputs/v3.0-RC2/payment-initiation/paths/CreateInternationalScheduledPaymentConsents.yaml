@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "Payments"
+      - "International Scheduled Payment"
     summary: "Create International Scheduled Payment Consents"
     operationId: "CreateInternationalScheduledPaymentConsents"
     consumes: 

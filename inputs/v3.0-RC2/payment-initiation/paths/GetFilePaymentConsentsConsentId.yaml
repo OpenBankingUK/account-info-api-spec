@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - " Payment"
     summary: "Get  Payment Consents"
     operationId: "GetFilePaymentConsentsConsentId"
     consumes: 

@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "International Standing Orders"
     summary: "Get International Standing Orders"
     operationId: "GetInternationalStandingOrdersInternationalStandingOrderPaymentId"
     consumes: 

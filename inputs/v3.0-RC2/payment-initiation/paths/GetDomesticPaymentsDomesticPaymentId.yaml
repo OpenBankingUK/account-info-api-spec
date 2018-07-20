@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "Domestic Payments"
     summary: "Get Domestic Payments"
     operationId: "GetDomesticPaymentsDomesticPaymentId"
     consumes: 

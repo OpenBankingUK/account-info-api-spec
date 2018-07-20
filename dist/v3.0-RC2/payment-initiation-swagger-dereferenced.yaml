@@ -31955,25 +31955,25 @@ parameters:
     required: true
     type: string
   ConsentId:
-    description: Default
+    description: ConsentId
     in: path
     name: ConsentId
     required: true
     type: string
   DomesticPaymentId:
-    description: Default
+    description: DomesticPaymentId
     in: path
     name: DomesticPaymentId
     required: true
     type: string
   DomesticScheduledPaymentId:
-    description: Default
+    description: DomesticScheduledPaymentId
     in: path
     name: DomesticScheduledPaymentId
     required: true
     type: string
   DomesticStandingOrderId:
-    description: Default
+    description: DomesticStandingOrderId
     in: path
     name: DomesticStandingOrderId
     required: true
@@ -31987,25 +31987,25 @@ parameters:
       format: binary
       type: string
   FilePaymentId:
-    description: Default
+    description: FilePaymentId
     in: path
     name: FilePaymentId
     required: true
     type: string
   InternationalPaymentId:
-    description: Default
+    description: InternationalPaymentId
     in: path
     name: InternationalPaymentId
     required: true
     type: string
   InternationalScheduledPaymentId:
-    description: Default
+    description: InternationalScheduledPaymentId
     in: path
     name: InternationalScheduledPaymentId
     required: true
     type: string
   InternationalStandingOrderPaymentId:
-    description: Default
+    description: InternationalStandingOrderPaymentId
     in: path
     name: InternationalStandingOrderPaymentId
     required: true
@@ -40163,7 +40163,7 @@ paths:
             - payments
       summary: Create Domestic Payment Consents
       tags:
-        - Payments
+        - Domestic Payment
   '/domestic-payment-consents/{ConsentId}':
     get:
       consumes:
@@ -40175,7 +40175,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -40974,7 +40974,7 @@ paths:
             - payments
       summary: Get Domestic Payment Consents
       tags:
-        - Payments
+        - Domestic Payment
   /domestic-payments:
     post:
       consumes:
@@ -42148,7 +42148,7 @@ paths:
             - payments
       summary: Create Domestic Payments
       tags:
-        - Payments
+        - Domestic Payments
   '/domestic-payments/{DomesticPaymentId}':
     get:
       consumes:
@@ -42160,7 +42160,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: DomesticPaymentId
           in: path
           name: DomesticPaymentId
           required: true
@@ -42886,7 +42886,7 @@ paths:
             - payments
       summary: Get Domestic Payments
       tags:
-        - Payments
+        - Domestic Payments
   /domestic-scheduled-payment-consents:
     post:
       consumes:
@@ -44200,7 +44200,7 @@ paths:
             - payments
       summary: Create Domestic Scheduled Payment Consents
       tags:
-        - Payments
+        - Domestic Scheduled Payment
   '/domestic-scheduled-payment-consents/{ConsentId}':
     get:
       consumes:
@@ -44212,7 +44212,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -45035,7 +45035,7 @@ paths:
             - payments
       summary: Get Domestic Scheduled Payment Consents
       tags:
-        - Payments
+        - Domestic Scheduled Payment
   /domestic-scheduled-payments:
     post:
       consumes:
@@ -46242,7 +46242,7 @@ paths:
             - payments
       summary: Create Domestic Scheduled Payments
       tags:
-        - Payments
+        - Domestic Scheduled Payments
   '/domestic-scheduled-payments/{DomesticScheduledPaymentId}':
     get:
       consumes:
@@ -46254,7 +46254,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: DomesticScheduledPaymentId
           in: path
           name: DomesticScheduledPaymentId
           required: true
@@ -46996,7 +46996,7 @@ paths:
             - payments
       summary: Get Domestic Scheduled Payments
       tags:
-        - Payments
+        - Domestic Scheduled Payments
   /domestic-standing-order-consents:
     post:
       consumes:
@@ -48336,7 +48336,7 @@ paths:
             - payments
       summary: Create  Consents
       tags:
-        - Payments
+        - ''
   '/domestic-standing-order-consents/{ConsentId}':
     get:
       consumes:
@@ -48348,7 +48348,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -49170,7 +49170,7 @@ paths:
             - payments
       summary: Get  Consents
       tags:
-        - Payments
+        - ''
   /domestic-standing-orders:
     post:
       consumes:
@@ -50404,7 +50404,7 @@ paths:
             - payments
       summary: Create Domestic Standing Orders
       tags:
-        - Payments
+        - Domestic Standing Orders
   '/domestic-standing-orders/{DomesticStandingOrderId}':
     get:
       consumes:
@@ -50416,7 +50416,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: DomesticStandingOrderId
           in: path
           name: DomesticStandingOrderId
           required: true
@@ -51158,7 +51158,7 @@ paths:
             - payments
       summary: Get Domestic Standing Orders
       tags:
-        - Payments
+        - Domestic Standing Orders
   /file-payment-consents:
     post:
       consumes:
@@ -51920,7 +51920,7 @@ paths:
             - payments
       summary: Create File Payment Consents
       tags:
-        - Payments
+        - File Payment
   '/file-payment-consents/{ConsentId}':
     get:
       consumes:
@@ -51932,7 +51932,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -52145,7 +52145,7 @@ paths:
             - payments
       summary: Get  Payment Consents
       tags:
-        - Payments
+        - ' Payment'
   '/file-payment-consents/{ConsentId}/file':
     get:
       consumes:
@@ -52157,7 +52157,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -52370,7 +52370,7 @@ paths:
             - payments
       summary: Get  Payment Consents
       tags:
-        - Payments
+        - ' Payment'
     post:
       consumes:
         - application/json; charset=utf-8
@@ -52381,7 +52381,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -52609,7 +52609,7 @@ paths:
             - payments
       summary: Create  Payment Consents
       tags:
-        - Payments
+        - ' Payment'
   /file-payments:
     post:
       consumes:
@@ -53367,7 +53367,7 @@ paths:
             - payments
       summary: Create  Payments
       tags:
-        - Payments
+        - ' Payments'
   '/file-payments/{FilePaymentId}':
     get:
       consumes:
@@ -53379,7 +53379,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: FilePaymentId
           in: path
           name: FilePaymentId
           required: true
@@ -53592,7 +53592,7 @@ paths:
             - payments
       summary: Get  Payments
       tags:
-        - Payments
+        - ' Payments'
   '/file-payments/{FilePaymentId}/report-file':
     get:
       consumes:
@@ -53604,7 +53604,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: FilePaymentId
           in: path
           name: FilePaymentId
           required: true
@@ -53817,7 +53817,7 @@ paths:
             - payments
       summary: Get  Payments
       tags:
-        - Payments
+        - ' Payments'
   /international-payment-consents:
     post:
       consumes:
@@ -55555,7 +55555,7 @@ paths:
             - payments
       summary: Create International Payment Consents
       tags:
-        - Payments
+        - International Payment
   '/international-payment-consents/{ConsentId}':
     get:
       consumes:
@@ -55567,7 +55567,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -56630,7 +56630,7 @@ paths:
             - payments
       summary: Get International Payment Consents
       tags:
-        - Payments
+        - International Payment
   /international-payments:
     post:
       consumes:
@@ -58275,7 +58275,7 @@ paths:
             - payments
       summary: Create International Payments
       tags:
-        - Payments
+        - International Payments
   '/international-payments/{InternationalPaymentId}':
     get:
       consumes:
@@ -58287,7 +58287,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: InternationalPaymentId
           in: path
           name: InternationalPaymentId
           required: true
@@ -59277,7 +59277,7 @@ paths:
             - payments
       summary: Get International Payments
       tags:
-        - Payments
+        - International Payments
   /international-scheduled-payment-consents:
     post:
       consumes:
@@ -61061,7 +61061,7 @@ paths:
             - payments
       summary: Create International Scheduled Payment Consents
       tags:
-        - Payments
+        - International Scheduled Payment
   '/international-scheduled-payment-consents/{ConsentId}':
     get:
       consumes:
@@ -61073,7 +61073,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -62159,7 +62159,7 @@ paths:
             - payments
       summary: Get International Scheduled Payment Consents
       tags:
-        - Payments
+        - International Scheduled Payment
   /international-scheduled-payments:
     post:
       consumes:
@@ -63838,7 +63838,7 @@ paths:
             - payments
       summary: Create International Scheduled Payments
       tags:
-        - Payments
+        - International Scheduled Payments
   '/international-scheduled-payments/{InternationalScheduledPaymentId}':
     get:
       consumes:
@@ -63850,7 +63850,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: InternationalScheduledPaymentId
           in: path
           name: InternationalScheduledPaymentId
           required: true
@@ -64857,7 +64857,7 @@ paths:
             - payments
       summary: Get International Scheduled Payments
       tags:
-        - Payments
+        - International Scheduled Payments
   /international-standing-order-consents:
     post:
       consumes:
@@ -66507,7 +66507,7 @@ paths:
             - payments
       summary: Create International Standing Order Consents
       tags:
-        - Payments
+        - International Standing Order
   '/international-standing-order-consents/{ConsentId}':
     get:
       consumes:
@@ -66519,7 +66519,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: ConsentId
           in: path
           name: ConsentId
           required: true
@@ -67496,7 +67496,7 @@ paths:
             - payments
       summary: Get International Standing Order Consents
       tags:
-        - Payments
+        - International Standing Order
   /international-standing-orders:
     post:
       consumes:
@@ -69041,7 +69041,7 @@ paths:
             - payments
       summary: Create International Standing Orders
       tags:
-        - Payments
+        - International Standing Orders
   '/international-standing-orders/{InternationalStandingOrderPaymentId}':
     get:
       consumes:
@@ -69053,7 +69053,7 @@ paths:
           name: Authorization
           required: true
           type: string
-        - description: Default
+        - description: InternationalStandingOrderPaymentId
           in: path
           name: InternationalStandingOrderPaymentId
           required: true
@@ -69951,7 +69951,7 @@ paths:
             - payments
       summary: Get International Standing Orders
       tags:
-        - Payments
+        - International Standing Orders
 produces:
   - application/json; charset=utf-8
 responses:

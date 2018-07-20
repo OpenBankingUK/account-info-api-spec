@@ -2,6 +2,6 @@
   ConsentId: 
     name: "ConsentId"
     in: "path"
-    description: "Default"
+    description: "ConsentId"
     required: true
     type: "string"

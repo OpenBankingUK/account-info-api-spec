@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "Domestic Scheduled Payments"
     summary: "Get Domestic Scheduled Payments"
     operationId: "GetDomesticScheduledPaymentsDomesticScheduledPaymentId"
     consumes: 

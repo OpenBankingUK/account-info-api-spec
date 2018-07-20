@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "Payments"
+      - "Domestic Scheduled Payments"
     summary: "Create Domestic Scheduled Payments"
     operationId: "CreateDomesticScheduledPayments"
     consumes: 

@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "Domestic Scheduled Payment"
     summary: "Get Domestic Scheduled Payment Consents"
     operationId: "GetDomesticScheduledPaymentConsentsConsentId"
     consumes: 

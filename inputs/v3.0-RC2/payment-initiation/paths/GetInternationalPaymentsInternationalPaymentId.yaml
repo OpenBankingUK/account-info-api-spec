@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "International Payments"
     summary: "Get International Payments"
     operationId: "GetInternationalPaymentsInternationalPaymentId"
     consumes: 

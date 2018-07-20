@@ -2,6 +2,6 @@
   DomesticScheduledPaymentId: 
     name: "DomesticScheduledPaymentId"
     in: "path"
-    description: "Default"
+    description: "DomesticScheduledPaymentId"
     required: true
     type: "string"

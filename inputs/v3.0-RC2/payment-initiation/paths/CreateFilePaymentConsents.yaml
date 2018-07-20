@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "Payments"
+      - "File Payment"
     summary: "Create File Payment Consents"
     operationId: "CreateFilePaymentConsents"
     consumes: 

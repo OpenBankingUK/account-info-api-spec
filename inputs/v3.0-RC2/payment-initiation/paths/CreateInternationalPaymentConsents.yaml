@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "Payments"
+      - "International Payment"
     summary: "Create International Payment Consents"
     operationId: "CreateInternationalPaymentConsents"
     consumes: 

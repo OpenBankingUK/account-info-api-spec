@@ -2,6 +2,6 @@
   FilePaymentId: 
     name: "FilePaymentId"
     in: "path"
-    description: "Default"
+    description: "FilePaymentId"
     required: true
     type: "string"

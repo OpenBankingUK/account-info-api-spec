@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - "Domestic Standing Orders"
     summary: "Get Domestic Standing Orders"
     operationId: "GetDomesticStandingOrdersDomesticStandingOrderId"
     consumes: 

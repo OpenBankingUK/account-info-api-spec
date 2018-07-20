@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Payments"
+      - " Payments"
     summary: "Get  Payments"
     operationId: "GetFilePaymentsFilePaymentIdReportFile"
     consumes: 

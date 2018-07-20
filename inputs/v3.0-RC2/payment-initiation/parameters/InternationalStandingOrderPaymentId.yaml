@@ -2,6 +2,6 @@
   InternationalStandingOrderPaymentId: 
     name: "InternationalStandingOrderPaymentId"
     in: "path"
-    description: "Default"
+    description: "InternationalStandingOrderPaymentId"
     required: true
     type: "string"

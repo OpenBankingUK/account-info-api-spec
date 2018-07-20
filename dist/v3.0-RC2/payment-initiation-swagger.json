@@ -31,7 +31,7 @@
     "/domestic-scheduled-payment-consents": {
       "post": {
         "tags": [
-          "Payments"
+          "Domestic Scheduled Payment"
         ],
         "summary": "Create Domestic Scheduled Payment Consents",
         "operationId": "CreateDomesticScheduledPaymentConsents",
@@ -102,7 +102,7 @@
     "/domestic-scheduled-payment-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "Domestic Scheduled Payment"
         ],
         "summary": "Get Domestic Scheduled Payment Consents",
         "operationId": "GetDomesticScheduledPaymentConsentsConsentId",
@@ -167,7 +167,7 @@
     "/domestic-scheduled-payments": {
       "post": {
         "tags": [
-          "Payments"
+          "Domestic Scheduled Payments"
         ],
         "summary": "Create Domestic Scheduled Payments",
         "operationId": "CreateDomesticScheduledPayments",
@@ -238,7 +238,7 @@
     "/domestic-scheduled-payments/{DomesticScheduledPaymentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "Domestic Scheduled Payments"
         ],
         "summary": "Get Domestic Scheduled Payments",
         "operationId": "GetDomesticScheduledPaymentsDomesticScheduledPaymentId",
@@ -303,7 +303,7 @@
     "/international-scheduled-payment-consents": {
       "post": {
         "tags": [
-          "Payments"
+          "International Scheduled Payment"
         ],
         "summary": "Create International Scheduled Payment Consents",
         "operationId": "CreateInternationalScheduledPaymentConsents",
@@ -374,7 +374,7 @@
     "/international-scheduled-payment-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "International Scheduled Payment"
         ],
         "summary": "Get International Scheduled Payment Consents",
         "operationId": "GetInternationalScheduledPaymentConsentsConsentId",
@@ -439,7 +439,7 @@
     "/international-scheduled-payments": {
       "post": {
         "tags": [
-          "Payments"
+          "International Scheduled Payments"
         ],
         "summary": "Create International Scheduled Payments",
         "operationId": "CreateInternationalScheduledPayments",
@@ -510,7 +510,7 @@
     "/international-scheduled-payments/{InternationalScheduledPaymentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "International Scheduled Payments"
         ],
         "summary": "Get International Scheduled Payments",
         "operationId": "GetInternationalScheduledPaymentsInternationalScheduledPaymentId",
@@ -575,7 +575,7 @@
     "/domestic-standing-order-consents": {
       "post": {
         "tags": [
-          "Payments"
+          ""
         ],
         "summary": "Create  Consents",
         "operationId": "CreateDomesticStandingOrderConsents",
@@ -646,7 +646,7 @@
     "/domestic-standing-order-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          ""
         ],
         "summary": "Get  Consents",
         "operationId": "GetDomesticStandingOrderConsentsConsentId",
@@ -711,7 +711,7 @@
     "/domestic-standing-orders": {
       "post": {
         "tags": [
-          "Payments"
+          "Domestic Standing Orders"
         ],
         "summary": "Create Domestic Standing Orders",
         "operationId": "CreateDomesticStandingOrders",
@@ -782,7 +782,7 @@
     "/domestic-standing-orders/{DomesticStandingOrderId}": {
       "get": {
         "tags": [
-          "Payments"
+          "Domestic Standing Orders"
         ],
         "summary": "Get Domestic Standing Orders",
         "operationId": "GetDomesticStandingOrdersDomesticStandingOrderId",
@@ -847,7 +847,7 @@
     "/domestic-payment-consents": {
       "post": {
         "tags": [
-          "Payments"
+          "Domestic Payment"
         ],
         "summary": "Create Domestic Payment Consents",
         "operationId": "CreateDomesticPaymentConsents",
@@ -918,7 +918,7 @@
     "/domestic-payment-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "Domestic Payment"
         ],
         "summary": "Get Domestic Payment Consents",
         "operationId": "GetDomesticPaymentConsentsConsentId",
@@ -983,7 +983,7 @@
     "/domestic-payments": {
       "post": {
         "tags": [
-          "Payments"
+          "Domestic Payments"
         ],
         "summary": "Create Domestic Payments",
         "operationId": "CreateDomesticPayments",
@@ -1054,7 +1054,7 @@
     "/domestic-payments/{DomesticPaymentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "Domestic Payments"
         ],
         "summary": "Get Domestic Payments",
         "operationId": "GetDomesticPaymentsDomesticPaymentId",
@@ -1119,7 +1119,7 @@
     "/international-payment-consents": {
       "post": {
         "tags": [
-          "Payments"
+          "International Payment"
         ],
         "summary": "Create International Payment Consents",
         "operationId": "CreateInternationalPaymentConsents",
@@ -1190,7 +1190,7 @@
     "/international-payment-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "International Payment"
         ],
         "summary": "Get International Payment Consents",
         "operationId": "GetInternationalPaymentConsentsConsentId",
@@ -1255,7 +1255,7 @@
     "/international-payments": {
       "post": {
         "tags": [
-          "Payments"
+          "International Payments"
         ],
         "summary": "Create International Payments",
         "operationId": "CreateInternationalPayments",
@@ -1326,7 +1326,7 @@
     "/international-payments/{InternationalPaymentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "International Payments"
         ],
         "summary": "Get International Payments",
         "operationId": "GetInternationalPaymentsInternationalPaymentId",
@@ -1391,7 +1391,7 @@
     "/file-payment-consents": {
       "post": {
         "tags": [
-          "Payments"
+          "File Payment"
         ],
         "summary": "Create File Payment Consents",
         "operationId": "CreateFilePaymentConsents",
@@ -1462,7 +1462,7 @@
     "/file-payment-consents/{ConsentId}/file": {
       "post": {
         "tags": [
-          "Payments"
+          " Payment"
         ],
         "summary": "Create  Payment Consents",
         "operationId": "CreateFilePaymentConsentsConsentIdFile",
@@ -1534,7 +1534,7 @@
       },
       "get": {
         "tags": [
-          "Payments"
+          " Payment"
         ],
         "summary": "Get  Payment Consents",
         "operationId": "GetFilePaymentConsentsConsentIdFile",
@@ -1599,7 +1599,7 @@
     "/file-payment-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          " Payment"
         ],
         "summary": "Get  Payment Consents",
         "operationId": "GetFilePaymentConsentsConsentId",
@@ -1664,7 +1664,7 @@
     "/file-payments": {
       "post": {
         "tags": [
-          "Payments"
+          " Payments"
         ],
         "summary": "Create  Payments",
         "operationId": "CreateFilePayments",
@@ -1735,7 +1735,7 @@
     "/file-payments/{FilePaymentId}": {
       "get": {
         "tags": [
-          "Payments"
+          " Payments"
         ],
         "summary": "Get  Payments",
         "operationId": "GetFilePaymentsFilePaymentId",
@@ -1800,7 +1800,7 @@
     "/file-payments/{FilePaymentId}/report-file": {
       "get": {
         "tags": [
-          "Payments"
+          " Payments"
         ],
         "summary": "Get  Payments",
         "operationId": "GetFilePaymentsFilePaymentIdReportFile",
@@ -1865,7 +1865,7 @@
     "/international-standing-order-consents": {
       "post": {
         "tags": [
-          "Payments"
+          "International Standing Order"
         ],
         "summary": "Create International Standing Order Consents",
         "operationId": "CreateInternationalStandingOrderConsents",
@@ -1936,7 +1936,7 @@
     "/international-standing-order-consents/{ConsentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "International Standing Order"
         ],
         "summary": "Get International Standing Order Consents",
         "operationId": "GetInternationalStandingOrderConsentsConsentId",
@@ -2001,7 +2001,7 @@
     "/international-standing-orders": {
       "post": {
         "tags": [
-          "Payments"
+          "International Standing Orders"
         ],
         "summary": "Create International Standing Orders",
         "operationId": "CreateInternationalStandingOrders",
@@ -2072,7 +2072,7 @@
     "/international-standing-orders/{InternationalStandingOrderPaymentId}": {
       "get": {
         "tags": [
-          "Payments"
+          "International Standing Orders"
         ],
         "summary": "Get International Standing Orders",
         "operationId": "GetInternationalStandingOrdersInternationalStandingOrderPaymentId",
@@ -2148,7 +2148,7 @@
     "ConsentId": {
       "name": "ConsentId",
       "in": "path",
-      "description": "Default",
+      "description": "ConsentId",
       "required": true,
       "type": "string"
     },
@@ -2164,7 +2164,7 @@
     "DomesticScheduledPaymentId": {
       "name": "DomesticScheduledPaymentId",
       "in": "path",
-      "description": "Default",
+      "description": "DomesticScheduledPaymentId",
       "required": true,
       "type": "string"
     },
@@ -2189,7 +2189,7 @@
     "InternationalScheduledPaymentId": {
       "name": "InternationalScheduledPaymentId",
       "in": "path",
-      "description": "Default",
+      "description": "InternationalScheduledPaymentId",
       "required": true,
       "type": "string"
     },
@@ -2214,7 +2214,7 @@
     "DomesticStandingOrderId": {
       "name": "DomesticStandingOrderId",
       "in": "path",
-      "description": "Default",
+      "description": "DomesticStandingOrderId",
       "required": true,
       "type": "string"
     },
@@ -2239,7 +2239,7 @@
     "DomesticPaymentId": {
       "name": "DomesticPaymentId",
       "in": "path",
-      "description": "Default",
+      "description": "DomesticPaymentId",
       "required": true,
       "type": "string"
     },
@@ -2264,7 +2264,7 @@
     "InternationalPaymentId": {
       "name": "InternationalPaymentId",
       "in": "path",
-      "description": "Default",
+      "description": "InternationalPaymentId",
       "required": true,
       "type": "string"
     },
@@ -2298,7 +2298,7 @@
     "FilePaymentId": {
       "name": "FilePaymentId",
       "in": "path",
-      "description": "Default",
+      "description": "FilePaymentId",
       "required": true,
       "type": "string"
     },
@@ -2323,7 +2323,7 @@
     "InternationalStandingOrderPaymentId": {
       "name": "InternationalStandingOrderPaymentId",
       "in": "path",
-      "description": "Default",
+      "description": "InternationalStandingOrderPaymentId",
       "required": true,
       "type": "string"
     },

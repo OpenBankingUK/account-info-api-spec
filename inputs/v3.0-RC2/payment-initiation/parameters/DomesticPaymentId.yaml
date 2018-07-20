@@ -2,6 +2,6 @@
   DomesticPaymentId: 
     name: "DomesticPaymentId"
     in: "path"
-    description: "Default"
+    description: "DomesticPaymentId"
     required: true
     type: "string"

@@ -22,7 +22,7 @@ paths:
   /domestic-scheduled-payment-consents:
     post:
       tags:
-        - Payments
+        - Domestic Scheduled Payment
       summary: Create Domestic Scheduled Payment Consents
       operationId: CreateDomesticScheduledPaymentConsents
       consumes:
@@ -59,7 +59,7 @@ paths:
   '/domestic-scheduled-payment-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - Domestic Scheduled Payment
       summary: Get Domestic Scheduled Payment Consents
       operationId: GetDomesticScheduledPaymentConsentsConsentId
       consumes:
@@ -94,7 +94,7 @@ paths:
   /domestic-scheduled-payments:
     post:
       tags:
-        - Payments
+        - Domestic Scheduled Payments
       summary: Create Domestic Scheduled Payments
       operationId: CreateDomesticScheduledPayments
       consumes:
@@ -131,7 +131,7 @@ paths:
   '/domestic-scheduled-payments/{DomesticScheduledPaymentId}':
     get:
       tags:
-        - Payments
+        - Domestic Scheduled Payments
       summary: Get Domestic Scheduled Payments
       operationId: GetDomesticScheduledPaymentsDomesticScheduledPaymentId
       consumes:
@@ -166,7 +166,7 @@ paths:
   /international-scheduled-payment-consents:
     post:
       tags:
-        - Payments
+        - International Scheduled Payment
       summary: Create International Scheduled Payment Consents
       operationId: CreateInternationalScheduledPaymentConsents
       consumes:
@@ -203,7 +203,7 @@ paths:
   '/international-scheduled-payment-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - International Scheduled Payment
       summary: Get International Scheduled Payment Consents
       operationId: GetInternationalScheduledPaymentConsentsConsentId
       consumes:
@@ -238,7 +238,7 @@ paths:
   /international-scheduled-payments:
     post:
       tags:
-        - Payments
+        - International Scheduled Payments
       summary: Create International Scheduled Payments
       operationId: CreateInternationalScheduledPayments
       consumes:
@@ -275,7 +275,7 @@ paths:
   '/international-scheduled-payments/{InternationalScheduledPaymentId}':
     get:
       tags:
-        - Payments
+        - International Scheduled Payments
       summary: Get International Scheduled Payments
       operationId: GetInternationalScheduledPaymentsInternationalScheduledPaymentId
       consumes:
@@ -310,7 +310,7 @@ paths:
   /domestic-standing-order-consents:
     post:
       tags:
-        - Payments
+        - ''
       summary: Create  Consents
       operationId: CreateDomesticStandingOrderConsents
       consumes:
@@ -347,7 +347,7 @@ paths:
   '/domestic-standing-order-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - ''
       summary: Get  Consents
       operationId: GetDomesticStandingOrderConsentsConsentId
       consumes:
@@ -382,7 +382,7 @@ paths:
   /domestic-standing-orders:
     post:
       tags:
-        - Payments
+        - Domestic Standing Orders
       summary: Create Domestic Standing Orders
       operationId: CreateDomesticStandingOrders
       consumes:
@@ -419,7 +419,7 @@ paths:
   '/domestic-standing-orders/{DomesticStandingOrderId}':
     get:
       tags:
-        - Payments
+        - Domestic Standing Orders
       summary: Get Domestic Standing Orders
       operationId: GetDomesticStandingOrdersDomesticStandingOrderId
       consumes:
@@ -454,7 +454,7 @@ paths:
   /domestic-payment-consents:
     post:
       tags:
-        - Payments
+        - Domestic Payment
       summary: Create Domestic Payment Consents
       operationId: CreateDomesticPaymentConsents
       consumes:
@@ -491,7 +491,7 @@ paths:
   '/domestic-payment-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - Domestic Payment
       summary: Get Domestic Payment Consents
       operationId: GetDomesticPaymentConsentsConsentId
       consumes:
@@ -526,7 +526,7 @@ paths:
   /domestic-payments:
     post:
       tags:
-        - Payments
+        - Domestic Payments
       summary: Create Domestic Payments
       operationId: CreateDomesticPayments
       consumes:
@@ -563,7 +563,7 @@ paths:
   '/domestic-payments/{DomesticPaymentId}':
     get:
       tags:
-        - Payments
+        - Domestic Payments
       summary: Get Domestic Payments
       operationId: GetDomesticPaymentsDomesticPaymentId
       consumes:
@@ -598,7 +598,7 @@ paths:
   /international-payment-consents:
     post:
       tags:
-        - Payments
+        - International Payment
       summary: Create International Payment Consents
       operationId: CreateInternationalPaymentConsents
       consumes:
@@ -635,7 +635,7 @@ paths:
   '/international-payment-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - International Payment
       summary: Get International Payment Consents
       operationId: GetInternationalPaymentConsentsConsentId
       consumes:
@@ -670,7 +670,7 @@ paths:
   /international-payments:
     post:
       tags:
-        - Payments
+        - International Payments
       summary: Create International Payments
       operationId: CreateInternationalPayments
       consumes:
@@ -707,7 +707,7 @@ paths:
   '/international-payments/{InternationalPaymentId}':
     get:
       tags:
-        - Payments
+        - International Payments
       summary: Get International Payments
       operationId: GetInternationalPaymentsInternationalPaymentId
       consumes:
@@ -742,7 +742,7 @@ paths:
   /file-payment-consents:
     post:
       tags:
-        - Payments
+        - File Payment
       summary: Create File Payment Consents
       operationId: CreateFilePaymentConsents
       consumes:
@@ -779,7 +779,7 @@ paths:
   '/file-payment-consents/{ConsentId}/file':
     post:
       tags:
-        - Payments
+        - ' Payment'
       summary: Create  Payment Consents
       operationId: CreateFilePaymentConsentsConsentIdFile
       consumes:
@@ -816,7 +816,7 @@ paths:
             - payments
     get:
       tags:
-        - Payments
+        - ' Payment'
       summary: Get  Payment Consents
       operationId: GetFilePaymentConsentsConsentIdFile
       consumes:
@@ -851,7 +851,7 @@ paths:
   '/file-payment-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - ' Payment'
       summary: Get  Payment Consents
       operationId: GetFilePaymentConsentsConsentId
       consumes:
@@ -886,7 +886,7 @@ paths:
   /file-payments:
     post:
       tags:
-        - Payments
+        - ' Payments'
       summary: Create  Payments
       operationId: CreateFilePayments
       consumes:
@@ -923,7 +923,7 @@ paths:
   '/file-payments/{FilePaymentId}':
     get:
       tags:
-        - Payments
+        - ' Payments'
       summary: Get  Payments
       operationId: GetFilePaymentsFilePaymentId
       consumes:
@@ -958,7 +958,7 @@ paths:
   '/file-payments/{FilePaymentId}/report-file':
     get:
       tags:
-        - Payments
+        - ' Payments'
       summary: Get  Payments
       operationId: GetFilePaymentsFilePaymentIdReportFile
       consumes:
@@ -993,7 +993,7 @@ paths:
   /international-standing-order-consents:
     post:
       tags:
-        - Payments
+        - International Standing Order
       summary: Create International Standing Order Consents
       operationId: CreateInternationalStandingOrderConsents
       consumes:
@@ -1030,7 +1030,7 @@ paths:
   '/international-standing-order-consents/{ConsentId}':
     get:
       tags:
-        - Payments
+        - International Standing Order
       summary: Get International Standing Order Consents
       operationId: GetInternationalStandingOrderConsentsConsentId
       consumes:
@@ -1065,7 +1065,7 @@ paths:
   /international-standing-orders:
     post:
       tags:
-        - Payments
+        - International Standing Orders
       summary: Create International Standing Orders
       operationId: CreateInternationalStandingOrders
       consumes:
@@ -1102,7 +1102,7 @@ paths:
   '/international-standing-orders/{InternationalStandingOrderPaymentId}':
     get:
       tags:
-        - Payments
+        - International Standing Orders
       summary: Get International Standing Orders
       operationId: GetInternationalStandingOrdersInternationalStandingOrderPaymentId
       consumes:
@@ -1145,7 +1145,7 @@ parameters:
   ConsentId:
     name: ConsentId
     in: path
-    description: Default
+    description: ConsentId
     required: true
     type: string
   OBWriteDomesticScheduled1Param:
@@ -1158,7 +1158,7 @@ parameters:
   DomesticScheduledPaymentId:
     name: DomesticScheduledPaymentId
     in: path
-    description: Default
+    description: DomesticScheduledPaymentId
     required: true
     type: string
   OBWriteInternationalScheduledConsent1Param:
@@ -1178,7 +1178,7 @@ parameters:
   InternationalScheduledPaymentId:
     name: InternationalScheduledPaymentId
     in: path
-    description: Default
+    description: InternationalScheduledPaymentId
     required: true
     type: string
   OBWriteDomesticStandingOrderConsent1Param:
@@ -1198,7 +1198,7 @@ parameters:
   DomesticStandingOrderId:
     name: DomesticStandingOrderId
     in: path
-    description: Default
+    description: DomesticStandingOrderId
     required: true
     type: string
   OBWriteDomesticConsent1Param:
@@ -1218,7 +1218,7 @@ parameters:
   DomesticPaymentId:
     name: DomesticPaymentId
     in: path
-    description: Default
+    description: DomesticPaymentId
     required: true
     type: string
   OBWriteInternationalConsent1Param:
@@ -1238,7 +1238,7 @@ parameters:
   InternationalPaymentId:
     name: InternationalPaymentId
     in: path
-    description: Default
+    description: InternationalPaymentId
     required: true
     type: string
   OBWriteFileConsent1Param:
@@ -1265,7 +1265,7 @@ parameters:
   FilePaymentId:
     name: FilePaymentId
     in: path
-    description: Default
+    description: FilePaymentId
     required: true
     type: string
   OBWriteInternationalStandingOrderConsent1Param:
@@ -1285,7 +1285,7 @@ parameters:
   InternationalStandingOrderPaymentId:
     name: InternationalStandingOrderPaymentId
     in: path
-    description: Default
+    description: InternationalStandingOrderPaymentId
     required: true
     type: string
   x-idempotency-key:
