@@ -1,0 +1,7 @@
+---
+  InternationalScheduledPaymentId: 
+    name: "InternationalScheduledPaymentId"
+    in: "path"
+    description: "Default"
+    required: true
+    type: "string"

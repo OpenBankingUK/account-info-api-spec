@@ -1,0 +1,12 @@
+OBExternalStatementDateTimeType1Code:
+  description: 'Date time type, in a coded form.'
+  type: string
+  enum:
+    - BalanceTransferPromoEnd
+    - DirectDebitDue
+    - LastPayment
+    - LastStatement
+    - NextStatement
+    - PaymentDue
+    - PurchasePromoEnd
+    - StatementAvailable

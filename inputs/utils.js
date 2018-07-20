@@ -1,6 +1,3 @@
-const { YAML } = require('swagger-parser'); // eslint-disable-line
-const SwaggerParser = require('swagger-parser'); // eslint-disable-line
-
 const typeFor = (obj) => {
   const type = typeof (obj);
   if (type === 'object' && obj.length) {
@@ -11,6 +8,12 @@ const typeFor = (obj) => {
 
 const mergeNestedObjects = (firstObject, secondObject) => {
   const finalObject = {};
+
+  // TODO: Check side effects of not comparing secondObject (doesn't seem logical, but still)
+  // If this IS an array then the checking process will shaft the array as it'll
+  // chuck in the positions - so just return the array immediately
+  if (Array.isArray(firstObject) || Array.isArray(secondObject))
+    return firstObject || secondObject;
 
   if (firstObject) {
     Object.keys(firstObject).forEach((propertyKey) => {

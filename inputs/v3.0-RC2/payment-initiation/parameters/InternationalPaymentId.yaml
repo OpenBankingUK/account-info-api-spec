@@ -1,0 +1,7 @@
+---
+  InternationalPaymentId: 
+    name: "InternationalPaymentId"
+    in: "path"
+    description: "Default"
+    required: true
+    type: "string"

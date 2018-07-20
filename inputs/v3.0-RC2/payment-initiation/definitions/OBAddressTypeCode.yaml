@@ -1,0 +1,12 @@
+OBAddressTypeCode:
+  description: Identifies the nature of the postal address.
+  type: string
+  enum:
+    - Business
+    - Correspondence
+    - DeliveryTo
+    - MailTo
+    - POBox
+    - Postal
+    - Residential
+    - Statement

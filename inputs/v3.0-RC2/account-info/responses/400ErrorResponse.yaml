@@ -1,0 +1,5 @@
+---
+  400ErrorResponse: 
+    description: "Bad request"
+    schema: 
+      $ref: "#/definitions/OBErrorResponse"

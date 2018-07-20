@@ -1,0 +1,29 @@
+Error:
+  required:
+    - ErrorCode
+    - Message
+  properties:
+    ErrorCode:
+      type: string
+      description: Textual error code
+      title: ErrorCode
+      minLength: 1
+      maxLength: 40
+    Message:
+      type: string
+      description: Error message with specific reference to the cause of the problem, e.g., MISSING_AMOUNT_CURRENCY
+      title: Message
+      minLength: 1
+      maxLength: 256
+    Path:
+      type: string
+      description: Optionally, reference to the field with error, e.g., /Data/Initiation/InstructedAmount/Currency
+      title: Path
+      minLength: 1
+      maxLength: 256
+    Url:
+      type: string
+      description: Optionally, a URL to help remediate the problem, to API Reference, or help etc
+      title: Url
+      minLength: 1
+      maxLength: 256

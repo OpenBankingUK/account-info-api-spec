@@ -1,0 +1,14 @@
+OBExternalStatementRateType1Code:
+  description: 'Statement rate type, in a coded form.'
+  type: string
+  enum:
+    - AnnualBalanceTransfer
+    - AnnualBalanceTransferAfterPromo
+    - AnnualBalanceTransferPromo
+    - AnnualCash
+    - AnnualPurchase
+    - AnnualPurchaseAfterPromo
+    - AnnualPurchasePromo
+    - MonthlyBalanceTransfer
+    - MonthlyCash
+    - MonthlyPurchase

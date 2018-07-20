@@ -1,0 +1,9 @@
+OBExternalStatementInterestType1Code:
+  description: 'Interest amount type, in a coded form.'
+  type: string
+  enum:
+    - BalanceTransfer
+    - Cash
+    - EstimatedNext
+    - Purchase
+    - Total

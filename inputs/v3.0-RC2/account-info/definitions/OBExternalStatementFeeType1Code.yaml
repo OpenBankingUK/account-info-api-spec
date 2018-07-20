@@ -1,0 +1,18 @@
+OBExternalStatementFeeType1Code:
+  description: 'Fee type, in a coded form.'
+  type: string
+  enum:
+    - Annual
+    - BalanceTransfer
+    - CashAdvance
+    - CashTransaction
+    - ForeignTransaction
+    - Gambling
+    - LatePayment
+    - MoneyTransfer
+    - Monthly
+    - Overlimit
+    - PostalOrder
+    - PrizeEntry
+    - StatementCopy
+    - Total

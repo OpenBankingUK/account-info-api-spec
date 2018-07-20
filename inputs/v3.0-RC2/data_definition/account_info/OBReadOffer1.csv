@@ -1,0 +1,24 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBReadOffer1";"";"OBReadOffer1";"";"OBReadOffer1";"";"";"";""
+"Data";"1..1";"OBReadOffer1/Data";"";"OBReadDataOffer1";"";"";"";""
+"Offer";"0..n";"OBReadOffer1/Data/Offer";"";"OBOffer1";"";"";"";""
+"AccountId";"1..1";"OBReadOffer1/Data/Offer/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"OfferId";"0..1";"OBReadOffer1/Data/Offer/OfferId";"A unique and immutable identifier used to identify the offer resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"OfferType";"0..1";"OBReadOffer1/Data/Offer/OfferType";"Offer type, in a coded form.";"OBExternalOfferType1Code";"BalanceTransfer
+LimitIncrease
+MoneyTransfer
+Other
+PromotionalRate";"";"";""
+"Description";"0..1";"OBReadOffer1/Data/Offer/Description";"Further details of the offer.";"Max500Text";"";"";"";""
+"StartDateTime";"0..1";"OBReadOffer1/Data/Offer/StartDateTime";"Date and time at which the offer starts.";"ISODateTime";"";"";"";""
+"EndDateTime";"0..1";"OBReadOffer1/Data/Offer/EndDateTime";"Date and time at which the offer ends.";"ISODateTime";"";"";"";""
+"Rate";"0..1";"OBReadOffer1/Data/Offer/Rate";"Rate associated with the offer type.";"Max10Text";"";"^(-?\d{1,3}){1}(\.\d{1,4}){0,1}$";"";""
+"Value";"0..1";"OBReadOffer1/Data/Offer/Value";"Value associated with the offer type.";"Number";"";"";"18";"0"
+"Term";"0..1";"OBReadOffer1/Data/Offer/Term";"Further details of the term of the offer.";"Max500Text";"";"";"";""
+"URL";"0..1";"OBReadOffer1/Data/Offer/URL";"URL (Uniform Resource Locator) where the document can be found";"Max256Text";"";"";"";""
+"Amount";"0..1";"OBReadOffer1/Data/Offer/Amount";"Amount of money associated with the offer type.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBReadOffer1/Data/Offer/Amount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"";"18";"5"
+"Currency";"1..1";"OBReadOffer1/Data/Offer/Amount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"Fee";"0..1";"OBReadOffer1/Data/Offer/Fee";"Fee associated with the offer type.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBReadOffer1/Data/Offer/Fee/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"";"18";"5"
+"Currency";"1..1";"OBReadOffer1/Data/Offer/Fee/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""

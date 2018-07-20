@@ -1,0 +1,195 @@
+OBStandingOrder2Basic:
+  description: Account to or from which a cash entry is made.
+  type: object
+  properties:
+    AccountId:
+      $ref: '#/definitions/AccountId'
+    StandingOrderId:
+      description: >-
+        A unique and immutable identifier used to identify the standing order
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40
+    Frequency:
+      description: >-
+        Individual Definitions:
+
+        EvryDay - Every day
+
+        EvryWorkgDay - Every working day
+
+        IntrvlWkDay - An interval specified in weeks (01 to 09), and the day
+        within the week (01 to 07)
+
+        WkInMnthDay - A monthly interval, specifying the week of the month (01
+        to 05) and day within the week (01 to 07)
+
+        IntrvlMnthDay - An interval specified in months (between 01 to 06, 12,
+        24), specifying the day within the month (-5 to -1, 1 to 31)
+
+        QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+
+        Individual Patterns:
+
+        EvryDay (ScheduleCode)
+
+        EvryWorkgDay (ScheduleCode)
+
+        IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks +
+        DayInWeek)
+
+        WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth +
+        DayInWeek)
+
+        IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode +
+        IntervalInMonths + DayInMonth)
+
+        QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode +
+        QuarterDay
+
+        The regular expression for this element combines five smaller versions
+        for each permitted pattern. To aid legibility - the components are
+        presented individually here:
+
+        EvryDay
+
+        EvryWorkgDay
+
+        IntrvlWkDay:0[1-9]:0[1-7]
+
+        WkInMnthDay:0[1-5]:0[1-7]
+
+        IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+
+        QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
+
+        Full Regular Expression:
+
+        ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+      type: string
+      minLength: 1
+      maxLength: 35
+      pattern: >-
+        ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+    Reference:
+      description: >-
+        Unique reference, as assigned by the creditor, to unambiguously refer to
+        the payment transaction.
+
+        Usage: If available, the initiating party should provide this reference
+        in the structured remittance information, to enable reconciliation by
+        the creditor upon receipt of the amount of money.
+
+        If the business context requires the use of a creditor reference or a
+        payment remit identification, and only one identifier can be passed
+        through the end-to-end chain, the creditor's reference or payment
+        remittance identification should be quoted in the end-to-end transaction
+        identification.
+      type: string
+      minLength: 1
+      maxLength: 35
+    FirstPaymentDateTime:
+      description: >-
+        The date on which the first payment for a Standing Order schedule will
+        be made.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    FirstPaymentAmount:
+      description: The amount of the first Standing Order
+      type: object
+      properties:
+        Amount:
+          $ref: '#/definitions/Amount'
+        Currency:
+          description: >-
+            A code allocated to a currency by a Maintenance Agency under an
+            international identification scheme, as described in the latest
+            edition of the international standard ISO 4217 "Codes for the
+            representation of currencies and funds".
+          type: string
+          pattern: '^[A-Z]{3,3}$'
+      required:
+        - Amount
+        - Currency
+      additionalProperties: false
+    NextPaymentDateTime:
+      description: >-
+        The date on which the next payment for a Standing Order schedule will be
+        made.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    NextPaymentAmount:
+      description: The amount of the next Standing Order
+      type: object
+      properties:
+        Amount:
+          $ref: '#/definitions/Amount'
+        Currency:
+          description: >-
+            A code allocated to a currency by a Maintenance Agency under an
+            international identification scheme, as described in the latest
+            edition of the international standard ISO 4217 "Codes for the
+            representation of currencies and funds".
+          type: string
+          pattern: '^[A-Z]{3,3}$'
+      required:
+        - Amount
+        - Currency
+      additionalProperties: false
+    FinalPaymentDateTime:
+      description: >-
+        The date on which the final payment for a Standing Order schedule will
+        be made.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    FinalPaymentAmount:
+      description: The amount of the final Standing Order
+      type: object
+      properties:
+        Amount:
+          $ref: '#/definitions/Amount'
+        Currency:
+          description: >-
+            A code allocated to a currency by a Maintenance Agency under an
+            international identification scheme, as described in the latest
+            edition of the international standard ISO 4217 "Codes for the
+            representation of currencies and funds".
+          type: string
+          pattern: '^[A-Z]{3,3}$'
+      required:
+        - Amount
+        - Currency
+      additionalProperties: false
+    StandingOrderStatusCode:
+      $ref: '#/definitions/OBExternalStandingOrderStatus1Code'
+  required:
+    - AccountId
+    - Frequency
+    - NextPaymentDateTime
+    - NextPaymentAmount
+  additionalProperties: false

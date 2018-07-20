@@ -1,0 +1,7 @@
+---
+  DomesticPaymentId: 
+    name: "DomesticPaymentId"
+    in: "path"
+    description: "Default"
+    required: true
+    type: "string"

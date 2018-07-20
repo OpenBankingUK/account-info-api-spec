@@ -1,0 +1,8 @@
+---
+  OBWriteDomestic1Param: 
+    name: "OBWriteDomestic1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteDomestic1"

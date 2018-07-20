@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/OpenBankingUK/account-info-api-spec-build#readme",
   "dependencies": {
+    "find": "^0.2.9",
     "flatten": "^1.0.2"
   },
   "devDependencies": {
@@ -60,6 +61,7 @@
     "spectacle-docs": "*",
     "supertest": "^2.0.1",
     "swagger-parser": "beta",
-    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams"
+    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams",
+    "yargs": "^12.0.1"
   }
 }

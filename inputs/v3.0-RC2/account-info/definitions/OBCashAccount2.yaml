@@ -1,0 +1,21 @@
+OBCashAccount2:
+  type: object
+  properties:
+    SchemeName:
+      $ref: '#/definitions/OBExternalAccountIdentification3Code'
+    Identification:
+      type: string
+      minLength: 1
+      maxLength: 34
+    Name:
+      type: string
+      minLength: 1
+      maxLength: 70
+    SecondaryIdentification:
+      type: string
+      minLength: 1
+      maxLength: 34
+  required:
+    - SchemeName
+    - Identification
+  additionalProperties: false

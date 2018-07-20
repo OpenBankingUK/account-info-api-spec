@@ -1,0 +1,35 @@
+OBProduct2:
+  type: object
+  properties:
+    ProductName:
+      description: >-
+        The name of the product used for marketing purposes from a customer
+        perspective. I.e. what the customer would recognise.
+      type: string
+    ProductId:
+      description: >-
+        Identifier within the parent organisation for the product. Must be
+        unique in the organisation.
+      type: string
+    AccountId:
+      $ref: '#/definitions/AccountId'
+    SecondaryProductId:
+      description: >-
+        Identifier within the parent organisation for the product. Must be
+        unique in the organisation.
+      type: string
+    ProductType:
+      $ref: '#/definitions/OBExternalProductType1Code'
+    MarketingStateId:
+      description: Unique and unambiguous identification of a Product Marketing State.
+      type: string
+    OtherProductType:
+      $ref: '#/definitions/OB_OtherProductType1'
+    PCA:
+      $ref: '#/definitions/OBPCAData1'
+    BCA:
+      $ref: '#/definitions/OBBCAData1'
+  required:
+    - AccountId
+    - ProductType
+  additionalProperties: false

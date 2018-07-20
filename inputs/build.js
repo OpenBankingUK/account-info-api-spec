@@ -4,6 +4,11 @@ const SwaggerParser = require('swagger-parser'); // eslint-disable-line
 const fs = require('fs');
 const { typeFor, collapseAllOf } = require('./utils');
 const { removeAllOf } = require('./remove-all-of');
+const find = require('find');
+const argv = require('yargs')
+  .describe('input', 'Input directory where files to generate Swagger can be found')
+  .argv;
+
 
 const readYaml = file => YAML.parse(fs.readFileSync(file));
 
@@ -38,6 +43,7 @@ const writeOutput = (outFile, api) => {
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
   }
+  
   fs.writeFileSync(`${outFile}.yaml`, yaml.safeDump(api, { noRefs: true }));
   fs.writeFileSync(`${outFile}.json`, JSON.stringify(api, null, 2));
 };
@@ -106,9 +112,16 @@ const sortKeys = (obj) => {
 
 const cloneApi = api => JSON.parse(JSON.stringify(api));
 
-const process = async (file) => {
+/**
+ * @description Process the inputs from a given directory
+ * @param {*} file The index.yaml file that acts as a marker for a collection of API definition files
+ */
+const process = async (file, version) => {
   try {
     const dir = file.replace('/index.yaml', '');
+
+    // Grab the name of the directory index.yaml was found in and use for the filename
+    const apiName = dir.split('/').pop();
     const api = readYaml(file);
     importPaths(api, dir);
     importSection(api, dir, 'definitions');
@@ -116,34 +129,45 @@ const process = async (file) => {
     importSection(api, dir, 'responses');
     importSection(api, dir, 'securityDefinitions');
     deduplicateRequestResponse(api, 'OBReadData1', 'OBReadDataResponse1');
-    const { version } = api.info;
+
+    // Pass in version so it can be set in output document rather than retained from template
+    // const { version } = api.info;
+    api.info.version = version;
+    
     console.log('VALIDATE');
     const valid = await SwaggerParser.validate(cloneApi(api));
+    
     console.log('API name: %s, Version: %s', valid.info.title, version);
-    writeOutput(`./dist/${version}/account-info-swagger-with-allof`, api);
+    writeOutput(`./dist/${version}/${apiName}-swagger-with-allof`, api);
 
     const withoutAllOf = await removeAllOf(api);
-    writeOutput(`./dist/${version}/account-info-swagger`, withoutAllOf);
+    writeOutput(`./dist/${version}/${apiName}-swagger`, withoutAllOf);
 
     const deref = await SwaggerParser.dereference(cloneApi(api));
     delete deref.definitions;
     delete deref.parameters;
     const successes = Object.keys(deref.responses).filter(k => k.startsWith('20'));
     successes.forEach(k => delete deref.responses[k]);
-    writeDereferenced(`./dist/${version}/account-info-swagger-dereferenced`, sortKeys(deref));
+    writeDereferenced(`./dist/${version}/${apiName}-swagger-dereferenced`, sortKeys(deref));
 
-    const old = await SwaggerParser.dereference(readYaml('./dist/v1.1/account-info-swagger.yaml'));
-    writeDereferenced('./dist/v1.1/account-info-swagger-dereferenced', sortKeys(old));
+    const old = await SwaggerParser.dereference(readYaml(`./dist/${version}/${apiName}-swagger.yaml`));
+    writeDereferenced(`./dist/${version}/${apiName}-swagger-dereferenced`, sortKeys(old));
   } catch (e) {
     logE(e); // eslint-disable-line
   }
 };
 
 try {
-  const versions = fs.readdirSync('./inputs').filter(d => d.startsWith('v'));
+  const versions = argv.input ? 
+    argv.input : 
+    fs.readdirSync('./inputs').filter(d => d.startsWith('v'));
 
-  versions.forEach(version =>
-    process(`./inputs/${version}/accounts/index.yaml`));
+    // Loop through each version and index.yaml file found and build the Swagger
+    versions.forEach(version =>
+      find.eachfile('index.yaml', `./inputs/${version}`, (file) => {
+        process(file, version);
+      })
+    );
 } catch (e) {
   logE(e); // eslint-disable-line
 }

@@ -1,0 +1,21 @@
+OBReadStandingOrder2:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        StandingOrder:
+          items:
+            $ref: '#/definitions/OBStandingOrder2'
+          type: array
+          description: Account to or from which a cash entry is made.
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

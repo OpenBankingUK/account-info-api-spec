@@ -1,0 +1,30 @@
+OBErrorResponse:
+  description: Bad request
+  required:
+    - Code
+    - Message
+    - Errors
+  properties:
+    Code:
+      type: number
+      description: Mandatory, high level Textual error code, e.g., BAD_REQUEST
+      title: Code
+      minLength: 1
+      maxLength: 40
+    Id:
+      type: string
+      description: Optionally, a Unique reference for the error instance, for audit purposes, in case of unkown/unclassified errors
+      title: ID
+    Message:
+      type: string
+      description: Brief non contextual Error message, e.g., 'There is something wrong with the request parameters provided'
+      title: Message
+      minLength: 1
+      maxLength: 40
+    Errors:
+      type: array
+      description: An array of detail error codes, and messages, if there are more than one error
+      title: Errors
+      items:
+        $ref: "#/definitions/Error"
+  additionalProperties: false

@@ -1,0 +1,11 @@
+OBWriteInternationalStandingOrderConsentResponse1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataInternationalStandingOrderConsentResponse1'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

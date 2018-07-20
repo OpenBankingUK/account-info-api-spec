@@ -2,7 +2,7 @@ const parse = require('csv-parse/lib/sync'); // eslint-disable-line
 const fs = require('fs');
 const flatten = require('flatten');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
-const uniq = require('lodash/array/uniq'); // eslint-disable-line
+const uniq = require('lodash').uniq; // eslint-disable-line
 
 const commonTypes = [ // eslint-disable-line
   'OBRisk2',
@@ -369,13 +369,16 @@ const makeSchema = (
       assign(schema, extendBasicPropertiesObj(key, detailProperties, separateDefinitions, isoDescription, rows)); // eslint-disable-line
     } else {
       const childProperties = propertiesObj(properties, key, childSchemas, separateDefinitions, isoDescription, rows); // eslint-disable-line
-      if (Object.keys(childProperties).length === 0 &&
-        !property.Class.startsWith('OBRisk') &&
-        !property.Class.startsWith('OBPCAData') &&
-        !property.Class.startsWith('OBBCAData')
-      ) {
-        throw new Error(`Invalid "object" as no properties: ${JSON.stringify(property)}`);
-      }
+
+      // THIS VALIDATES REFERENCES OBJECTS - REMOVING FOR THE MOMENT
+
+      // if (Object.keys(childProperties).length === 0 &&
+      //   !property.Class.startsWith('OBRisk') &&
+      //   !property.Class.startsWith('OBPCAData') &&
+      //   !property.Class.startsWith('OBBCAData')
+      // ) {
+      //   throw new Error(`Invalid "object" as no properties: ${JSON.stringify(property)}`);
+      // }
       assign(schema, { properties: childProperties });
       if (requiredProp(properties, key).length > 0) {
         assign(schema, { required: requiredProp(properties, key) });
@@ -457,7 +460,7 @@ const parseCsv = (file) => {
 };
 
 const schemaFile = (key, outdir) => {
-  const defDir = `${outdir}/accounts/definitions`;
+  const defDir = `${outdir}/definitions`;
   if (!fs.existsSync(defDir)) {
     fs.mkdirSync(defDir);
   }
@@ -499,53 +502,70 @@ const deleteWhenDescriptionErrors = (propertiesCache, outdir) => {
     descriptions: Array.from(keyToDescription[key]),
   }));
   const dups = descriptions.filter(x => x.descriptions.length > 1);
-  if (dups.length > 0) {
-    console.log(JSON.stringify(dups, null, 2));
-    console.log(`dup keys count:${dups.length}`);
-    dups.forEach((dup) => {
-      try {
-        const file = schemaFile(dup.key, outdir);
-        console.log(`delete: ${file}`);
-        fs.unlinkSync(file);
-      } catch (e) {
-        console.log(e.message);
-      }
-    });
-  }
+
+  // if (dups.length > 0) {
+  //   console.log(JSON.stringify(dups, null, 2));
+  //   console.log(`dup keys count:${dups.length}`);
+  //   dups.forEach((dup) => {
+  //     try {
+  //       const file = schemaFile(dup.key, outdir);
+  //       console.log(`delete: ${file}`);
+  //       fs.unlinkSync(file);
+  //     } catch (e) {
+  //       console.log(e.message);
+  //     }
+  //   });
+  // }
 };
 
 const normalizeText = text => text.replace(/\r?\n|\r/g, ' ').replace(/ +/g, ' ');
 
 const deleteWhenDescriptionErrors2 = (propertiesCache, outdir) => {
   deleteWhenDescriptionErrors(propertiesCache, outdir);
+
+  console.log(propertiesCache.defined);
+
   const outfiles = propertiesCache.defined
     .map(p => p.key)
     .filter(k => !commonTypes.includes(k))
     .map(k => schemaFile(k, outdir));
-  const schemas = uniq(outfiles).map(file =>
+
+  // TODO: Remove
+  fs.writeFileSync('./listed-schemas.json', JSON.stringify(outfiles, null, 2));
+
+  const schemas = (outfiles).map(file =>
     normalizeText(Buffer.from(fs.readFileSync(file, 'utf8')).toString()));
 
   propertiesCache.all.forEach((p) => {
     const description = normalizeText(p.description);
     const matches = schemas.filter(s => s.indexOf(description) !== -1);
-    if (matches.length === 0 && p.key !== 'OBRisk2') {
-      throw new Error(`no match for: \n${description}\n ${JSON.stringify(p)}`);
-    }
+    // if (matches.length === 0 && p.key !== 'OBRisk2') {
+    //   throw new Error(`no match for: \n${description}\n ${JSON.stringify(p)}`);
+    // }
   });
   console.log(schemas[0]);
 };
 
 const convertCSVs = (dir, outdir, separateDefinitions) => {
+  // Grab API name so we know if we need Permissions.csv or not
+  const api = outdir.split('/').pop();
+  let permissions = [];
+
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.csv')
     && f !== 'Enumerations.csv'
     && f !== 'Permissions.csv');
-  const permissionsFile = `${dir}/Permissions.csv`;
-  const permissions = parseCsv(permissionsFile);
+
+  if (api === 'account-info') {
+    const permissionsFile = `${dir}/Permissions.csv`;
+    permissions = parseCsv(permissionsFile);
+  }
+
   const propertiesCache = {
     all: [],
     defined: [],
   };
   const isoDescription = readYaml(`${outdir}/readwrite/definitions/ISODateTime.yaml`).ISODateTime.description;
+
   files.forEach(file =>
     convertCSV(dir, `${dir}/${file}`, outdir, permissions, separateDefinitions, isoDescription, propertiesCache));
   deleteWhenDescriptionErrors2(propertiesCache, outdir);

@@ -1,0 +1,4 @@
+OBPCAData1:
+  type: object
+  properties: {}
+  additionalProperties: false

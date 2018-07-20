@@ -1,0 +1,93 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBWriteDomesticStandingOrderResponse1";"";"OBWriteDomesticStandingOrderResponse1";"";"OBWriteDomesticStandingOrderResponse1";"";"";"";""
+"Data";"1..1";"OBWriteDomesticStandingOrderResponse1/Data";"";"OBWriteDataDomesticStandingOrderResponse1";"";"";"";""
+"DomesticStandingOrderId";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/DomesticStandingOrderId";"OB: Unique identification as assigned by the ASPSP to uniquely identify the domestic standing order resource.";"Max128Text";"";"";"";""
+"ConsentId";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/ConsentId";"OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.";"Max128Text";"";"";"";""
+"CreationDateTime";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/CreationDateTime";"Date and time at which the resource was created.";"ISODateTime";"";"";"";""
+"Status";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Status";"Specifies the status of the payment order resource.";"OBExternalStatus1Code";"InitiationCompleted
+InitiationFailed
+InitiationPending";"";"";""
+"StatusUpdateDateTime";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/StatusUpdateDateTime";"Date and time at which the resource status was updated.";"ISODateTime";"";"";"";""
+"Charges";"0..n";"OBWriteDomesticStandingOrderResponse1/Data/Charges";"Set of elements used to provide details of a charge for the payment initiation.";"OBCharge1";"";"";"";""
+"ChargeBearer";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Charges/ChargeBearer";"Specifies which party/parties will bear the charges associated with the processing of the payment transaction.";"OBChargeBearerType1Code";"BorneByCreditor
+BorneByDebtor
+FollowingServiceLevel
+Shared";"";"";""
+"Type";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Charges/Type";"Charge type, in a coded form.";"Max40Text";"";"";"";""
+"Amount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Charges/Amount";"Amount of money associated with the charge type.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Charges/Amount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"";"18";"5"
+"Currency";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Charges/Amount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"Initiation";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation";"The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor for a domestic standing order.";"OBDomesticStandingOrder1";"";"";"";""
+"Frequency";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/Frequency";"Individual Definitions:
+EvryDay - Every day
+EvryWorkgDay - Every working day
+IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)
+WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)
+IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-5 to -1, 1 to 31)
+QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED). 
+ENGLISH = Paid on the 25th March, 24th June, 29th September and 25th December. 
+SCOTTISH = Paid on the 2nd February, 15th May, 1st August and 11th November.
+RECEIVED = Paid on the 20th March, 19th June, 24th September and 20th December. 
+
+Individual Patterns:
+EvryDay (ScheduleCode)
+EvryWorkgDay (ScheduleCode)
+IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek)
+WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek)
+IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)
+QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode + QuarterDay
+
+The regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:
+EvryDay
+EvryWorkgDay
+IntrvlWkDay:0[1-9]:0[1-7]
+WkInMnthDay:0[1-5]:0[1-7]
+IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
+
+Full Regular Expression:
+^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$";"Max35Text";"";"^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$";"";""
+"Reference";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/Reference";"Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
+
+Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
+
+If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.";"Max35Text";"";"";"";""
+"NumberOfPayments";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/NumberOfPayments";"Number of the payments that will be made in completing this frequency sequence including any executed since the sequence start date. ";"Max35Text";"";"";"";""
+"FirstPaymentDateTime";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FirstPaymentDateTime";"The date on which the first payment for a Standing Order schedule will be made.";"ISODateTime";"";"";"";""
+"RecurringPaymentDateTime";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/RecurringPaymentDateTime";"The date on which the first recurring payment for a Standing Order schedule will be made. 
+Usage: This must be populated only if the first recurring date is different to the first payment date.";"ISODateTime";"";"";"";""
+"FinalPaymentDateTime";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FinalPaymentDateTime";"The date on which the final payment for a Standing Order schedule will be made.";"ISODateTime";"";"";"";""
+"FirstPaymentAmount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FirstPaymentAmount";"The amount of the first Standing Order";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FirstPaymentAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"";"18";"5"
+"Currency";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FirstPaymentAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"RecurringPaymentAmount";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/RecurringPaymentAmount";"The amount of the recurring Standing Order";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/RecurringPaymentAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"";"18";"5"
+"Currency";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/RecurringPaymentAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"FinalPaymentAmount";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FinalPaymentAmount";"The amount of the final Standing Order";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FinalPaymentAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"";"18";"5"
+"Currency";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/FinalPaymentAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"DebtorAccount";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/DebtorAccount";"Provides the details to identify the debtor account.";"OBCashAccountDebtor3";"";"";"";""
+"SchemeName";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/DebtorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"Max40Text";"";"";"";""
+"Identification";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/DebtorAccount/Identification";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"Max256Text";"";"";"";""
+"Name";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/DebtorAccount/Name";"Name of the account, as assigned by the account servicing institution.
+
+Usage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/DebtorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""
+"CreditorAccount";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/CreditorAccount";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"OBCashAccountCreditor2";"";"";"";""
+"SchemeName";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/CreditorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"Max40Text";"";"";"";""
+"Identification";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/CreditorAccount/Identification";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"Max256Text";"";"";"";""
+"Name";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/CreditorAccount/Name";"Name of the account, as assigned by the account servicing institution.
+
+Usage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.
+OB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/Initiation/CreditorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""
+"MultiAuthorisation";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/MultiAuthorisation";"The multiple authorisation flow response from the ASPSP.";"OBMultiAuthorisation1";"";"";"";""
+"Status";"1..1";"OBWriteDomesticStandingOrderResponse1/Data/MultiAuthorisation/Status";"Specifies the status of the authorisation flow in code form.";"OBExternalStatus2Code";"Authorised
+AwaitingFurtherAuthorisation
+Rejected";"";"";""
+"NumberRequired";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/MultiAuthorisation/NumberRequired";"Number of authorisations required for payment order.";"Number";"";"";"18";"0"
+"NumberReceived";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/MultiAuthorisation/NumberReceived";"Number of authorisations received.";"Number";"";"";"18";"0"
+"LastUpdateDateTime";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/MultiAuthorisation/LastUpdateDateTime";"Last date and time at the authorisation flow was updated.";"ISODateTime";"";"";"";""
+"ExpirationDateTime";"0..1";"OBWriteDomesticStandingOrderResponse1/Data/MultiAuthorisation/ExpirationDateTime";"Date and time at which the requested authorisation flow must be completed.";"ISODateTime";"";"";"";""

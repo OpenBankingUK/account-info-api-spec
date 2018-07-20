@@ -1,0 +1,17 @@
+OBReadConsent1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBReadData1'
+    Risk:
+      $ref: '#/definitions/OBRisk2'
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Risk
+    - Links
+    - Meta
+  additionalProperties: false

@@ -1,0 +1,13 @@
+OBExternalProductType1Code:
+  description: >-
+    Descriptive code for the product category. 
+
+    If ProductType - "Other" is chosen, the object OtherProductType must be
+    populated with name, and description for the ASPSP's
+  type: string
+  enum:
+    - PersonalCurrentAccount
+    - BusinessCurrentAccount
+    - CommercialCreditCard
+    - SMELoan
+    - Other

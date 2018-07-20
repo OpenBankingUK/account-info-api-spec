@@ -1,0 +1,3 @@
+---
+  401ErrorResponse: 
+    description: "Unauthorized"

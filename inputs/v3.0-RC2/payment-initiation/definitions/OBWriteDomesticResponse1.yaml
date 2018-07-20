@@ -1,0 +1,8 @@
+OBWriteDomesticResponse1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataDomesticResponse1'
+  required:
+    - Data
+  additionalProperties: false

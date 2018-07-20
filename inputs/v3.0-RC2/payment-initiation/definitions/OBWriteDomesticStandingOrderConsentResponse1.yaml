@@ -1,0 +1,11 @@
+OBWriteDomesticStandingOrderConsentResponse1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataDomesticStandingOrderConsentResponse1'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

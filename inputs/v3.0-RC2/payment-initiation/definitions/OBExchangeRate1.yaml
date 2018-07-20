@@ -1,0 +1,31 @@
+OBExchangeRate1:
+  description: Provides details on the currency exchange rate and contract.
+  type: object
+  properties:
+    UnitCurrency:
+      description: >-
+        Currency in which the rate of exchange is expressed in a currency
+        exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
+      type: string
+      pattern: '^[A-Z]{3,3}$'
+    ExchangeRate:
+      description: >-
+        The factor used for conversion of an amount from one currency to
+        another. This reflects the price at which one currency was bought with
+        another currency.
+      type: object
+      properties: {}
+      additionalProperties: false
+    RateType:
+      $ref: '#/definitions/OBExchangeRateType2Code'
+    ContractIdentification:
+      description: >-
+        Unique and unambiguous reference to the foreign exchange contract agreed
+        between the initiating party/creditor and the debtor agent.
+      type: string
+      minLength: 1
+      maxLength: 35
+  required:
+    - UnitCurrency
+    - RateType
+  additionalProperties: false

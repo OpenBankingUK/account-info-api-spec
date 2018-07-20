@@ -1,0 +1,28 @@
+OBExternalStatementAmountType1Code:
+  description: 'Amount type, in a coded form.'
+  type: string
+  enum:
+    - ArrearsClosingBalance
+    - AvailableBalance
+    - AverageBalanceWhenInCredit
+    - AverageBalanceWhenInDebit
+    - AverageDailyBalance
+    - BalanceTransferClosingBalance
+    - CashClosingBalance
+    - ClosingBalance
+    - CreditLimit
+    - CurrentPayment
+    - DirectDebitPaymentDue
+    - FSCSInsurance
+    - MinimumPaymentDue
+    - PendingTransactionsBalance
+    - PreviousClosingBalance
+    - PreviousPayment
+    - PurchaseClosingBalance
+    - StartingBalance
+    - TotalAdjustments
+    - TotalCashAdvances
+    - TotalCharges
+    - TotalCredits
+    - TotalDebits
+    - TotalPurchases

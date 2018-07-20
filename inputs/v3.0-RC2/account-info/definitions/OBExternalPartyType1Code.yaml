@@ -1,0 +1,7 @@
+OBExternalPartyType1Code:
+  description: 'Party type, in a coded form.'
+  type: string
+  enum:
+    - Delegate
+    - Joint
+    - Sole
