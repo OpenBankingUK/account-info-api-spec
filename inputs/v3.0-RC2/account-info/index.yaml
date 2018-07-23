@@ -121,6 +121,8 @@
     - 
       $ref: "./responses/200AccountAccessConsentsRead.yaml"
     - 
+      $ref: "./responses/204AccountAccessConsentsDeleted.yaml"
+    - 
       $ref: "./responses/200StatementsRead.yaml"
     - 
       $ref: "./responses/200TransactionsRead.yaml"

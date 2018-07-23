@@ -135,9 +135,6 @@ const process = async (file, version) => {
     api.info.version = version;
     
     console.log('VALIDATE');
-
-    fs.writeFileSync(api.info.title, JSON.stringify(api, null, 2))
-
     const valid = await SwaggerParser.validate(cloneApi(api));
     
     console.log('API name: %s, Version: %s', valid.info.title, version);

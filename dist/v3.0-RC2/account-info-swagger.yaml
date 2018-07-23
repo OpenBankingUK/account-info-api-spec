@@ -446,6 +446,8 @@ paths:
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
+        '204':
+          $ref: '#/responses/204AccountAccessConsentsDeleted'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -921,6 +923,12 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadConsentResponse1'
+  204AccountAccessConsentsDeleted:
+    description: Account Access Consents Deleted
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
   200StatementsRead:
     description: Statements Read
     headers:
