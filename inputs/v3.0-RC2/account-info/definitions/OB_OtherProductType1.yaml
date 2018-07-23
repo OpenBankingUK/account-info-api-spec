@@ -8,8 +8,12 @@ OB_OtherProductType1:
   properties:
     Name:
       type: string
+      minLength: 1
+      maxLength: 70
     Description:
       type: string
+      minLength: 1
+      maxLength: 350
   required:
     - Name
     - Description

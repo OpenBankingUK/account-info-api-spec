@@ -6,11 +6,15 @@ OBProduct2:
         The name of the product used for marketing purposes from a customer
         perspective. I.e. what the customer would recognise.
       type: string
+      minLength: 1
+      maxLength: 70
     ProductId:
       description: >-
         Identifier within the parent organisation for the product. Must be
         unique in the organisation.
       type: string
+      minLength: 1
+      maxLength: 40
     AccountId:
       $ref: '#/definitions/AccountId'
     SecondaryProductId:
@@ -18,11 +22,15 @@ OBProduct2:
         Identifier within the parent organisation for the product. Must be
         unique in the organisation.
       type: string
+      minLength: 1
+      maxLength: 70
     ProductType:
       $ref: '#/definitions/OBExternalProductType1Code'
     MarketingStateId:
       description: Unique and unambiguous identification of a Product Marketing State.
       type: string
+      minLength: 1
+      maxLength: 40
     OtherProductType:
       $ref: '#/definitions/OB_OtherProductType1'
     PCA:
