@@ -415,6 +415,7 @@ OBPCAData1:
                 enum:
                   - Tiered
                   - Whole
+                  - Banded
               OverdraftType:
                 description: >-
                   An overdraft can either be 'committed' which means that the

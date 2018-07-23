@@ -37,5 +37,6 @@ versions.filter(v => v.startsWith('v3')).forEach((version) => {
   convertCSVs(`./inputs/${version}/data_definition/confirmation-funds`, `./inputs/${version}/confirmation-funds`, separateDefinitions);
   convertCSVs(`./inputs/${version}/data_definition/payment_initiation`, `./inputs/${version}/payment-initiation`, separateDefinitions);
 
-  convertJson(`./inputs/${version}/data_definition`, `./inputs/${version}`);
+  // Run the product data process inclusion process...
+  convertJson(`./inputs/${version}/data_definition`, `./inputs/${version}/account-info`);
 });
