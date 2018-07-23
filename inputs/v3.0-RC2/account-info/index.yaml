@@ -107,27 +107,47 @@
       $ref: "../readwrite/parameters/x-jws-signature-Param.yaml"
   responses: 
     - 
+      $ref: "./responses/200AccountsAccountIdDirectDebitsRead.yaml"
+    - 
       $ref: "./responses/200DirectDebitsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdOffersRead.yaml"
     - 
       $ref: "./responses/200OffersRead.yaml"
     - 
+      $ref: "./responses/200AccountsAccountIdScheduledPaymentsRead.yaml"
+    - 
       $ref: "./responses/200ScheduledPaymentsRead.yaml"
     - 
+      $ref: "./responses/200AccountsAccountIdBalancesRead.yaml"
+    - 
       $ref: "./responses/200BalancesRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdProductRead.yaml"
     - 
       $ref: "./responses/200ProductsRead.yaml"
     - 
       $ref: "./responses/201AccountAccessConsentsCreated.yaml"
     - 
-      $ref: "./responses/200AccountAccessConsentsRead.yaml"
+      $ref: "./responses/200AccountAccessConsentsConsentIdRead.yaml"
     - 
-      $ref: "./responses/204AccountAccessConsentsDeleted.yaml"
+      $ref: "./responses/204AccountAccessConsentsConsentIdDeleted.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsStatementIdRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsStatementIdFileRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsStatementIdTransactionsRead.yaml"
     - 
       $ref: "./responses/200StatementsRead.yaml"
     - 
-      $ref: "./responses/200TransactionsRead.yaml"
+      $ref: "./responses/200AccountsAccountIdBeneficiariesRead.yaml"
     - 
       $ref: "./responses/200BeneficiariesRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStandingOrdersRead.yaml"
     - 
       $ref: "./responses/200StandingOrdersRead.yaml"
     - 

@@ -22,7 +22,7 @@ paths:
   /domestic-scheduled-payment-consents:
     post:
       tags:
-        - Domestic Scheduled Payment
+        - Domestic Scheduled Payments
       summary: Create Domestic Scheduled Payment Consents
       operationId: CreateDomesticScheduledPaymentConsents
       consumes:
@@ -59,7 +59,7 @@ paths:
   '/domestic-scheduled-payment-consents/{ConsentId}':
     get:
       tags:
-        - Domestic Scheduled Payment
+        - Domestic Scheduled Payments
       summary: Get Domestic Scheduled Payment Consents
       operationId: GetDomesticScheduledPaymentConsentsConsentId
       consumes:
@@ -73,7 +73,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticScheduledPaymentConsentsRead'
+          $ref: '#/responses/200DomesticScheduledPaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -145,7 +145,8 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticScheduledPaymentsRead'
+          $ref: >-
+            #/responses/200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -166,7 +167,7 @@ paths:
   /international-scheduled-payment-consents:
     post:
       tags:
-        - International Scheduled Payment
+        - International Scheduled Payments
       summary: Create International Scheduled Payment Consents
       operationId: CreateInternationalScheduledPaymentConsents
       consumes:
@@ -203,7 +204,7 @@ paths:
   '/international-scheduled-payment-consents/{ConsentId}':
     get:
       tags:
-        - International Scheduled Payment
+        - International Scheduled Payments
       summary: Get International Scheduled Payment Consents
       operationId: GetInternationalScheduledPaymentConsentsConsentId
       consumes:
@@ -217,7 +218,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200InternationalScheduledPaymentConsentsRead'
+          $ref: '#/responses/200InternationalScheduledPaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -289,7 +290,8 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200InternationalScheduledPaymentsRead'
+          $ref: >-
+            #/responses/200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -310,8 +312,8 @@ paths:
   /domestic-standing-order-consents:
     post:
       tags:
-        - ''
-      summary: Create  Consents
+        - Domestic Standing Orders
+      summary: Create Domestic Standing Order Consents
       operationId: CreateDomesticStandingOrderConsents
       consumes:
         - application/json; charset=utf-8
@@ -326,7 +328,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '201':
-          $ref: '#/responses/201ConsentsCreated'
+          $ref: '#/responses/201DomesticStandingOrderConsentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -347,8 +349,8 @@ paths:
   '/domestic-standing-order-consents/{ConsentId}':
     get:
       tags:
-        - ''
-      summary: Get  Consents
+        - Domestic Standing Orders
+      summary: Get Domestic Standing Order Consents
       operationId: GetDomesticStandingOrderConsentsConsentId
       consumes:
         - application/json; charset=utf-8
@@ -361,7 +363,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200ConsentsRead'
+          $ref: '#/responses/200DomesticStandingOrderConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -433,7 +435,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticStandingOrdersRead'
+          $ref: '#/responses/200DomesticStandingOrdersDomesticStandingOrderIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -454,7 +456,7 @@ paths:
   /domestic-payment-consents:
     post:
       tags:
-        - Domestic Payment
+        - Domestic Payments
       summary: Create Domestic Payment Consents
       operationId: CreateDomesticPaymentConsents
       consumes:
@@ -491,7 +493,7 @@ paths:
   '/domestic-payment-consents/{ConsentId}':
     get:
       tags:
-        - Domestic Payment
+        - Domestic Payments
       summary: Get Domestic Payment Consents
       operationId: GetDomesticPaymentConsentsConsentId
       consumes:
@@ -505,7 +507,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticPaymentConsentsRead'
+          $ref: '#/responses/200DomesticPaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -577,7 +579,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticPaymentsRead'
+          $ref: '#/responses/200DomesticPaymentsDomesticPaymentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -598,7 +600,7 @@ paths:
   /international-payment-consents:
     post:
       tags:
-        - International Payment
+        - International Payments
       summary: Create International Payment Consents
       operationId: CreateInternationalPaymentConsents
       consumes:
@@ -635,7 +637,7 @@ paths:
   '/international-payment-consents/{ConsentId}':
     get:
       tags:
-        - International Payment
+        - International Payments
       summary: Get International Payment Consents
       operationId: GetInternationalPaymentConsentsConsentId
       consumes:
@@ -649,7 +651,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200InternationalPaymentConsentsRead'
+          $ref: '#/responses/200InternationalPaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -721,7 +723,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200InternationalPaymentsRead'
+          $ref: '#/responses/200InternationalPaymentsInternationalPaymentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -742,7 +744,7 @@ paths:
   /file-payment-consents:
     post:
       tags:
-        - File Payment
+        - File Payments
       summary: Create File Payment Consents
       operationId: CreateFilePaymentConsents
       consumes:
@@ -779,8 +781,8 @@ paths:
   '/file-payment-consents/{ConsentId}/file':
     post:
       tags:
-        - ' Payment'
-      summary: Create  Payment Consents
+        - File Payments
+      summary: Create File Payment Consents
       operationId: CreateFilePaymentConsentsConsentIdFile
       consumes:
         - application/json; charset=utf-8
@@ -796,7 +798,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '200':
-          $ref: '#/responses/200PaymentConsentsCreated'
+          $ref: '#/responses/200FilePaymentConsentsConsentIdFileCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -816,8 +818,8 @@ paths:
             - payments
     get:
       tags:
-        - ' Payment'
-      summary: Get  Payment Consents
+        - File Payments
+      summary: Get File Payment Consents
       operationId: GetFilePaymentConsentsConsentIdFile
       consumes:
         - application/json; charset=utf-8
@@ -830,7 +832,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200PaymentConsentsRead'
+          $ref: '#/responses/200FilePaymentConsentsConsentIdFileRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -851,8 +853,8 @@ paths:
   '/file-payment-consents/{ConsentId}':
     get:
       tags:
-        - ' Payment'
-      summary: Get  Payment Consents
+        - File Payments
+      summary: Get File Payment Consents
       operationId: GetFilePaymentConsentsConsentId
       consumes:
         - application/json; charset=utf-8
@@ -865,7 +867,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200PaymentConsentsRead'
+          $ref: '#/responses/200FilePaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -886,8 +888,8 @@ paths:
   /file-payments:
     post:
       tags:
-        - ' Payments'
-      summary: Create  Payments
+        - File Payments
+      summary: Create File Payments
       operationId: CreateFilePayments
       consumes:
         - application/json; charset=utf-8
@@ -902,7 +904,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '201':
-          $ref: '#/responses/201PaymentsCreated'
+          $ref: '#/responses/201FilePaymentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -923,8 +925,8 @@ paths:
   '/file-payments/{FilePaymentId}':
     get:
       tags:
-        - ' Payments'
-      summary: Get  Payments
+        - File Payments
+      summary: Get File Payments
       operationId: GetFilePaymentsFilePaymentId
       consumes:
         - application/json; charset=utf-8
@@ -937,7 +939,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200PaymentsRead'
+          $ref: '#/responses/200FilePaymentsFilePaymentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -958,8 +960,8 @@ paths:
   '/file-payments/{FilePaymentId}/report-file':
     get:
       tags:
-        - ' Payments'
-      summary: Get  Payments
+        - File Payments
+      summary: Get File Payments
       operationId: GetFilePaymentsFilePaymentIdReportFile
       consumes:
         - application/json; charset=utf-8
@@ -972,7 +974,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200PaymentsRead'
+          $ref: '#/responses/200FilePaymentsFilePaymentIdReportFileRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -993,7 +995,7 @@ paths:
   /international-standing-order-consents:
     post:
       tags:
-        - International Standing Order
+        - International Standing Orders
       summary: Create International Standing Order Consents
       operationId: CreateInternationalStandingOrderConsents
       consumes:
@@ -1030,7 +1032,7 @@ paths:
   '/international-standing-order-consents/{ConsentId}':
     get:
       tags:
-        - International Standing Order
+        - International Standing Orders
       summary: Get International Standing Order Consents
       operationId: GetInternationalStandingOrderConsentsConsentId
       consumes:
@@ -1044,7 +1046,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200InternationalStandingOrderConsentsRead'
+          $ref: '#/responses/200InternationalStandingOrderConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -1116,7 +1118,8 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200InternationalStandingOrdersRead'
+          $ref: >-
+            #/responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -1360,7 +1363,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticScheduledConsentResponse1'
-  200DomesticScheduledPaymentConsentsRead:
+  200DomesticScheduledPaymentConsentsConsentIdRead:
     description: Domestic Scheduled Payment Consents Read
     headers:
       x-fapi-interaction-id:
@@ -1382,7 +1385,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticScheduledResponse1'
-  200DomesticScheduledPaymentsRead:
+  200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead:
     description: Domestic Scheduled Payments Read
     headers:
       x-fapi-interaction-id:
@@ -1404,7 +1407,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalScheduledConsentResponse1'
-  200InternationalScheduledPaymentConsentsRead:
+  200InternationalScheduledPaymentConsentsConsentIdRead:
     description: International Scheduled Payment Consents Read
     headers:
       x-fapi-interaction-id:
@@ -1426,7 +1429,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalScheduledResponse1'
-  200InternationalScheduledPaymentsRead:
+  200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead:
     description: International Scheduled Payments Read
     headers:
       x-fapi-interaction-id:
@@ -1437,8 +1440,8 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalScheduledResponse1'
-  201ConsentsCreated:
-    description: ' Consents Created'
+  201DomesticStandingOrderConsentsCreated:
+    description: Domestic Standing Order Consents Created
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1448,8 +1451,8 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticStandingOrderConsentResponse1'
-  200ConsentsRead:
-    description: ' Consents Read'
+  200DomesticStandingOrderConsentsConsentIdRead:
+    description: Domestic Standing Order Consents Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1470,7 +1473,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticStandingOrderResponse1'
-  200DomesticStandingOrdersRead:
+  200DomesticStandingOrdersDomesticStandingOrderIdRead:
     description: Domestic Standing Orders Read
     headers:
       x-fapi-interaction-id:
@@ -1492,7 +1495,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticConsentResponse1'
-  200DomesticPaymentConsentsRead:
+  200DomesticPaymentConsentsConsentIdRead:
     description: Domestic Payment Consents Read
     headers:
       x-fapi-interaction-id:
@@ -1514,7 +1517,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticResponse1'
-  200DomesticPaymentsRead:
+  200DomesticPaymentsDomesticPaymentIdRead:
     description: Domestic Payments Read
     headers:
       x-fapi-interaction-id:
@@ -1536,7 +1539,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalConsentResponse1'
-  200InternationalPaymentConsentsRead:
+  200InternationalPaymentConsentsConsentIdRead:
     description: International Payment Consents Read
     headers:
       x-fapi-interaction-id:
@@ -1558,7 +1561,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalResponse1'
-  200InternationalPaymentsRead:
+  200InternationalPaymentsInternationalPaymentIdRead:
     description: International Payments Read
     headers:
       x-fapi-interaction-id:
@@ -1580,14 +1583,25 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteFileConsentResponse1'
-  200PaymentConsentsCreated:
-    description: ' Payment Consents Created'
+  200FilePaymentConsentsConsentIdFileCreated:
+    description: File Payment Consents Created
     headers:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
-  200PaymentConsentsRead:
-    description: ' Payment Consents Read'
+  200FilePaymentConsentsConsentIdRead:
+    description: File Payment Consents Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteFileConsentResponse1'
+  200FilePaymentConsentsConsentIdFileRead:
+    description: File Payment Consents Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1597,8 +1611,8 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/File'
-  201PaymentsCreated:
-    description: ' Payments Created'
+  201FilePaymentsCreated:
+    description: File Payments Created
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1608,8 +1622,19 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteFileResponse1'
-  200PaymentsRead:
-    description: ' Payments Read'
+  200FilePaymentsFilePaymentIdRead:
+    description: File Payments Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteFileResponse1'
+  200FilePaymentsFilePaymentIdReportFileRead:
+    description: File Payments Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1630,7 +1655,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalStandingOrderConsentResponse1'
-  200InternationalStandingOrderConsentsRead:
+  200InternationalStandingOrderConsentsConsentIdRead:
     description: International Standing Order Consents Read
     headers:
       x-fapi-interaction-id:
@@ -1652,7 +1677,7 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteInternationalStandingOrderResponse1'
-  200InternationalStandingOrdersRead:
+  200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead:
     description: International Standing Orders Read
     headers:
       x-fapi-interaction-id:

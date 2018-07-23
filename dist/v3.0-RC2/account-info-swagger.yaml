@@ -33,7 +33,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DirectDebitsRead'
+          $ref: '#/responses/200AccountsAccountIdDirectDebitsRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -102,7 +102,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200OffersRead'
+          $ref: '#/responses/200AccountsAccountIdOffersRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -171,7 +171,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200ScheduledPaymentsRead'
+          $ref: '#/responses/200AccountsAccountIdScheduledPaymentsRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -240,7 +240,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200BalancesRead'
+          $ref: '#/responses/200AccountsAccountIdBalancesRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -309,7 +309,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200ProductsRead'
+          $ref: '#/responses/200AccountsAccountIdProductRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -413,7 +413,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200AccountAccessConsentsRead'
+          $ref: '#/responses/200AccountAccessConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -447,7 +447,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '204':
-          $ref: '#/responses/204AccountAccessConsentsDeleted'
+          $ref: '#/responses/204AccountAccessConsentsConsentIdDeleted'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -482,7 +482,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200StatementsRead'
+          $ref: '#/responses/200AccountsAccountIdStatementsRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -518,7 +518,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200StatementsRead'
+          $ref: '#/responses/200AccountsAccountIdStatementsStatementIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -554,7 +554,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200StatementsRead'
+          $ref: '#/responses/200AccountsAccountIdStatementsStatementIdFileRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -590,7 +590,8 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200TransactionsRead'
+          $ref: >-
+            #/responses/200AccountsAccountIdStatementsStatementIdTransactionsRead
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -659,7 +660,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200BeneficiariesRead'
+          $ref: '#/responses/200AccountsAccountIdBeneficiariesRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -728,7 +729,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200StandingOrdersRead'
+          $ref: '#/responses/200AccountsAccountIdStandingOrdersRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -867,6 +868,14 @@ parameters:
       DO NOT USE. Header containing a detached JWS signature of the body of the
       payload.
 responses:
+  200AccountsAccountIdDirectDebitsRead:
+    description: Direct Debits Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadDirectDebit1'
   200DirectDebitsRead:
     description: Direct Debits Read
     headers:
@@ -875,6 +884,14 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadDirectDebit1'
+  200AccountsAccountIdOffersRead:
+    description: Offers Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadOffer1'
   200OffersRead:
     description: Offers Read
     headers:
@@ -883,6 +900,14 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadOffer1'
+  200AccountsAccountIdScheduledPaymentsRead:
+    description: Scheduled Payments Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadScheduledPayment1'
   200ScheduledPaymentsRead:
     description: Scheduled Payments Read
     headers:
@@ -891,6 +916,14 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadScheduledPayment1'
+  200AccountsAccountIdBalancesRead:
+    description: Balances Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadBalance1'
   200BalancesRead:
     description: Balances Read
     headers:
@@ -899,6 +932,14 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadBalance1'
+  200AccountsAccountIdProductRead:
+    description: Products Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadProduct2'
   200ProductsRead:
     description: Products Read
     headers:
@@ -915,7 +956,7 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadConsentResponse1'
-  200AccountAccessConsentsRead:
+  200AccountAccessConsentsConsentIdRead:
     description: Account Access Consents Read
     headers:
       x-fapi-interaction-id:
@@ -923,12 +964,44 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadConsentResponse1'
-  204AccountAccessConsentsDeleted:
+  204AccountAccessConsentsConsentIdDeleted:
     description: Account Access Consents Deleted
     headers:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+  200AccountsAccountIdStatementsRead:
+    description: Statements Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadStatement1'
+  200AccountsAccountIdStatementsStatementIdRead:
+    description: Statements Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadStatement1'
+  200AccountsAccountIdStatementsStatementIdFileRead:
+    description: Statements Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/File'
+  200AccountsAccountIdStatementsStatementIdTransactionsRead:
+    description: Transactions Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadTransaction3'
   200StatementsRead:
     description: Statements Read
     headers:
@@ -937,14 +1010,14 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadStatement1'
-  200TransactionsRead:
-    description: Transactions Read
+  200AccountsAccountIdBeneficiariesRead:
+    description: Beneficiaries Read
     headers:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
     schema:
-      $ref: '#/definitions/OBReadTransaction3'
+      $ref: '#/definitions/OBReadBeneficiary2'
   200BeneficiariesRead:
     description: Beneficiaries Read
     headers:
@@ -953,6 +1026,14 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadBeneficiary2'
+  200AccountsAccountIdStandingOrdersRead:
+    description: Standing Orders Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: '#/definitions/OBReadStandingOrder3'
   200StandingOrdersRead:
     description: Standing Orders Read
     headers:

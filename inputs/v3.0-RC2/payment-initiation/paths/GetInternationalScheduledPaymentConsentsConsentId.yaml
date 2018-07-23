@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "International Scheduled Payment"
+      - "International Scheduled Payments"
     summary: "Get International Scheduled Payment Consents"
     operationId: "GetInternationalScheduledPaymentConsentsConsentId"
     consumes: 
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200InternationalScheduledPaymentConsentsRead"
+        $ref: "#/responses/200InternationalScheduledPaymentConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

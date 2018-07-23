@@ -1,8 +1,8 @@
 ---
   get: 
     tags: 
-      - ""
-    summary: "Get  Consents"
+      - "Domestic Standing Orders"
+    summary: "Get Domestic Standing Order Consents"
     operationId: "GetDomesticStandingOrderConsentsConsentId"
     consumes: 
       - "application/json; charset=utf-8"
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200ConsentsRead"
+        $ref: "#/responses/200DomesticStandingOrderConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

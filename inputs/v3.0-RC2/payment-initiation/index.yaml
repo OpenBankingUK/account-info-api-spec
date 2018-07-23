@@ -178,61 +178,65 @@
     - 
       $ref: "./responses/201DomesticScheduledPaymentConsentsCreated.yaml"
     - 
-      $ref: "./responses/200DomesticScheduledPaymentConsentsRead.yaml"
+      $ref: "./responses/200DomesticScheduledPaymentConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/201DomesticScheduledPaymentsCreated.yaml"
     - 
-      $ref: "./responses/200DomesticScheduledPaymentsRead.yaml"
+      $ref: "./responses/200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead.yaml"
     - 
       $ref: "./responses/201InternationalScheduledPaymentConsentsCreated.yaml"
     - 
-      $ref: "./responses/200InternationalScheduledPaymentConsentsRead.yaml"
+      $ref: "./responses/200InternationalScheduledPaymentConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/201InternationalScheduledPaymentsCreated.yaml"
     - 
-      $ref: "./responses/200InternationalScheduledPaymentsRead.yaml"
+      $ref: "./responses/200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead.yaml"
     - 
-      $ref: "./responses/201ConsentsCreated.yaml"
+      $ref: "./responses/201DomesticStandingOrderConsentsCreated.yaml"
     - 
-      $ref: "./responses/200ConsentsRead.yaml"
+      $ref: "./responses/200DomesticStandingOrderConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/201DomesticStandingOrdersCreated.yaml"
     - 
-      $ref: "./responses/200DomesticStandingOrdersRead.yaml"
+      $ref: "./responses/200DomesticStandingOrdersDomesticStandingOrderIdRead.yaml"
     - 
       $ref: "./responses/201DomesticPaymentConsentsCreated.yaml"
     - 
-      $ref: "./responses/200DomesticPaymentConsentsRead.yaml"
+      $ref: "./responses/200DomesticPaymentConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/201DomesticPaymentsCreated.yaml"
     - 
-      $ref: "./responses/200DomesticPaymentsRead.yaml"
+      $ref: "./responses/200DomesticPaymentsDomesticPaymentIdRead.yaml"
     - 
       $ref: "./responses/201InternationalPaymentConsentsCreated.yaml"
     - 
-      $ref: "./responses/200InternationalPaymentConsentsRead.yaml"
+      $ref: "./responses/200InternationalPaymentConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/201InternationalPaymentsCreated.yaml"
     - 
-      $ref: "./responses/200InternationalPaymentsRead.yaml"
+      $ref: "./responses/200InternationalPaymentsInternationalPaymentIdRead.yaml"
     - 
       $ref: "./responses/201FilePaymentConsentsCreated.yaml"
     - 
-      $ref: "./responses/200PaymentConsentsCreated.yaml"
+      $ref: "./responses/200FilePaymentConsentsConsentIdFileCreated.yaml"
     - 
-      $ref: "./responses/200PaymentConsentsRead.yaml"
+      $ref: "./responses/200FilePaymentConsentsConsentIdRead.yaml"
     - 
-      $ref: "./responses/201PaymentsCreated.yaml"
+      $ref: "./responses/200FilePaymentConsentsConsentIdFileRead.yaml"
     - 
-      $ref: "./responses/200PaymentsRead.yaml"
+      $ref: "./responses/201FilePaymentsCreated.yaml"
+    - 
+      $ref: "./responses/200FilePaymentsFilePaymentIdRead.yaml"
+    - 
+      $ref: "./responses/200FilePaymentsFilePaymentIdReportFileRead.yaml"
     - 
       $ref: "./responses/201InternationalStandingOrderConsentsCreated.yaml"
     - 
-      $ref: "./responses/200InternationalStandingOrderConsentsRead.yaml"
+      $ref: "./responses/200InternationalStandingOrderConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/201InternationalStandingOrdersCreated.yaml"
     - 
-      $ref: "./responses/200InternationalStandingOrdersRead.yaml"
+      $ref: "./responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead.yaml"
     - 
       $ref: "../readwrite/responses/400ErrorResponse.yaml"
     - 

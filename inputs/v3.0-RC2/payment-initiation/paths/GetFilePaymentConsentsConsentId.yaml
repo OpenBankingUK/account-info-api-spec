@@ -1,8 +1,8 @@
 ---
   get: 
     tags: 
-      - " Payment"
-    summary: "Get  Payment Consents"
+      - "File Payments"
+    summary: "Get File Payment Consents"
     operationId: "GetFilePaymentConsentsConsentId"
     consumes: 
       - "application/json; charset=utf-8"
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200PaymentConsentsRead"
+        $ref: "#/responses/200FilePaymentConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

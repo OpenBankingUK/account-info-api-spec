@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "Domestic Payment"
+      - "Domestic Payments"
     summary: "Create Domestic Payment Consents"
     operationId: "CreateDomesticPaymentConsents"
     consumes: 

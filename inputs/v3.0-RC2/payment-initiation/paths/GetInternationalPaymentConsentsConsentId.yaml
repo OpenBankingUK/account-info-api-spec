@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "International Payment"
+      - "International Payments"
     summary: "Get International Payment Consents"
     operationId: "GetInternationalPaymentConsentsConsentId"
     consumes: 
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200InternationalPaymentConsentsRead"
+        $ref: "#/responses/200InternationalPaymentConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

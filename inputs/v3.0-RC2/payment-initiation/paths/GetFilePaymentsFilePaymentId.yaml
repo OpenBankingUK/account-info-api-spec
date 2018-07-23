@@ -1,8 +1,8 @@
 ---
   get: 
     tags: 
-      - " Payments"
-    summary: "Get  Payments"
+      - "File Payments"
+    summary: "Get File Payments"
     operationId: "GetFilePaymentsFilePaymentId"
     consumes: 
       - "application/json; charset=utf-8"
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200PaymentsRead"
+        $ref: "#/responses/200FilePaymentsFilePaymentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

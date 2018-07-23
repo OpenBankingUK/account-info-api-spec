@@ -1,8 +1,8 @@
 ---
   post: 
     tags: 
-      - " Payment"
-    summary: "Create  Payment Consents"
+      - "File Payments"
+    summary: "Create File Payment Consents"
     operationId: "CreateFilePaymentConsentsConsentIdFile"
     consumes: 
       - "application/json; charset=utf-8"
@@ -27,7 +27,7 @@
         $ref: "#/parameters/x-jws-signature-Param"
     responses: 
       200: 
-        $ref: "#/responses/200PaymentConsentsCreated"
+        $ref: "#/responses/200FilePaymentConsentsConsentIdFileCreated"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

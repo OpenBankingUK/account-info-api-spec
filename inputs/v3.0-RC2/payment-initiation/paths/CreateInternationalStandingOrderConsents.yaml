@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "International Standing Order"
+      - "International Standing Orders"
     summary: "Create International Standing Order Consents"
     operationId: "CreateInternationalStandingOrderConsents"
     consumes: 

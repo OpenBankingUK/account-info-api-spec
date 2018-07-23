@@ -23,7 +23,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200StatementsRead"
+        $ref: "#/responses/200AccountsAccountIdStatementsStatementIdFileRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200ScheduledPaymentsRead"
+        $ref: "#/responses/200AccountsAccountIdScheduledPaymentsRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

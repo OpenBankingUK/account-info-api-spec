@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       204: 
-        $ref: "#/responses/204AccountAccessConsentsDeleted"
+        $ref: "#/responses/204AccountAccessConsentsConsentIdDeleted"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

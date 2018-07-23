@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "International Standing Order"
+      - "International Standing Orders"
     summary: "Get International Standing Order Consents"
     operationId: "GetInternationalStandingOrderConsentsConsentId"
     consumes: 
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200InternationalStandingOrderConsentsRead"
+        $ref: "#/responses/200InternationalStandingOrderConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

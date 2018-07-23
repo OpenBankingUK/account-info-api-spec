@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Domestic Scheduled Payment"
+      - "Domestic Scheduled Payments"
     summary: "Get Domestic Scheduled Payment Consents"
     operationId: "GetDomesticScheduledPaymentConsentsConsentId"
     consumes: 
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200DomesticScheduledPaymentConsentsRead"
+        $ref: "#/responses/200DomesticScheduledPaymentConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

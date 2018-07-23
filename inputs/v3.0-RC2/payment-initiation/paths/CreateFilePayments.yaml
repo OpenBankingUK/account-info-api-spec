@@ -1,8 +1,8 @@
 ---
   post: 
     tags: 
-      - " Payments"
-    summary: "Create  Payments"
+      - "File Payments"
+    summary: "Create File Payments"
     operationId: "CreateFilePayments"
     consumes: 
       - "application/json; charset=utf-8"
@@ -25,7 +25,7 @@
         $ref: "#/parameters/x-jws-signature-Param"
     responses: 
       201: 
-        $ref: "#/responses/201PaymentsCreated"
+        $ref: "#/responses/201FilePaymentsCreated"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

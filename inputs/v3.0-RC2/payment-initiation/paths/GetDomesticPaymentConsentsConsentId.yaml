@@ -1,7 +1,7 @@
 ---
   get: 
     tags: 
-      - "Domestic Payment"
+      - "Domestic Payments"
     summary: "Get Domestic Payment Consents"
     operationId: "GetDomesticPaymentConsentsConsentId"
     consumes: 
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200DomesticPaymentConsentsRead"
+        $ref: "#/responses/200DomesticPaymentConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 
