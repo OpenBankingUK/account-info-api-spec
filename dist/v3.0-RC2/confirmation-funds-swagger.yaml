@@ -19,7 +19,7 @@ paths:
   /funds-confirmations:
     post:
       tags:
-        - Funds Confirmation
+        - Funds Confirmations
       summary: Create Funds Confirmation
       operationId: CreateFundsConfirmations
       consumes:
@@ -33,7 +33,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '201':
-          $ref: '#/responses/201FundsConfirmationCreated'
+          $ref: '#/responses/201FundsConfirmationsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -54,7 +54,7 @@ paths:
   /funds-confirmation-consents:
     post:
       tags:
-        - Funds Confirmation
+        - Funds Confirmations
       summary: Create Funds Confirmation Consent
       operationId: CreateFundsConfirmationConsents
       consumes:
@@ -68,41 +68,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '201':
-          $ref: '#/responses/201FundsConfirmationConsentCreated'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - fundsconfirmations
-  '/funds-confirmation-consents/ConsentId}':
-    get:
-      tags:
-        - Funds Confirmation
-      summary: Get Funds Confirmation Consent
-      operationId: GetFundsConfirmationConsentsConsentId
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200FundsConfirmationConsentRead'
+          $ref: '#/responses/201FundsConfirmationConsentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -121,9 +87,43 @@ paths:
         - TPPOAuth2Security:
             - fundsconfirmations
   '/funds-confirmation-consents/{ConsentId}':
+    get:
+      tags:
+        - Funds Confirmations
+      summary: Get Funds Confirmation Consent
+      operationId: GetFundsConfirmationConsentsConsentId
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/ConsentId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200FundsConfirmationConsentsConsentIdRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - fundsconfirmations
     delete:
       tags:
-        - Funds Confirmation
+        - Funds Confirmations
       summary: Delete Funds Confirmation Consent
       operationId: DeleteFundsConfirmationConsentsConsentId
       consumes:
@@ -136,6 +136,8 @@ paths:
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
+        '204':
+          $ref: '#/responses/204FundsConfirmationConsentsConsentIdDeleted'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -235,7 +237,7 @@ parameters:
       DO NOT USE. Header containing a detached JWS signature of the body of the
       payload.
 responses:
-  201FundsConfirmationCreated:
+  201FundsConfirmationsCreated:
     description: Funds Confirmation Created
     headers:
       x-fapi-interaction-id:
@@ -243,7 +245,7 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBFundsConfirmationResponse1'
-  201FundsConfirmationConsentCreated:
+  201FundsConfirmationConsentsCreated:
     description: Funds Confirmation Consent Created
     headers:
       x-fapi-interaction-id:
@@ -251,7 +253,7 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBFundsConfirmationConsentResponse1'
-  200FundsConfirmationConsentRead:
+  200FundsConfirmationConsentsConsentIdRead:
     description: Funds Confirmation Consent Read
     headers:
       x-fapi-interaction-id:
@@ -259,6 +261,12 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBFundsConfirmationConsentResponse1'
+  204FundsConfirmationConsentsConsentIdDeleted:
+    description: Funds Confirmation Consent Deleted
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
   400ErrorResponse:
     description: Bad request
     schema:

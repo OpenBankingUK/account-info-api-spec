@@ -1513,8 +1513,224 @@ paths:
             - fundsconfirmations
       summary: Create Funds Confirmation Consent
       tags:
-        - Funds Confirmation
-  '/funds-confirmation-consents/ConsentId}':
+        - Funds Confirmations
+  '/funds-confirmation-consents/{ConsentId}':
+    delete:
+      consumes:
+        - application/json; charset=utf-8
+      operationId: DeleteFundsConfirmationConsentsConsentId
+      parameters:
+        - description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: ConsentId
+          in: path
+          name: ConsentId
+          required: true
+          type: string
+        - description: The PSU's IP address if the PSU is currently logged in with the TPP.
+          in: header
+          name: x-fapi-customer-ip-address
+          required: false
+          type: string
+        - description: >-
+            The time when the PSU last logged in with the TPP. 
+
+            All dates in the HTTP headers are represented as RFC 7231 Full
+            Dates. An example is below: 
+
+            Sun, 10 Sep 2017 19:43:31 UTC
+          in: header
+          name: x-fapi-customer-last-logged-time
+          pattern: >-
+            ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2}
+            (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}
+            \d{2}:\d{2}:\d{2} (GMT|UTC)$
+          required: false
+          type: string
+        - description: >-
+            The unique id of the ASPSP to which the request is issued. The
+            unique id will be issued by OB.
+          in: header
+          name: x-fapi-financial-id
+          required: true
+          type: string
+        - description: An RFC4122 UID used as a correlation id.
+          in: header
+          name: x-fapi-interaction-id
+          required: false
+          type: string
+      responses:
+        '204':
+          description: Funds Confirmation Consent Deleted
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              type: string
+        '400':
+          description: Bad request
+          schema:
+            additionalProperties: false
+            description: Bad request
+            properties:
+              Code:
+                description: 'Mandatory, high level Textual error code, e.g., BAD_REQUEST'
+                maxLength: 40
+                minLength: 1
+                title: Code
+                type: number
+              Errors:
+                description: >-
+                  An array of detail error codes, and messages, if there are
+                  more than one error
+                items:
+                  properties:
+                    ErrorCode:
+                      description: Textual error code
+                      maxLength: 40
+                      minLength: 1
+                      title: ErrorCode
+                      type: string
+                    Message:
+                      description: >-
+                        Error message with specific reference to the cause of
+                        the problem, e.g., MISSING_AMOUNT_CURRENCY
+                      maxLength: 256
+                      minLength: 1
+                      title: Message
+                      type: string
+                    Path:
+                      description: >-
+                        Optionally, reference to the field with error, e.g.,
+                        /Data/Initiation/InstructedAmount/Currency
+                      maxLength: 256
+                      minLength: 1
+                      title: Path
+                      type: string
+                    Url:
+                      description: >-
+                        Optionally, a URL to help remediate the problem, to API
+                        Reference, or help etc
+                      maxLength: 256
+                      minLength: 1
+                      title: Url
+                      type: string
+                  required:
+                    - ErrorCode
+                    - Message
+                title: Errors
+                type: array
+              Id:
+                description: >-
+                  Optionally, a Unique reference for the error instance, for
+                  audit purposes, in case of unkown/unclassified errors
+                title: ID
+                type: string
+              Message:
+                description: >-
+                  Brief non contextual Error message, e.g., 'There is something
+                  wrong with the request parameters provided'
+                maxLength: 40
+                minLength: 1
+                title: Message
+                type: string
+            required:
+              - Code
+              - Errors
+              - Message
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: Number in seconds to wait
+              type: integer
+        '500':
+          description: Internal Server Error
+          schema:
+            additionalProperties: false
+            description: Bad request
+            properties:
+              Code:
+                description: 'Mandatory, high level Textual error code, e.g., BAD_REQUEST'
+                maxLength: 40
+                minLength: 1
+                title: Code
+                type: number
+              Errors:
+                description: >-
+                  An array of detail error codes, and messages, if there are
+                  more than one error
+                items:
+                  properties:
+                    ErrorCode:
+                      description: Textual error code
+                      maxLength: 40
+                      minLength: 1
+                      title: ErrorCode
+                      type: string
+                    Message:
+                      description: >-
+                        Error message with specific reference to the cause of
+                        the problem, e.g., MISSING_AMOUNT_CURRENCY
+                      maxLength: 256
+                      minLength: 1
+                      title: Message
+                      type: string
+                    Path:
+                      description: >-
+                        Optionally, reference to the field with error, e.g.,
+                        /Data/Initiation/InstructedAmount/Currency
+                      maxLength: 256
+                      minLength: 1
+                      title: Path
+                      type: string
+                    Url:
+                      description: >-
+                        Optionally, a URL to help remediate the problem, to API
+                        Reference, or help etc
+                      maxLength: 256
+                      minLength: 1
+                      title: Url
+                      type: string
+                  required:
+                    - ErrorCode
+                    - Message
+                title: Errors
+                type: array
+              Id:
+                description: >-
+                  Optionally, a Unique reference for the error instance, for
+                  audit purposes, in case of unkown/unclassified errors
+                title: ID
+                type: string
+              Message:
+                description: >-
+                  Brief non contextual Error message, e.g., 'There is something
+                  wrong with the request parameters provided'
+                maxLength: 40
+                minLength: 1
+                title: Message
+                type: string
+            required:
+              - Code
+              - Errors
+              - Message
+      security:
+        - TPPOAuth2Security:
+            - fundsconfirmations
+      summary: Delete Funds Confirmation Consent
+      tags:
+        - Funds Confirmations
     get:
       consumes:
         - application/json; charset=utf-8
@@ -1523,6 +1739,11 @@ paths:
         - description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
           in: header
           name: Authorization
+          required: true
+          type: string
+        - description: ConsentId
+          in: path
+          name: ConsentId
           required: true
           type: string
         - description: The PSU's IP address if the PSU is currently logged in with the TPP.
@@ -1847,218 +2068,7 @@ paths:
             - fundsconfirmations
       summary: Get Funds Confirmation Consent
       tags:
-        - Funds Confirmation
-  '/funds-confirmation-consents/{ConsentId}':
-    delete:
-      consumes:
-        - application/json; charset=utf-8
-      operationId: DeleteFundsConfirmationConsentsConsentId
-      parameters:
-        - description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
-          in: header
-          name: Authorization
-          required: true
-          type: string
-        - description: ConsentId
-          in: path
-          name: ConsentId
-          required: true
-          type: string
-        - description: The PSU's IP address if the PSU is currently logged in with the TPP.
-          in: header
-          name: x-fapi-customer-ip-address
-          required: false
-          type: string
-        - description: >-
-            The time when the PSU last logged in with the TPP. 
-
-            All dates in the HTTP headers are represented as RFC 7231 Full
-            Dates. An example is below: 
-
-            Sun, 10 Sep 2017 19:43:31 UTC
-          in: header
-          name: x-fapi-customer-last-logged-time
-          pattern: >-
-            ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2}
-            (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}
-            \d{2}:\d{2}:\d{2} (GMT|UTC)$
-          required: false
-          type: string
-        - description: >-
-            The unique id of the ASPSP to which the request is issued. The
-            unique id will be issued by OB.
-          in: header
-          name: x-fapi-financial-id
-          required: true
-          type: string
-        - description: An RFC4122 UID used as a correlation id.
-          in: header
-          name: x-fapi-interaction-id
-          required: false
-          type: string
-      responses:
-        '400':
-          description: Bad request
-          schema:
-            additionalProperties: false
-            description: Bad request
-            properties:
-              Code:
-                description: 'Mandatory, high level Textual error code, e.g., BAD_REQUEST'
-                maxLength: 40
-                minLength: 1
-                title: Code
-                type: number
-              Errors:
-                description: >-
-                  An array of detail error codes, and messages, if there are
-                  more than one error
-                items:
-                  properties:
-                    ErrorCode:
-                      description: Textual error code
-                      maxLength: 40
-                      minLength: 1
-                      title: ErrorCode
-                      type: string
-                    Message:
-                      description: >-
-                        Error message with specific reference to the cause of
-                        the problem, e.g., MISSING_AMOUNT_CURRENCY
-                      maxLength: 256
-                      minLength: 1
-                      title: Message
-                      type: string
-                    Path:
-                      description: >-
-                        Optionally, reference to the field with error, e.g.,
-                        /Data/Initiation/InstructedAmount/Currency
-                      maxLength: 256
-                      minLength: 1
-                      title: Path
-                      type: string
-                    Url:
-                      description: >-
-                        Optionally, a URL to help remediate the problem, to API
-                        Reference, or help etc
-                      maxLength: 256
-                      minLength: 1
-                      title: Url
-                      type: string
-                  required:
-                    - ErrorCode
-                    - Message
-                title: Errors
-                type: array
-              Id:
-                description: >-
-                  Optionally, a Unique reference for the error instance, for
-                  audit purposes, in case of unkown/unclassified errors
-                title: ID
-                type: string
-              Message:
-                description: >-
-                  Brief non contextual Error message, e.g., 'There is something
-                  wrong with the request parameters provided'
-                maxLength: 40
-                minLength: 1
-                title: Message
-                type: string
-            required:
-              - Code
-              - Errors
-              - Message
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '405':
-          description: Method Not Allowed
-        '406':
-          description: Not Acceptable
-        '429':
-          description: Too Many Requests
-          headers:
-            Retry-After:
-              description: Number in seconds to wait
-              type: integer
-        '500':
-          description: Internal Server Error
-          schema:
-            additionalProperties: false
-            description: Bad request
-            properties:
-              Code:
-                description: 'Mandatory, high level Textual error code, e.g., BAD_REQUEST'
-                maxLength: 40
-                minLength: 1
-                title: Code
-                type: number
-              Errors:
-                description: >-
-                  An array of detail error codes, and messages, if there are
-                  more than one error
-                items:
-                  properties:
-                    ErrorCode:
-                      description: Textual error code
-                      maxLength: 40
-                      minLength: 1
-                      title: ErrorCode
-                      type: string
-                    Message:
-                      description: >-
-                        Error message with specific reference to the cause of
-                        the problem, e.g., MISSING_AMOUNT_CURRENCY
-                      maxLength: 256
-                      minLength: 1
-                      title: Message
-                      type: string
-                    Path:
-                      description: >-
-                        Optionally, reference to the field with error, e.g.,
-                        /Data/Initiation/InstructedAmount/Currency
-                      maxLength: 256
-                      minLength: 1
-                      title: Path
-                      type: string
-                    Url:
-                      description: >-
-                        Optionally, a URL to help remediate the problem, to API
-                        Reference, or help etc
-                      maxLength: 256
-                      minLength: 1
-                      title: Url
-                      type: string
-                  required:
-                    - ErrorCode
-                    - Message
-                title: Errors
-                type: array
-              Id:
-                description: >-
-                  Optionally, a Unique reference for the error instance, for
-                  audit purposes, in case of unkown/unclassified errors
-                title: ID
-                type: string
-              Message:
-                description: >-
-                  Brief non contextual Error message, e.g., 'There is something
-                  wrong with the request parameters provided'
-                maxLength: 40
-                minLength: 1
-                title: Message
-                type: string
-            required:
-              - Code
-              - Errors
-              - Message
-      security:
-        - TPPOAuth2Security:
-            - fundsconfirmations
-      summary: Delete Funds Confirmation Consent
-      tags:
-        - Funds Confirmation
+        - Funds Confirmations
   /funds-confirmations:
     post:
       consumes:
@@ -2414,11 +2424,11 @@ paths:
             - fundsconfirmations
       summary: Create Funds Confirmation
       tags:
-        - Funds Confirmation
+        - Funds Confirmations
 produces:
   - application/json; charset=utf-8
 responses:
-  200FundsConfirmationConsentRead:
+  200FundsConfirmationConsentsConsentIdRead:
     description: Funds Confirmation Consent Read
     headers:
       x-fapi-interaction-id:
@@ -2543,7 +2553,7 @@ responses:
       required:
         - Data
       type: object
-  201FundsConfirmationConsentCreated:
+  201FundsConfirmationConsentsCreated:
     description: Funds Confirmation Consent Created
     headers:
       x-fapi-interaction-id:
@@ -2668,7 +2678,7 @@ responses:
       required:
         - Data
       type: object
-  201FundsConfirmationCreated:
+  201FundsConfirmationsCreated:
     description: Funds Confirmation Created
     headers:
       x-fapi-interaction-id:
@@ -2754,6 +2764,12 @@ responses:
       required:
         - Data
       type: object
+  204FundsConfirmationConsentsConsentIdDeleted:
+    description: Funds Confirmation Consent Deleted
+    headers:
+      x-fapi-interaction-id:
+        description: An RFC4122 UID used as a correlation id.
+        type: string
   400ErrorResponse:
     description: Bad request
     schema:

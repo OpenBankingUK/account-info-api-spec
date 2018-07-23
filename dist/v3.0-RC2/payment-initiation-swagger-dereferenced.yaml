@@ -88264,6 +88264,3 @@ securityDefinitions:
     tokenUrl: 'https://authserver.example/token'
     type: oauth2
 swagger: '2.0'
-tags:
-  - description: Payments endpoints
-    name: Payments

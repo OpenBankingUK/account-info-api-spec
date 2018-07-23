@@ -1,12 +1,14 @@
 ---
   get: 
     tags: 
-      - "Funds Confirmation"
+      - "Funds Confirmations"
     summary: "Get Funds Confirmation Consent"
     operationId: "GetFundsConfirmationConsentsConsentId"
     consumes: 
       - "application/json; charset=utf-8"
     parameters: 
+      - 
+        $ref: "#/parameters/ConsentId"
       - 
         $ref: "#/parameters/x-fapi-financial-id-Param"
       - 
@@ -19,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       200: 
-        $ref: "#/responses/200FundsConfirmationConsentRead"
+        $ref: "#/responses/200FundsConfirmationConsentsConsentIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

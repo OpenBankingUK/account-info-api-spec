@@ -1,7 +1,7 @@
 ---
   delete: 
     tags: 
-      - "Funds Confirmation"
+      - "Funds Confirmations"
     summary: "Delete Funds Confirmation Consent"
     operationId: "DeleteFundsConfirmationConsentsConsentId"
     consumes: 
@@ -20,6 +20,8 @@
       - 
         $ref: "#/parameters/AuthorizationParam"
     responses: 
+      204: 
+        $ref: "#/responses/204FundsConfirmationConsentsConsentIdDeleted"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

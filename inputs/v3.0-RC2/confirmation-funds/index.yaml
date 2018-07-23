@@ -23,10 +23,9 @@
     /funds-confirmation-consents: 
       - 
         $ref: "./paths/CreateFundsConfirmationConsents.yaml"
-    /funds-confirmation-consents/ConsentId}: 
+    /funds-confirmation-consents/{ConsentId}: 
       - 
         $ref: "./paths/GetFundsConfirmationConsentsConsentId.yaml"
-    /funds-confirmation-consents/{ConsentId}: 
       - 
         $ref: "./paths/DeleteFundsConfirmationConsentsConsentId.yaml"
   parameters: 
@@ -52,11 +51,13 @@
       $ref: "../readwrite/parameters/x-jws-signature-Param.yaml"
   responses: 
     - 
-      $ref: "./responses/201FundsConfirmationCreated.yaml"
+      $ref: "./responses/201FundsConfirmationsCreated.yaml"
     - 
-      $ref: "./responses/201FundsConfirmationConsentCreated.yaml"
+      $ref: "./responses/201FundsConfirmationConsentsCreated.yaml"
     - 
-      $ref: "./responses/200FundsConfirmationConsentRead.yaml"
+      $ref: "./responses/200FundsConfirmationConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/204FundsConfirmationConsentsConsentIdDeleted.yaml"
     - 
       $ref: "../readwrite/responses/400ErrorResponse.yaml"
     - 

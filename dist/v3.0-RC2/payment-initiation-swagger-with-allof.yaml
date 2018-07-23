@@ -11,9 +11,6 @@ info:
     url: 'https://www.openbanking.org.uk/open-licence'
   version: v3.0-RC2
 basePath: /open-banking/v3.0
-tags:
-  - name: Payments
-    description: Payments endpoints
 schemes:
   - https
 produces:

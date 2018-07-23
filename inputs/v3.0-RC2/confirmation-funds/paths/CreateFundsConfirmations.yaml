@@ -1,7 +1,7 @@
 ---
   post: 
     tags: 
-      - "Funds Confirmation"
+      - "Funds Confirmations"
     summary: "Create Funds Confirmation"
     operationId: "CreateFundsConfirmations"
     consumes: 
@@ -21,7 +21,7 @@
         $ref: "#/parameters/AuthorizationParam"
     responses: 
       201: 
-        $ref: "#/responses/201FundsConfirmationCreated"
+        $ref: "#/responses/201FundsConfirmationsCreated"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 
