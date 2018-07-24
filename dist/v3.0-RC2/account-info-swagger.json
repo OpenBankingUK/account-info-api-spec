@@ -22,13 +22,13 @@
     "application/json; charset=utf-8"
   ],
   "paths": {
-    "/accounts/{AccountId}/direct-debits": {
+    "/accounts/{AccountId}/product": {
       "get": {
         "tags": [
-          "Direct Debits"
+          "Products"
         ],
-        "summary": "Get Direct Debits",
-        "operationId": "GetAccountsAccountIdDirectDebits",
+        "summary": "Get Products",
+        "operationId": "GetAccountsAccountIdProduct",
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -54,7 +54,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/200AccountsAccountIdDirectDebitsRead"
+            "$ref": "#/responses/200AccountsAccountIdProductRead"
           },
           "400": {
             "$ref": "#/responses/400ErrorResponse"
@@ -87,13 +87,13 @@
         ]
       }
     },
-    "/direct-debits": {
+    "/products": {
       "get": {
         "tags": [
-          "Direct Debits"
+          "Products"
         ],
-        "summary": "Get Direct Debits",
-        "operationId": "GetDirectDebits",
+        "summary": "Get Products",
+        "operationId": "GetProducts",
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -116,134 +116,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/200DirectDebitsRead"
-          },
-          "400": {
-            "$ref": "#/responses/400ErrorResponse"
-          },
-          "401": {
-            "$ref": "#/responses/401ErrorResponse"
-          },
-          "403": {
-            "$ref": "#/responses/403ErrorResponse"
-          },
-          "405": {
-            "$ref": "#/responses/405ErrorResponse"
-          },
-          "406": {
-            "$ref": "#/responses/406ErrorResponse"
-          },
-          "429": {
-            "$ref": "#/responses/429ErrorResponse"
-          },
-          "500": {
-            "$ref": "#/responses/500ErrorResponse"
-          }
-        },
-        "security": [
-          {
-            "PSUOAuth2Security": [
-              "accounts"
-            ]
-          }
-        ]
-      }
-    },
-    "/accounts/{AccountId}/offers": {
-      "get": {
-        "tags": [
-          "Offers"
-        ],
-        "summary": "Get Offers",
-        "operationId": "GetAccountsAccountIdOffers",
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/AccountId"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-financial-id-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-interaction-id-Param"
-          },
-          {
-            "$ref": "#/parameters/AuthorizationParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/responses/200AccountsAccountIdOffersRead"
-          },
-          "400": {
-            "$ref": "#/responses/400ErrorResponse"
-          },
-          "401": {
-            "$ref": "#/responses/401ErrorResponse"
-          },
-          "403": {
-            "$ref": "#/responses/403ErrorResponse"
-          },
-          "405": {
-            "$ref": "#/responses/405ErrorResponse"
-          },
-          "406": {
-            "$ref": "#/responses/406ErrorResponse"
-          },
-          "429": {
-            "$ref": "#/responses/429ErrorResponse"
-          },
-          "500": {
-            "$ref": "#/responses/500ErrorResponse"
-          }
-        },
-        "security": [
-          {
-            "PSUOAuth2Security": [
-              "accounts"
-            ]
-          }
-        ]
-      }
-    },
-    "/offers": {
-      "get": {
-        "tags": [
-          "Offers"
-        ],
-        "summary": "Get Offers",
-        "operationId": "GetOffers",
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/x-fapi-financial-id-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-interaction-id-Param"
-          },
-          {
-            "$ref": "#/parameters/AuthorizationParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/responses/200OffersRead"
+            "$ref": "#/responses/200ProductsRead"
           },
           "400": {
             "$ref": "#/responses/400ErrorResponse"
@@ -371,260 +244,6 @@
         "responses": {
           "200": {
             "$ref": "#/responses/200ScheduledPaymentsRead"
-          },
-          "400": {
-            "$ref": "#/responses/400ErrorResponse"
-          },
-          "401": {
-            "$ref": "#/responses/401ErrorResponse"
-          },
-          "403": {
-            "$ref": "#/responses/403ErrorResponse"
-          },
-          "405": {
-            "$ref": "#/responses/405ErrorResponse"
-          },
-          "406": {
-            "$ref": "#/responses/406ErrorResponse"
-          },
-          "429": {
-            "$ref": "#/responses/429ErrorResponse"
-          },
-          "500": {
-            "$ref": "#/responses/500ErrorResponse"
-          }
-        },
-        "security": [
-          {
-            "PSUOAuth2Security": [
-              "accounts"
-            ]
-          }
-        ]
-      }
-    },
-    "/accounts/{AccountId}/balances": {
-      "get": {
-        "tags": [
-          "Balances"
-        ],
-        "summary": "Get Balances",
-        "operationId": "GetAccountsAccountIdBalances",
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/AccountId"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-financial-id-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-interaction-id-Param"
-          },
-          {
-            "$ref": "#/parameters/AuthorizationParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/responses/200AccountsAccountIdBalancesRead"
-          },
-          "400": {
-            "$ref": "#/responses/400ErrorResponse"
-          },
-          "401": {
-            "$ref": "#/responses/401ErrorResponse"
-          },
-          "403": {
-            "$ref": "#/responses/403ErrorResponse"
-          },
-          "405": {
-            "$ref": "#/responses/405ErrorResponse"
-          },
-          "406": {
-            "$ref": "#/responses/406ErrorResponse"
-          },
-          "429": {
-            "$ref": "#/responses/429ErrorResponse"
-          },
-          "500": {
-            "$ref": "#/responses/500ErrorResponse"
-          }
-        },
-        "security": [
-          {
-            "PSUOAuth2Security": [
-              "accounts"
-            ]
-          }
-        ]
-      }
-    },
-    "/balances": {
-      "get": {
-        "tags": [
-          "Balances"
-        ],
-        "summary": "Get Balances",
-        "operationId": "GetBalances",
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/x-fapi-financial-id-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-interaction-id-Param"
-          },
-          {
-            "$ref": "#/parameters/AuthorizationParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/responses/200BalancesRead"
-          },
-          "400": {
-            "$ref": "#/responses/400ErrorResponse"
-          },
-          "401": {
-            "$ref": "#/responses/401ErrorResponse"
-          },
-          "403": {
-            "$ref": "#/responses/403ErrorResponse"
-          },
-          "405": {
-            "$ref": "#/responses/405ErrorResponse"
-          },
-          "406": {
-            "$ref": "#/responses/406ErrorResponse"
-          },
-          "429": {
-            "$ref": "#/responses/429ErrorResponse"
-          },
-          "500": {
-            "$ref": "#/responses/500ErrorResponse"
-          }
-        },
-        "security": [
-          {
-            "PSUOAuth2Security": [
-              "accounts"
-            ]
-          }
-        ]
-      }
-    },
-    "/accounts/{AccountId}/product": {
-      "get": {
-        "tags": [
-          "Products"
-        ],
-        "summary": "Get Products",
-        "operationId": "GetAccountsAccountIdProduct",
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/AccountId"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-financial-id-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-interaction-id-Param"
-          },
-          {
-            "$ref": "#/parameters/AuthorizationParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/responses/200AccountsAccountIdProductRead"
-          },
-          "400": {
-            "$ref": "#/responses/400ErrorResponse"
-          },
-          "401": {
-            "$ref": "#/responses/401ErrorResponse"
-          },
-          "403": {
-            "$ref": "#/responses/403ErrorResponse"
-          },
-          "405": {
-            "$ref": "#/responses/405ErrorResponse"
-          },
-          "406": {
-            "$ref": "#/responses/406ErrorResponse"
-          },
-          "429": {
-            "$ref": "#/responses/429ErrorResponse"
-          },
-          "500": {
-            "$ref": "#/responses/500ErrorResponse"
-          }
-        },
-        "security": [
-          {
-            "PSUOAuth2Security": [
-              "accounts"
-            ]
-          }
-        ]
-      }
-    },
-    "/products": {
-      "get": {
-        "tags": [
-          "Products"
-        ],
-        "summary": "Get Products",
-        "operationId": "GetProducts",
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/x-fapi-financial-id-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
-          },
-          {
-            "$ref": "#/parameters/x-fapi-interaction-id-Param"
-          },
-          {
-            "$ref": "#/parameters/AuthorizationParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/responses/200ProductsRead"
           },
           "400": {
             "$ref": "#/responses/400ErrorResponse"
@@ -850,6 +469,399 @@
         ]
       }
     },
+    "/accounts": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Accounts",
+        "operationId": "GetAccounts",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get Accounts",
+        "operationId": "GetAccountsAccountId",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountId"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsAccountIdRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions",
+        "operationId": "GetAccountsAccountIdTransactions",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountId"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/FromBookingDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/ToBookingDateTimeParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsAccountIdTransactionsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions",
+        "operationId": "GetTransactions",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/FromBookingDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/ToBookingDateTimeParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200TransactionsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/direct-debits": {
+      "get": {
+        "tags": [
+          "Direct Debits"
+        ],
+        "summary": "Get Direct Debits",
+        "operationId": "GetAccountsAccountIdDirectDebits",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountId"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsAccountIdDirectDebitsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/direct-debits": {
+      "get": {
+        "tags": [
+          "Direct Debits"
+        ],
+        "summary": "Get Direct Debits",
+        "operationId": "GetDirectDebits",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200DirectDebitsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
     "/accounts/{AccountId}/statements": {
       "get": {
         "tags": [
@@ -878,6 +890,12 @@
           },
           {
             "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/FromStatementDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/ToStatementDateTimeParam"
           }
         ],
         "responses": {
@@ -1144,11 +1162,398 @@
           },
           {
             "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/FromStatementDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/ToStatementDateTimeParam"
           }
         ],
         "responses": {
           "200": {
             "$ref": "#/responses/200StatementsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/party": {
+      "get": {
+        "tags": [
+          "Partys"
+        ],
+        "summary": "Get Party",
+        "operationId": "GetAccountsAccountIdParty",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountId"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsAccountIdPartyRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/party": {
+      "get": {
+        "tags": [
+          "Partys"
+        ],
+        "summary": "Get Party",
+        "operationId": "GetParty",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200PartyRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/standing-orders": {
+      "get": {
+        "tags": [
+          "Standing Orders"
+        ],
+        "summary": "Get Standing Orders",
+        "operationId": "GetAccountsAccountIdStandingOrders",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountId"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsAccountIdStandingOrdersRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/standing-orders": {
+      "get": {
+        "tags": [
+          "Standing Orders"
+        ],
+        "summary": "Get Standing Orders",
+        "operationId": "GetStandingOrders",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200StandingOrdersRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/balances": {
+      "get": {
+        "tags": [
+          "Balances"
+        ],
+        "summary": "Get Balances",
+        "operationId": "GetAccountsAccountIdBalances",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountId"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountsAccountIdBalancesRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/balances": {
+      "get": {
+        "tags": [
+          "Balances"
+        ],
+        "summary": "Get Balances",
+        "operationId": "GetBalances",
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200BalancesRead"
           },
           "400": {
             "$ref": "#/responses/400ErrorResponse"
@@ -1308,13 +1713,13 @@
         ]
       }
     },
-    "/accounts/{AccountId}/standing-orders": {
+    "/accounts/{AccountId}/offers": {
       "get": {
         "tags": [
-          "Standing Orders"
+          "Offers"
         ],
-        "summary": "Get Standing Orders",
-        "operationId": "GetAccountsAccountIdStandingOrders",
+        "summary": "Get Offers",
+        "operationId": "GetAccountsAccountIdOffers",
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -1340,7 +1745,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/200AccountsAccountIdStandingOrdersRead"
+            "$ref": "#/responses/200AccountsAccountIdOffersRead"
           },
           "400": {
             "$ref": "#/responses/400ErrorResponse"
@@ -1373,13 +1778,13 @@
         ]
       }
     },
-    "/standing-orders": {
+    "/offers": {
       "get": {
         "tags": [
-          "Standing Orders"
+          "Offers"
         ],
-        "summary": "Get Standing Orders",
-        "operationId": "GetStandingOrders",
+        "summary": "Get Offers",
+        "operationId": "GetOffers",
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -1402,7 +1807,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/200StandingOrdersRead"
+            "$ref": "#/responses/200OffersRead"
           },
           "400": {
             "$ref": "#/responses/400ErrorResponse"
@@ -1467,6 +1872,34 @@
       "required": true,
       "type": "string"
     },
+    "FromBookingDateTimeParam": {
+      "in": "query",
+      "name": "fromBookingDateTime",
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC ISO 8601 Date Time to filter transactions FROM\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
+    },
+    "ToBookingDateTimeParam": {
+      "in": "query",
+      "name": "toBookingDateTime",
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC ISO 8601 Date Time to filter transactions TO\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
+    },
+    "FromStatementDateTimeParam": {
+      "in": "query",
+      "name": "fromStatementDateTime",
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC ISO 8601 Date Time to filter statements FROM\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
+    },
+    "ToStatementDateTimeParam": {
+      "in": "query",
+      "name": "toStatementDateTime",
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC ISO 8601 Date Time to filter statements TO\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
+    },
     "x-idempotency-key": {
       "name": "x-idempotency-key",
       "in": "header",
@@ -1521,8 +1954,8 @@
     }
   },
   "responses": {
-    "200AccountsAccountIdDirectDebitsRead": {
-      "description": "Direct Debits Read",
+    "200AccountsAccountIdProductRead": {
+      "description": "Products Read",
       "headers": {
         "x-fapi-interaction-id": {
           "type": "string",
@@ -1530,11 +1963,11 @@
         }
       },
       "schema": {
-        "$ref": "#/definitions/OBReadDirectDebit1"
+        "$ref": "#/definitions/OBReadProduct2"
       }
     },
-    "200DirectDebitsRead": {
-      "description": "Direct Debits Read",
+    "200ProductsRead": {
+      "description": "Products Read",
       "headers": {
         "x-fapi-interaction-id": {
           "type": "string",
@@ -1542,31 +1975,7 @@
         }
       },
       "schema": {
-        "$ref": "#/definitions/OBReadDirectDebit1"
-      }
-    },
-    "200AccountsAccountIdOffersRead": {
-      "description": "Offers Read",
-      "headers": {
-        "x-fapi-interaction-id": {
-          "type": "string",
-          "description": "An RFC4122 UID used as a correlation id."
-        }
-      },
-      "schema": {
-        "$ref": "#/definitions/OBReadOffer1"
-      }
-    },
-    "200OffersRead": {
-      "description": "Offers Read",
-      "headers": {
-        "x-fapi-interaction-id": {
-          "type": "string",
-          "description": "An RFC4122 UID used as a correlation id."
-        }
-      },
-      "schema": {
-        "$ref": "#/definitions/OBReadOffer1"
+        "$ref": "#/definitions/OBReadProduct2"
       }
     },
     "200AccountsAccountIdScheduledPaymentsRead": {
@@ -1591,54 +2000,6 @@
       },
       "schema": {
         "$ref": "#/definitions/OBReadScheduledPayment1"
-      }
-    },
-    "200AccountsAccountIdBalancesRead": {
-      "description": "Balances Read",
-      "headers": {
-        "x-fapi-interaction-id": {
-          "type": "string",
-          "description": "An RFC4122 UID used as a correlation id."
-        }
-      },
-      "schema": {
-        "$ref": "#/definitions/OBReadBalance1"
-      }
-    },
-    "200BalancesRead": {
-      "description": "Balances Read",
-      "headers": {
-        "x-fapi-interaction-id": {
-          "type": "string",
-          "description": "An RFC4122 UID used as a correlation id."
-        }
-      },
-      "schema": {
-        "$ref": "#/definitions/OBReadBalance1"
-      }
-    },
-    "200AccountsAccountIdProductRead": {
-      "description": "Products Read",
-      "headers": {
-        "x-fapi-interaction-id": {
-          "type": "string",
-          "description": "An RFC4122 UID used as a correlation id."
-        }
-      },
-      "schema": {
-        "$ref": "#/definitions/OBReadProduct2"
-      }
-    },
-    "200ProductsRead": {
-      "description": "Products Read",
-      "headers": {
-        "x-fapi-interaction-id": {
-          "type": "string",
-          "description": "An RFC4122 UID used as a correlation id."
-        }
-      },
-      "schema": {
-        "$ref": "#/definitions/OBReadProduct2"
       }
     },
     "201AccountAccessConsentsCreated": {
@@ -1672,6 +2033,78 @@
           "type": "string",
           "description": "An RFC4122 UID used as a correlation id."
         }
+      }
+    },
+    "200AccountsRead": {
+      "description": "Accounts Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadAccount2"
+      }
+    },
+    "200AccountsAccountIdRead": {
+      "description": "Accounts Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadAccount2"
+      }
+    },
+    "200AccountsAccountIdTransactionsRead": {
+      "description": "Transactions Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadTransaction3"
+      }
+    },
+    "200TransactionsRead": {
+      "description": "Transactions Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadTransaction3"
+      }
+    },
+    "200AccountsAccountIdDirectDebitsRead": {
+      "description": "Direct Debits Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadDirectDebit1"
+      }
+    },
+    "200DirectDebitsRead": {
+      "description": "Direct Debits Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadDirectDebit1"
       }
     },
     "200AccountsAccountIdStatementsRead": {
@@ -1734,8 +2167,8 @@
         "$ref": "#/definitions/OBReadStatement1"
       }
     },
-    "200AccountsAccountIdBeneficiariesRead": {
-      "description": "Beneficiaries Read",
+    "200AccountsAccountIdPartyRead": {
+      "description": "Party Read",
       "headers": {
         "x-fapi-interaction-id": {
           "type": "string",
@@ -1743,11 +2176,11 @@
         }
       },
       "schema": {
-        "$ref": "#/definitions/OBReadBeneficiary2"
+        "$ref": "#/definitions/OBReadParty1"
       }
     },
-    "200BeneficiariesRead": {
-      "description": "Beneficiaries Read",
+    "200PartyRead": {
+      "description": "Party Read",
       "headers": {
         "x-fapi-interaction-id": {
           "type": "string",
@@ -1755,7 +2188,7 @@
         }
       },
       "schema": {
-        "$ref": "#/definitions/OBReadBeneficiary2"
+        "$ref": "#/definitions/OBReadParty1"
       }
     },
     "200AccountsAccountIdStandingOrdersRead": {
@@ -1780,6 +2213,78 @@
       },
       "schema": {
         "$ref": "#/definitions/OBReadStandingOrder3"
+      }
+    },
+    "200AccountsAccountIdBalancesRead": {
+      "description": "Balances Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadBalance1"
+      }
+    },
+    "200BalancesRead": {
+      "description": "Balances Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadBalance1"
+      }
+    },
+    "200AccountsAccountIdBeneficiariesRead": {
+      "description": "Beneficiaries Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadBeneficiary2"
+      }
+    },
+    "200BeneficiariesRead": {
+      "description": "Beneficiaries Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadBeneficiary2"
+      }
+    },
+    "200AccountsAccountIdOffersRead": {
+      "description": "Offers Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadOffer1"
+      }
+    },
+    "200OffersRead": {
+      "description": "Offers Read",
+      "headers": {
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      },
+      "schema": {
+        "$ref": "#/definitions/OBReadOffer1"
       }
     },
     "400ErrorResponse": {

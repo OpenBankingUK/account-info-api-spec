@@ -1,12 +1,14 @@
 ---
   get: 
     tags: 
-      - "Transactions"
-    summary: "Get Transactions"
-    operationId: "GetTransactions"
+      - "Accounts"
+    summary: "Get Accounts"
+    operationId: "GetAccountsAccountId"
     consumes: 
       - "application/json; charset=utf-8"
     parameters: 
+      - 
+        $ref: "#/parameters/AccountId"
       - 
         $ref: "#/parameters/x-fapi-financial-id-Param"
       - 
@@ -17,13 +19,9 @@
         $ref: "#/parameters/x-fapi-interaction-id-Param"
       - 
         $ref: "#/parameters/AuthorizationParam"
-      - 
-        $ref: "#/parameters/FromBookingDateTimeParam"
-      - 
-        $ref: "#/parameters/ToBookingDateTimeParam"
     responses: 
       200: 
-        $ref: "#/responses/200TransactionsRead"
+        $ref: "#/responses/200AccountsAccountIdRead"
       400: 
         $ref: "#/responses/400ErrorResponse"
       401: 

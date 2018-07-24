@@ -17,6 +17,10 @@
         $ref: "#/parameters/x-fapi-interaction-id-Param"
       - 
         $ref: "#/parameters/AuthorizationParam"
+      - 
+        $ref: "#/parameters/FromStatementDateTimeParam"
+      - 
+        $ref: "#/parameters/ToStatementDateTimeParam"
     responses: 
       200: 
         $ref: "#/responses/200StatementsRead"
