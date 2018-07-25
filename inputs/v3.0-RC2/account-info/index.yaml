@@ -17,18 +17,6 @@
   produces: 
     - "application/json; charset=utf-8"
   paths: 
-    /accounts/{AccountId}/product: 
-      - 
-        $ref: "./paths/GetAccountsAccountIdProduct.yaml"
-    /products: 
-      - 
-        $ref: "./paths/GetProducts.yaml"
-    /accounts/{AccountId}/scheduled-payments: 
-      - 
-        $ref: "./paths/GetAccountsAccountIdScheduledPayments.yaml"
-    /scheduled-payments: 
-      - 
-        $ref: "./paths/GetScheduledPayments.yaml"
     /account-access-consents: 
       - 
         $ref: "./paths/CreateAccountAccessConsents.yaml"
@@ -43,18 +31,30 @@
     /accounts/{AccountId}: 
       - 
         $ref: "./paths/GetAccountsAccountId.yaml"
-    /accounts/{AccountId}/transactions: 
+    /accounts/{AccountId}/balances: 
       - 
-        $ref: "./paths/GetAccountsAccountIdTransactions.yaml"
-    /transactions: 
+        $ref: "./paths/GetAccountsAccountIdBalances.yaml"
+    /accounts/{AccountId}/beneficiaries: 
       - 
-        $ref: "./paths/GetTransactions.yaml"
+        $ref: "./paths/GetAccountsAccountIdBeneficiaries.yaml"
     /accounts/{AccountId}/direct-debits: 
       - 
         $ref: "./paths/GetAccountsAccountIdDirectDebits.yaml"
-    /direct-debits: 
+    /accounts/{AccountId}/offers: 
       - 
-        $ref: "./paths/GetDirectDebits.yaml"
+        $ref: "./paths/GetAccountsAccountIdOffers.yaml"
+    /accounts/{AccountId}/party: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdParty.yaml"
+    /accounts/{AccountId}/product: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdProduct.yaml"
+    /accounts/{AccountId}/scheduled-payments: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdScheduledPayments.yaml"
+    /accounts/{AccountId}/standing-orders: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdStandingOrders.yaml"
     /accounts/{AccountId}/statements: 
       - 
         $ref: "./paths/GetAccountsAccountIdStatements.yaml"
@@ -67,48 +67,40 @@
     /accounts/{AccountId}/statements/{StatementId}/transactions: 
       - 
         $ref: "./paths/GetAccountsAccountIdStatementsStatementIdTransactions.yaml"
-    /statements: 
+    /accounts/{AccountId}/transactions: 
       - 
-        $ref: "./paths/GetStatements.yaml"
-    /accounts/{AccountId}/party: 
-      - 
-        $ref: "./paths/GetAccountsAccountIdParty.yaml"
-    /party: 
-      - 
-        $ref: "./paths/GetParty.yaml"
-    /accounts/{AccountId}/standing-orders: 
-      - 
-        $ref: "./paths/GetAccountsAccountIdStandingOrders.yaml"
-    /standing-orders: 
-      - 
-        $ref: "./paths/GetStandingOrders.yaml"
-    /accounts/{AccountId}/balances: 
-      - 
-        $ref: "./paths/GetAccountsAccountIdBalances.yaml"
+        $ref: "./paths/GetAccountsAccountIdTransactions.yaml"
     /balances: 
       - 
         $ref: "./paths/GetBalances.yaml"
-    /accounts/{AccountId}/beneficiaries: 
-      - 
-        $ref: "./paths/GetAccountsAccountIdBeneficiaries.yaml"
     /beneficiaries: 
       - 
         $ref: "./paths/GetBeneficiaries.yaml"
-    /accounts/{AccountId}/offers: 
+    /direct-debits: 
       - 
-        $ref: "./paths/GetAccountsAccountIdOffers.yaml"
+        $ref: "./paths/GetDirectDebits.yaml"
     /offers: 
       - 
         $ref: "./paths/GetOffers.yaml"
+    /party: 
+      - 
+        $ref: "./paths/GetParty.yaml"
+    /products: 
+      - 
+        $ref: "./paths/GetProducts.yaml"
+    /scheduled-payments: 
+      - 
+        $ref: "./paths/GetScheduledPayments.yaml"
+    /standing-orders: 
+      - 
+        $ref: "./paths/GetStandingOrders.yaml"
+    /statements: 
+      - 
+        $ref: "./paths/GetStatements.yaml"
+    /transactions: 
+      - 
+        $ref: "./paths/GetTransactions.yaml"
   parameters: 
-    - 
-      $ref: "./parameters/AccountId.yaml"
-    - 
-      $ref: "./parameters/OBReadConsent1Param.yaml"
-    - 
-      $ref: "./parameters/ConsentId.yaml"
-    - 
-      $ref: "./parameters/StatementId.yaml"
     - 
       $ref: "./parameters/FromBookingDateTimeParam.yaml"
     - 
@@ -131,7 +123,29 @@
       $ref: "../readwrite/parameters/AuthorizationParam.yaml"
     - 
       $ref: "../readwrite/parameters/x-jws-signature-Param.yaml"
+    - 
+      $ref: "./parameters/AccountId.yaml"
+    - 
+      $ref: "./parameters/OBReadConsent1Param.yaml"
+    - 
+      $ref: "./parameters/ConsentId.yaml"
+    - 
+      $ref: "./parameters/StatementId.yaml"
   responses: 
+    - 
+      $ref: "../readwrite/responses/400ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/401ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/403ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/405ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/406ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/429ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/500ErrorResponse.yaml"
     - 
       $ref: "./responses/200AccountsAccountIdProductRead.yaml"
     - 
@@ -188,20 +202,6 @@
       $ref: "./responses/200AccountsAccountIdOffersRead.yaml"
     - 
       $ref: "./responses/200OffersRead.yaml"
-    - 
-      $ref: "../readwrite/responses/400ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/401ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/403ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/405ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/406ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/429ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/500ErrorResponse.yaml"
   securityDefinitions: 
     - 
       $ref: "./securityDefinitions/PSUOAuth2Security.yaml"
@@ -415,8 +415,6 @@
     - 
       $ref: "./definitions/TransactionInformation.yaml"
     - 
-      $ref: "../readwrite/definitions/File.yaml"
-    - 
       $ref: "../readwrite/definitions/Error.yaml"
     - 
       $ref: "../readwrite/definitions/ISODateTime.yaml"
@@ -428,3 +426,5 @@
       $ref: "../readwrite/definitions/OBErrorResponse.yaml"
     - 
       $ref: "../readwrite/definitions/OBRisk2.yaml"
+    - 
+      $ref: "../readwrite/definitions/File.yaml"

@@ -16,144 +16,6 @@ schemes:
 produces:
   - application/json; charset=utf-8
 paths:
-  '/accounts/{AccountId}/product':
-    get:
-      tags:
-        - Products
-      summary: Get Products
-      operationId: GetAccountsAccountIdProduct
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/AccountId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200AccountsAccountIdProductRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  /products:
-    get:
-      tags:
-        - Products
-      summary: Get Products
-      operationId: GetProducts
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200ProductsRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  '/accounts/{AccountId}/scheduled-payments':
-    get:
-      tags:
-        - Scheduled Payments
-      summary: Get Scheduled Payments
-      operationId: GetAccountsAccountIdScheduledPayments
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/AccountId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200AccountsAccountIdScheduledPaymentsRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  /scheduled-payments:
-    get:
-      tags:
-        - Scheduled Payments
-      summary: Get Scheduled Payments
-      operationId: GetScheduledPayments
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200ScheduledPaymentsRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
   /account-access-consents:
     post:
       tags:
@@ -327,12 +189,12 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/transactions':
+  '/accounts/{AccountId}/balances':
     get:
       tags:
-        - Transactions
-      summary: Get Transactions
-      operationId: GetAccountsAccountIdTransactions
+        - Balances
+      summary: Get Balances
+      operationId: GetAccountsAccountIdBalances
       consumes:
         - application/json; charset=utf-8
       parameters:
@@ -342,11 +204,9 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/FromBookingDateTimeParam'
-        - $ref: '#/parameters/ToBookingDateTimeParam'
       responses:
         '200':
-          $ref: '#/responses/200AccountsAccountIdTransactionsRead'
+          $ref: '#/responses/200AccountsAccountIdBalancesRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -364,25 +224,24 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
-  /transactions:
+  '/accounts/{AccountId}/beneficiaries':
     get:
       tags:
-        - Transactions
-      summary: Get Transactions
-      operationId: GetTransactions
+        - Beneficiaries
+      summary: Get Beneficiaries
+      operationId: GetAccountsAccountIdBeneficiaries
       consumes:
         - application/json; charset=utf-8
       parameters:
+        - $ref: '#/parameters/AccountId'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/FromBookingDateTimeParam'
-        - $ref: '#/parameters/ToBookingDateTimeParam'
       responses:
         '200':
-          $ref: '#/responses/200TransactionsRead'
+          $ref: '#/responses/200AccountsAccountIdBeneficiariesRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -435,15 +294,16 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
-  /direct-debits:
+  '/accounts/{AccountId}/offers':
     get:
       tags:
-        - Direct Debits
-      summary: Get Direct Debits
-      operationId: GetDirectDebits
+        - Offers
+      summary: Get Offers
+      operationId: GetAccountsAccountIdOffers
       consumes:
         - application/json; charset=utf-8
       parameters:
+        - $ref: '#/parameters/AccountId'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -451,7 +311,147 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DirectDebitsRead'
+          $ref: '#/responses/200AccountsAccountIdOffersRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/party':
+    get:
+      tags:
+        - Partys
+      summary: Get Party
+      operationId: GetAccountsAccountIdParty
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/AccountId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200AccountsAccountIdPartyRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/product':
+    get:
+      tags:
+        - Products
+      summary: Get Products
+      operationId: GetAccountsAccountIdProduct
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/AccountId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200AccountsAccountIdProductRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/scheduled-payments':
+    get:
+      tags:
+        - Scheduled Payments
+      summary: Get Scheduled Payments
+      operationId: GetAccountsAccountIdScheduledPayments
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/AccountId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200AccountsAccountIdScheduledPaymentsRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/standing-orders':
+    get:
+      tags:
+        - Standing Orders
+      summary: Get Standing Orders
+      operationId: GetAccountsAccountIdStandingOrders
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/AccountId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200AccountsAccountIdStandingOrdersRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -615,48 +615,12 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
-  /statements:
+  '/accounts/{AccountId}/transactions':
     get:
       tags:
-        - Statements
-      summary: Get Statements
-      operationId: GetStatements
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/FromStatementDateTimeParam'
-        - $ref: '#/parameters/ToStatementDateTimeParam'
-      responses:
-        '200':
-          $ref: '#/responses/200StatementsRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  '/accounts/{AccountId}/party':
-    get:
-      tags:
-        - Partys
-      summary: Get Party
-      operationId: GetAccountsAccountIdParty
+        - Transactions
+      summary: Get Transactions
+      operationId: GetAccountsAccountIdTransactions
       consumes:
         - application/json; charset=utf-8
       parameters:
@@ -666,147 +630,11 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/FromBookingDateTimeParam'
+        - $ref: '#/parameters/ToBookingDateTimeParam'
       responses:
         '200':
-          $ref: '#/responses/200AccountsAccountIdPartyRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  /party:
-    get:
-      tags:
-        - Partys
-      summary: Get Party
-      operationId: GetParty
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200PartyRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  '/accounts/{AccountId}/standing-orders':
-    get:
-      tags:
-        - Standing Orders
-      summary: Get Standing Orders
-      operationId: GetAccountsAccountIdStandingOrders
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/AccountId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200AccountsAccountIdStandingOrdersRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  /standing-orders:
-    get:
-      tags:
-        - Standing Orders
-      summary: Get Standing Orders
-      operationId: GetStandingOrders
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200StandingOrdersRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
-  '/accounts/{AccountId}/balances':
-    get:
-      tags:
-        - Balances
-      summary: Get Balances
-      operationId: GetAccountsAccountIdBalances
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/AccountId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200AccountsAccountIdBalancesRead'
+          $ref: '#/responses/200AccountsAccountIdTransactionsRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -858,41 +686,6 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/beneficiaries':
-    get:
-      tags:
-        - Beneficiaries
-      summary: Get Beneficiaries
-      operationId: GetAccountsAccountIdBeneficiaries
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/AccountId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200AccountsAccountIdBeneficiariesRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - accounts
   /beneficiaries:
     get:
       tags:
@@ -927,16 +720,15 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/offers':
+  /direct-debits:
     get:
       tags:
-        - Offers
-      summary: Get Offers
-      operationId: GetAccountsAccountIdOffers
+        - Direct Debits
+      summary: Get Direct Debits
+      operationId: GetDirectDebits
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/AccountId'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -944,7 +736,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200AccountsAccountIdOffersRead'
+          $ref: '#/responses/200DirectDebitsRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -996,32 +788,215 @@ paths:
       security:
         - PSUOAuth2Security:
             - accounts
+  /party:
+    get:
+      tags:
+        - Partys
+      summary: Get Party
+      operationId: GetParty
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200PartyRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Get Products
+      operationId: GetProducts
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200ProductsRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /scheduled-payments:
+    get:
+      tags:
+        - Scheduled Payments
+      summary: Get Scheduled Payments
+      operationId: GetScheduledPayments
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200ScheduledPaymentsRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /standing-orders:
+    get:
+      tags:
+        - Standing Orders
+      summary: Get Standing Orders
+      operationId: GetStandingOrders
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200StandingOrdersRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /statements:
+    get:
+      tags:
+        - Statements
+      summary: Get Statements
+      operationId: GetStatements
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/FromStatementDateTimeParam'
+        - $ref: '#/parameters/ToStatementDateTimeParam'
+      responses:
+        '200':
+          $ref: '#/responses/200StatementsRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get Transactions
+      operationId: GetTransactions
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/FromBookingDateTimeParam'
+        - $ref: '#/parameters/ToBookingDateTimeParam'
+      responses:
+        '200':
+          $ref: '#/responses/200TransactionsRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - accounts
 parameters:
-  AccountId:
-    name: AccountId
-    in: path
-    description: AccountId
-    required: true
-    type: string
-  OBReadConsent1Param:
-    name: OBReadConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBReadConsent1'
-  ConsentId:
-    name: ConsentId
-    in: path
-    description: ConsentId
-    required: true
-    type: string
-  StatementId:
-    name: StatementId
-    in: path
-    description: StatementId
-    required: true
-    type: string
   FromBookingDateTimeParam:
     in: query
     name: fromBookingDateTime
@@ -1130,7 +1105,54 @@ parameters:
     description: >-
       DO NOT USE. Header containing a detached JWS signature of the body of the
       payload.
+  AccountId:
+    name: AccountId
+    in: path
+    description: AccountId
+    required: true
+    type: string
+  OBReadConsent1Param:
+    name: OBReadConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBReadConsent1'
+  ConsentId:
+    name: ConsentId
+    in: path
+    description: ConsentId
+    required: true
+    type: string
+  StatementId:
+    name: StatementId
+    in: path
+    description: StatementId
+    required: true
+    type: string
 responses:
+  400ErrorResponse:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/OBErrorResponse'
+  401ErrorResponse:
+    description: Unauthorized
+  403ErrorResponse:
+    description: Forbidden
+  405ErrorResponse:
+    description: Method Not Allowed
+  406ErrorResponse:
+    description: Not Acceptable
+  429ErrorResponse:
+    description: Too Many Requests
+    headers:
+      Retry-After:
+        description: Number in seconds to wait
+        type: integer
+  500ErrorResponse:
+    description: Internal Server Error
+    schema:
+      $ref: '#/definitions/OBErrorResponse'
   200AccountsAccountIdProductRead:
     description: Products Read
     headers:
@@ -1353,28 +1375,6 @@ responses:
         description: An RFC4122 UID used as a correlation id.
     schema:
       $ref: '#/definitions/OBReadOffer1'
-  400ErrorResponse:
-    description: Bad request
-    schema:
-      $ref: '#/definitions/OBErrorResponse'
-  401ErrorResponse:
-    description: Unauthorized
-  403ErrorResponse:
-    description: Forbidden
-  405ErrorResponse:
-    description: Method Not Allowed
-  406ErrorResponse:
-    description: Not Acceptable
-  429ErrorResponse:
-    description: Too Many Requests
-    headers:
-      Retry-After:
-        description: Number in seconds to wait
-        type: integer
-  500ErrorResponse:
-    description: Internal Server Error
-    schema:
-      $ref: '#/definitions/OBErrorResponse'
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
@@ -11041,9 +11041,6 @@ definitions:
     type: string
     minLength: 1
     maxLength: 500
-  File:
-    type: string
-    format: binary
   Error:
     required:
       - ErrorCode
@@ -11168,3 +11165,6 @@ definitions:
     type: object
     properties: {}
     additionalProperties: false
+  File:
+    type: string
+    format: binary
