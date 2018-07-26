@@ -10,8 +10,8 @@ npm-debug.log*
 
 # Ignore generated yaml
 inputs/v*/accounts/definitions/*.yaml
-account-info-swagger-dereferenced.yaml
-account-info-swagger-with-allof.*
+*-swagger-dereferenced.yaml
+*-swagger-with-allof.*
 
 # Runtime data
 pids
