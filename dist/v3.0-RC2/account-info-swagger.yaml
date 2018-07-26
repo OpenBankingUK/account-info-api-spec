@@ -1405,9 +1405,8 @@ definitions:
     description: >-
       A number of monetary units specified in an active currency where the unit
       of currency is explicit and compliant with ISO 4217.
-    type: object
-    properties: {}
-    additionalProperties: false
+    type: string
+    pattern: '^d{1,13}.d{1,5}$'
   Amount:
     type: string
     pattern: '^\d{1,13}\.\d{1,5}$'
@@ -4427,9 +4426,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -4475,9 +4473,8 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: object
-                  properties: {}
-                  additionalProperties: false
+                  type: string
+                  pattern: '^d{1,13}.d{1,5}$'
                 Currency:
                   description: >-
                     A code allocated to a currency by a Maintenance Agency under
@@ -4557,9 +4554,7 @@ definitions:
 
           Usage: ExchangeRate expresses the ratio between UnitCurrency and
           QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: number
       ContractIdentification:
         description: >-
           Unique identification to unambiguously identify the foreign exchange
@@ -7429,15 +7424,9 @@ definitions:
         $ref: '#/definitions/OBReadData1'
       Risk:
         $ref: '#/definitions/OBRisk2'
-      Links:
-        $ref: '#/definitions/Links'
-      Meta:
-        $ref: '#/definitions/Meta'
     required:
       - Data
       - Risk
-      - Links
-      - Meta
     additionalProperties: false
   OBReadConsentResponse1:
     type: object
@@ -8044,9 +8033,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -8935,9 +8923,8 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: object
-                  properties: {}
-                  additionalProperties: false
+                  type: string
+                  pattern: '^d{1,13}.d{1,5}$'
                 Currency:
                   description: >-
                     A code allocated to a currency by a Maintenance Agency under
@@ -8989,9 +8976,8 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: object
-                  properties: {}
-                  additionalProperties: false
+                  type: string
+                  pattern: '^d{1,13}.d{1,5}$'
                 Currency:
                   description: >-
                     A code allocated to a currency by a Maintenance Agency under
@@ -9044,9 +9030,8 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: object
-                  properties: {}
-                  additionalProperties: false
+                  type: string
+                  pattern: '^d{1,13}.d{1,5}$'
                 Currency:
                   description: >-
                     A code allocated to a currency by a Maintenance Agency under
@@ -9182,9 +9167,8 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: object
-                  properties: {}
-                  additionalProperties: false
+                  type: string
+                  pattern: '^d{1,13}.d{1,5}$'
                 Currency:
                   description: >-
                     A code allocated to a currency by a Maintenance Agency under
@@ -9363,9 +9347,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -9457,9 +9440,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -9506,9 +9488,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -9906,9 +9887,8 @@ definitions:
                   A number of monetary units specified in an active currency
                   where the unit of currency is explicit and compliant with ISO
                   4217.
-                type: object
-                properties: {}
-                additionalProperties: false
+                type: string
+                pattern: '^d{1,13}.d{1,5}$'
               Currency:
                 description: >-
                   A code allocated to a currency by a Maintenance Agency under
@@ -10352,9 +10332,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -10377,9 +10356,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an
@@ -10422,9 +10400,7 @@ definitions:
 
               Usage: ExchangeRate expresses the ratio between UnitCurrency and
               QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: number
           ContractIdentification:
             description: >-
               Unique identification to unambiguously identify the foreign
@@ -10456,9 +10432,8 @@ definitions:
                   A number of monetary units specified in an active currency
                   where the unit of currency is explicit and compliant with ISO
                   4217.
-                type: object
-                properties: {}
-                additionalProperties: false
+                type: string
+                pattern: '^d{1,13}.d{1,5}$'
               Currency:
                 description: >-
                   A code allocated to a currency by a Maintenance Agency under
@@ -10555,9 +10530,8 @@ definitions:
                   A number of monetary units specified in an active currency
                   where the unit of currency is explicit and compliant with ISO
                   4217.
-                type: object
-                properties: {}
-                additionalProperties: false
+                type: string
+                pattern: '^d{1,13}.d{1,5}$'
               Currency:
                 description: >-
                   A code allocated to a currency by a Maintenance Agency under
@@ -10994,9 +10968,8 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: object
-            properties: {}
-            additionalProperties: false
+            type: string
+            pattern: '^d{1,13}.d{1,5}$'
           Currency:
             description: >-
               A code allocated to a currency by a Maintenance Agency under an

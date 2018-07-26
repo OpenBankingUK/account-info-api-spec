@@ -2351,9 +2351,8 @@
     },
     "ActiveCurrencyAndAmount_SimpleType": {
       "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-      "type": "object",
-      "properties": {},
-      "additionalProperties": false
+      "type": "string",
+      "pattern": "^d{1,13}.d{1,5}$"
     },
     "Amount": {
       "type": "string",
@@ -5295,9 +5294,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -5337,9 +5335,8 @@
                 "properties": {
                   "Amount": {
                     "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                    "type": "object",
-                    "properties": {},
-                    "additionalProperties": false
+                    "type": "string",
+                    "pattern": "^d{1,13}.d{1,5}$"
                   },
                   "Currency": {
                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -5421,9 +5418,7 @@
         },
         "ExchangeRate": {
           "description": "Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency.\nUsage: ExchangeRate expresses the ratio between UnitCurrency and QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
+          "type": "number"
         },
         "ContractIdentification": {
           "description": "Unique identification to unambiguously identify the foreign exchange contract.",
@@ -8360,19 +8355,11 @@
         },
         "Risk": {
           "$ref": "#/definitions/OBRisk2"
-        },
-        "Links": {
-          "$ref": "#/definitions/Links"
-        },
-        "Meta": {
-          "$ref": "#/definitions/Meta"
         }
       },
       "required": [
         "Data",
-        "Risk",
-        "Links",
-        "Meta"
+        "Risk"
       ],
       "additionalProperties": false
     },
@@ -8942,9 +8929,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -9517,9 +9503,8 @@
                 "properties": {
                   "Amount": {
                     "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                    "type": "object",
-                    "properties": {},
-                    "additionalProperties": false
+                    "type": "string",
+                    "pattern": "^d{1,13}.d{1,5}$"
                   },
                   "Currency": {
                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -9568,9 +9553,8 @@
                 "properties": {
                   "Amount": {
                     "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                    "type": "object",
-                    "properties": {},
-                    "additionalProperties": false
+                    "type": "string",
+                    "pattern": "^d{1,13}.d{1,5}$"
                   },
                   "Currency": {
                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -9620,9 +9604,8 @@
                 "properties": {
                   "Amount": {
                     "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                    "type": "object",
-                    "properties": {},
-                    "additionalProperties": false
+                    "type": "string",
+                    "pattern": "^d{1,13}.d{1,5}$"
                   },
                   "Currency": {
                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -9752,9 +9735,8 @@
                 "properties": {
                   "Amount": {
                     "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                    "type": "object",
-                    "properties": {},
-                    "additionalProperties": false
+                    "type": "string",
+                    "pattern": "^d{1,13}.d{1,5}$"
                   },
                   "Currency": {
                     "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -9919,9 +9901,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10009,9 +9990,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10057,9 +10037,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10422,9 +10401,8 @@
               "properties": {
                 "Amount": {
                   "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                  "type": "object",
-                  "properties": {},
-                  "additionalProperties": false
+                  "type": "string",
+                  "pattern": "^d{1,13}.d{1,5}$"
                 },
                 "Currency": {
                   "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10800,9 +10778,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10822,9 +10799,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10859,9 +10835,7 @@
             },
             "ExchangeRate": {
               "description": "Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency.\nUsage: ExchangeRate expresses the ratio between UnitCurrency and QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "number"
             },
             "ContractIdentification": {
               "description": "Unique identification to unambiguously identify the foreign exchange contract.",
@@ -10880,9 +10854,8 @@
               "properties": {
                 "Amount": {
                   "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                  "type": "object",
-                  "properties": {},
-                  "additionalProperties": false
+                  "type": "string",
+                  "pattern": "^d{1,13}.d{1,5}$"
                 },
                 "Currency": {
                   "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -10981,9 +10954,8 @@
               "properties": {
                 "Amount": {
                   "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-                  "type": "object",
-                  "properties": {},
-                  "additionalProperties": false
+                  "type": "string",
+                  "pattern": "^d{1,13}.d{1,5}$"
                 },
                 "Currency": {
                   "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -11402,9 +11374,8 @@
           "properties": {
             "Amount": {
               "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-              "type": "object",
-              "properties": {},
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^d{1,13}.d{1,5}$"
             },
             "Currency": {
               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",

@@ -62,6 +62,10 @@ const classFor = (property) => {
 
 const isArray = p => p.Occurrence && p.Occurrence.endsWith('..n');
 
+/**
+ * @description This function returns the type appropriate to the Class of the property
+ * @param {*} property The property to evaluate
+ */
 const typeFor = (property) => {
   const type = property.Class;
   if (type && (
@@ -70,6 +74,7 @@ const typeFor = (property) => {
       'xs:string',
       'xs:ID',
       'PhoneNumber',
+      'ActiveCurrencyAndAmount_SimpleType'
     ].includes(type) ||
     type.endsWith('Text') ||
     type.endsWith('Code')
@@ -77,10 +82,11 @@ const typeFor = (property) => {
     return 'string';
   } else if (type === 'xs:boolean') {
     return 'boolean';
-  } else if (type === 'Number') {
-    if (property.FractionDigits === '0') {
-      return 'integer';
-    }
+  } else if (
+    ['Number', 'BaseOneRate', 'DecimalNumber'].includes(type) || 
+    type.endsWith('SimpleType')
+  ) {
+    if (property.FractionDigits === '0') return 'integer';
     return 'number';
   }
   return 'object';
@@ -222,7 +228,8 @@ const missingAmount = key =>
 const addMetaLinks = key =>
   key.startsWith('OBRead') &&
   !key.startsWith('OBReadData') &&
-  !key.startsWith('OBReadRequest');
+  !key.startsWith('OBReadRequest') &&
+  !key.startsWith('OBReadConsent1');
 
 const propertiesObj = (list, key, childSchemas, separateDefinitions = [], isoDescription, rows) => {
   const obj = {};
@@ -372,13 +379,13 @@ const makeSchema = (
 
       // THIS VALIDATES REFERENCES OBJECTS - REMOVING FOR THE MOMENT
 
-      // if (Object.keys(childProperties).length === 0 &&
-      //   !property.Class.startsWith('OBRisk') &&
-      //   !property.Class.startsWith('OBPCAData') &&
-      //   !property.Class.startsWith('OBBCAData')
-      // ) {
-      //   throw new Error(`Invalid "object" as no properties: ${JSON.stringify(property)}`);
-      // }
+      if (Object.keys(childProperties).length === 0 &&
+        !property.Class.startsWith('OBRisk') &&
+        !property.Class.startsWith('OBPCAData') &&
+        !property.Class.startsWith('OBBCAData')
+      ) {
+        throw new Error(`Invalid "object" as no properties: ${JSON.stringify(property)}`);
+      }
       assign(schema, { properties: childProperties });
       if (requiredProp(properties, key).length > 0) {
         assign(schema, { required: requiredProp(properties, key) });

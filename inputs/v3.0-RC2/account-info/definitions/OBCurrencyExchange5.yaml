@@ -18,9 +18,7 @@ OBCurrencyExchange5:
 
         Usage: ExchangeRate expresses the ratio between UnitCurrency and
         QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).
-      type: object
-      properties: {}
-      additionalProperties: false
+      type: number
     ContractIdentification:
       description: >-
         Unique identification to unambiguously identify the foreign exchange

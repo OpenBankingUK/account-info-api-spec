@@ -5,13 +5,7 @@ OBReadConsent1:
       $ref: '#/definitions/OBReadData1'
     Risk:
       $ref: '#/definitions/OBRisk2'
-    Links:
-      $ref: '#/definitions/Links'
-    Meta:
-      $ref: '#/definitions/Meta'
   required:
     - Data
     - Risk
-    - Links
-    - Meta
   additionalProperties: false

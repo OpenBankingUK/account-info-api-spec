@@ -1730,9 +1730,8 @@ definitions:
     description: >-
       A number of monetary units specified in an active currency where the unit
       of currency is explicit and compliant with ISO 4217.
-    type: object
-    properties: {}
-    additionalProperties: false
+    type: string
+    pattern: '^d{1,13}.d{1,5}$'
   Amount:
     type: string
     pattern: '^\d{1,13}\.\d{1,5}$'
@@ -2258,9 +2257,7 @@ definitions:
           The factor used for conversion of an amount from one currency to
           another. This reflects the price at which one currency was bought with
           another currency.
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: number
       RateType:
         $ref: '#/definitions/OBExchangeRateType2Code'
       ContractIdentification:
@@ -2291,9 +2288,7 @@ definitions:
           The factor used for conversion of an amount from one currency to
           another. This reflects the price at which one currency was bought with
           another currency.
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: number
       RateType:
         $ref: '#/definitions/OBExchangeRateType2Code'
       ContractIdentification:
@@ -2413,9 +2408,7 @@ definitions:
         description: >-
           Total of all individual amounts included in the group, irrespective of
           currencies.
-        type: object
-        properties: {}
-        additionalProperties: false
+        type: number
       RequestedExecutionDateTime:
         description: >-
           Date at which the initiating party requests the clearing agent to

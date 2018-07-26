@@ -2922,9 +2922,8 @@
   "definitions": {
     "ActiveCurrencyAndAmount_SimpleType": {
       "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-      "type": "object",
-      "properties": {},
-      "additionalProperties": false
+      "type": "string",
+      "pattern": "^d{1,13}.d{1,5}$"
     },
     "Amount": {
       "type": "string",
@@ -3284,9 +3283,7 @@
         },
         "ExchangeRate": {
           "description": "The factor used for conversion of an amount from one currency to another. This reflects the price at which one currency was bought with another currency.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
+          "type": "number"
         },
         "RateType": {
           "$ref": "#/definitions/OBExchangeRateType2Code"
@@ -3315,9 +3312,7 @@
         },
         "ExchangeRate": {
           "description": "The factor used for conversion of an amount from one currency to another. This reflects the price at which one currency was bought with another currency.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
+          "type": "number"
         },
         "RateType": {
           "$ref": "#/definitions/OBExchangeRateType2Code"
@@ -3447,9 +3442,7 @@
         },
         "ControlSum": {
           "description": "Total of all individual amounts included in the group, irrespective of currencies.",
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
+          "type": "number"
         },
         "RequestedExecutionDateTime": {
           "description": "Date at which the initiating party requests the clearing agent to process the payment. \nUsage: This is the date on which the debtor's account is to be debited.\nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",

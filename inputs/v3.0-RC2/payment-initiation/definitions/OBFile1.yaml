@@ -31,9 +31,7 @@ OBFile1:
       description: >-
         Total of all individual amounts included in the group, irrespective of
         currencies.
-      type: object
-      properties: {}
-      additionalProperties: false
+      type: number
     RequestedExecutionDateTime:
       description: >-
         Date at which the initiating party requests the clearing agent to
