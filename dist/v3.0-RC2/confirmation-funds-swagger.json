@@ -65,6 +65,9 @@
           "403": {
             "$ref": "#/responses/403ErrorResponse"
           },
+          "404": {
+            "$ref": "#/responses/404ErrorResponse"
+          },
           "405": {
             "$ref": "#/responses/405ErrorResponse"
           },
@@ -130,6 +133,9 @@
           "403": {
             "$ref": "#/responses/403ErrorResponse"
           },
+          "404": {
+            "$ref": "#/responses/404ErrorResponse"
+          },
           "405": {
             "$ref": "#/responses/405ErrorResponse"
           },
@@ -192,6 +198,9 @@
           },
           "403": {
             "$ref": "#/responses/403ErrorResponse"
+          },
+          "404": {
+            "$ref": "#/responses/404ErrorResponse"
           },
           "405": {
             "$ref": "#/responses/405ErrorResponse"
@@ -257,6 +266,9 @@
           },
           "403": {
             "$ref": "#/responses/403ErrorResponse"
+          },
+          "404": {
+            "$ref": "#/responses/404ErrorResponse"
           },
           "405": {
             "$ref": "#/responses/405ErrorResponse"
@@ -372,6 +384,9 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
+    },
+    "404ErrorResponse": {
+      "description": "Not found"
     },
     "405ErrorResponse": {
       "description": "Method Not Allowed"

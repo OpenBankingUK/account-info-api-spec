@@ -70,6 +70,7 @@ const typeFor = (property) => {
   const type = property.Class;
   if (type && (
     [
+      'xs:anyURI',
       'ISODateTime',
       'xs:string',
       'xs:ID',

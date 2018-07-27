@@ -178,6 +178,8 @@
     - 
       $ref: "../readwrite/responses/403ErrorResponse.yaml"
     - 
+      $ref: "./responses/404ErrorResponse.yaml"
+    - 
       $ref: "../readwrite/responses/405ErrorResponse.yaml"
     - 
       $ref: "../readwrite/responses/406ErrorResponse.yaml"
