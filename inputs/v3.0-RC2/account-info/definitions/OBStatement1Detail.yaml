@@ -1,3 +1,0 @@
-OBStatement1Detail:
-  allOf:
-    - $ref: '#/definitions/OBStatement1'

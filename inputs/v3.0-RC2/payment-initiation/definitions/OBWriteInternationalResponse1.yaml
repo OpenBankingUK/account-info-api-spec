@@ -1,8 +1,0 @@
-OBWriteInternationalResponse1:
-  type: object
-  properties:
-    Data:
-      $ref: '#/definitions/OBWriteDataInternationalResponse1'
-  required:
-    - Data
-  additionalProperties: false

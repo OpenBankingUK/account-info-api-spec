@@ -1,9 +1,0 @@
-OBExternalPaymentContext1Code:
-  description: Specifies the payment context
-  type: string
-  enum:
-    - BillPayment
-    - EcommerceGoods
-    - EcommerceServices
-    - Other
-    - PartyToParty

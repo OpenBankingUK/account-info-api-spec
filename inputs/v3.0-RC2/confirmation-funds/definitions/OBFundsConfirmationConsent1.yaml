@@ -1,8 +1,0 @@
-OBFundsConfirmationConsent1:
-  type: object
-  properties:
-    Data:
-      $ref: '#/definitions/OBFundsConfirmationConsentData1'
-  required:
-    - Data
-  additionalProperties: false

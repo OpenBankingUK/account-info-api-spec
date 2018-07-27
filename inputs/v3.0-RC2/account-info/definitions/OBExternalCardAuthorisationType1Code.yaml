@@ -1,8 +1,0 @@
-OBExternalCardAuthorisationType1Code:
-  description: The card authorisation type.
-  type: string
-  enum:
-    - ConsumerDevice
-    - Contactless
-    - None
-    - PIN

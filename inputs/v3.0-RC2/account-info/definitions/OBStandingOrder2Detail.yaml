@@ -1,5 +1,0 @@
-OBStandingOrder2Detail:
-  allOf:
-    - $ref: '#/definitions/OBStandingOrder2'
-  required:
-    - CreditorAccount

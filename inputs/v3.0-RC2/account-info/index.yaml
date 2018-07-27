@@ -211,8 +211,6 @@
     - 
       $ref: "./definitions/AccountId.yaml"
     - 
-      $ref: "./definitions/ActiveCurrencyAndAmount_SimpleType.yaml"
-    - 
       $ref: "./definitions/Amount.yaml"
     - 
       $ref: "./definitions/CurrencyAndAmount.yaml"
@@ -222,6 +220,8 @@
       $ref: "./definitions/OBAccount2Basic.yaml"
     - 
       $ref: "./definitions/OBAccount2Detail.yaml"
+    - 
+      $ref: "./definitions/OBActiveCurrencyAndAmount_SimpleType.yaml"
     - 
       $ref: "./definitions/OBActiveOrHistoricCurrencyAndAmount.yaml"
     - 
@@ -316,6 +316,8 @@
       $ref: "./definitions/OBMerchantDetails1.yaml"
     - 
       $ref: "./definitions/OBOffer1.yaml"
+    - 
+      $ref: "./definitions/OBOtherProductType1.yaml"
     - 
       $ref: "./definitions/OBPCAData1.yaml"
     - 

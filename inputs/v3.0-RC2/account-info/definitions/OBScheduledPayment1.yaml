@@ -1,8 +1,0 @@
-OBScheduledPayment1:
-  allOf:
-    - $ref: '#/definitions/OBScheduledPayment1Basic'
-    - properties:
-        CreditorAgent:
-          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification4'
-        CreditorAccount:
-          $ref: '#/definitions/OBCashAccount3'

@@ -1,8 +1,0 @@
-OBWriteInternationalScheduledResponse1:
-  type: object
-  properties:
-    Data:
-      $ref: '#/definitions/OBWriteDataInternationalScheduledResponse1'
-  required:
-    - Data
-  additionalProperties: false

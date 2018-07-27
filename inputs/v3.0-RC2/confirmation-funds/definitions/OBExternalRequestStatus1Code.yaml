@@ -1,8 +1,0 @@
-OBExternalRequestStatus1Code:
-  description: Specifies the status of consent resource in code form.
-  type: string
-  enum:
-    - Authorised
-    - AwaitingAuthorisation
-    - Rejected
-    - Revoked

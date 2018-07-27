@@ -1,7 +1,0 @@
-OBExternalStatus1Code:
-  description: Specifies the status of resource in code form.
-  type: string
-  enum:
-    - InitiationCompleted
-    - InitiationFailed
-    - InitiationPending

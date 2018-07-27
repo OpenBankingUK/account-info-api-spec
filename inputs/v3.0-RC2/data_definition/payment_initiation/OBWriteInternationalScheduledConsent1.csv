@@ -28,7 +28,7 @@ Usage: This is the date on which the debtor's account is to be debited.";"ISODat
 "InstructedAmount";"1..1";"OBWriteInternationalScheduledConsent1/Data/Initiation/InstructedAmount";"Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.
 
 Usage: This amount has to be transported unchanged through the transaction chain.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
-"Amount";"1..1";"OBWriteInternationalScheduledConsent1/Data/Initiation/InstructedAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"ActiveCurrencyAndAmount_SimpleType";"";"^d{1,13}.d{1,5}$";"18";"5"
+"Amount";"1..1";"OBWriteInternationalScheduledConsent1/Data/Initiation/InstructedAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"OBActiveCurrencyAndAmount_SimpleType";"";"^\d{1,13}\.\d{1,5}$";"";""
 "Currency";"1..1";"OBWriteInternationalScheduledConsent1/Data/Initiation/InstructedAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
 "ExchangeRateInformation";"0..1";"OBWriteInternationalScheduledConsent1/Data/Initiation/ExchangeRateInformation";"Provides details on the currency exchange rate and contract.";"OBExchangeRate1";"";"";"";""
 "UnitCurrency";"1..1";"OBWriteInternationalScheduledConsent1/Data/Initiation/ExchangeRateInformation/UnitCurrency";"Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
@@ -106,7 +106,6 @@ If the business context requires the use of a creditor reference or a payment re
 OB: The Faster Payments Scheme can only accept 18 characters for the ReferenceInformation field - which is where this ISO field will be mapped.";"Max35Text";"";"";"";""
 "Authorisation";"0..1";"OBWriteInternationalScheduledConsent1/Data/Authorisation";"The authorisation type request from the TPP.";"OBAuthorisation1";"";"";"";""
 "AuthorisationType";"1..1";"OBWriteInternationalScheduledConsent1/Data/Authorisation/AuthorisationType";"Type of authorisation flow requested.";"OBExternalAuthorisation1Code";"Any
-Multiple
 Single";"";"";""
 "CompletionDateTime";"0..1";"OBWriteInternationalScheduledConsent1/Data/Authorisation/CompletionDateTime";"Date and time at which the requested authorisation flow must be completed.";"ISODateTime";"";"";"";""
 "Risk";"1..1";"OBWriteInternationalScheduledConsent1/Risk";"The Risk section is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Payments.";"OBRisk1";"";"";"";""

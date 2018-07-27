@@ -1,9 +1,0 @@
-OBExternalCardSchemeType1Code:
-  description: Name of the card scheme.
-  type: string
-  enum:
-    - AmericanExpress
-    - Diners
-    - Discover
-    - MasterCard
-    - VISA

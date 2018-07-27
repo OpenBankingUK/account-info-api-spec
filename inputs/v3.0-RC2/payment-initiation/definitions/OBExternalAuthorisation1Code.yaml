@@ -1,7 +1,0 @@
-OBExternalAuthorisation1Code:
-  description: Type of authorisation flow requested.
-  type: string
-  enum:
-    - Any
-    - Multiple
-    - Single

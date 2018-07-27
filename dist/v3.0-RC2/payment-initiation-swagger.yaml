@@ -1726,14 +1726,14 @@ securityDefinitions:
       payments: Generic payment scope
     description: TPP client credential authorisation flow with the ASPSP
 definitions:
-  ActiveCurrencyAndAmount_SimpleType:
+  Amount:
+    type: string
+    pattern: '^\d{1,13}\.\d{1,5}$'
+  OBActiveCurrencyAndAmount_SimpleType:
     description: >-
       A number of monetary units specified in an active currency where the unit
       of currency is explicit and compliant with ISO 4217.
-    type: string
-    pattern: '^d{1,13}.d{1,5}$'
-  Amount:
-    type: string
+    type: number
     pattern: '^\d{1,13}\.\d{1,5}$'
   OBActiveOrHistoricCurrencyAndAmount:
     description: >-
@@ -1746,7 +1746,7 @@ definitions:
     type: object
     properties:
       Amount:
-        $ref: '#/definitions/ActiveCurrencyAndAmount_SimpleType'
+        $ref: '#/definitions/OBActiveCurrencyAndAmount_SimpleType'
       Currency:
         description: >-
           A code allocated to a currency by a Maintenance Agency under an
@@ -2328,7 +2328,6 @@ definitions:
     type: string
     enum:
       - Any
-      - Multiple
       - Single
   OBExternalConsentStatus1Code:
     description: Specifies the status of resource in code form.

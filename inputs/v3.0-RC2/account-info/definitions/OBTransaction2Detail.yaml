@@ -1,3 +1,0 @@
-OBTransaction2Detail:
-  allOf:
-    - $ref: '#/definitions/OBTransaction2'

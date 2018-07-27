@@ -30,6 +30,5 @@ If the business context requires the use of a creditor reference or a payment re
 OB: The Faster Payments Scheme can only accept 18 characters for the ReferenceInformation field - which is where this ISO field will be mapped.";"Max35Text";"";"";"";""
 "Authorisation";"0..1";"OBWriteFileConsent1/Data/Authorisation";"The authorisation type request from the TPP.";"OBAuthorisation1";"";"";"";""
 "AuthorisationType";"1..1";"OBWriteFileConsent1/Data/Authorisation/AuthorisationType";"Type of authorisation flow requested.";"OBExternalAuthorisation1Code";"Any
-Multiple
 Single";"";"";""
 "CompletionDateTime";"0..1";"OBWriteFileConsent1/Data/Authorisation/CompletionDateTime";"Date and time at which the requested authorisation flow must be completed.";"ISODateTime";"";"";"";""

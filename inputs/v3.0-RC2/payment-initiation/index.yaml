@@ -254,9 +254,9 @@
       $ref: "./securityDefinitions/TPPOAuth2Security.yaml"
   definitions: 
     - 
-      $ref: "./definitions/ActiveCurrencyAndAmount_SimpleType.yaml"
-    - 
       $ref: "./definitions/Amount.yaml"
+    - 
+      $ref: "./definitions/OBActiveCurrencyAndAmount_SimpleType.yaml"
     - 
       $ref: "./definitions/OBActiveOrHistoricCurrencyAndAmount.yaml"
     - 

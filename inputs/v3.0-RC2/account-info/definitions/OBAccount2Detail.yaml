@@ -1,5 +1,0 @@
-OBAccount2Detail:
-  allOf:
-    - $ref: '#/definitions/OBAccount2'
-  required:
-    - Account

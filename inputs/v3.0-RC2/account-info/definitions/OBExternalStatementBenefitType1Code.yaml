@@ -1,8 +1,0 @@
-OBExternalStatementBenefitType1Code:
-  description: 'Benefit type, in a coded form.'
-  type: string
-  enum:
-    - Cashback
-    - Insurance
-    - TravelDiscount
-    - TravelInsurance

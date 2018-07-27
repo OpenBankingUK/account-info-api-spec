@@ -1,6 +1,0 @@
-OBExternalScheduleType1Code:
-  description: Specifies the scheduled payment date type requested
-  type: string
-  enum:
-    - Arrival
-    - Execution

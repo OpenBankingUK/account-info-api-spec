@@ -2920,13 +2920,13 @@
     }
   },
   "definitions": {
-    "ActiveCurrencyAndAmount_SimpleType": {
-      "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
-      "type": "string",
-      "pattern": "^d{1,13}.d{1,5}$"
-    },
     "Amount": {
       "type": "string",
+      "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+    },
+    "OBActiveCurrencyAndAmount_SimpleType": {
+      "description": "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
+      "type": "number",
       "pattern": "^\\d{1,13}\\.\\d{1,5}$"
     },
     "OBActiveOrHistoricCurrencyAndAmount": {
@@ -2934,7 +2934,7 @@
       "type": "object",
       "properties": {
         "Amount": {
-          "$ref": "#/definitions/ActiveCurrencyAndAmount_SimpleType"
+          "$ref": "#/definitions/OBActiveCurrencyAndAmount_SimpleType"
         },
         "Currency": {
           "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
@@ -3350,7 +3350,6 @@
       "type": "string",
       "enum": [
         "Any",
-        "Multiple",
         "Single"
       ]
     },

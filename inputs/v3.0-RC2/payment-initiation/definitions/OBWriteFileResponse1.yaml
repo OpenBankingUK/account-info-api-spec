@@ -1,8 +1,0 @@
-OBWriteFileResponse1:
-  type: object
-  properties:
-    Data:
-      $ref: '#/definitions/OBWriteDataFileResponse1'
-  required:
-    - Data
-  additionalProperties: false

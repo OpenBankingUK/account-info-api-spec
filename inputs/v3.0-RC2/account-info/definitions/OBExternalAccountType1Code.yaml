@@ -1,6 +1,0 @@
-OBExternalAccountType1Code:
-  description: Specifies the type of account (personal or business).
-  type: string
-  enum:
-    - Business
-    - Personal
