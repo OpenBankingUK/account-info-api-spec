@@ -226,9 +226,7 @@ responses:
   200CallbackUrlsRead:
     description: An array of callback URLs
     schema:
-      type: array
-      items:
-        $ref: '#/definitions/OBCallbackUrl1'
+      $ref: '#/definitions/OBCallbackUrl1'
     headers:
       x-jws-signature:
         type: string
@@ -290,7 +288,9 @@ definitions:
     type: object
     properties:
       Data:
-        $ref: '#/definitions/OBCallbackUrlData1'
+        type: array
+        items: 
+          $ref: '#/definitions/OBCallbackUrlData1'
     required:
       - Data
     additionalProperties: false
