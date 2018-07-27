@@ -74,7 +74,7 @@ const typeFor = (property) => {
       'xs:string',
       'xs:ID',
       'PhoneNumber',
-      'ActiveCurrencyAndAmount_SimpleType'
+      'OBActiveCurrencyAndAmount_SimpleType'
     ].includes(type) ||
     type.endsWith('Text') ||
     type.endsWith('Code')
@@ -83,8 +83,7 @@ const typeFor = (property) => {
   } else if (type === 'xs:boolean') {
     return 'boolean';
   } else if (
-    ['Number', 'BaseOneRate', 'DecimalNumber'].includes(type) || 
-    type.endsWith('SimpleType')
+    ['Number', 'BaseOneRate', 'DecimalNumber'].includes(type)
   ) {
     if (property.FractionDigits === '0') return 'integer';
     return 'number';

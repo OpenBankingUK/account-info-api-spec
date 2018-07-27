@@ -1587,7 +1587,7 @@ definitions:
     description: >-
       A number of monetary units specified in an active currency where the unit
       of currency is explicit and compliant with ISO 4217.
-    type: number
+    type: string
     pattern: '^\d{1,13}\.\d{1,5}$'
   OBActiveOrHistoricCurrencyAndAmount:
     description: >-
@@ -4343,7 +4343,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -4390,7 +4390,7 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: number
+                  type: string
                   pattern: '^\d{1,13}\.\d{1,5}$'
                 Currency:
                   description: >-
@@ -7636,7 +7636,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -8046,7 +8046,7 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: number
+                  type: string
                   pattern: '^\d{1,13}\.\d{1,5}$'
                 Currency:
                   description: >-
@@ -8099,7 +8099,7 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: number
+                  type: string
                   pattern: '^\d{1,13}\.\d{1,5}$'
                 Currency:
                   description: >-
@@ -8153,7 +8153,7 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: number
+                  type: string
                   pattern: '^\d{1,13}\.\d{1,5}$'
                 Currency:
                   description: >-
@@ -8290,7 +8290,7 @@ definitions:
                     A number of monetary units specified in an active currency
                     where the unit of currency is explicit and compliant with
                     ISO 4217.
-                  type: number
+                  type: string
                   pattern: '^\d{1,13}\.\d{1,5}$'
                 Currency:
                   description: >-
@@ -8470,7 +8470,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -8563,7 +8563,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -8611,7 +8611,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -8785,7 +8785,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -8809,7 +8809,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
@@ -8885,7 +8885,7 @@ definitions:
                   A number of monetary units specified in an active currency
                   where the unit of currency is explicit and compliant with ISO
                   4217.
-                type: number
+                type: string
                 pattern: '^\d{1,13}\.\d{1,5}$'
               Currency:
                 description: >-
@@ -8983,7 +8983,7 @@ definitions:
                   A number of monetary units specified in an active currency
                   where the unit of currency is explicit and compliant with ISO
                   4217.
-                type: number
+                type: string
                 pattern: '^\d{1,13}\.\d{1,5}$'
               Currency:
                 description: >-
@@ -9421,7 +9421,7 @@ definitions:
             description: >-
               A number of monetary units specified in an active currency where
               the unit of currency is explicit and compliant with ISO 4217.
-            type: number
+            type: string
             pattern: '^\d{1,13}\.\d{1,5}$'
           Currency:
             description: >-
