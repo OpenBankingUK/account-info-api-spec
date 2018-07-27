@@ -14,7 +14,7 @@
     },
     "version": "v3.0-RC2"
   },
-  "basePath": "/open-banking/v3.0",
+  "basePath": "/open-banking/v3.0/cbpii",
   "schemes": [
     "https"
   ],
