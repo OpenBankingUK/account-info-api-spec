@@ -213,8 +213,6 @@
     - 
       $ref: "./definitions/Amount.yaml"
     - 
-      $ref: "./definitions/CurrencyAndAmount.yaml"
-    - 
       $ref: "./definitions/OBAccount2.yaml"
     - 
       $ref: "./definitions/OBAccount2Basic.yaml"
@@ -239,15 +237,9 @@
     - 
       $ref: "./definitions/OBBeneficiary2Detail.yaml"
     - 
-      $ref: "./definitions/OBBranchAndFinancialInstitutionIdentification2.yaml"
-    - 
       $ref: "./definitions/OBBranchAndFinancialInstitutionIdentification3.yaml"
     - 
       $ref: "./definitions/OBBranchAndFinancialInstitutionIdentification4.yaml"
-    - 
-      $ref: "./definitions/OBCashAccount1.yaml"
-    - 
-      $ref: "./definitions/OBCashAccount2.yaml"
     - 
       $ref: "./definitions/OBCashAccount3.yaml"
     - 
@@ -265,10 +257,6 @@
     - 
       $ref: "./definitions/OBEntryStatus1Code.yaml"
     - 
-      $ref: "./definitions/OBExternalAccountIdentification2Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalAccountIdentification3Code.yaml"
-    - 
       $ref: "./definitions/OBExternalAccountSubType1Code.yaml"
     - 
       $ref: "./definitions/OBExternalAccountType1Code.yaml"
@@ -278,8 +266,6 @@
       $ref: "./definitions/OBExternalCardSchemeType1Code.yaml"
     - 
       $ref: "./definitions/OBExternalDirectDebitStatus1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalFinancialInstitutionIdentification2Code.yaml"
     - 
       $ref: "./definitions/OBExternalLimitType1Code.yaml"
     - 
@@ -297,21 +283,7 @@
     - 
       $ref: "./definitions/OBExternalStandingOrderStatus1Code.yaml"
     - 
-      $ref: "./definitions/OBExternalStatementAmountType1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalStatementBenefitType1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalStatementDateTimeType1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalStatementFeeType1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalStatementInterestType1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalStatementRateType1Code.yaml"
-    - 
       $ref: "./definitions/OBExternalStatementType1Code.yaml"
-    - 
-      $ref: "./definitions/OBExternalStatementValueType1Code.yaml"
     - 
       $ref: "./definitions/OBMerchantDetails1.yaml"
     - 
@@ -341,8 +313,6 @@
     - 
       $ref: "./definitions/OBReadData1.yaml"
     - 
-      $ref: "./definitions/OBReadDataResponse1.yaml"
-    - 
       $ref: "./definitions/OBReadDirectDebit1.yaml"
     - 
       $ref: "./definitions/OBReadOffer1.yaml"
@@ -351,19 +321,11 @@
     - 
       $ref: "./definitions/OBReadProduct2.yaml"
     - 
-      $ref: "./definitions/OBReadRequest1.yaml"
-    - 
-      $ref: "./definitions/OBReadResponse1.yaml"
-    - 
       $ref: "./definitions/OBReadScheduledPayment1.yaml"
-    - 
-      $ref: "./definitions/OBReadStandingOrder2.yaml"
     - 
       $ref: "./definitions/OBReadStandingOrder3.yaml"
     - 
       $ref: "./definitions/OBReadStatement1.yaml"
-    - 
-      $ref: "./definitions/OBReadTransaction2.yaml"
     - 
       $ref: "./definitions/OBReadTransaction3.yaml"
     - 
@@ -372,12 +334,6 @@
       $ref: "./definitions/OBScheduledPayment1Basic.yaml"
     - 
       $ref: "./definitions/OBScheduledPayment1Detail.yaml"
-    - 
-      $ref: "./definitions/OBStandingOrder2.yaml"
-    - 
-      $ref: "./definitions/OBStandingOrder2Basic.yaml"
-    - 
-      $ref: "./definitions/OBStandingOrder2Detail.yaml"
     - 
       $ref: "./definitions/OBStandingOrder3.yaml"
     - 
@@ -400,12 +356,6 @@
       $ref: "./definitions/OBStatementRate1.yaml"
     - 
       $ref: "./definitions/OBStatementValue1.yaml"
-    - 
-      $ref: "./definitions/OBTransaction2.yaml"
-    - 
-      $ref: "./definitions/OBTransaction2Basic.yaml"
-    - 
-      $ref: "./definitions/OBTransaction2Detail.yaml"
     - 
       $ref: "./definitions/OBTransaction3.yaml"
     - 
