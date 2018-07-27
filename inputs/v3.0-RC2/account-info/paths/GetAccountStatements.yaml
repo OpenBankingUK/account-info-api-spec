@@ -1,0 +1,33 @@
+get:
+  tags:
+    - "Statements"
+  summary: Get Account Statements
+  description: Get Statements related to an account
+  operationId: GetAccountStatements
+  parameters:
+    - $ref: "#/parameters/AccountIdParam"
+    - $ref: "#/parameters/x-fapi-financial-id-Param"
+    - $ref: "#/parameters/x-fapi-customer-last-logged-time-Param"
+    - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+    - $ref: "#/parameters/x-fapi-interaction-id-Param"
+    - $ref: "#/parameters/AuthorizationParam"
+  responses:
+    '200':
+      $ref: "#/responses/200AccountStatementsRead"
+    '400':
+      $ref: "#/responses/400ErrorResponse"
+    '401':
+      $ref: "#/responses/401ErrorResponse"
+    '403':
+      $ref: "#/responses/403ErrorResponse"
+    '405':
+      $ref: "#/responses/405ErrorResponse"
+    '406':
+      $ref: "#/responses/406ErrorResponse"
+    '429':
+      $ref: "#/responses/429ErrorResponse"
+    '500':
+      $ref: "#/responses/500ErrorResponse"
+  security:
+    - PSUOAuth2Security:
+        - accounts

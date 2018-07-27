@@ -9,9 +9,11 @@ logs
 npm-debug.log*
 
 # Ignore generated yaml
-inputs/v*/accounts/definitions/*.yaml
-account-info-swagger-dereferenced.yaml
-account-info-swagger-with-allof.*
+inputs/v*/account-info/definitions/*.yaml
+inputs/v*/confirmation-funds/definitions/*.yaml
+inputs/v*/payment-initiation/definitions/*.yaml
+*-swagger-dereferenced.yaml
+*-swagger-with-allof.*
 
 # Runtime data
 pids

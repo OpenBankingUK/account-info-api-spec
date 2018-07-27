@@ -1,0 +1,7 @@
+---
+  StatementId: 
+    name: "StatementId"
+    in: "path"
+    description: "StatementId"
+    required: true
+    type: "string"

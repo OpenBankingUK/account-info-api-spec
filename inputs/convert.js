@@ -7,6 +7,7 @@ const separateDefinitions = [
   'Amount',
   'CurrencyAndAmount',
   'TransactionInformation',
+  'OBActiveOrHistoricCurrencyAndAmount'
 ];
 
 const versions = fs.readdirSync('./inputs').filter(d => d.startsWith('v'));
@@ -30,7 +31,14 @@ const convertJson = (dir, outdir) => {
   }
 };
 
-versions.filter(v => v.startsWith('v2')).forEach((version) => {
-  convertCSVs(`./inputs/${version}/data_definition`, `./inputs/${version}`, separateDefinitions);
-  convertJson(`./inputs/${version}/data_definition`, `./inputs/${version}`);
+// TODO: Add a search parameter
+// TODO: Fix the version selection...
+versions.filter(v => v.startsWith('v3')).forEach((version) => {
+  convertCSVs(`./inputs/${version}/data_definition/account_info`, `./inputs/${version}/account-info`, separateDefinitions);
+  convertCSVs(`./inputs/${version}/data_definition/callback-urls`, `./inputs/${version}/callback-urls`, separateDefinitions);
+  convertCSVs(`./inputs/${version}/data_definition/confirmation-funds`, `./inputs/${version}/confirmation-funds`, separateDefinitions);
+  convertCSVs(`./inputs/${version}/data_definition/payment_initiation`, `./inputs/${version}/payment-initiation`, separateDefinitions);
+
+  // Run the product data process inclusion process...
+  convertJson(`./inputs/${version}/data_definition`, `./inputs/${version}/account-info`);
 });

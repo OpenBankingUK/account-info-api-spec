@@ -1,0 +1,7 @@
+---
+  FilePaymentId: 
+    name: "FilePaymentId"
+    in: "path"
+    description: "FilePaymentId"
+    required: true
+    type: "string"

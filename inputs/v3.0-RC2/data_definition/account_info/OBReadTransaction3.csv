@@ -1,0 +1,140 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBReadTransaction3";"";"OBReadTransaction3";"";"OBReadTransaction3";"";"";"";""
+"Data";"1..1";"OBReadTransaction3/Data";"";"OBReadDataTransaction3";"";"";"";""
+"Transaction";"0..n";"OBReadTransaction3/Data/Transaction";"Provides further details on an entry in the report.";"OBTransaction3";"";"";"";""
+"AccountId";"1..1";"OBReadTransaction3/Data/Transaction/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";""
+"TransactionId";"0..1";"OBReadTransaction3/Data/Transaction/TransactionId";"Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.";"Max40Text";"";"";"";""
+"TransactionReference";"0..1";"OBReadTransaction3/Data/Transaction/TransactionReference";"Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.";"Max35Text";"";"";"";""
+"StatementReference";"0..n";"OBReadTransaction3/Data/Transaction/StatementReference";"Unique reference for the statement. This reference may be optionally populated if available.";"Max35Text";"";"";"";""
+"CreditDebitIndicator";"1..1";"OBReadTransaction3/Data/Transaction/CreditDebitIndicator";"Indicates whether the transaction is a credit or a debit entry.";"OBCreditDebitCode";"Credit
+Debit";"";"";""
+"Status";"1..1";"OBReadTransaction3/Data/Transaction/Status";"Status of a transaction entry on the books of the account servicer.";"OBEntryStatus1Code";"Booked
+Pending";"";"";""
+"BookingDateTime";"1..1";"OBReadTransaction3/Data/Transaction/BookingDateTime";"Date and time when a transaction entry is posted to an account on the account servicer's books.
+
+Usage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.";"ISODateTime";"";"";"";""
+"ValueDateTime";"0..1";"OBReadTransaction3/Data/Transaction/ValueDateTime";"Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit transaction entry.
+Usage: If transaction entry status is pending and value date is present, then the value date refers to an expected/requested value date.
+For transaction entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.";"ISODateTime";"";"";"";""
+"TransactionInformation";"0..1";"OBReadTransaction3/Data/Transaction/TransactionInformation";"Further details of the transaction. 
+This is the transaction narrative, which is unstructured text.";"Max500Text";"";"";"";""
+"AddressLine";"0..1";"OBReadTransaction3/Data/Transaction/AddressLine";"Information that locates and identifies a specific address for a transaction entry, that is presented in free format text.";"Max70Text";"";"";"";""
+"Amount";"1..1";"OBReadTransaction3/Data/Transaction/Amount";"Amount of money in the cash transaction entry.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBReadTransaction3/Data/Transaction/Amount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"OBActiveCurrencyAndAmount_SimpleType";"";"^\d{1,13}\.\d{1,5}$";"";""
+"Currency";"1..1";"OBReadTransaction3/Data/Transaction/Amount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"ChargeAmount";"0..1";"OBReadTransaction3/Data/Transaction/ChargeAmount";"Transaction charges to be paid by the charge bearer.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBReadTransaction3/Data/Transaction/ChargeAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"OBActiveCurrencyAndAmount_SimpleType";"";"^\d{1,13}\.\d{1,5}$";"";""
+"Currency";"1..1";"OBReadTransaction3/Data/Transaction/ChargeAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"CurrencyExchange";"0..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange";"Set of elements used to provide details on the currency exchange.";"OBCurrencyExchange5";"";"";"";""
+"SourceCurrency";"1..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/SourceCurrency";"Currency from which an amount is to be converted in a currency conversion.";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"TargetCurrency";"0..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/TargetCurrency";"Currency into which an amount is to be converted in a currency conversion.";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"UnitCurrency";"0..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/UnitCurrency";"Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"ExchangeRate";"1..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/ExchangeRate";"Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency.
+
+Usage: ExchangeRate expresses the ratio between UnitCurrency and QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).";"BaseOneRate";"";"";"11";"10"
+"ContractIdentification";"0..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/ContractIdentification";"Unique identification to unambiguously identify the foreign exchange contract.";"Max35Text";"";"";"";""
+"QuotationDate";"0..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/QuotationDate";"Date and time at which an exchange rate is quoted.";"ISODateTime";"";"";"";""
+"InstructedAmount";"0..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/InstructedAmount";"Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/InstructedAmount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"OBActiveCurrencyAndAmount_SimpleType";"";"^\d{1,13}\.\d{1,5}$";"";""
+"Currency";"1..1";"OBReadTransaction3/Data/Transaction/CurrencyExchange/InstructedAmount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"BankTransactionCode";"0..1";"OBReadTransaction3/Data/Transaction/BankTransactionCode";"Set of elements used to fully identify the type of underlying transaction resulting in an entry.";"OBBankTransactionCodeStructure1";"";"";"";""
+"Code";"1..1";"OBReadTransaction3/Data/Transaction/BankTransactionCode/Code";"Specifies the family within a domain.";"ExternalBankTransactionFamily1Code";"";"";"";""
+"SubCode";"1..1";"OBReadTransaction3/Data/Transaction/BankTransactionCode/SubCode";"Specifies the sub-product family within a specific family.";"ExternalBankTransactionSubFamily1Code";"";"";"";""
+"ProprietaryBankTransactionCode";"0..1";"OBReadTransaction3/Data/Transaction/ProprietaryBankTransactionCode";"Set of elements to fully identify a proprietary bank transaction code.";"ProprietaryBankTransactionCodeStructure1";"";"";"";""
+"Code";"1..1";"OBReadTransaction3/Data/Transaction/ProprietaryBankTransactionCode/Code";"Proprietary bank transaction code to identify the underlying transaction.";"Max35Text";"";"";"";""
+"Issuer";"0..1";"OBReadTransaction3/Data/Transaction/ProprietaryBankTransactionCode/Issuer";"Identification of the issuer of the proprietary bank transaction code.";"Max35Text";"";"";"";""
+"Balance";"0..1";"OBReadTransaction3/Data/Transaction/Balance";"Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.";"OBTransactionCashBalance";"";"";"";""
+"CreditDebitIndicator";"1..1";"OBReadTransaction3/Data/Transaction/Balance/CreditDebitIndicator";"Indicates whether the balance is a credit or a debit balance. 
+Usage: A zero balance is considered to be a credit balance.";"OBCreditDebitCode";"Credit
+Debit";"";"";""
+"Type";"1..1";"OBReadTransaction3/Data/Transaction/Balance/Type";"Balance type, in a coded form.";"OBBalanceType1Code";"ClosingAvailable
+ClosingBooked
+ClosingCleared
+Expected
+ForwardAvailable
+Information
+InterimAvailable
+InterimBooked
+InterimCleared
+OpeningAvailable
+OpeningBooked
+OpeningCleared
+PreviouslyClosedBooked";"";"";""
+"Amount";"1..1";"OBReadTransaction3/Data/Transaction/Balance/Amount";"Amount of money of the cash balance after a transaction entry is applied to the account..";"OBActiveOrHistoricCurrencyAndAmount";"";"";"";""
+"Amount";"1..1";"OBReadTransaction3/Data/Transaction/Balance/Amount/Amount";"A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";"OBActiveCurrencyAndAmount_SimpleType";"";"^\d{1,13}\.\d{1,5}$";"";""
+"Currency";"1..1";"OBReadTransaction3/Data/Transaction/Balance/Amount/Currency";"A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 ""Codes for the representation of currencies and funds"".";"ActiveOrHistoricCurrencyCode";"";"^[A-Z]{3,3}$";"";""
+"MerchantDetails";"0..1";"OBReadTransaction3/Data/Transaction/MerchantDetails";"Details of the merchant involved in the transaction.";"OBMerchantDetails1";"";"";"";""
+"MerchantName";"0..1";"OBReadTransaction3/Data/Transaction/MerchantDetails/MerchantName";"Name by which the merchant is known.";"Max350Text";"";"";"";""
+"MerchantCategoryCode";"0..1";"OBReadTransaction3/Data/Transaction/MerchantDetails/MerchantCategoryCode";"Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.";"Min3Max4Text";"";"";"";""
+"CreditorAgent";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent";"Financial institution servicing an account for the creditor.";"OBBranchAndFinancialInstitutionIdentification3";"";"";"";""
+"SchemeName";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"Max40Text";"";"";"";""
+"Identification";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/Identification";"Unique and unambiguous identification of a financial institution or a branch of a financial institution.";"Max35Text";"";"";"";""
+"Name";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/Name";"Name by which an agent is known and which is usually used to identify that agent.";"Max140Text";"";"";"";""
+"PostalAddress";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress";"Information that locates and identifies a specific address, as defined by postal services.";"OBPostalAddress6";"";"";"";""
+"AddressType";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/AddressType";"Identifies the nature of the postal address.";"OBAddressTypeCode";"Business
+Correspondence
+DeliveryTo
+MailTo
+POBox
+Postal
+Residential
+Statement";"";"";""
+"Department";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/Department";"Identification of a division of a large organisation or building.";"Max70Text";"";"";"";""
+"SubDepartment";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/SubDepartment";"Identification of a sub-division of a large organisation or building.";"Max70Text";"";"";"";""
+"StreetName";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/StreetName";"Name of a street or thoroughfare.";"Max70Text";"";"";"";""
+"BuildingNumber";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/BuildingNumber";"Number that identifies the position of a building on a street.";"Max16Text";"";"";"";""
+"PostCode";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/PostCode";"Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.";"Max16Text";"";"";"";""
+"TownName";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/TownName";"Name of a built-up area, with defined boundaries, and a local government.";"Max35Text";"";"";"";""
+"CountrySubDivision";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/CountrySubDivision";"Identifies a subdivision of a country such as state, region, county.";"Max35Text";"";"";"";""
+"Country";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/Country";"Nation with its own government.";"CountryCode";"";"^[A-Z]{2,2}$";"";""
+"AddressLine";"0..7";"OBReadTransaction3/Data/Transaction/CreditorAgent/PostalAddress/AddressLine";"Information that locates and identifies a specific address, as defined by postal services, presented in free format text.";"Max70Text";"";"";"";""
+"CreditorAccount";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAccount";"Unambiguous identification of the account of the creditor, in the case of a debit transaction.";"OBCashAccount4";"";"";"";""
+"SchemeName";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"Max40Text";"";"";"";""
+"Identification";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAccount/Identification";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"Max256Text";"";"";"";""
+"Name";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAccount/Name";"Name of the account, as assigned by the account servicing institution.
+
+Usage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBReadTransaction3/Data/Transaction/CreditorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""
+"DebtorAgent";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent";"Financial institution servicing an account for the debtor.";"OBBranchAndFinancialInstitutionIdentification3";"";"";"";""
+"SchemeName";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"Max40Text";"";"";"";""
+"Identification";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/Identification";"Unique and unambiguous identification of a financial institution or a branch of a financial institution.";"Max35Text";"";"";"";""
+"Name";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/Name";"Name by which an agent is known and which is usually used to identify that agent.";"Max140Text";"";"";"";""
+"PostalAddress";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress";"Information that locates and identifies a specific address, as defined by postal services.";"OBPostalAddress6";"";"";"";""
+"AddressType";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/AddressType";"Identifies the nature of the postal address.";"OBAddressTypeCode";"Business
+Correspondence
+DeliveryTo
+MailTo
+POBox
+Postal
+Residential
+Statement";"";"";""
+"Department";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/Department";"Identification of a division of a large organisation or building.";"Max70Text";"";"";"";""
+"SubDepartment";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/SubDepartment";"Identification of a sub-division of a large organisation or building.";"Max70Text";"";"";"";""
+"StreetName";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/StreetName";"Name of a street or thoroughfare.";"Max70Text";"";"";"";""
+"BuildingNumber";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/BuildingNumber";"Number that identifies the position of a building on a street.";"Max16Text";"";"";"";""
+"PostCode";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/PostCode";"Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.";"Max16Text";"";"";"";""
+"TownName";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/TownName";"Name of a built-up area, with defined boundaries, and a local government.";"Max35Text";"";"";"";""
+"CountrySubDivision";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/CountrySubDivision";"Identifies a subdivision of a country such as state, region, county.";"Max35Text";"";"";"";""
+"Country";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/Country";"Nation with its own government.";"CountryCode";"";"^[A-Z]{2,2}$";"";""
+"AddressLine";"0..7";"OBReadTransaction3/Data/Transaction/DebtorAgent/PostalAddress/AddressLine";"Information that locates and identifies a specific address, as defined by postal services, presented in free format text.";"Max70Text";"";"";"";""
+"DebtorAccount";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAccount";"Unambiguous identification of the account of the debtor, in the case of a crebit transaction.";"OBCashAccount4";"";"";"";""
+"SchemeName";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"Max40Text";"";"";"";""
+"Identification";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAccount/Identification";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"Max256Text";"";"";"";""
+"Name";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAccount/Name";"Name of the account, as assigned by the account servicing institution.
+
+Usage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.";"Max70Text";"";"";"";""
+"SecondaryIdentification";"0..1";"OBReadTransaction3/Data/Transaction/DebtorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";""
+"CardInstrument";"0..1";"OBReadTransaction3/Data/Transaction/CardInstrument";"Set of elements to describe the card instrument used in the transaction.";"OBTransactionCardInstrument1";"";"";"";""
+"CardSchemeName";"1..1";"OBReadTransaction3/Data/Transaction/CardInstrument/CardSchemeName";"Name of the card scheme.";"OBExternalCardSchemeType1Code";"AmericanExpress
+Diners
+Discover
+MasterCard
+VISA";"";"";""
+"AuthorisationType";"0..1";"OBReadTransaction3/Data/Transaction/CardInstrument/AuthorisationType";"The card authorisation type.";"OBExternalCardAuthorisationType1Code";"ConsumerDevice
+Contactless
+None
+PIN";"";"";""
+"Name";"0..1";"OBReadTransaction3/Data/Transaction/CardInstrument/Name";"Name of the cardholder using the card instrument.";"Max70Text";"";"";"";""
+"Identification";"0..1";"OBReadTransaction3/Data/Transaction/CardInstrument/Identification";"Identification assigned by an institution to identify the card instrument used in the transaction. This identification is known by the account owner, and may be masked.";"Max34Text";"";"";"";""

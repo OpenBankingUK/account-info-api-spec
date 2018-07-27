@@ -1,0 +1,443 @@
+---
+  swagger: "2.0"
+  info: 
+    title: "Payment Initiation API"
+    description: "Swagger for Payment Initiation API Specification"
+    termsOfService: "https://www.openbanking.org.uk/terms"
+    contact: 
+      name: "Service Desk"
+      email: "ServiceDesk@openbanking.org.uk"
+    license: 
+      name: "open-licence"
+      url: "https://www.openbanking.org.uk/open-licence"
+    version: "v3.0-draft-7"
+  basePath: "/open-banking/v3.0/pisp"
+  schemes: 
+    - "https"
+  produces: 
+    - "application/json; charset=utf-8"
+  paths: 
+    /domestic-payment-consents: 
+      - 
+        $ref: "./paths/CreateDomesticPaymentConsents.yaml"
+    /domestic-payment-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetDomesticPaymentConsentsConsentId.yaml"
+    /domestic-payments: 
+      - 
+        $ref: "./paths/CreateDomesticPayments.yaml"
+    /domestic-payments/{DomesticPaymentId}: 
+      - 
+        $ref: "./paths/GetDomesticPaymentsDomesticPaymentId.yaml"
+    /domestic-scheduled-payment-consents: 
+      - 
+        $ref: "./paths/CreateDomesticScheduledPaymentConsents.yaml"
+    /domestic-scheduled-payment-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetDomesticScheduledPaymentConsentsConsentId.yaml"
+    /domestic-scheduled-payments: 
+      - 
+        $ref: "./paths/CreateDomesticScheduledPayments.yaml"
+    /domestic-scheduled-payments/{DomesticScheduledPaymentId}: 
+      - 
+        $ref: "./paths/GetDomesticScheduledPaymentsDomesticScheduledPaymentId.yaml"
+    /domestic-standing-order-consents: 
+      - 
+        $ref: "./paths/CreateDomesticStandingOrderConsents.yaml"
+    /domestic-standing-order-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetDomesticStandingOrderConsentsConsentId.yaml"
+    /domestic-standing-orders: 
+      - 
+        $ref: "./paths/CreateDomesticStandingOrders.yaml"
+    /domestic-standing-orders/{DomesticStandingOrderId}: 
+      - 
+        $ref: "./paths/GetDomesticStandingOrdersDomesticStandingOrderId.yaml"
+    /file-payment-consents: 
+      - 
+        $ref: "./paths/CreateFilePaymentConsents.yaml"
+    /file-payment-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetFilePaymentConsentsConsentId.yaml"
+    /file-payment-consents/{ConsentId}/file: 
+      - 
+        $ref: "./paths/CreateFilePaymentConsentsConsentIdFile.yaml"
+      - 
+        $ref: "./paths/GetFilePaymentConsentsConsentIdFile.yaml"
+    /file-payments: 
+      - 
+        $ref: "./paths/CreateFilePayments.yaml"
+    /file-payments/{FilePaymentId}: 
+      - 
+        $ref: "./paths/GetFilePaymentsFilePaymentId.yaml"
+    /file-payments/{FilePaymentId}/report-file: 
+      - 
+        $ref: "./paths/GetFilePaymentsFilePaymentIdReportFile.yaml"
+    /international-payment-consents: 
+      - 
+        $ref: "./paths/CreateInternationalPaymentConsents.yaml"
+    /international-payment-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetInternationalPaymentConsentsConsentId.yaml"
+    /international-payments: 
+      - 
+        $ref: "./paths/CreateInternationalPayments.yaml"
+    /international-payments/{InternationalPaymentId}: 
+      - 
+        $ref: "./paths/GetInternationalPaymentsInternationalPaymentId.yaml"
+    /international-scheduled-payment-consents: 
+      - 
+        $ref: "./paths/CreateInternationalScheduledPaymentConsents.yaml"
+    /international-scheduled-payment-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetInternationalScheduledPaymentConsentsConsentId.yaml"
+    /international-scheduled-payments: 
+      - 
+        $ref: "./paths/CreateInternationalScheduledPayments.yaml"
+    /international-scheduled-payments/{InternationalScheduledPaymentId}: 
+      - 
+        $ref: "./paths/GetInternationalScheduledPaymentsInternationalScheduledPaymentId.yaml"
+    /international-standing-order-consents: 
+      - 
+        $ref: "./paths/CreateInternationalStandingOrderConsents.yaml"
+    /international-standing-order-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetInternationalStandingOrderConsentsConsentId.yaml"
+    /international-standing-orders: 
+      - 
+        $ref: "./paths/CreateInternationalStandingOrders.yaml"
+    /international-standing-orders/{InternationalStandingOrderPaymentId}: 
+      - 
+        $ref: "./paths/GetInternationalStandingOrdersInternationalStandingOrderPaymentId.yaml"
+  parameters: 
+    - 
+      $ref: "./parameters/x-idempotency-key.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-financial-id-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-customer-ip-address-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-interaction-id-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-customer-last-logged-time-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/AuthorizationParam.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-jws-signature-Param.yaml"
+    - 
+      $ref: "./parameters/OBWriteDomesticStandingOrderConsent1Param.yaml"
+    - 
+      $ref: "./parameters/ConsentId.yaml"
+    - 
+      $ref: "./parameters/OBWriteDomesticStandingOrder1Param.yaml"
+    - 
+      $ref: "./parameters/DomesticStandingOrderId.yaml"
+    - 
+      $ref: "./parameters/OBWriteDomesticConsent1Param.yaml"
+    - 
+      $ref: "./parameters/OBWriteDomestic1Param.yaml"
+    - 
+      $ref: "./parameters/DomesticPaymentId.yaml"
+    - 
+      $ref: "./parameters/OBWriteDomesticScheduledConsent1Param.yaml"
+    - 
+      $ref: "./parameters/OBWriteDomesticScheduled1Param.yaml"
+    - 
+      $ref: "./parameters/DomesticScheduledPaymentId.yaml"
+    - 
+      $ref: "./parameters/OBWriteInternationalStandingOrderConsent1Param.yaml"
+    - 
+      $ref: "./parameters/OBWriteInternationalStandingOrder1Param.yaml"
+    - 
+      $ref: "./parameters/InternationalStandingOrderPaymentId.yaml"
+    - 
+      $ref: "./parameters/OBWriteFileConsent1Param.yaml"
+    - 
+      $ref: "./parameters/FileParam.yaml"
+    - 
+      $ref: "./parameters/OBWriteFile1Param.yaml"
+    - 
+      $ref: "./parameters/FilePaymentId.yaml"
+    - 
+      $ref: "./parameters/OBWriteInternationalConsent1Param.yaml"
+    - 
+      $ref: "./parameters/OBWriteInternational1Param.yaml"
+    - 
+      $ref: "./parameters/InternationalPaymentId.yaml"
+    - 
+      $ref: "./parameters/OBWriteInternationalScheduledConsent1Param.yaml"
+    - 
+      $ref: "./parameters/OBWriteInternationalScheduled1Param.yaml"
+    - 
+      $ref: "./parameters/InternationalScheduledPaymentId.yaml"
+  responses: 
+    - 
+      $ref: "../readwrite/responses/400ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/401ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/403ErrorResponse.yaml"
+    - 
+      $ref: "./responses/404ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/405ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/406ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/429ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/500ErrorResponse.yaml"
+    - 
+      $ref: "./responses/201DomesticStandingOrderConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200DomesticStandingOrderConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/201DomesticStandingOrdersCreated.yaml"
+    - 
+      $ref: "./responses/200DomesticStandingOrdersDomesticStandingOrderIdRead.yaml"
+    - 
+      $ref: "./responses/201DomesticPaymentConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200DomesticPaymentConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/201DomesticPaymentsCreated.yaml"
+    - 
+      $ref: "./responses/200DomesticPaymentsDomesticPaymentIdRead.yaml"
+    - 
+      $ref: "./responses/201DomesticScheduledPaymentConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200DomesticScheduledPaymentConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/201DomesticScheduledPaymentsCreated.yaml"
+    - 
+      $ref: "./responses/200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead.yaml"
+    - 
+      $ref: "./responses/201InternationalStandingOrderConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200InternationalStandingOrderConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/201InternationalStandingOrdersCreated.yaml"
+    - 
+      $ref: "./responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead.yaml"
+    - 
+      $ref: "./responses/201FilePaymentConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200FilePaymentConsentsConsentIdFileCreated.yaml"
+    - 
+      $ref: "./responses/200FilePaymentConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/200FilePaymentConsentsConsentIdFileRead.yaml"
+    - 
+      $ref: "./responses/201FilePaymentsCreated.yaml"
+    - 
+      $ref: "./responses/200FilePaymentsFilePaymentIdRead.yaml"
+    - 
+      $ref: "./responses/200FilePaymentsFilePaymentIdReportFileRead.yaml"
+    - 
+      $ref: "./responses/201InternationalPaymentConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200InternationalPaymentConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/201InternationalPaymentsCreated.yaml"
+    - 
+      $ref: "./responses/200InternationalPaymentsInternationalPaymentIdRead.yaml"
+    - 
+      $ref: "./responses/201InternationalScheduledPaymentConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200InternationalScheduledPaymentConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/201InternationalScheduledPaymentsCreated.yaml"
+    - 
+      $ref: "./responses/200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead.yaml"
+  securityDefinitions: 
+    - 
+      $ref: "./securityDefinitions/PSUOAuth2Security.yaml"
+    - 
+      $ref: "./securityDefinitions/TPPOAuth2Security.yaml"
+  definitions: 
+    - 
+      $ref: "./definitions/Amount.yaml"
+    - 
+      $ref: "./definitions/OBActiveCurrencyAndAmount_SimpleType.yaml"
+    - 
+      $ref: "./definitions/OBActiveOrHistoricCurrencyAndAmount.yaml"
+    - 
+      $ref: "./definitions/OBAddressTypeCode.yaml"
+    - 
+      $ref: "./definitions/OBAuthorisation1.yaml"
+    - 
+      $ref: "./definitions/OBBranchAndFinancialInstitutionIdentification3.yaml"
+    - 
+      $ref: "./definitions/OBCashAccountCreditor2.yaml"
+    - 
+      $ref: "./definitions/OBCashAccountDebtor3.yaml"
+    - 
+      $ref: "./definitions/OBCharge1.yaml"
+    - 
+      $ref: "./definitions/OBChargeBearerType1Code.yaml"
+    - 
+      $ref: "./definitions/OBDomestic1.yaml"
+    - 
+      $ref: "./definitions/OBDomesticScheduled1.yaml"
+    - 
+      $ref: "./definitions/OBDomesticStandingOrder1.yaml"
+    - 
+      $ref: "./definitions/OBExchangeRate1.yaml"
+    - 
+      $ref: "./definitions/OBExchangeRate2.yaml"
+    - 
+      $ref: "./definitions/OBExchangeRateType2Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalAuthorisation1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalConsentStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalConsentStatus2Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalPaymentContext1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalPermissions2Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatus2Code.yaml"
+    - 
+      $ref: "./definitions/OBFile1.yaml"
+    - 
+      $ref: "./definitions/OBInternational1.yaml"
+    - 
+      $ref: "./definitions/OBInternationalScheduled1.yaml"
+    - 
+      $ref: "./definitions/OBInternationalStandingOrder1.yaml"
+    - 
+      $ref: "./definitions/OBMultiAuthorisation1.yaml"
+    - 
+      $ref: "./definitions/OBPartyIdentification43.yaml"
+    - 
+      $ref: "./definitions/OBPostalAddress6.yaml"
+    - 
+      $ref: "./definitions/OBPriority2Code.yaml"
+    - 
+      $ref: "./definitions/OBRemittanceInformation1.yaml"
+    - 
+      $ref: "./definitions/OBRisk1.yaml"
+    - 
+      $ref: "./definitions/OBTransactionIndividualStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomestic1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticScheduled1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticScheduledConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticScheduledConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticScheduledResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticStandingOrder1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticStandingOrderConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticStandingOrderConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataDomesticStandingOrderResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataFile1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataFileConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataFileConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataFileResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternational1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalScheduled1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalScheduledConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalScheduledConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalScheduledResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalStandingOrder1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalStandingOrderConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalStandingOrderConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDataInternationalStandingOrderResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomestic1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticScheduled1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticScheduledConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticScheduledConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticScheduledResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticStandingOrder1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticStandingOrderConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticStandingOrderConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteDomesticStandingOrderResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteFile1.yaml"
+    - 
+      $ref: "./definitions/OBWriteFileConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteFileConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteFileResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternational1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalScheduled1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalScheduledConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalScheduledConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalScheduledResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalStandingOrder1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalStandingOrderConsent1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalStandingOrderConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBWriteInternationalStandingOrderResponse1.yaml"
+    - 
+      $ref: "../readwrite/definitions/OBErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/definitions/Error.yaml"
+    - 
+      $ref: "../readwrite/definitions/File.yaml"

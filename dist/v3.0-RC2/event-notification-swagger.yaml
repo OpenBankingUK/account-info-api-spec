@@ -1,0 +1,202 @@
+swagger: '2.0'
+info:
+  title: Event Notification API Specification - TPP Endpoints
+  description: Swagger for Event Notification API Specification - TPP Endpoints
+  termsOfService: 'https://www.openbanking.org.uk/terms'
+  contact:
+    name: Service Desk
+    email: ServiceDesk@openbanking.org.uk
+  license:
+    name: open-licence
+    url: 'https://www.openbanking.org.uk/open-licence'
+  version: v3.0-RC2
+basePath: /open-banking/v3.0
+schemes:
+  - https
+paths:
+  /event-notifications:
+    post:
+      summary: Send an event notification
+      consumes:
+        - application/jwt
+      tags:
+        - Event Notification
+      parameters:
+        - $ref: '#/parameters/OBEventNotification1Param'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+      responses:
+        202:
+          description: Accepted
+parameters:
+  OBEventNotification1Param:
+    in: body
+    name: OBEventNotification1Param
+    description: Create an Callback URI
+    required: true
+    schema:
+      type: string
+      format: base64
+  CallbackUrlId:
+    name: CallbackUrlId
+    in: path
+    description: CallbackUrlId
+    required: true
+    type: string
+  x-fapi-financial-id-Param:
+    in: header
+    name: x-fapi-financial-id
+    type: string
+    required: true
+    description: >-
+      The unique id of the ASPSP to which the request is issued. The unique id
+      will be issued by OB.
+  x-fapi-customer-ip-address-Param:
+    in: header
+    name: x-fapi-customer-ip-address
+    type: string
+    required: false
+    description: The PSUs IP address if the PSU is currently logged in with the TPP.
+  x-fapi-interaction-id-Param:
+    in: header
+    name: x-fapi-interaction-id
+    type: string
+    required: false
+    description: An RFC4122 UID used as a correlation id.
+  x-fapi-customer-last-logged-time-Param:
+    in: header
+    name: x-fapi-customer-last-logged-time
+    type: string
+    required: false
+    description: >-
+      The time when the PSU last logged in with the TPP. 
+
+      All dates in the HTTP headers are represented as RFC 7231 Full Dates. An
+      example is below: 
+
+      Sun, 10 Sep 2017 19:43:31 UTC
+    pattern: >-
+      ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2}
+      (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2}
+      (GMT|UTC)$
+securityDefinitions:
+  TPPOAuth2Security:
+    type: oauth2
+    flow: application
+    tokenUrl: 'https://authserver.example/token'
+    scopes:
+      accounts: Ability to read Accounts information
+      fundsconfirmation: Ability to confirm funds
+      payments: Generic payment scope
+    description: TPP client credential authorisation flow with the ASPSP
+definitions:
+  OBEvent1:
+    description: Events.
+    type: object
+    properties:
+      'urn:uk:org:openbanking:events:resource-update':
+        $ref: '#/definitions/OBEventSubject1'
+    required:
+      - 'urn:uk:org:openbanking:events:resource-update'
+    additionalProperties: false
+  OBEventNotification1:
+    description: The resource-update event. INCLUDED FOR INFORMATION
+    type: object
+    properties:
+      iss:
+        description: Issuer.
+        type: string
+      iat:
+        description: 'Issued At. '
+        type: string
+        minLength: 1
+        maxLength: 10
+        pattern: '[0-9]{1,10}'
+      jti:
+        description: JWT ID.
+        type: string
+        minLength: 1
+        maxLength: 128
+      aud:
+        description: Audience.
+        type: string
+        minLength: 1
+        maxLength: 128
+      sub:
+        description: Subject
+        type: string
+        format: uri
+      txn:
+        description: Transaction Identifier.
+        type: string
+        minLength: 1
+        maxLength: 128
+      toe:
+        description: Time of Event.
+        type: string
+        minLength: 1
+        maxLength: 10
+        pattern: '[0-9]{1,10}'
+      events:
+        $ref: '#/definitions/OBEvent1'
+    required:
+      - iss
+      - iat
+      - jti
+      - aud
+      - sub
+      - txn
+      - toe
+      - events
+    additionalProperties: false
+  OBEventResourceUpdate1:
+    description: The resource-update event.
+    type: object
+    properties:
+      subject_type:
+        description: 'Subject type for the updated resource. '
+        type: string
+        enum:
+          - 'http://openbanking.org.uk/rid_http://openbanking.org.uk/rty'
+        minLength: 1
+        maxLength: 128
+      "http://openbanking.org.uk/rid":
+        description: The resource identifier
+        type: string
+      "http://openbanking.org.uk/rty":
+        description: The resource type
+        type: string
+      "http://openbanking.org.uk/rlk":
+        type: array
+        items:
+          type: object
+          required: 
+            - uri
+            - version
+          properties:
+            version:
+              description: The API version
+              type: string
+              pattern: "^v[0-9]+\\.[0-9]+"
+            link:
+              description: URL of the resource
+              type: string
+              format: uri
+    required:
+      - subject_type
+      - "http://openbanking.org.uk/rid"
+      - "http://openbanking.org.uk/rty"
+      - "http://openbanking.org.uk/rlk"
+    additionalProperties: false
+  OBEventSubject1:
+    description: Resource-Update Event.
+    type: object
+    properties:
+      subject:
+        $ref: '#/definitions/OBEventResourceUpdate1'
+    required:
+      - subject
+    additionalProperties: false
+
