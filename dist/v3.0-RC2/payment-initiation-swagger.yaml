@@ -16,6 +16,150 @@ schemes:
 produces:
   - application/json; charset=utf-8
 paths:
+  /domestic-payment-consents:
+    post:
+      tags:
+        - Domestic Payments
+      summary: Create Domestic Payment Consents
+      operationId: CreateDomesticPaymentConsents
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/OBWriteDomesticConsent1Param'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/x-idempotency-key'
+        - $ref: '#/parameters/x-jws-signature-Param'
+      responses:
+        '201':
+          $ref: '#/responses/201DomesticPaymentConsentsCreated'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - payments
+  '/domestic-payment-consents/{ConsentId}':
+    get:
+      tags:
+        - Domestic Payments
+      summary: Get Domestic Payment Consents
+      operationId: GetDomesticPaymentConsentsConsentId
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/ConsentId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200DomesticPaymentConsentsConsentIdRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - payments
+  /domestic-payments:
+    post:
+      tags:
+        - Domestic Payments
+      summary: Create Domestic Payments
+      operationId: CreateDomesticPayments
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/OBWriteDomestic1Param'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/x-idempotency-key'
+        - $ref: '#/parameters/x-jws-signature-Param'
+      responses:
+        '201':
+          $ref: '#/responses/201DomesticPaymentsCreated'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - PSUOAuth2Security:
+            - payments
+  '/domestic-payments/{DomesticPaymentId}':
+    get:
+      tags:
+        - Domestic Payments
+      summary: Get Domestic Payments
+      operationId: GetDomesticPaymentsDomesticPaymentId
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/DomesticPaymentId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200DomesticPaymentsDomesticPaymentIdRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - payments
   /domestic-scheduled-payment-consents:
     post:
       tags:
@@ -144,151 +288,6 @@ paths:
         '200':
           $ref: >-
             #/responses/200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - payments
-  /international-scheduled-payment-consents:
-    post:
-      tags:
-        - International Scheduled Payments
-      summary: Create International Scheduled Payment Consents
-      operationId: CreateInternationalScheduledPaymentConsents
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/OBWriteInternationalScheduledConsent1Param'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-idempotency-key'
-        - $ref: '#/parameters/x-jws-signature-Param'
-      responses:
-        '201':
-          $ref: '#/responses/201InternationalScheduledPaymentConsentsCreated'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - payments
-  '/international-scheduled-payment-consents/{ConsentId}':
-    get:
-      tags:
-        - International Scheduled Payments
-      summary: Get International Scheduled Payment Consents
-      operationId: GetInternationalScheduledPaymentConsentsConsentId
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/ConsentId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200InternationalScheduledPaymentConsentsConsentIdRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - payments
-  /international-scheduled-payments:
-    post:
-      tags:
-        - International Scheduled Payments
-      summary: Create International Scheduled Payments
-      operationId: CreateInternationalScheduledPayments
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/OBWriteInternationalScheduled1Param'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-idempotency-key'
-        - $ref: '#/parameters/x-jws-signature-Param'
-      responses:
-        '201':
-          $ref: '#/responses/201InternationalScheduledPaymentsCreated'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - PSUOAuth2Security:
-            - payments
-  '/international-scheduled-payments/{InternationalScheduledPaymentId}':
-    get:
-      tags:
-        - International Scheduled Payments
-      summary: Get International Scheduled Payments
-      operationId: GetInternationalScheduledPaymentsInternationalScheduledPaymentId
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/InternationalScheduledPaymentId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: >-
-            #/responses/200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -450,16 +449,16 @@ paths:
       security:
         - TPPOAuth2Security:
             - payments
-  /domestic-payment-consents:
+  /file-payment-consents:
     post:
       tags:
-        - Domestic Payments
-      summary: Create Domestic Payment Consents
-      operationId: CreateDomesticPaymentConsents
+        - File Payments
+      summary: Create File Payment Consents
+      operationId: CreateFilePaymentConsents
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/OBWriteDomesticConsent1Param'
+        - $ref: '#/parameters/OBWriteFileConsent1Param'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -469,7 +468,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '201':
-          $ref: '#/responses/201DomesticPaymentConsentsCreated'
+          $ref: '#/responses/201FilePaymentConsentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -487,12 +486,12 @@ paths:
       security:
         - TPPOAuth2Security:
             - payments
-  '/domestic-payment-consents/{ConsentId}':
+  '/file-payment-consents/{ConsentId}':
     get:
       tags:
-        - Domestic Payments
-      summary: Get Domestic Payment Consents
-      operationId: GetDomesticPaymentConsentsConsentId
+        - File Payments
+      summary: Get File Payment Consents
+      operationId: GetFilePaymentConsentsConsentId
       consumes:
         - application/json; charset=utf-8
       parameters:
@@ -504,7 +503,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticPaymentConsentsConsentIdRead'
+          $ref: '#/responses/200FilePaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -522,16 +521,88 @@ paths:
       security:
         - TPPOAuth2Security:
             - payments
-  /domestic-payments:
+  '/file-payment-consents/{ConsentId}/file':
     post:
       tags:
-        - Domestic Payments
-      summary: Create Domestic Payments
-      operationId: CreateDomesticPayments
+        - File Payments
+      summary: Create File Payment Consents
+      operationId: CreateFilePaymentConsentsConsentIdFile
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/OBWriteDomestic1Param'
+        - $ref: '#/parameters/FileParam'
+        - $ref: '#/parameters/ConsentId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/x-idempotency-key'
+        - $ref: '#/parameters/x-jws-signature-Param'
+      responses:
+        '200':
+          $ref: '#/responses/200FilePaymentConsentsConsentIdFileCreated'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - payments
+    get:
+      tags:
+        - File Payments
+      summary: Get File Payment Consents
+      operationId: GetFilePaymentConsentsConsentIdFile
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/ConsentId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200FilePaymentConsentsConsentIdFileRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - payments
+  /file-payments:
+    post:
+      tags:
+        - File Payments
+      summary: Create File Payments
+      operationId: CreateFilePayments
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/OBWriteFile1Param'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -541,7 +612,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '201':
-          $ref: '#/responses/201DomesticPaymentsCreated'
+          $ref: '#/responses/201FilePaymentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -559,16 +630,16 @@ paths:
       security:
         - PSUOAuth2Security:
             - payments
-  '/domestic-payments/{DomesticPaymentId}':
+  '/file-payments/{FilePaymentId}':
     get:
       tags:
-        - Domestic Payments
-      summary: Get Domestic Payments
-      operationId: GetDomesticPaymentsDomesticPaymentId
+        - File Payments
+      summary: Get File Payments
+      operationId: GetFilePaymentsFilePaymentId
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/DomesticPaymentId'
+        - $ref: '#/parameters/FilePaymentId'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -576,7 +647,42 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200DomesticPaymentsDomesticPaymentIdRead'
+          $ref: '#/responses/200FilePaymentsFilePaymentIdRead'
+        '400':
+          $ref: '#/responses/400ErrorResponse'
+        '401':
+          $ref: '#/responses/401ErrorResponse'
+        '403':
+          $ref: '#/responses/403ErrorResponse'
+        '405':
+          $ref: '#/responses/405ErrorResponse'
+        '406':
+          $ref: '#/responses/406ErrorResponse'
+        '429':
+          $ref: '#/responses/429ErrorResponse'
+        '500':
+          $ref: '#/responses/500ErrorResponse'
+      security:
+        - TPPOAuth2Security:
+            - payments
+  '/file-payments/{FilePaymentId}/report-file':
+    get:
+      tags:
+        - File Payments
+      summary: Get File Payments
+      operationId: GetFilePaymentsFilePaymentIdReportFile
+      consumes:
+        - application/json; charset=utf-8
+      parameters:
+        - $ref: '#/parameters/FilePaymentId'
+        - $ref: '#/parameters/x-fapi-financial-id-Param'
+        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+        - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/AuthorizationParam'
+      responses:
+        '200':
+          $ref: '#/responses/200FilePaymentsFilePaymentIdReportFileRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -738,16 +844,16 @@ paths:
       security:
         - TPPOAuth2Security:
             - payments
-  /file-payment-consents:
+  /international-scheduled-payment-consents:
     post:
       tags:
-        - File Payments
-      summary: Create File Payment Consents
-      operationId: CreateFilePaymentConsents
+        - International Scheduled Payments
+      summary: Create International Scheduled Payment Consents
+      operationId: CreateInternationalScheduledPaymentConsents
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/OBWriteFileConsent1Param'
+        - $ref: '#/parameters/OBWriteInternationalScheduledConsent1Param'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -757,7 +863,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '201':
-          $ref: '#/responses/201FilePaymentConsentsCreated'
+          $ref: '#/responses/201InternationalScheduledPaymentConsentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -775,49 +881,12 @@ paths:
       security:
         - TPPOAuth2Security:
             - payments
-  '/file-payment-consents/{ConsentId}/file':
-    post:
-      tags:
-        - File Payments
-      summary: Create File Payment Consents
-      operationId: CreateFilePaymentConsentsConsentIdFile
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/FileParam'
-        - $ref: '#/parameters/ConsentId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-idempotency-key'
-        - $ref: '#/parameters/x-jws-signature-Param'
-      responses:
-        '200':
-          $ref: '#/responses/200FilePaymentConsentsConsentIdFileCreated'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - payments
+  '/international-scheduled-payment-consents/{ConsentId}':
     get:
       tags:
-        - File Payments
-      summary: Get File Payment Consents
-      operationId: GetFilePaymentConsentsConsentIdFile
+        - International Scheduled Payments
+      summary: Get International Scheduled Payment Consents
+      operationId: GetInternationalScheduledPaymentConsentsConsentId
       consumes:
         - application/json; charset=utf-8
       parameters:
@@ -829,7 +898,7 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200FilePaymentConsentsConsentIdFileRead'
+          $ref: '#/responses/200InternationalScheduledPaymentConsentsConsentIdRead'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -847,51 +916,16 @@ paths:
       security:
         - TPPOAuth2Security:
             - payments
-  '/file-payment-consents/{ConsentId}':
-    get:
-      tags:
-        - File Payments
-      summary: Get File Payment Consents
-      operationId: GetFilePaymentConsentsConsentId
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/ConsentId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200FilePaymentConsentsConsentIdRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - payments
-  /file-payments:
+  /international-scheduled-payments:
     post:
       tags:
-        - File Payments
-      summary: Create File Payments
-      operationId: CreateFilePayments
+        - International Scheduled Payments
+      summary: Create International Scheduled Payments
+      operationId: CreateInternationalScheduledPayments
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/OBWriteFile1Param'
+        - $ref: '#/parameters/OBWriteInternationalScheduled1Param'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -901,7 +935,7 @@ paths:
         - $ref: '#/parameters/x-jws-signature-Param'
       responses:
         '201':
-          $ref: '#/responses/201FilePaymentsCreated'
+          $ref: '#/responses/201InternationalScheduledPaymentsCreated'
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -919,16 +953,16 @@ paths:
       security:
         - PSUOAuth2Security:
             - payments
-  '/file-payments/{FilePaymentId}':
+  '/international-scheduled-payments/{InternationalScheduledPaymentId}':
     get:
       tags:
-        - File Payments
-      summary: Get File Payments
-      operationId: GetFilePaymentsFilePaymentId
+        - International Scheduled Payments
+      summary: Get International Scheduled Payments
+      operationId: GetInternationalScheduledPaymentsInternationalScheduledPaymentId
       consumes:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/FilePaymentId'
+        - $ref: '#/parameters/InternationalScheduledPaymentId'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -936,42 +970,8 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
-          $ref: '#/responses/200FilePaymentsFilePaymentIdRead'
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-      security:
-        - TPPOAuth2Security:
-            - payments
-  '/file-payments/{FilePaymentId}/report-file':
-    get:
-      tags:
-        - File Payments
-      summary: Get File Payments
-      operationId: GetFilePaymentsFilePaymentIdReportFile
-      consumes:
-        - application/json; charset=utf-8
-      parameters:
-        - $ref: '#/parameters/FilePaymentId'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/AuthorizationParam'
-      responses:
-        '200':
-          $ref: '#/responses/200FilePaymentsFilePaymentIdReportFileRead'
+          $ref: >-
+            #/responses/200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead
         '400':
           $ref: '#/responses/400ErrorResponse'
         '401':
@@ -1135,159 +1135,6 @@ paths:
         - TPPOAuth2Security:
             - payments
 parameters:
-  OBWriteDomesticScheduledConsent1Param:
-    name: OBWriteDomesticScheduledConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteDomesticScheduledConsent1'
-  ConsentId:
-    name: ConsentId
-    in: path
-    description: ConsentId
-    required: true
-    type: string
-  OBWriteDomesticScheduled1Param:
-    name: OBWriteDomesticScheduled1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteDomesticScheduled1'
-  DomesticScheduledPaymentId:
-    name: DomesticScheduledPaymentId
-    in: path
-    description: DomesticScheduledPaymentId
-    required: true
-    type: string
-  OBWriteInternationalScheduledConsent1Param:
-    name: OBWriteInternationalScheduledConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteInternationalScheduledConsent1'
-  OBWriteInternationalScheduled1Param:
-    name: OBWriteInternationalScheduled1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteInternationalScheduled1'
-  InternationalScheduledPaymentId:
-    name: InternationalScheduledPaymentId
-    in: path
-    description: InternationalScheduledPaymentId
-    required: true
-    type: string
-  OBWriteDomesticStandingOrderConsent1Param:
-    name: OBWriteDomesticStandingOrderConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteDomesticStandingOrderConsent1'
-  OBWriteDomesticStandingOrder1Param:
-    name: OBWriteDomesticStandingOrder1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteDomesticStandingOrder1'
-  DomesticStandingOrderId:
-    name: DomesticStandingOrderId
-    in: path
-    description: DomesticStandingOrderId
-    required: true
-    type: string
-  OBWriteDomesticConsent1Param:
-    name: OBWriteDomesticConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteDomesticConsent1'
-  OBWriteDomestic1Param:
-    name: OBWriteDomestic1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteDomestic1'
-  DomesticPaymentId:
-    name: DomesticPaymentId
-    in: path
-    description: DomesticPaymentId
-    required: true
-    type: string
-  OBWriteInternationalConsent1Param:
-    name: OBWriteInternationalConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteInternationalConsent1'
-  OBWriteInternational1Param:
-    name: OBWriteInternational1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteInternational1'
-  InternationalPaymentId:
-    name: InternationalPaymentId
-    in: path
-    description: InternationalPaymentId
-    required: true
-    type: string
-  OBWriteFileConsent1Param:
-    name: OBWriteFileConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteFileConsent1'
-  FileParam:
-    name: FileParam
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/File'
-  OBWriteFile1Param:
-    name: OBWriteFile1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteFile1'
-  FilePaymentId:
-    name: FilePaymentId
-    in: path
-    description: FilePaymentId
-    required: true
-    type: string
-  OBWriteInternationalStandingOrderConsent1Param:
-    name: OBWriteInternationalStandingOrderConsent1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteInternationalStandingOrderConsent1'
-  OBWriteInternationalStandingOrder1Param:
-    name: OBWriteInternationalStandingOrder1Param
-    in: body
-    description: Default
-    required: true
-    schema:
-      $ref: '#/definitions/OBWriteInternationalStandingOrder1'
-  InternationalStandingOrderPaymentId:
-    name: InternationalStandingOrderPaymentId
-    in: path
-    description: InternationalStandingOrderPaymentId
-    required: true
-    type: string
   x-idempotency-key:
     name: x-idempotency-key
     in: header
@@ -1348,95 +1195,182 @@ parameters:
     description: >-
       DO NOT USE. Header containing a detached JWS signature of the body of the
       payload.
+  OBWriteDomesticStandingOrderConsent1Param:
+    name: OBWriteDomesticStandingOrderConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteDomesticStandingOrderConsent1'
+  ConsentId:
+    name: ConsentId
+    in: path
+    description: ConsentId
+    required: true
+    type: string
+  OBWriteDomesticStandingOrder1Param:
+    name: OBWriteDomesticStandingOrder1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteDomesticStandingOrder1'
+  DomesticStandingOrderId:
+    name: DomesticStandingOrderId
+    in: path
+    description: DomesticStandingOrderId
+    required: true
+    type: string
+  OBWriteDomesticConsent1Param:
+    name: OBWriteDomesticConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteDomesticConsent1'
+  OBWriteDomestic1Param:
+    name: OBWriteDomestic1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteDomestic1'
+  DomesticPaymentId:
+    name: DomesticPaymentId
+    in: path
+    description: DomesticPaymentId
+    required: true
+    type: string
+  OBWriteDomesticScheduledConsent1Param:
+    name: OBWriteDomesticScheduledConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteDomesticScheduledConsent1'
+  OBWriteDomesticScheduled1Param:
+    name: OBWriteDomesticScheduled1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteDomesticScheduled1'
+  DomesticScheduledPaymentId:
+    name: DomesticScheduledPaymentId
+    in: path
+    description: DomesticScheduledPaymentId
+    required: true
+    type: string
+  OBWriteInternationalStandingOrderConsent1Param:
+    name: OBWriteInternationalStandingOrderConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteInternationalStandingOrderConsent1'
+  OBWriteInternationalStandingOrder1Param:
+    name: OBWriteInternationalStandingOrder1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteInternationalStandingOrder1'
+  InternationalStandingOrderPaymentId:
+    name: InternationalStandingOrderPaymentId
+    in: path
+    description: InternationalStandingOrderPaymentId
+    required: true
+    type: string
+  OBWriteFileConsent1Param:
+    name: OBWriteFileConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteFileConsent1'
+  FileParam:
+    name: FileParam
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/File'
+  OBWriteFile1Param:
+    name: OBWriteFile1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteFile1'
+  FilePaymentId:
+    name: FilePaymentId
+    in: path
+    description: FilePaymentId
+    required: true
+    type: string
+  OBWriteInternationalConsent1Param:
+    name: OBWriteInternationalConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteInternationalConsent1'
+  OBWriteInternational1Param:
+    name: OBWriteInternational1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteInternational1'
+  InternationalPaymentId:
+    name: InternationalPaymentId
+    in: path
+    description: InternationalPaymentId
+    required: true
+    type: string
+  OBWriteInternationalScheduledConsent1Param:
+    name: OBWriteInternationalScheduledConsent1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteInternationalScheduledConsent1'
+  OBWriteInternationalScheduled1Param:
+    name: OBWriteInternationalScheduled1Param
+    in: body
+    description: Default
+    required: true
+    schema:
+      $ref: '#/definitions/OBWriteInternationalScheduled1'
+  InternationalScheduledPaymentId:
+    name: InternationalScheduledPaymentId
+    in: path
+    description: InternationalScheduledPaymentId
+    required: true
+    type: string
 responses:
-  201DomesticScheduledPaymentConsentsCreated:
-    description: Domestic Scheduled Payment Consents Created
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
+  400ErrorResponse:
+    description: Bad request
     schema:
-      $ref: '#/definitions/OBWriteDomesticScheduledConsentResponse1'
-  200DomesticScheduledPaymentConsentsConsentIdRead:
-    description: Domestic Scheduled Payment Consents Read
+      $ref: '#/definitions/OBErrorResponse'
+  401ErrorResponse:
+    description: Unauthorized
+  403ErrorResponse:
+    description: Forbidden
+  405ErrorResponse:
+    description: Method Not Allowed
+  406ErrorResponse:
+    description: Not Acceptable
+  429ErrorResponse:
+    description: Too Many Requests
     headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
+      Retry-After:
+        description: Number in seconds to wait
+        type: integer
+  500ErrorResponse:
+    description: Internal Server Error
     schema:
-      $ref: '#/definitions/OBWriteDomesticScheduledConsentResponse1'
-  201DomesticScheduledPaymentsCreated:
-    description: Domestic Scheduled Payments Created
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
-    schema:
-      $ref: '#/definitions/OBWriteDomesticScheduledResponse1'
-  200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead:
-    description: Domestic Scheduled Payments Read
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
-    schema:
-      $ref: '#/definitions/OBWriteDomesticScheduledResponse1'
-  201InternationalScheduledPaymentConsentsCreated:
-    description: International Scheduled Payment Consents Created
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
-    schema:
-      $ref: '#/definitions/OBWriteInternationalScheduledConsentResponse1'
-  200InternationalScheduledPaymentConsentsConsentIdRead:
-    description: International Scheduled Payment Consents Read
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
-    schema:
-      $ref: '#/definitions/OBWriteInternationalScheduledConsentResponse1'
-  201InternationalScheduledPaymentsCreated:
-    description: International Scheduled Payments Created
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
-    schema:
-      $ref: '#/definitions/OBWriteInternationalScheduledResponse1'
-  200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead:
-    description: International Scheduled Payments Read
-    headers:
-      x-fapi-interaction-id:
-        type: string
-        description: An RFC4122 UID used as a correlation id.
-      x-jws-signature:
-        type: string
-        description: Header containing a detached JWS signature of the body of the payload.
-    schema:
-      $ref: '#/definitions/OBWriteInternationalScheduledResponse1'
+      $ref: '#/definitions/OBErrorResponse'
   201DomesticStandingOrderConsentsCreated:
     description: Domestic Standing Order Consents Created
     headers:
@@ -1525,8 +1459,8 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/OBWriteDomesticResponse1'
-  201InternationalPaymentConsentsCreated:
-    description: International Payment Consents Created
+  201DomesticScheduledPaymentConsentsCreated:
+    description: Domestic Scheduled Payment Consents Created
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1535,9 +1469,9 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalConsentResponse1'
-  200InternationalPaymentConsentsConsentIdRead:
-    description: International Payment Consents Read
+      $ref: '#/definitions/OBWriteDomesticScheduledConsentResponse1'
+  200DomesticScheduledPaymentConsentsConsentIdRead:
+    description: Domestic Scheduled Payment Consents Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1546,9 +1480,9 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalConsentResponse1'
-  201InternationalPaymentsCreated:
-    description: International Payments Created
+      $ref: '#/definitions/OBWriteDomesticScheduledConsentResponse1'
+  201DomesticScheduledPaymentsCreated:
+    description: Domestic Scheduled Payments Created
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1557,9 +1491,9 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalResponse1'
-  200InternationalPaymentsInternationalPaymentIdRead:
-    description: International Payments Read
+      $ref: '#/definitions/OBWriteDomesticScheduledResponse1'
+  200DomesticScheduledPaymentsDomesticScheduledPaymentIdRead:
+    description: Domestic Scheduled Payments Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1568,7 +1502,51 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalResponse1'
+      $ref: '#/definitions/OBWriteDomesticScheduledResponse1'
+  201InternationalStandingOrderConsentsCreated:
+    description: International Standing Order Consents Created
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalStandingOrderConsentResponse1'
+  200InternationalStandingOrderConsentsConsentIdRead:
+    description: International Standing Order Consents Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalStandingOrderConsentResponse1'
+  201InternationalStandingOrdersCreated:
+    description: International Standing Orders Created
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalStandingOrderResponse1'
+  200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead:
+    description: International Standing Orders Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalStandingOrderResponse1'
   201FilePaymentConsentsCreated:
     description: File Payment Consents Created
     headers:
@@ -1641,8 +1619,8 @@ responses:
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
       $ref: '#/definitions/File'
-  201InternationalStandingOrderConsentsCreated:
-    description: International Standing Order Consents Created
+  201InternationalPaymentConsentsCreated:
+    description: International Payment Consents Created
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1651,9 +1629,9 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalStandingOrderConsentResponse1'
-  200InternationalStandingOrderConsentsConsentIdRead:
-    description: International Standing Order Consents Read
+      $ref: '#/definitions/OBWriteInternationalConsentResponse1'
+  200InternationalPaymentConsentsConsentIdRead:
+    description: International Payment Consents Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1662,9 +1640,9 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalStandingOrderConsentResponse1'
-  201InternationalStandingOrdersCreated:
-    description: International Standing Orders Created
+      $ref: '#/definitions/OBWriteInternationalConsentResponse1'
+  201InternationalPaymentsCreated:
+    description: International Payments Created
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1673,9 +1651,9 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalStandingOrderResponse1'
-  200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead:
-    description: International Standing Orders Read
+      $ref: '#/definitions/OBWriteInternationalResponse1'
+  200InternationalPaymentsInternationalPaymentIdRead:
+    description: International Payments Read
     headers:
       x-fapi-interaction-id:
         type: string
@@ -1684,29 +1662,51 @@ responses:
         type: string
         description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBWriteInternationalStandingOrderResponse1'
-  400ErrorResponse:
-    description: Bad request
-    schema:
-      $ref: '#/definitions/OBErrorResponse'
-  401ErrorResponse:
-    description: Unauthorized
-  403ErrorResponse:
-    description: Forbidden
-  405ErrorResponse:
-    description: Method Not Allowed
-  406ErrorResponse:
-    description: Not Acceptable
-  429ErrorResponse:
-    description: Too Many Requests
+      $ref: '#/definitions/OBWriteInternationalResponse1'
+  201InternationalScheduledPaymentConsentsCreated:
+    description: International Scheduled Payment Consents Created
     headers:
-      Retry-After:
-        description: Number in seconds to wait
-        type: integer
-  500ErrorResponse:
-    description: Internal Server Error
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
     schema:
-      $ref: '#/definitions/OBErrorResponse'
+      $ref: '#/definitions/OBWriteInternationalScheduledConsentResponse1'
+  200InternationalScheduledPaymentConsentsConsentIdRead:
+    description: International Scheduled Payment Consents Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalScheduledConsentResponse1'
+  201InternationalScheduledPaymentsCreated:
+    description: International Scheduled Payments Created
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalScheduledResponse1'
+  200InternationalScheduledPaymentsInternationalScheduledPaymentIdRead:
+    description: International Scheduled Payments Read
+    headers:
+      x-fapi-interaction-id:
+        type: string
+        description: An RFC4122 UID used as a correlation id.
+      x-jws-signature:
+        type: string
+        description: Header containing a detached JWS signature of the body of the payload.
+    schema:
+      $ref: '#/definitions/OBWriteInternationalScheduledResponse1'
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
@@ -4665,9 +4665,6 @@ definitions:
     required:
       - Data
     additionalProperties: false
-  File:
-    type: string
-    format: binary
   OBErrorResponse:
     description: Bad request
     required:
@@ -4739,3 +4736,6 @@ definitions:
         title: Url
         minLength: 1
         maxLength: 256
+  File:
+    type: string
+    format: binary

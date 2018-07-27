@@ -17,9 +17,6 @@
   produces: 
     - "application/json; charset=utf-8"
   paths: 
-    /funds-confirmations: 
-      - 
-        $ref: "./paths/CreateFundsConfirmations.yaml"
     /funds-confirmation-consents: 
       - 
         $ref: "./paths/CreateFundsConfirmationConsents.yaml"
@@ -28,13 +25,10 @@
         $ref: "./paths/GetFundsConfirmationConsentsConsentId.yaml"
       - 
         $ref: "./paths/DeleteFundsConfirmationConsentsConsentId.yaml"
+    /funds-confirmations: 
+      - 
+        $ref: "./paths/CreateFundsConfirmations.yaml"
   parameters: 
-    - 
-      $ref: "./parameters/OBFundsConfirmation1Param.yaml"
-    - 
-      $ref: "./parameters/OBFundsConfirmationConsent1Param.yaml"
-    - 
-      $ref: "./parameters/ConsentId.yaml"
     - 
       $ref: "./parameters/x-idempotency-key.yaml"
     - 
@@ -49,15 +43,13 @@
       $ref: "../readwrite/parameters/AuthorizationParam.yaml"
     - 
       $ref: "../readwrite/parameters/x-jws-signature-Param.yaml"
+    - 
+      $ref: "./parameters/OBFundsConfirmation1Param.yaml"
+    - 
+      $ref: "./parameters/OBFundsConfirmationConsent1Param.yaml"
+    - 
+      $ref: "./parameters/ConsentId.yaml"
   responses: 
-    - 
-      $ref: "./responses/201FundsConfirmationsCreated.yaml"
-    - 
-      $ref: "./responses/201FundsConfirmationConsentsCreated.yaml"
-    - 
-      $ref: "./responses/200FundsConfirmationConsentsConsentIdRead.yaml"
-    - 
-      $ref: "./responses/204FundsConfirmationConsentsConsentIdDeleted.yaml"
     - 
       $ref: "../readwrite/responses/400ErrorResponse.yaml"
     - 
@@ -72,6 +64,14 @@
       $ref: "../readwrite/responses/429ErrorResponse.yaml"
     - 
       $ref: "../readwrite/responses/500ErrorResponse.yaml"
+    - 
+      $ref: "./responses/201FundsConfirmationsCreated.yaml"
+    - 
+      $ref: "./responses/201FundsConfirmationConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200FundsConfirmationConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/204FundsConfirmationConsentsConsentIdDeleted.yaml"
   securityDefinitions: 
     - 
       $ref: "./securityDefinitions/PSUOAuth2Security.yaml"
