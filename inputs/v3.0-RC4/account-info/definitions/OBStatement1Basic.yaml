@@ -1,0 +1,98 @@
+OBStatement1Basic:
+  description: Provides further details on a statement resource.
+  type: object
+  properties:
+    AccountId:
+      $ref: '#/definitions/AccountId'
+    StatementId:
+      description: >-
+        Unique identifier for the statement resource within an servicing
+        institution. This identifier is both unique and immutable.
+      type: string
+      minLength: 1
+      maxLength: 40
+    StatementReference:
+      description: >-
+        Unique reference for the statement. This reference may be optionally
+        populated if available.
+      type: string
+      minLength: 1
+      maxLength: 35
+    Type:
+      $ref: '#/definitions/OBExternalStatementType1Code'
+    StartDateTime:
+      description: >-
+        Date and time at which the statement period starts.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    EndDateTime:
+      description: >-
+        Date and time at which the statement period ends.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    CreationDateTime:
+      description: >-
+        Date and time at which the resource was created.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    StatementDescription:
+      items:
+        type: string
+        minLength: 1
+        maxLength: 500
+      type: array
+    StatementBenefit:
+      items:
+        $ref: '#/definitions/OBStatementBenefit1'
+      type: array
+    StatementFee:
+      items:
+        $ref: '#/definitions/OBStatementFee1'
+      type: array
+    StatementInterest:
+      items:
+        $ref: '#/definitions/OBStatementInterest1'
+      type: array
+    StatementDateTime:
+      items:
+        $ref: '#/definitions/OBStatementDateTime1'
+      type: array
+    StatementRate:
+      items:
+        $ref: '#/definitions/OBStatementRate1'
+      type: array
+    StatementValue:
+      items:
+        $ref: '#/definitions/OBStatementValue1'
+      type: array
+  required:
+    - AccountId
+    - Type
+    - StartDateTime
+    - EndDateTime
+    - CreationDateTime
+  additionalProperties: false

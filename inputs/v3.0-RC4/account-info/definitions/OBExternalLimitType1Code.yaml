@@ -1,0 +1,9 @@
+OBExternalLimitType1Code:
+  description: 'Limit type, in a coded form.'
+  type: string
+  enum:
+    - Available
+    - Credit
+    - Emergency
+    - Pre-Agreed
+    - Temporary

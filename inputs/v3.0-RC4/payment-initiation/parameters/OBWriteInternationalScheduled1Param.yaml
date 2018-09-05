@@ -1,0 +1,8 @@
+---
+  OBWriteInternationalScheduled1Param: 
+    name: "OBWriteInternationalScheduled1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteInternationalScheduled1"

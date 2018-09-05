@@ -1,0 +1,8 @@
+---
+  OBFundsConfirmation1Param: 
+    name: "OBFundsConfirmation1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBFundsConfirmation1"

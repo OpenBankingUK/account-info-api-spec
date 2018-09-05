@@ -1,0 +1,16 @@
+OBBankTransactionCodeStructure1:
+  description: >-
+    Set of elements used to fully identify the type of underlying transaction
+    resulting in an entry.
+  type: object
+  properties:
+    Code:
+      description: Specifies the family within a domain.
+      type: string
+    SubCode:
+      description: Specifies the sub-product family within a specific family.
+      type: string
+  required:
+    - Code
+    - SubCode
+  additionalProperties: false

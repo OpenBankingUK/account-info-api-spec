@@ -1,0 +1,21 @@
+OBStatementRate1:
+  description: >-
+    Set of elements used to provide details of a generic rate related to the
+    statement resource.
+  type: object
+  properties:
+    Rate:
+      description: Rate associated with the statement rate type.
+      type: string
+      minLength: 1
+      maxLength: 10
+      pattern: '^(-?\d{1,3}){1}(\.\d{1,4}){0,1}$'
+    Type:
+      description: 'Statement rate type, in a coded form.'
+      type: string
+      minLength: 1
+      maxLength: 40
+  required:
+    - Rate
+    - Type
+  additionalProperties: false

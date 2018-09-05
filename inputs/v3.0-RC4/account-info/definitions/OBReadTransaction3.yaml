@@ -1,0 +1,20 @@
+OBReadTransaction3:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        Transaction:
+          items:
+            $ref: '#/definitions/OBTransaction3'
+          type: array
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

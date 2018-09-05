@@ -1,0 +1,59 @@
+OBDomestic1:
+  description: >-
+    The Initiation payload is sent by the initiating party to the ASPSP. It is
+    used to request movement of funds from the debtor account to a creditor for
+    a single domestic payment.
+  type: object
+  properties:
+    InstructionIdentification:
+      description: >-
+        Unique identification as assigned by an instructing party for an
+        instructed party to unambiguously identify the instruction.
+
+        Usage: the  instruction identification is a point to point reference
+        that can be used between the instructing party and the instructed party
+        to refer to the individual instruction. It can be included in several
+        messages related to the instruction.
+      type: string
+      minLength: 1
+      maxLength: 35
+    EndToEndIdentification:
+      description: >-
+        Unique identification assigned by the initiating party to unambiguously
+        identify the transaction. This identification is passed on, unchanged,
+        throughout the entire end-to-end chain.
+
+        Usage: The end-to-end identification can be used for reconciliation or
+        to link tasks relating to the transaction. It can be included in several
+        messages related to the transaction.
+
+        OB: The Faster Payments Scheme can only access 31 characters for the
+        EndToEndIdentification field.
+      type: string
+      minLength: 1
+      maxLength: 35
+    LocalInstrument:
+      description: >-
+        User community specific instrument.
+
+        Usage: This element is used to specify a local instrument, local
+        clearing option and/or further qualify the service or service level.
+      type: string
+      minLength: 1
+      maxLength: 35
+    InstructedAmount:
+      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+    DebtorAccount:
+      $ref: '#/definitions/OBCashAccountDebtor3'
+    CreditorAccount:
+      $ref: '#/definitions/OBCashAccountCreditor2'
+    CreditorPostalAddress:
+      $ref: '#/definitions/OBPostalAddress6'
+    RemittanceInformation:
+      $ref: '#/definitions/OBRemittanceInformation1'
+  required:
+    - InstructionIdentification
+    - EndToEndIdentification
+    - InstructedAmount
+    - CreditorAccount
+  additionalProperties: false

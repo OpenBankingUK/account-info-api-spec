@@ -1,0 +1,118 @@
+---
+  swagger: "2.0"
+  info: 
+    title: "Confirmation of Funds API Specification"
+    description: "Swagger for Confirmation of Funds API Specification"
+    termsOfService: "https://www.openbanking.org.uk/terms"
+    contact: 
+      name: "Service Desk"
+      email: "ServiceDesk@openbanking.org.uk"
+    license: 
+      name: "open-licence"
+      url: "https://www.openbanking.org.uk/open-licence"
+    version: "v3.0-draft-7"
+  basePath: "/open-banking/v3.0/cbpii"
+  schemes: 
+    - "https"
+  consumes:
+    - "application/json; charset=utf-8"
+  produces: 
+    - "application/json; charset=utf-8"
+  paths: 
+    /funds-confirmation-consents: 
+      - 
+        $ref: "./paths/CreateFundsConfirmationConsents.yaml"
+    /funds-confirmation-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetFundsConfirmationConsentsConsentId.yaml"
+      - 
+        $ref: "./paths/DeleteFundsConfirmationConsentsConsentId.yaml"
+    /funds-confirmations: 
+      - 
+        $ref: "./paths/CreateFundsConfirmations.yaml"
+  parameters: 
+    - 
+      $ref: "../readwrite/parameters/x-fapi-financial-id-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-customer-ip-address-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-interaction-id-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-customer-last-logged-time-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/AuthorizationParam.yaml"
+    - 
+      $ref: "./parameters/OBFundsConfirmation1Param.yaml"
+    - 
+      $ref: "./parameters/OBFundsConfirmationConsent1Param.yaml"
+    - 
+      $ref: "./parameters/ConsentId.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-customer-user-agent-Param.yaml"
+  responses: 
+    - 
+      $ref: "../readwrite/responses/400ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/401ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/403ErrorResponse.yaml"
+    - 
+      $ref: "./responses/404ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/405ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/406ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/429ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/500ErrorResponse.yaml"
+    - 
+      $ref: "./responses/201FundsConfirmationsCreated.yaml"
+    - 
+      $ref: "./responses/201FundsConfirmationConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200FundsConfirmationConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/204FundsConfirmationConsentsConsentIdDeleted.yaml"
+  securityDefinitions: 
+    - 
+      $ref: "./securityDefinitions/PSUOAuth2Security.yaml"
+    - 
+      $ref: "./securityDefinitions/TPPOAuth2Security.yaml"
+  definitions: 
+    - 
+      $ref: "./definitions/OBActiveCurrencyAndAmount_SimpleType.yaml"
+      #- 
+      #$ref: "./definitions/ActiveOrHistoricCurrencyCode.yaml"
+    - 
+      $ref: "./definitions/OBActiveOrHistoricCurrencyAndAmount.yaml"
+    - 
+      $ref: "./definitions/OBCashAccountDebtor3.yaml"
+    - 
+      $ref: "./definitions/OBExternalRequestStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmation1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationConsent1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationConsentData1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationConsentDataResponse1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationData1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationDataResponse1.yaml"
+    - 
+      $ref: "./definitions/OBFundsConfirmationResponse1.yaml"
+    - 
+      $ref: "../readwrite/definitions/Links.yaml"
+    - 
+      $ref: "../readwrite/definitions/Meta.yaml"
+    - 
+      $ref: "../readwrite/definitions/ISODateTime.yaml"
+    - 
+      $ref: "../readwrite/definitions/OBError1.yaml"
+    - 
+      $ref: "../readwrite/definitions/OBErrorResponse1.yaml"

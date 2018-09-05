@@ -1,0 +1,7 @@
+---
+  ConsentId: 
+    name: "ConsentId"
+    in: "path"
+    description: "ConsentId"
+    required: true
+    type: "string"

@@ -1,0 +1,75 @@
+OBRisk1:
+  description: >-
+    The Risk section is sent by the initiating party to the ASPSP. It is used to
+    specify additional details for risk scoring for Payments.
+  type: object
+  properties:
+    PaymentContextCode:
+      $ref: '#/definitions/OBExternalPaymentContext1Code'
+    MerchantCategoryCode:
+      description: >-
+        Category code conform to ISO 18245, related to the type of services or
+        goods the merchant provides for the transaction.
+      type: string
+      minLength: 3
+      maxLength: 4
+    MerchantCustomerIdentification:
+      description: The unique customer identifier of the PSU with the merchant.
+      type: string
+      minLength: 1
+      maxLength: 70
+    DeliveryAddress:
+      description: >-
+        Information that locates and identifies a specific address, as defined
+        by postal services or in free format text.
+      type: object
+      properties:
+        AddressLine:
+          items:
+            type: string
+            minLength: 1
+            maxLength: 70
+          type: array
+          minItems: 0
+          maxItems: 2
+        StreetName:
+          description: Name of a street or thoroughfare.
+          type: string
+          minLength: 1
+          maxLength: 70
+        BuildingNumber:
+          description: Number that identifies the position of a building on a street.
+          type: string
+          minLength: 1
+          maxLength: 16
+        PostCode:
+          description: >-
+            Identifier consisting of a group of letters and/or numbers that is
+            added to a postal address to assist the sorting of mail.
+          type: string
+          minLength: 1
+          maxLength: 16
+        TownName:
+          description: >-
+            Name of a built-up area, with defined boundaries, and a local
+            government.
+          type: string
+          minLength: 1
+          maxLength: 35
+        CountrySubDivision:
+          items:
+            type: string
+            minLength: 1
+            maxLength: 35
+          type: array
+          minItems: 0
+          maxItems: 2
+        Country:
+          description: 'Nation with its own government, occupying a particular territory.'
+          type: string
+          pattern: '^[A-Z]{2,2}$'
+      required:
+        - TownName
+        - Country
+      additionalProperties: false
+  additionalProperties: false

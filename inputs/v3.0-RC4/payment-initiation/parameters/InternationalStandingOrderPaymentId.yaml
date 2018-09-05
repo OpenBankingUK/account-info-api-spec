@@ -1,0 +1,7 @@
+---
+  InternationalStandingOrderPaymentId: 
+    name: "InternationalStandingOrderPaymentId"
+    in: "path"
+    description: "InternationalStandingOrderPaymentId"
+    required: true
+    type: "string"

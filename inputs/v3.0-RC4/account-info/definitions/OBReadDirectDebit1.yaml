@@ -1,0 +1,20 @@
+OBReadDirectDebit1:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        DirectDebit:
+          items:
+            $ref: '#/definitions/OBDirectDebit1'
+          type: array
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

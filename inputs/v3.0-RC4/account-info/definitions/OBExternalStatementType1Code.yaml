@@ -1,0 +1,9 @@
+OBExternalStatementType1Code:
+  description: 'Statement type, in a coded form.'
+  type: string
+  enum:
+    - AccountClosure
+    - AccountOpening
+    - Annual
+    - Interim
+    - RegularPeriodic

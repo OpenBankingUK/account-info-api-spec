@@ -1,0 +1,10 @@
+OBAccount2:
+  allOf:
+    - $ref: '#/definitions/OBAccount2Basic'
+    - properties:
+        Account:
+          items:
+            $ref: '#/definitions/OBCashAccount3'
+          type: array
+        Servicer:
+          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification4'

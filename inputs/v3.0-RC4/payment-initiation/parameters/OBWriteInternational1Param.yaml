@@ -1,0 +1,8 @@
+---
+  OBWriteInternational1Param: 
+    name: "OBWriteInternational1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteInternational1"
