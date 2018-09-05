@@ -3,7 +3,7 @@ const { YAML } = require('swagger-parser'); // eslint-disable-line
 const { checkSchema } = require('./def-to-swagger.test');
 const {
   convertRows, makeSchema, classFor, typeFor, formatFor,
-} = require('../inputs/csv-to-yaml.js');
+} = require('../lib/csv-to-yaml.js');
 
 const input = [
   {
