@@ -55,6 +55,9 @@ OBPostalAddress6:
         minLength: 1
         maxLength: 70
       type: array
+      description: >-
+        Information that locates and identifies a specific address, as defined
+        by postal services, presented in free format text.
       minItems: 0
       maxItems: 7
   additionalProperties: false

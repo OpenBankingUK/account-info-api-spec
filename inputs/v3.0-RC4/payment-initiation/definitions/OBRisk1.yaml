@@ -30,6 +30,9 @@ OBRisk1:
             minLength: 1
             maxLength: 70
           type: array
+          description: >-
+            Information that locates and identifies a specific address, as
+            defined by postal services, that is presented in free format text.
           minItems: 0
           maxItems: 2
         StreetName:
@@ -62,6 +65,9 @@ OBRisk1:
             minLength: 1
             maxLength: 35
           type: array
+          description: >-
+            Identifies a subdivision of a country, for instance state, region,
+            county.
           minItems: 0
           maxItems: 2
         Country:

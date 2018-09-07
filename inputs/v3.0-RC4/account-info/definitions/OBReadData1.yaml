@@ -5,6 +5,10 @@ OBReadData1:
       items:
         $ref: '#/definitions/OBExternalPermissions1Code'
       type: array
+      description: >-
+        Specifies the Open Banking account access data types. This is a list of
+        the data clusters being consented by the PSU, and requested for
+        authorisation with the ASPSP.
       minItems: 1
     ExpirationDateTime:
       description: >-

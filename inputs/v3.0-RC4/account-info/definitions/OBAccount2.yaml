@@ -6,5 +6,6 @@ OBAccount2:
           items:
             $ref: '#/definitions/OBCashAccount3'
           type: array
+          description: Provides the details to identify an account.
         Servicer:
           $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification4'

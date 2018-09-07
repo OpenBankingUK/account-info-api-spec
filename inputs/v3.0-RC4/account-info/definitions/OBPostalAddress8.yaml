@@ -10,6 +10,9 @@ OBPostalAddress8:
         minLength: 1
         maxLength: 70
       type: array
+      description: >-
+        Information that locates and identifies a specific address, as defined
+        by postal services, that is presented in free format text.
       minItems: 0
       maxItems: 5
     StreetName:

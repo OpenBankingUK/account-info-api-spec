@@ -43,6 +43,7 @@ OBParty1:
       items:
         $ref: '#/definitions/OBPostalAddress8'
       type: array
+      description: Postal address of a party.
   required:
     - PartyId
   additionalProperties: false

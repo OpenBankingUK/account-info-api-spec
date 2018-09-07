@@ -31,6 +31,7 @@ OBCashBalance1:
       items:
         $ref: '#/definitions/OBCreditLine1'
       type: array
+      description: Set of elements used to provide details on the credit line.
   required:
     - AccountId
     - CreditDebitIndicator

@@ -13,8 +13,7 @@ get:
     - $ref: '#/parameters/x-customer-user-agent-Param'
   responses:
     '200':
-      $ref: >-
-        #/responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead
+      $ref: '#/responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead'
     '400':
       $ref: '#/responses/400ErrorResponse'
     '401':

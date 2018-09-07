@@ -1,5 +1,7 @@
 OBCashAccountDebtor3:
-  description: Provides the details to identify the debtor account.
+  description: >-
+    Unambiguous identification of the account of the debtor to which a debit
+    entry will be made as a result of the transaction.
   type: object
   properties:
     SchemeName:

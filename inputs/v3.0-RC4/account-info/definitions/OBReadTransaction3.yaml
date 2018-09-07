@@ -8,6 +8,7 @@ OBReadTransaction3:
           items:
             $ref: '#/definitions/OBTransaction3'
           type: array
+          description: Provides further details on an entry in the report.
       additionalProperties: false
     Links:
       $ref: '#/definitions/Links'

@@ -51,22 +51,6 @@
       $ref: "../readwrite/parameters/x-customer-user-agent-Param.yaml"
   responses: 
     - 
-      $ref: "../readwrite/responses/400ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/401ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/403ErrorResponse.yaml"
-    - 
-      $ref: "./responses/404ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/405ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/406ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/429ErrorResponse.yaml"
-    - 
-      $ref: "../readwrite/responses/500ErrorResponse.yaml"
-    - 
       $ref: "./responses/201FundsConfirmationsCreated.yaml"
     - 
       $ref: "./responses/201FundsConfirmationConsentsCreated.yaml"
@@ -74,6 +58,24 @@
       $ref: "./responses/200FundsConfirmationConsentsConsentIdRead.yaml"
     - 
       $ref: "./responses/204FundsConfirmationConsentsConsentIdDeleted.yaml"
+    - 
+      $ref: "../readwrite/responses/400ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/401ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/403ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/404ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/405ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/406ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/415ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/429ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/500ErrorResponse.yaml"
   securityDefinitions: 
     - 
       $ref: "./securityDefinitions/PSUOAuth2Security.yaml"
@@ -82,8 +84,6 @@
   definitions: 
     - 
       $ref: "./definitions/OBActiveCurrencyAndAmount_SimpleType.yaml"
-      #- 
-      #$ref: "./definitions/ActiveOrHistoricCurrencyCode.yaml"
     - 
       $ref: "./definitions/OBActiveOrHistoricCurrencyAndAmount.yaml"
     - 

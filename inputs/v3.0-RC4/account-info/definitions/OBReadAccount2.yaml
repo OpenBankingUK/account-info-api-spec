@@ -8,6 +8,9 @@ OBReadAccount2:
           items:
             $ref: '#/definitions/OBAccount2'
           type: array
+          description: >-
+            Unambiguous identification of the account to which credit and debit
+            entries are made.
       additionalProperties: false
     Links:
       $ref: '#/definitions/Links'

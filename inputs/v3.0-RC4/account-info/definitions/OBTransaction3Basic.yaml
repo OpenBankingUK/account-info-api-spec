@@ -25,6 +25,9 @@ OBTransaction3Basic:
         minLength: 1
         maxLength: 35
       type: array
+      description: >-
+        Unique reference for the statement. This reference may be optionally
+        populated if available.
     CreditDebitIndicator:
       allOf:
         - $ref: '#/definitions/OBCreditDebitCode'

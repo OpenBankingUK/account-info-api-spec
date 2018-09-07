@@ -1,7 +1,0 @@
----
-  429ErrorResponse: 
-    description: "Too Many Requests"
-    headers: 
-      Retry-After: 
-        description: "Number in seconds to wait"
-        type: "integer"

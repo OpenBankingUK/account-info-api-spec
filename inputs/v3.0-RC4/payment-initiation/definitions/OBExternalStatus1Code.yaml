@@ -1,5 +1,5 @@
 OBExternalStatus1Code:
-  description: Specifies the status of resource in code form.
+  description: Specifies the status of the payment order resource.
   type: string
   enum:
     - InitiationCompleted

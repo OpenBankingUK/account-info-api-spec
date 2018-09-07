@@ -8,6 +8,7 @@ OBReadBalance1:
           items:
             $ref: '#/definitions/OBCashBalance1'
           type: array
+          description: Set of elements used to define the balance details.
           minItems: 1
       required:
         - Balance

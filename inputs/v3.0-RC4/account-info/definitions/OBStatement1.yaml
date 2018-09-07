@@ -6,3 +6,6 @@ OBStatement1:
           items:
             $ref: '#/definitions/OBStatementAmount1'
           type: array
+          description: >-
+            Set of elements used to provide details of a generic amount for the
+            statement resource.

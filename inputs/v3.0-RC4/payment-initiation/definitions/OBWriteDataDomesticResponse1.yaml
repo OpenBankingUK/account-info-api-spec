@@ -73,6 +73,9 @@ OBWriteDataDomesticResponse1:
       items:
         $ref: '#/definitions/OBCharge1'
       type: array
+      description: >-
+        Set of elements used to provide details of a charge for the payment
+        initiation.
     Initiation:
       $ref: '#/definitions/OBDomestic1'
     MultiAuthorisation:
