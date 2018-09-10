@@ -145,11 +145,17 @@ OBDomesticStandingOrder1:
       type: string
       format: date-time
     FirstPaymentAmount:
-      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+      allOf:
+        - $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+        - description: The amount of the first Standing Order
     RecurringPaymentAmount:
-      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+      allOf:
+        - $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+        - description: The amount of the recurring Standing Order
     FinalPaymentAmount:
-      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+      allOf:
+        - $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+        - description: The amount of the final Standing Order
     DebtorAccount:
       $ref: '#/definitions/OBCashAccountDebtor3'
     CreditorAccount:

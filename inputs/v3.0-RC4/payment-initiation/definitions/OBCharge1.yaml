@@ -12,7 +12,9 @@ OBCharge1:
       minLength: 1
       maxLength: 40
     Amount:
-      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+      allOf:
+        - $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+        - description: Amount of money associated with the charge type.
   required:
     - ChargeBearer
     - Type
