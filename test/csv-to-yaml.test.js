@@ -119,10 +119,7 @@ const arrayItemSchema = {
 };
 
 describe('convertRows', () => {
-  const schemas = convertRows(
-    input, [], [],
-    'ISO date time description.',
-  );
+  const schemas = convertRows(input, [], []);
 
   describe('creates top level schema', checkSchema({
     index: 0,

@@ -49,7 +49,7 @@ const writeOutput = (outFile, api) => {
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
   }
-  
+
   fs.writeFileSync(`${outFile}.yaml`, yaml.safeDump(api, { noRefs: true }));
   fs.writeFileSync(`${outFile}.json`, JSON.stringify(api, null, 2));
 };
@@ -129,7 +129,7 @@ const process = async (file, version, outputDir) => {
     const inputDir = file.replace('/index.yaml', '');
     const apiName = inputDir.split('/').pop();
 
-    console.log(`\n=== Starting: ${apiName} ===\n`)
+    console.log(`\n=== Starting: ${apiName} ===\n`);
 
     const api = readYaml(file);
     importPaths(api, inputDir);
@@ -163,7 +163,7 @@ const process = async (file, version, outputDir) => {
     const old = await SwaggerParser.dereference(readYaml(`${outputDir}/${apiName}-swagger.yaml`));
     writeDereferenced(`${outputDir}/${apiName}-swagger-dereferenced`, sortKeys(old));
 
-    console.log(`\n=== Completed: ${apiName} ===\n`)
+    console.log(`\n=== Completed: ${apiName} ===\n`);
   } catch (e) {
     throw e;
   }
