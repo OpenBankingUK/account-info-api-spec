@@ -74,8 +74,6 @@ OBTransaction3:
         2017-04-05T10:43:07+00:00
       type: string
       format: date-time
-    TransactionInformation:
-      $ref: '#/definitions/TransactionInformation'
     AddressLine:
       description: >-
         Information that locates and identifies a specific address for a
@@ -112,20 +110,22 @@ OBTransaction3:
       required:
         - Code
       additionalProperties: false
-    Balance:
-      $ref: '#/definitions/OBTransactionCashBalance'
-    MerchantDetails:
-      $ref: '#/definitions/OBMerchantDetails1'
     CreditorAgent:
       $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification3'
-    CreditorAccount:
-      $ref: '#/definitions/OBCashAccount4'
     DebtorAgent:
       $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification3'
     DebtorAccount:
       $ref: '#/definitions/OBCashAccount4'
     CardInstrument:
       $ref: '#/definitions/OBTransactionCardInstrument1'
+    TransactionInformation:
+      $ref: '#/definitions/TransactionInformation'
+    Balance:
+      $ref: '#/definitions/OBTransactionCashBalance'
+    MerchantDetails:
+      $ref: '#/definitions/OBMerchantDetails1'
+    CreditorAccount:
+      $ref: '#/definitions/OBCashAccount4'
   required:
     - AccountId
     - CreditDebitIndicator

@@ -87,13 +87,6 @@ OBStatement1:
       description: >-
         Set of elements used to provide details of a generic interest amount
         related to the statement resource.
-    StatementAmount:
-      items:
-        $ref: '#/definitions/OBStatementAmount1'
-      type: array
-      description: >-
-        Set of elements used to provide details of a generic amount for the
-        statement resource.
     StatementDateTime:
       items:
         $ref: '#/definitions/OBStatementDateTime1'
@@ -115,6 +108,13 @@ OBStatement1:
       description: >-
         Set of elements used to provide details of a generic number value
         related to the statement resource.
+    StatementAmount:
+      items:
+        $ref: '#/definitions/OBStatementAmount1'
+      type: array
+      description: >-
+        Set of elements used to provide details of a generic amount for the
+        statement resource.
   required:
     - AccountId
     - Type
