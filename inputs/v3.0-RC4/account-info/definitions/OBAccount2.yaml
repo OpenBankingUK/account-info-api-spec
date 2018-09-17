@@ -1,11 +1,48 @@
 OBAccount2:
-  allOf:
-    - $ref: '#/definitions/OBAccount2Basic'
-    - properties:
-        Account:
-          items:
-            $ref: '#/definitions/OBCashAccount3'
-          type: array
-          description: Provides the details to identify an account.
-        Servicer:
-          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification4'
+  description: >-
+    Unambiguous identification of the account to which credit and debit entries
+    are made.
+  type: object
+  properties:
+    AccountId:
+      $ref: '#/definitions/AccountId'
+    Currency:
+      description: >-
+        Identification of the currency in which the account is held. 
+
+        Usage: Currency should only be used in case one and the same account
+        number covers several currencies
+
+        and the initiating party needs to identify which currency needs to be
+        used for settlement on the account.
+      type: string
+      pattern: '^[A-Z]{3,3}$'
+    AccountType:
+      $ref: '#/definitions/OBExternalAccountType1Code'
+    AccountSubType:
+      $ref: '#/definitions/OBExternalAccountSubType1Code'
+    Description:
+      description: Specifies the description of the account type.
+      type: string
+      minLength: 1
+      maxLength: 35
+    Nickname:
+      description: >-
+        The nickname of the account, assigned by the account owner in order to
+        provide an additional means of identification of the account.
+      type: string
+      minLength: 1
+      maxLength: 70
+    Account:
+      items:
+        $ref: '#/definitions/OBCashAccount3'
+      type: array
+      description: Provides the details to identify an account.
+    Servicer:
+      $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification4'
+  required:
+    - AccountId
+    - Currency
+    - AccountType
+    - AccountSubType
+  additionalProperties: false
