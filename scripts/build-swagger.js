@@ -13,6 +13,7 @@ const argv = require('yargs') // eslint-disable-line
   .describe('input', 'Input directory where files to generate Swagger can be found')
   .describe('apiversion', 'The version of the API to be generated e.g. v2.0.0')
   .describe('output', 'Directory where Swagger specifications will be written')
+  .describe('permissionVariants', 'Optional, set --permissionVariants to generate basic/detail permission variants')
   .demandOption(['input', 'apiversion', 'output'])
   .argv;
 
@@ -42,12 +43,30 @@ const importPaths = (api, dir) => {
   }
 };
 
-const writeOutput = (outFile, api) => {
+const writePermissionSpecificOutput = (outFile, api, permissionType) => {
+  console.log(permissionType);
+  const permissionTypePattern = new RegExp(`${permissionType}$`);
+  const definitions = Object.keys(api.definitions).filter(k => k.endsWith(permissionType));
+
+  let swagger = JSON.stringify(api, null, 2);
+  definitions.forEach((permissionSpecificSchema) => {
+    const genericSchema = permissionSpecificSchema.replace(permissionTypePattern, '');
+    swagger = swagger.replace(`definitions/${genericSchema}"`, `definitions/${permissionSpecificSchema}"`);
+  });
+  fs.writeFileSync(`${outFile}-${permissionType.toLowerCase()}.json`, swagger);
+};
+
+const writeOutput = (outFile, api, permissionVariants) => {
   const path = outFile.split('/');
   path.pop();
   const outDir = path.join('/');
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
+  }
+
+  if (permissionVariants) {
+    writePermissionSpecificOutput(outFile, api, 'Basic');
+    writePermissionSpecificOutput(outFile, api, 'Detail');
   }
 
   fs.writeFileSync(`${outFile}.yaml`, yaml.safeDump(api, { noRefs: true }));
@@ -123,7 +142,7 @@ const cloneApi = api => JSON.parse(JSON.stringify(api));
  * @param {*} file The index.yaml File acts as a marker for API definition files
  * @param {*} version The version ascribed to the Swagger document
  */
-const process = async (file, version, outputDir) => {
+const process = async (file, version, outputDir, permissionVariants) => {
   try {
     // Grab the name of the directory index.yaml was found in and use for the filename
     const inputDir = file.replace('/index.yaml', '');
@@ -149,9 +168,9 @@ const process = async (file, version, outputDir) => {
     console.log('API name: %s, Version: %s', valid.info.title, version);
     writeOutput(`${outputDir}/${apiName}-swagger-with-allof`, api);
 
-    console.log('Applying OBIE conventions...\n')
+    console.log('Applying OBIE conventions...\n');
     const withoutAllOf = await mergeAllOf(api);
-    writeOutput(`${outputDir}/${apiName}-swagger`, withoutAllOf);
+    writeOutput(`${outputDir}/${apiName}-swagger`, withoutAllOf, permissionVariants);
 
     const deref = await SwaggerParser.dereference(cloneApi(api));
     delete deref.definitions;
@@ -172,7 +191,7 @@ const process = async (file, version, outputDir) => {
 try {
   // Loop through each version and index.yaml file found and build the Swagger
   find.eachfile('index.yaml', argv.input, (file) => {
-    process(file, argv.apiversion, argv.output);
+    process(file, argv.apiversion, argv.output, argv.permissionVariants);
   });
 } catch (e) {
   logE(e); // eslint-disable-line
