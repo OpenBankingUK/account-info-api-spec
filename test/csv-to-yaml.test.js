@@ -264,7 +264,7 @@ const amountInput = [
     Occurrence: '1..1',
     XPath: 'OBReadBalance1/Data/Balance/Amount',
     EnhancedDefinition: 'Amount of money of the cash balance.',
-    Class: 'ActiveOrHistoricCurrencyAndAmount',
+    Class: 'OBActiveOrHistoricCurrencyAndAmount',
     Codes: '',
     Pattern: 'TotalDigits: 18\nFractionDigits: 5',
     TotalDigits: '18',
@@ -275,7 +275,7 @@ const amountInput = [
     Occurrence: '1..1',
     XPath: 'OBReadBalance1/Data/Balance/Amount/Currency',
     EnhancedDefinition: 'A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".',
-    Class: 'ActiveOrHistoricCurrencyCode',
+    Class: 'OBActiveOrHistoricCurrencyCode',
     Codes: '',
     Pattern: '^[A-Z]{3,3}$',
     TotalDigits: '',
@@ -291,7 +291,7 @@ describe('makeSchema with "patterned" property', () => {
   const schema = Object.values(schemaObject)[0];
 
   it('with key matching row Class', () =>
-    assert.equal(Object.keys(schemaObject)[0], 'Amount_ActiveOrHistoricCurrencyCode'));
+    assert.equal(Object.keys(schemaObject)[0], 'OBActiveOrHistoricCurrencyCode'));
 
   it('with correct type', () =>
     assert.equal(schema.type, 'string'));
@@ -311,7 +311,7 @@ describe('makeSchema adds Amount to ActiveOrHistoricCurrencyAndAmount', () => {
   const schema = Object.values(schemaObject)[0];
 
   it('with key prefixed by XPath Amount parent', () =>
-    assert.equal(Object.keys(schemaObject)[0], `Balance_Amount_${amountInput[0].Class}`));
+    assert.equal(Object.keys(schemaObject)[0], `${amountInput[0].Class}`));
 
   it('with correct type', () =>
     assert.equal(schema.type, 'object'));
