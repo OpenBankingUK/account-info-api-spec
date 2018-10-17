@@ -1,0 +1,8 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBWriteFundsConfirmationResponse1";"";"OBWriteFundsConfirmationResponse1";"";"OBWriteFundsConfirmationResponse1";"";"";"";""
+"Data";"1..1";"OBWriteFundsConfirmationResponse1/Data";"";"OBWriteDataFundsConfirmationResponse1";"";"";"";""
+"ConsentId";"1..1";"OBWriteFundsConfirmationResponse1/Data/ConsentId";"Unique identification as assigned by the ASPSP to uniquely identify the consent resource.";"Max128Text";"";"";"";""
+"ConsentType";"1..1";"OBWriteFundsConfirmationResponse1/Data/ConsentType";"Consent Type used, in conjunction with Consent Id, to identify the consent resource.";"OBFundsConfirmationConsentType1Code";"DomesticPaymentConsent
+InternationalPaymentConsent";"";"";""
+"FundsAvailableDateTime";"1..1";"OBWriteFundsConfirmationResponse1/Data/FundsAvailableDateTime";"Date and time at which the funds availability check was generated.";"ISODateTime";"";"";"";""
+"FundsAvailable";"1..1";"OBWriteFundsConfirmationResponse1/Data/FundsAvailable";"Flag to indicate the availability of funds given the Amount in the consent request.";"xs:boolean";"";"";"";""

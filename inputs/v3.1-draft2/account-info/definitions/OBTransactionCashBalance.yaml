@@ -1,0 +1,22 @@
+OBTransactionCashBalance:
+  description: >-
+    Set of elements used to define the balance as a numerical representation of
+    the net increases and decreases in an account after a transaction entry is
+    applied to the account.
+  type: object
+  properties:
+    CreditDebitIndicator:
+      allOf:
+        - $ref: '#/definitions/OBCreditDebitCode'
+        - description: |-
+            Indicates whether the balance is a credit or a debit balance. 
+            Usage: A zero balance is considered to be a credit balance.
+    Type:
+      $ref: '#/definitions/OBBalanceType1Code'
+    Amount:
+      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+  required:
+    - CreditDebitIndicator
+    - Type
+    - Amount
+  additionalProperties: false

@@ -1,0 +1,7 @@
+TransactionInformation:
+  description: |-
+    Further details of the transaction. 
+    This is the transaction narrative, which is unstructured text.
+  type: string
+  minLength: 1
+  maxLength: 500

@@ -1,0 +1,9 @@
+200AccountStatementFileRead:
+  description: Account Statement File successfully retrieved
+  schema:
+    type: file
+    description: Statement File
+  headers:
+    x-fapi-interaction-id:
+      type: string
+      description: An RFC4122 UID used as a correlation id.

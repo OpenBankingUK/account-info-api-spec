@@ -1,0 +1,13 @@
+Meta:
+  title: MetaData
+  type: object
+  description: Meta Data relevant to the payload
+  properties:
+    TotalPages:
+      type: integer
+      format: int32
+    FirstAvailableDateTime:
+      $ref: '#/definitions/ISODateTime'
+    LastAvailableDateTime:
+      $ref: '#/definitions/ISODateTime'
+  additionalProperties: false

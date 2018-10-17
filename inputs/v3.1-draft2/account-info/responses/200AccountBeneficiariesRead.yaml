@@ -1,0 +1,8 @@
+200AccountBeneficiariesRead:
+  description: Account Beneficiaries  successfully retrieved
+  schema:
+    $ref: '#/definitions/OBReadBeneficiary2'
+  headers:
+    x-fapi-interaction-id:
+      type: string
+      description: An RFC4122 UID used as a correlation id.

@@ -1,0 +1,4 @@
+500ErrorResponse:
+  description: Internal Server Error
+  schema:
+    $ref: '#/definitions/OBErrorResponse1'

@@ -1,0 +1,8 @@
+---
+  OBWriteFileConsent2Param: 
+    name: "OBWriteFileConsent2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteFileConsent2"

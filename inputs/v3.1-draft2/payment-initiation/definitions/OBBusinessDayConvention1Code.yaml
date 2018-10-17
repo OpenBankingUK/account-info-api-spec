@@ -1,0 +1,6 @@
+OBBusinessDayConvention1Code:
+  description: Convention used for adjusting a date when it is not a business day.
+  type: string
+  enum:
+    - Following
+    - Preceding

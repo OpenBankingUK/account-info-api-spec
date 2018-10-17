@@ -1,0 +1,14 @@
+OBWriteInternationalScheduledResponse2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataInternationalScheduledResponse2'
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

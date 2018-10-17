@@ -1,0 +1,8 @@
+OBFundsConfirmationConsentType1Code:
+  description: >-
+    Consent Type used, in conjunction with Consent Id, to identify the consent
+    resource.
+  type: string
+  enum:
+    - DomesticPaymentConsent
+    - InternationalPaymentConsent

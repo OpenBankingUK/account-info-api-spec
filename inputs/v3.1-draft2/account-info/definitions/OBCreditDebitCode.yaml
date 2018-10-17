@@ -1,0 +1,5 @@
+OBCreditDebitCode:
+  type: string
+  enum:
+    - Credit
+    - Debit
