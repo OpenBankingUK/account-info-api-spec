@@ -1,0 +1,10 @@
+OBWriteDataFileConsent1:
+  type: object
+  properties:
+    Initiation:
+      $ref: '#/definitions/OBFile1'
+    Authorisation:
+      $ref: '#/definitions/OBAuthorisation1'
+  required:
+    - Initiation
+  additionalProperties: false

@@ -1,0 +1,11 @@
+OBStatementAmount1Basic:
+  description: >-
+    Set of elements used to provide details of a generic amount for the
+    statement resource.
+  type: object
+  properties: {}
+  required:
+    - CreditDebitIndicator
+    - Type
+    - Amount
+  additionalProperties: false

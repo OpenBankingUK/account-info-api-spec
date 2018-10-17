@@ -1,0 +1,34 @@
+OBError1:
+  type: object
+  properties:
+    ErrorCode:
+      description: 'Low level textual error code, e.g., UK.OBIE.Field.Missing'
+      type: string
+      minLength: 1
+      maxLength: 128
+    Message:
+      description: >-
+        A description of the error that occurred. e.g., 'A mandatory field isn't
+        supplied' or 'RequestedExecutionDateTime must be in future'
+
+        OBIE doesn't standardise this field
+      type: string
+      minLength: 1
+      maxLength: 500
+    Path:
+      description: >-
+        Recommended but optional reference to the JSON Path of the field with
+        error, e.g., Data.Initiation.InstructedAmount.Currency
+      type: string
+      minLength: 1
+      maxLength: 40
+    Url:
+      description: >-
+        URL to help remediate the problem, or provide more information, or to
+        API Reference, or help etc
+      type: string
+  required:
+    - ErrorCode
+    - Message
+  additionalProperties: false
+  minProperties: 1

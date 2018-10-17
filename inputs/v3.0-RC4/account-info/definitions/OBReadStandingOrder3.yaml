@@ -1,0 +1,20 @@
+OBReadStandingOrder3:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        StandingOrder:
+          items:
+            $ref: '#/definitions/OBStandingOrder3'
+          type: array
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

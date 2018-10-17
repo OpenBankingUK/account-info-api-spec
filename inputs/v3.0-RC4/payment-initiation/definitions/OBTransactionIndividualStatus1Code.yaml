@@ -1,0 +1,8 @@
+OBTransactionIndividualStatus1Code:
+  description: Specifies the status of the payment information group.
+  type: string
+  enum:
+    - AcceptedSettlementCompleted
+    - AcceptedSettlementInProcess
+    - Pending
+    - Rejected

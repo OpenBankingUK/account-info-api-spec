@@ -1,0 +1,6 @@
+StatementIdParam:
+  name: StatementId
+  in: path
+  description: A unique identifier used to identify the statement resource.
+  required: true
+  type: string

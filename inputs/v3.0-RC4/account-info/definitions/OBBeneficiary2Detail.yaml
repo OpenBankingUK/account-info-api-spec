@@ -1,0 +1,5 @@
+OBBeneficiary2Detail:
+  allOf:
+    - $ref: '#/definitions/OBBeneficiary2'
+    - required:
+        - CreditorAccount

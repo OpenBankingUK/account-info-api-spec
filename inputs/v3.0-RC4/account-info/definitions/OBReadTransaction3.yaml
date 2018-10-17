@@ -1,0 +1,21 @@
+OBReadTransaction3:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        Transaction:
+          items:
+            $ref: '#/definitions/OBTransaction3'
+          type: array
+          description: Provides further details on an entry in the report.
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

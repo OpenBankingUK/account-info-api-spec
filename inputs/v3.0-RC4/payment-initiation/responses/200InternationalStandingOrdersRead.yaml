@@ -1,0 +1,12 @@
+---
+  200InternationalStandingOrdersRead: 
+    description: "International Standing Orders Read"
+    headers: 
+      x-fapi-interaction-id: 
+        type: "string"
+        description: "An RFC4122 UID used as a correlation id."
+      x-jws-signature: 
+        type: "string"
+        description: "Header containing a detached JWS signature of the body of the payload."
+    schema: 
+      $ref: "#/definitions/OBWriteInternationalStandingOrderResponse1"

@@ -1,0 +1,11 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBErrorResponse1";"";"OBErrorResponse1";"An array of detail error codes, and messages, and URLs to documentation to help remediation.";"OBErrorResponse1";"";"";"";""
+"Code";"1..1";"OBErrorResponse1/Code";"High level textual error code, to help categorize the errors.";"Max40Text";"";"";"";""
+"Id";"0..1";"OBErrorResponse1/Id";"A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.";"Max40Text";"";"";"";""
+"Message";"1..1";"OBErrorResponse1/Message";"Brief Error message, e.g., 'There is something wrong with the request parameters provided'";"Max500Text";"";"";"";""
+"Errors";"1..n";"OBErrorResponse1/Errors";"";"OBError1";"";"";"";""
+"ErrorCode";"1..1";"OBErrorResponse1/Errors/ErrorCode";"Low level textual error code, e.g., UK.OBIE.Field.Missing";"Max128Text";"";"";"";""
+"Message";"1..1";"OBErrorResponse1/Errors/Message";"A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future'
+OBIE doesn't standardise this field";"Max500Text";"";"";"";""
+"Path";"0..1";"OBErrorResponse1/Errors/Path";"Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency";"Max40Text";"";"";"";""
+"Url";"0..1";"OBErrorResponse1/Errors/Url";"URL to help remediate the problem, or provide more information, or to API Reference, or help etc";"xs:anyURI";"";"";"";""

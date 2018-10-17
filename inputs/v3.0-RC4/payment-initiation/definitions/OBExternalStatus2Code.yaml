@@ -1,0 +1,7 @@
+OBExternalStatus2Code:
+  description: Specifies the status of the authorisation flow in code form.
+  type: string
+  enum:
+    - Authorised
+    - AwaitingFurtherAuthorisation
+    - Rejected

@@ -1,0 +1,21 @@
+OBReadDirectDebit1:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        DirectDebit:
+          items:
+            $ref: '#/definitions/OBDirectDebit1'
+          type: array
+          description: Account to or from which a cash entry is made.
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

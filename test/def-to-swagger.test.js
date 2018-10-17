@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { YAML } = require('swagger-parser'); // eslint-disable-line
 
-const { convertRows } = require('../inputs/csv-to-yaml.js');
+const { convertRows } = require('../lib/csv-to-yaml.js');
 
 // ./inputs/v1.1.1/data_definition/Permissions.csv
 const permissions = [

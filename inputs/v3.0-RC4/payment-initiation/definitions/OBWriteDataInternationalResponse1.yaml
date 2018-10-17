@@ -1,0 +1,92 @@
+OBWriteDataInternationalResponse1:
+  type: object
+  properties:
+    InternationalPaymentId:
+      description: >-
+        OB: Unique identification as assigned by the ASPSP to uniquely identify
+        the international payment resource.
+      type: string
+      minLength: 1
+      maxLength: 40
+    ConsentId:
+      description: >-
+        OB: Unique identification as assigned by the ASPSP to uniquely identify
+        the consent resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    CreationDateTime:
+      description: >-
+        Date and time at which the message was created.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Status:
+      $ref: '#/definitions/OBTransactionIndividualStatus1Code'
+    StatusUpdateDateTime:
+      description: >-
+        Date and time at which the resource status was updated.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    ExpectedExecutionDateTime:
+      description: >-
+        Expected execution date and time for the payment resource.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    ExpectedSettlementDateTime:
+      description: >-
+        Expected settlement date and time for the payment resource.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Charges:
+      items:
+        $ref: '#/definitions/OBCharge1'
+      type: array
+      description: >-
+        Set of elements used to provide details of a charge for the payment
+        initiation.
+    ExchangeRateInformation:
+      $ref: '#/definitions/OBExchangeRate2'
+    Initiation:
+      $ref: '#/definitions/OBInternational1'
+    MultiAuthorisation:
+      $ref: '#/definitions/OBMultiAuthorisation1'
+  required:
+    - InternationalPaymentId
+    - ConsentId
+    - CreationDateTime
+    - Status
+    - StatusUpdateDateTime
+    - Initiation
+  additionalProperties: false

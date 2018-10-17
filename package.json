@@ -4,8 +4,9 @@
   "description": "Tools to compile and flatten JSON schemas, and generate Swagger Docs",
   "main": "index.js",
   "scripts": {
-    "buildswagger": "node ./inputs/build.js",
-    "csvtoyaml": "node ./inputs/convert.js",
+    "buildswagger": "node ./scripts/build-swagger.js",
+    "copy-product-schemas": "node ./scripts/convert-product-to-definitions.js",
+    "csvtoyaml": "node ./scripts/convert-gefeg-to-definitions.js",
     "flatten-schemas": "cd build && ./flatten-schemas.sh",
     "compile-swagger": "cd build && node compile-swagger.js",
     "build:swagger": "npm run flatten-schemas && npm run compile-swagger",
@@ -37,7 +38,11 @@
   },
   "homepage": "https://github.com/OpenBankingUK/account-info-api-spec-build#readme",
   "dependencies": {
-    "flatten": "^1.0.2"
+    "find": "^0.2.9",
+    "flatten": "^1.0.2",
+    "jsonpath": "^1.0.0",
+    "yargs": "^12.0.1",
+    "swagger-parser": "beta"
   },
   "devDependencies": {
     "ajv": "^4.10.0",
@@ -59,7 +64,6 @@
     "open": "*",
     "spectacle-docs": "*",
     "supertest": "^2.0.1",
-    "swagger-parser": "beta",
     "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams"
   }
 }

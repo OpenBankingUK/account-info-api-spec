@@ -1,0 +1,1142 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Account and Transaction API Specification",
+    "description": "Swagger for Account and Transaction API Specification",
+    "termsOfService": "https://www.openbanking.org.uk/terms",
+    "contact": {
+      "name": "Service Desk",
+      "email": "ServiceDesk@openbanking.org.uk"
+    },
+    "license": {
+      "name": "open-licence",
+      "url": "https://www.openbanking.org.uk/open-licence"
+    },
+    "version": "v2.1-RC1"
+  },
+  "basePath": "/open-banking/v2.0",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json; charset=utf-8"
+  ],
+  "paths": {
+    "/accounts/{AccountId}/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Account Transactions",
+        "description": "Get transactions related to an account",
+        "operationId": "GetAccountTransactions",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountIdParam"
+          },
+          {
+            "$ref": "#/parameters/FromBookingDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/ToBookingDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountTransactionsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/accounts/{AccountId}/statements/{StatementId}/transactions": {
+      "get": {
+        "tags": [
+          "Statements",
+          "Transactions"
+        ],
+        "summary": "Get Statement Transactions",
+        "description": "Get Statement Transactions related to an account",
+        "operationId": "GetAccountStatementTransactions",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AccountIdParam"
+          },
+          {
+            "$ref": "#/parameters/StatementIdParam"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountTransactionsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    },
+    "/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get Transactions",
+        "description": "Get Transactions",
+        "operationId": "GetTransactions",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FromBookingDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/ToBookingDateTimeParam"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-financial-id-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-last-logged-time-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-customer-ip-address-Param"
+          },
+          {
+            "$ref": "#/parameters/x-fapi-interaction-id-Param"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/200AccountTransactionsRead"
+          },
+          "400": {
+            "$ref": "#/responses/400ErrorResponse"
+          },
+          "401": {
+            "$ref": "#/responses/401ErrorResponse"
+          },
+          "403": {
+            "$ref": "#/responses/403ErrorResponse"
+          },
+          "405": {
+            "$ref": "#/responses/405ErrorResponse"
+          },
+          "406": {
+            "$ref": "#/responses/406ErrorResponse"
+          },
+          "429": {
+            "$ref": "#/responses/429ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/500ErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "PSUOAuth2Security": [
+              "accounts"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "AccountIdParam": {
+      "name": "AccountId",
+      "in": "path",
+      "description": "A unique identifier used to identify the account resource.",
+      "required": true,
+      "type": "string"
+    },
+    "AccountRequestIdParam": {
+      "name": "AccountRequestId",
+      "in": "path",
+      "description": "Unique identification as assigned by the ASPSP to uniquely identify the account request resource.",
+      "required": true,
+      "type": "string"
+    },
+    "FromBookingDateTimeParam": {
+      "in": "query",
+      "name": "fromBookingDateTime",
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC ISO 8601 Date Time to filter transactions FROM\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
+    },
+    "StatementIdParam": {
+      "name": "StatementId",
+      "in": "path",
+      "description": "A unique identifier used to identify the statement resource.",
+      "required": true,
+      "type": "string"
+    },
+    "ToBookingDateTimeParam": {
+      "in": "query",
+      "name": "toBookingDateTime",
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC ISO 8601 Date Time to filter transactions TO\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."
+    },
+    "x-fapi-financial-id-Param": {
+      "in": "header",
+      "name": "x-fapi-financial-id",
+      "type": "string",
+      "required": true,
+      "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+    },
+    "x-fapi-customer-ip-address-Param": {
+      "in": "header",
+      "name": "x-fapi-customer-ip-address",
+      "type": "string",
+      "required": false,
+      "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+    },
+    "x-fapi-interaction-id-Param": {
+      "in": "header",
+      "name": "x-fapi-interaction-id",
+      "type": "string",
+      "required": false,
+      "description": "An RFC4122 UID used as a correlation id."
+    },
+    "x-fapi-customer-last-logged-time-Param": {
+      "in": "header",
+      "name": "x-fapi-customer-last-logged-time",
+      "type": "string",
+      "required": false,
+      "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+      "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
+    },
+    "AuthorizationParam": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "string",
+      "required": true,
+      "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
+    },
+    "x-jws-signature-Param": {
+      "in": "header",
+      "name": "x-jws-signature",
+      "type": "string",
+      "required": false,
+      "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
+    }
+  },
+  "responses": {
+    "200AccountBalancesRead": {
+      "description": "Account Balances successfully retrieved",
+      "schema": {
+        "$ref": "#/definitions/OBReadBalance1"
+      },
+      "headers": {
+        "x-jws-signature": {
+          "type": "string",
+          "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
+        },
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      }
+    },
+    "200AccountTransactionsRead": {
+      "description": "Account Transactions successfully retrieved",
+      "schema": {
+        "$ref": "#/definitions/OBReadTransaction2"
+      },
+      "headers": {
+        "x-jws-signature": {
+          "type": "string",
+          "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
+        },
+        "x-fapi-interaction-id": {
+          "type": "string",
+          "description": "An RFC4122 UID used as a correlation id."
+        }
+      }
+    },
+    "400ErrorResponse": {
+      "description": "Bad Request"
+    },
+    "401ErrorResponse": {
+      "description": "Unauthorized"
+    },
+    "403ErrorResponse": {
+      "description": "Forbidden"
+    },
+    "405ErrorResponse": {
+      "description": "Method Not Allowed"
+    },
+    "406ErrorResponse": {
+      "description": "Not Acceptable"
+    },
+    "429ErrorResponse": {
+      "description": "Too Many Requests",
+      "headers": {
+        "Retry-After": {
+          "description": "Number in seconds to wait",
+          "type": "integer"
+        }
+      }
+    },
+    "500ErrorResponse": {
+      "description": "Internal Server Error"
+    }
+  },
+  "securityDefinitions": {
+    "PSUOAuth2Security": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "tokenUrl": "https://authserver.example/token",
+      "authorizationUrl": "https://authserver.example/authorization",
+      "scopes": {
+        "accounts": "Ability to read Accounts information"
+      },
+      "description": "OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU"
+    },
+    "TPPOAuth2Security": {
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "https://authserver.example/token",
+      "scopes": {
+        "accounts": "Ability to read Accounts information"
+      },
+      "description": "TPP client credential authorisation flow with the ASPSP"
+    }
+  },
+  "definitions": {
+    "AccountId": {
+      "description": "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "Amount": {
+      "type": "string",
+      "pattern": "^\\d{1,13}\\.\\d{1,5}$"
+    },
+    "OBBalanceType1Code": {
+      "description": "Balance type, in a coded form.",
+      "type": "string",
+      "enum": [
+        "ClosingAvailable",
+        "ClosingBooked",
+        "Expected",
+        "ForwardAvailable",
+        "Information",
+        "InterimAvailable",
+        "InterimBooked",
+        "OpeningAvailable",
+        "OpeningBooked",
+        "PreviouslyClosedBooked"
+      ]
+    },
+    "OBBankTransactionCodeStructure1": {
+      "description": "Set of elements used to fully identify the type of underlying transaction resulting in an entry.",
+      "type": "object",
+      "properties": {
+        "Code": {
+          "description": "Specifies the family within a domain.",
+          "type": "string"
+        },
+        "SubCode": {
+          "description": "Specifies the sub-product family within a specific family.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Code",
+        "SubCode"
+      ],
+      "additionalProperties": false
+    },
+    "OBBranchAndFinancialInstitutionIdentification2": {
+      "type": "object",
+      "properties": {
+        "SchemeName": {
+          "$ref": "#/definitions/OBExternalFinancialInstitutionIdentification2Code"
+        },
+        "Identification": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": [
+        "SchemeName",
+        "Identification"
+      ],
+      "additionalProperties": false
+    },
+    "OBCashAccount2": {
+      "type": "object",
+      "properties": {
+        "SchemeName": {
+          "$ref": "#/definitions/OBExternalAccountIdentification3Code"
+        },
+        "Identification": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 34
+        },
+        "Name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        },
+        "SecondaryIdentification": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 34
+        }
+      },
+      "required": [
+        "SchemeName",
+        "Identification"
+      ],
+      "additionalProperties": false
+    },
+    "OBCashBalance1": {
+      "description": "Set of elements used to define the balance details.",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "Amount": {
+          "description": "Amount of money of the cash balance.",
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "$ref": "#/definitions/Amount"
+            },
+            "Currency": {
+              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+              "type": "string",
+              "pattern": "^[A-Z]{3,3}$"
+            }
+          },
+          "required": [
+            "Amount",
+            "Currency"
+          ],
+          "additionalProperties": false
+        },
+        "CreditDebitIndicator": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/OBCreditDebitCode"
+            },
+            {
+              "description": "Indicates whether the balance is a credit or a debit balance. \nUsage: A zero balance is considered to be a credit balance."
+            }
+          ]
+        },
+        "Type": {
+          "$ref": "#/definitions/OBBalanceType1Code"
+        },
+        "DateTime": {
+          "description": "Indicates the date (and time) of the balance.\nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreditLine": {
+          "items": {
+            "$ref": "#/definitions/OBCreditLine1"
+          },
+          "type": "array",
+          "description": "Set of elements used to provide details on the credit line."
+        }
+      },
+      "required": [
+        "AccountId",
+        "Amount",
+        "CreditDebitIndicator",
+        "Type",
+        "DateTime"
+      ],
+      "additionalProperties": false,
+      "minProperties": 1
+    },
+    "OBCreditDebitCode": {
+      "type": "string",
+      "enum": [
+        "Credit",
+        "Debit"
+      ]
+    },
+    "OBCreditLine1": {
+      "description": "Set of elements used to provide details on the credit line.",
+      "type": "object",
+      "properties": {
+        "Included": {
+          "description": "Indicates whether or not the credit line is included in the balance of the account.\nUsage: If not present, credit line is not included in the balance amount of the account.",
+          "type": "boolean"
+        },
+        "Amount": {
+          "description": "Amount of money of the credit line.",
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "$ref": "#/definitions/Amount"
+            },
+            "Currency": {
+              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+              "type": "string",
+              "pattern": "^[A-Z]{3,3}$"
+            }
+          },
+          "required": [
+            "Amount",
+            "Currency"
+          ],
+          "additionalProperties": false
+        },
+        "Type": {
+          "$ref": "#/definitions/OBExternalLimitType1Code"
+        }
+      },
+      "required": [
+        "Included"
+      ],
+      "additionalProperties": false
+    },
+    "OBEntryStatus1Code": {
+      "description": "Status of a transaction entry on the books of the account servicer.",
+      "type": "string",
+      "enum": [
+        "Booked",
+        "Pending"
+      ]
+    },
+    "OBExternalAccountIdentification3Code": {
+      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+      "type": "string",
+      "enum": [
+        "IBAN",
+        "PAN",
+        "SortCodeAccountNumber"
+      ]
+    },
+    "OBExternalCardAuthorisationType1Code": {
+      "description": "The card authorisation type.",
+      "type": "string",
+      "enum": [
+        "Contactless",
+        "None",
+        "PIN"
+      ]
+    },
+    "OBExternalCardSchemeType1Code": {
+      "description": "Name of the card scheme.",
+      "type": "string",
+      "enum": [
+        "AmericanExpress",
+        "Diners",
+        "Discover",
+        "MasterCard",
+        "VISA"
+      ]
+    },
+    "OBExternalFinancialInstitutionIdentification2Code": {
+      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+      "type": "string",
+      "enum": [
+        "BICFI"
+      ]
+    },
+    "OBExternalLimitType1Code": {
+      "description": "Limit type, in a coded form.",
+      "type": "string",
+      "enum": [
+        "Available",
+        "Credit",
+        "Emergency",
+        "Pre-Agreed",
+        "Temporary"
+      ]
+    },
+    "OBMerchantDetails1": {
+      "description": "Details of the merchant involved in the transaction.",
+      "type": "object",
+      "properties": {
+        "MerchantName": {
+          "description": "Name by which the merchant is known.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 350
+        },
+        "MerchantCategoryCode": {
+          "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 4
+        }
+      },
+      "additionalProperties": false
+    },
+    "OBReadBalance1": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "type": "object",
+          "properties": {
+            "Balance": {
+              "items": {
+                "$ref": "#/definitions/OBCashBalance1"
+              },
+              "type": "array",
+              "description": "Set of elements used to define the balance details.",
+              "minItems": 1
+            }
+          },
+          "required": [
+            "Balance"
+          ],
+          "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      },
+      "required": [
+        "Data",
+        "Links",
+        "Meta"
+      ],
+      "additionalProperties": false
+    },
+    "OBTransaction2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OBTransaction2Basic"
+        },
+        {
+          "properties": {
+            "TransactionInformation": {
+              "$ref": "#/definitions/TransactionInformation"
+            },
+            "Balance": {
+              "$ref": "#/definitions/OBTransactionCashBalance"
+            },
+            "MerchantDetails": {
+              "$ref": "#/definitions/OBMerchantDetails1"
+            },
+            "CreditorAccount": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/OBCashAccount2"
+                },
+                {
+                  "description": "Unambiguous identification of the account of the creditor, in the case of a debit transaction."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.\nOB: No name validation is expected for confirmation of payee."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
+                }
+              ]
+            },
+            "DebtorAccount": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/OBCashAccount2"
+                },
+                {
+                  "description": "Unambiguous identification of the account of the debtor, in the case of a crebit transaction."
+                },
+                {
+                  "properties": {
+                    "Identification": {
+                      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner."
+                    },
+                    "Name": {
+                      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
+                    },
+                    "SecondaryIdentification": {
+                      "description": "This is secondary identification of the account, as assigned by the account servicing institution. \nThis can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination)."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "OBTransaction2Basic": {
+      "description": "Provides further details on an entry in the report.",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "TransactionId": {
+          "description": "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "TransactionReference": {
+          "description": "Unique reference for the transaction. This reference is optionally populated, and may as an example be the FPID in the Faster Payments context.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "StatementReference": {
+          "items": {
+            "description": "Unique reference for the statement. This reference may be optionally populated if available.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 35
+          },
+          "type": "array",
+          "description": "Unique reference for the statement. This reference may be optionally populated if available."
+        },
+        "Amount": {
+          "description": "Amount of money in the cash transaction entry.",
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "$ref": "#/definitions/Amount"
+            },
+            "Currency": {
+              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+              "type": "string",
+              "pattern": "^[A-Z]{3,3}$"
+            }
+          },
+          "required": [
+            "Amount",
+            "Currency"
+          ],
+          "additionalProperties": false
+        },
+        "CreditDebitIndicator": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/OBCreditDebitCode"
+            },
+            {
+              "description": "Indicates whether the transaction is a credit or a debit entry."
+            }
+          ]
+        },
+        "Status": {
+          "$ref": "#/definitions/OBEntryStatus1Code"
+        },
+        "BookingDateTime": {
+          "description": "Date and time when a transaction entry is posted to an account on the account servicer's books.\nUsage: Booking date is the expected booking date, unless the status is booked, in which case it is the actual booking date.\nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
+          "type": "string",
+          "format": "date-time"
+        },
+        "ValueDateTime": {
+          "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit transaction entry.\nUsage: If transaction entry status is pending and value date is present, then the value date refers to an expected/requested value date.\nFor transaction entries subject to availability/float and for which availability information is provided, the value date must not be used. In this case the availability component identifies the number of availability days.\nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
+          "type": "string",
+          "format": "date-time"
+        },
+        "AddressLine": {
+          "description": "Information that locates and identifies a specific address for a transaction entry, that is presented in free format text.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        },
+        "BankTransactionCode": {
+          "$ref": "#/definitions/OBBankTransactionCodeStructure1"
+        },
+        "ProprietaryBankTransactionCode": {
+          "description": "Set of elements to fully identify a proprietary bank transaction code.",
+          "type": "object",
+          "properties": {
+            "Code": {
+              "description": "Proprietary bank transaction code to identify the underlying transaction.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 35
+            },
+            "Issuer": {
+              "description": "Identification of the issuer of the proprietary bank transaction code.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 35
+            }
+          },
+          "required": [
+            "Code"
+          ],
+          "additionalProperties": false
+        },
+        "CurrencyExchange": {
+          "$ref": "#/definitions/OBCurrencyExchange5"
+        },
+        "CreditorAgent": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/OBBranchAndFinancialInstitutionIdentification2"
+            },
+            {
+              "description": "Financial institution servicing an account for the creditor."
+            },
+            {
+              "properties": {
+                "Identification": {
+                  "description": "Unique and unambiguous identification of a financial institution or a branch of a financial institution."
+                }
+              }
+            }
+          ]
+        },
+        "DebtorAgent": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/OBBranchAndFinancialInstitutionIdentification2"
+            },
+            {
+              "description": "Financial institution servicing an account for the debtor."
+            },
+            {
+              "properties": {
+                "Identification": {
+                  "description": "Unique and unambiguous identification of a financial institution or a branch of a financial institution."
+                }
+              }
+            }
+          ]
+        },
+        "CardInstrument": {
+          "$ref": "#/definitions/OBTransactionCardInstrument1"
+        }
+      },
+      "required": [
+        "AccountId",
+        "Amount",
+        "CreditDebitIndicator",
+        "Status",
+        "BookingDateTime"
+      ],
+      "additionalProperties": false
+    },
+    "OBTransaction2Detail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OBTransaction2"
+        }
+      ]
+    },
+    "OBTransactionCardInstrument1": {
+      "description": "Set of elements to describe the card instrument used in the transaction.",
+      "type": "object",
+      "properties": {
+        "CardSchemeName": {
+          "$ref": "#/definitions/OBExternalCardSchemeType1Code"
+        },
+        "AuthorisationType": {
+          "$ref": "#/definitions/OBExternalCardAuthorisationType1Code"
+        },
+        "Name": {
+          "description": "Name of the cardholder using the card instrument.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 70
+        },
+        "Identification": {
+          "description": "Identification assigned by an institution to identify the card instrument used in the transaction. This identification is known by the account owner, and may be masked.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 34
+        }
+      },
+      "required": [
+        "CardSchemeName"
+      ],
+      "additionalProperties": false
+    },
+    "OBTransactionCashBalance": {
+      "description": "Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account after a transaction entry is applied to the account.",
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "description": "Amount of money of the cash balance after a transaction entry is applied to the account..",
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "$ref": "#/definitions/Amount"
+            },
+            "Currency": {
+              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+              "type": "string",
+              "pattern": "^[A-Z]{3,3}$"
+            }
+          },
+          "required": [
+            "Amount",
+            "Currency"
+          ],
+          "additionalProperties": false
+        },
+        "CreditDebitIndicator": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/OBCreditDebitCode"
+            },
+            {
+              "description": "Indicates whether the balance is a credit or a debit balance. \nUsage: A zero balance is considered to be a credit balance."
+            }
+          ]
+        },
+        "Type": {
+          "$ref": "#/definitions/OBBalanceType1Code"
+        }
+      },
+      "required": [
+        "Amount",
+        "CreditDebitIndicator",
+        "Type"
+      ],
+      "additionalProperties": false
+    },
+    "TransactionInformation": {
+      "description": "Further details of the transaction. \nThis is the transaction narrative, which is unstructured text.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "Links": {
+      "type": "object",
+      "description": "Links relevant to the payload",
+      "properties": {
+        "Self": {
+          "type": "string",
+          "format": "uri"
+        },
+        "First": {
+          "type": "string",
+          "format": "uri"
+        },
+        "Prev": {
+          "type": "string",
+          "format": "uri"
+        },
+        "Next": {
+          "type": "string",
+          "format": "uri"
+        },
+        "Last": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Self"
+      ]
+    },
+    "ISODateTime": {
+      "description": "All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
+      "type": "string",
+      "format": "date-time"
+    },
+    "Meta": {
+      "title": "MetaData",
+      "type": "object",
+      "description": "Meta Data relevant to the payload",
+      "properties": {
+        "TotalPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FirstAvailableDateTime": {
+          "$ref": "#/definitions/ISODateTime"
+        },
+        "LastAvailableDateTime": {
+          "$ref": "#/definitions/ISODateTime"
+        }
+      },
+      "additionalProperties": false
+    },
+    "OBCurrencyExchange5": {
+      "description": "Set of elements used to provide details of the currency exchange.",
+      "type": "object",
+      "properties": {
+        "SourceCurrency": {
+          "description": "Currency from which an amount is to be converted in a currency conversion.",
+          "type": "string",
+          "pattern": "^[A-Z]{3,3}$"
+        },
+        "TargetCurrency": {
+          "description": "Currency from which an amount is to be converted in a currency conversion.",
+          "type": "string",
+          "pattern": "^[A-Z]{3,3}$"
+        },
+        "UnitCurrency": {
+          "description": "Currency from which an amount is to be converted in a currency conversion.",
+          "type": "string",
+          "pattern": "^[A-Z]{3,3}$"
+        },
+        "ExchangeRate": {
+          "description": "Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency.\nUsage: ExchangeRate expresses the ratio between UnitCurrency and QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).",
+          "type": "number"
+        },
+        "ContractIdentification": {
+          "description": "Unique identification to unambiguously identify the foreign exchange contract.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "QuotationDate": {
+          "description": "Date and time at which an exchange rate is quoted.\nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
+          "type": "string",
+          "format": "date-time"
+        },
+        "InstructedAmount": {
+          "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.",
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "$ref": "#/definitions/Amount"
+            },
+            "Currency": {
+              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+              "type": "string",
+              "pattern": "^[A-Z]{3,3}$"
+            }
+          },
+          "required": [
+            "Amount",
+            "Currency"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "SourceCurrency",
+        "ExchangeRate"
+      ],
+      "additionalProperties": false
+    },
+    "OBReadTransaction2": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "type": "object",
+          "properties": {
+            "Transaction": {
+              "items": {
+                "$ref": "#/definitions/OBTransaction2"
+              },
+              "type": "array",
+              "description": "Provides further details on an entry in the report."
+            }
+          },
+          "additionalProperties": false
+        },
+        "Links": {
+          "$ref": "#/definitions/Links"
+        },
+        "Meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      },
+      "required": [
+        "Data",
+        "Links",
+        "Meta"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
