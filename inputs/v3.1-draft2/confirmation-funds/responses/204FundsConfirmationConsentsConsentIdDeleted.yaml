@@ -1,0 +1,7 @@
+---
+  204FundsConfirmationConsentsConsentIdDeleted: 
+    description: "Funds Confirmation Consent Deleted"
+    headers: 
+      x-fapi-interaction-id: 
+        type: "string"
+        description: "An RFC4122 UID used as a correlation id."

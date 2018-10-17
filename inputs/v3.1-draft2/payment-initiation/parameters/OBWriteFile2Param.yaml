@@ -1,0 +1,8 @@
+---
+  OBWriteFile2Param: 
+    name: "OBWriteFile2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteFile2"

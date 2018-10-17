@@ -1,0 +1,8 @@
+---
+  OBWriteDomesticConsent2Param: 
+    name: "OBWriteDomesticConsent2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteDomesticConsent2"

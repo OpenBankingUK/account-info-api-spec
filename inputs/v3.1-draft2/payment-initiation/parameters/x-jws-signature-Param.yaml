@@ -1,0 +1,7 @@
+---
+  x-jws-signature-Param: 
+    in: "header"
+    name: "x-jws-signature"
+    type: "string"
+    required: true
+    description: "Detached JWS signature of the body of the payload."

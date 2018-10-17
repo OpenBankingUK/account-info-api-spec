@@ -1,0 +1,22 @@
+OBCharge1:
+  description: >-
+    Set of elements used to provide details of a charge for the payment
+    initiation.
+  type: object
+  properties:
+    ChargeBearer:
+      $ref: '#/definitions/OBChargeBearerType1Code'
+    Type:
+      description: 'Charge type, in a coded form.'
+      type: string
+      minLength: 1
+      maxLength: 40
+    Amount:
+      allOf:
+        - $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+        - description: Amount of money associated with the charge type.
+  required:
+    - ChargeBearer
+    - Type
+    - Amount
+  additionalProperties: false

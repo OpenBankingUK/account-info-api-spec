@@ -1,0 +1,8 @@
+---
+  OBPaymentSetup1Param: 
+    name: "OBPaymentSetup1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBPaymentSetup1"

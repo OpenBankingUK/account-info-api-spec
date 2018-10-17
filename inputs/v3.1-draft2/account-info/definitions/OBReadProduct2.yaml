@@ -1,0 +1,20 @@
+OBReadProduct2:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        Product:
+          items:
+            $ref: '#/definitions/OBProduct2'
+          type: array
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

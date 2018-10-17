@@ -1,0 +1,11 @@
+OBWriteDomesticConsent2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataDomesticConsent2'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

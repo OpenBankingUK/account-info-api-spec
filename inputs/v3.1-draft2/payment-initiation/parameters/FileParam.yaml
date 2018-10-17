@@ -1,0 +1,8 @@
+---
+  FileParam: 
+    name: "FileParam"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/File"

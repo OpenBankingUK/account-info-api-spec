@@ -1,0 +1,11 @@
+OBWriteInternationalStandingOrderConsent2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataInternationalStandingOrderConsent2'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

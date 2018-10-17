@@ -1,0 +1,6 @@
+OBExternalStandingOrderStatus1Code:
+  description: Specifies the status of the standing order in code form.
+  type: string
+  enum:
+    - Active
+    - Inactive
