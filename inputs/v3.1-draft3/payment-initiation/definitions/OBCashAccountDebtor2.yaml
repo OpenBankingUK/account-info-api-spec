@@ -1,0 +1,45 @@
+OBCashAccountDebtor2:
+  description: >-
+    Account used to process charges associated with a transaction.
+
+    Usage: Charges account should be used when charges have to be booked to an
+    account different from the account identified in debtor's account.
+  type: object
+  properties:
+    SchemeName:
+      $ref: '#/definitions/OBExternalAccountIdentification3Code'
+    Identification:
+      description: >-
+        Identification assigned by an institution to identify an account. This
+        identification is known by the account owner.
+      type: string
+      minLength: 1
+      maxLength: 34
+    Name:
+      description: >-
+        Name of the account, as assigned by the account servicing institution,
+        in agreement with the account owner in order to provide an additional
+        means of identification of the account.
+
+        Usage: The account name is different from the account owner name. The
+        account name is used in certain user communities to provide a means of
+        identifying the account, in addition to the account owner's identity and
+        the account number.
+      type: string
+      minLength: 1
+      maxLength: 70
+    SecondaryIdentification:
+      description: >-
+        This is secondary identification of the account, as assigned by the
+        account servicing institution. 
+
+        This can be used by building societies to additionally identify accounts
+        with a roll number (in addition to a sort code and account number
+        combination).
+      type: string
+      minLength: 1
+      maxLength: 34
+  required:
+    - SchemeName
+    - Identification
+  additionalProperties: false

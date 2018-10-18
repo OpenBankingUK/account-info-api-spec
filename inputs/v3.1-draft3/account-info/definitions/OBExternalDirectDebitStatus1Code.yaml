@@ -1,0 +1,6 @@
+OBExternalDirectDebitStatus1Code:
+  description: Specifies the status of the direct debit in code form.
+  type: string
+  enum:
+    - Active
+    - Inactive

@@ -1,0 +1,8 @@
+---
+  OBWriteInternationalConsent2Param: 
+    name: "OBWriteInternationalConsent2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteInternationalConsent2"

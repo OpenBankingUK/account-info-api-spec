@@ -1,0 +1,46 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits";"Class, data type of a composition or attribute/MaxLength"
+"OBReadBeneficiary3";"";"OBReadBeneficiary3";"";"OBReadBeneficiary3";"";"";"";"";""
+"Data";"1..1";"OBReadBeneficiary3/Data";"";"OBReadDataBeneficiary3";"";"";"";"";""
+"Beneficiary";"0..n";"OBReadBeneficiary3/Data/Beneficiary";"";"OBBeneficiary3";"";"";"";"";""
+"AccountId";"0..1";"OBReadBeneficiary3/Data/Beneficiary/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";"";"40"
+"BeneficiaryId";"0..1";"OBReadBeneficiary3/Data/Beneficiary/BeneficiaryId";"A unique and immutable identifier used to identify the beneficiary resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";"";"40"
+"Reference";"0..1";"OBReadBeneficiary3/Data/Beneficiary/Reference";"Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
+
+Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
+
+If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.";"Max35Text";"";"";"";"";"35"
+"CreditorAgent";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent";"Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.
+This is the servicer of the beneficiary account.";"OBBranchAndFinancialInstitutionIdentification6";"";"";"";"";""
+"SchemeName";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalFinancialInstitutionIdentification4Code";" UK.OBIE.BICFI";"";"";"";"40"
+"Identification";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/Identification";"Unique and unambiguous identification of the servicing institution.";"Max35Text";"";"";"";"";"35"
+"Name";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/Name";"Name by which an agent is known and which is usually used to identify that agent.";"Max140Text";"";"";"";"";"140"
+"PostalAddress";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress";"Information that locates and identifies a specific address, as defined by postal services.";"OBPostalAddress6";"";"";"";"";""
+"AddressType";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/AddressType";"Identifies the nature of the postal address.";"OBAddressTypeCode";"Business
+Correspondence
+DeliveryTo
+MailTo
+POBox
+Postal
+Residential
+Statement";"";"";"";""
+"Department";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/Department";"Identification of a division of a large organisation or building.";"Max70Text";"";"";"";"";"70"
+"SubDepartment";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/SubDepartment";"Identification of a sub-division of a large organisation or building.";"Max70Text";"";"";"";"";"70"
+"StreetName";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/StreetName";"Name of a street or thoroughfare.";"Max70Text";"";"";"";"";"70"
+"BuildingNumber";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/BuildingNumber";"Number that identifies the position of a building on a street.";"Max16Text";"";"";"";"";"16"
+"PostCode";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/PostCode";"Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.";"Max16Text";"";"";"";"";"16"
+"TownName";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/TownName";"Name of a built-up area, with defined boundaries, and a local government.";"Max35Text";"";"";"";"";"35"
+"CountrySubDivision";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/CountrySubDivision";"Identifies a subdivision of a country such as state, region, county.";"Max35Text";"";"";"";"";"35"
+"Country";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/Country";"Nation with its own government.";"CountryCode";"";"^[A-Z]{2,2}$";"";"";""
+"AddressLine";"0..7";"OBReadBeneficiary3/Data/Beneficiary/CreditorAgent/PostalAddress/AddressLine";"Information that locates and identifies a specific address, as defined by postal services, presented in free format text.";"Max70Text";"";"";"";"";"70"
+"CreditorAccount";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAccount";"Provides the details to identify the beneficiary account.";"OBCashAccount5";"";"";"";"";""
+"SchemeName";"1..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAccount/SchemeName";"Name of the identification scheme, in a coded form as published in an external list.";"OBExternalAccountIdentification4Code";"UK.OBIE.BBAN
+UK.OBIE.IBAN
+UK.OBIE.PAN
+UK.OBIE.Paym
+UK.OBIE.SortCodeAccountNumber";"";"";"";"40"
+"Identification";"1..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAccount/Identification";"Identification assigned by an institution to identify an account. This identification is known by the account owner.";"Max256Text";"";"";"";"";"256"
+"Name";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAccount/Name";"Name of the account, as assigned by the account servicing institution.
+
+Usage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.";"Max70Text";"";"";"";"";"70"
+"SecondaryIdentification";"0..1";"OBReadBeneficiary3/Data/Beneficiary/CreditorAccount/SecondaryIdentification";"This is secondary identification of the account, as assigned by the account servicing institution. 
+This can be used by building societies to additionally identify accounts with a roll number (in addition to a sort code and account number combination).";"Max34Text";"";"";"";"";"34"

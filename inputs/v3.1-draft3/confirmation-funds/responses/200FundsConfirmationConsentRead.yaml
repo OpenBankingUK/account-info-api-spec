@@ -1,0 +1,9 @@
+---
+  200FundsConfirmationConsentRead: 
+    description: "Funds Confirmation Consent Read"
+    headers: 
+      x-fapi-interaction-id: 
+        type: "string"
+        description: "An RFC4122 UID used as a correlation id."
+    schema: 
+      $ref: "#/definitions/OBFundsConfirmationConsentResponse1"

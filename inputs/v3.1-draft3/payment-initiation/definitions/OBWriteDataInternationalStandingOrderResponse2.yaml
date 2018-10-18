@@ -1,0 +1,64 @@
+OBWriteDataInternationalStandingOrderResponse2:
+  type: object
+  properties:
+    InternationalStandingOrderId:
+      description: >-
+        OB: Unique identification as assigned by the ASPSP to uniquely identify
+        the international standing order resource.
+      type: string
+      minLength: 1
+      maxLength: 40
+    ConsentId:
+      description: >-
+        OB: Unique identification as assigned by the ASPSP to uniquely identify
+        the consent resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    CreationDateTime:
+      description: >-
+        Date and time at which the resource was created.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Status:
+      $ref: '#/definitions/OBExternalStatus1Code'
+    StatusUpdateDateTime:
+      description: >-
+        Date and time at which the resource status was updated.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Charges:
+      items:
+        $ref: '#/definitions/OBCharge2'
+      type: array
+      description: >-
+        Set of elements used to provide details of a charge for the payment
+        initiation.
+    Initiation:
+      $ref: '#/definitions/OBInternationalStandingOrder2'
+    MultiAuthorisation:
+      $ref: '#/definitions/OBMultiAuthorisation1'
+  required:
+    - InternationalStandingOrderId
+    - ConsentId
+    - CreationDateTime
+    - Status
+    - StatusUpdateDateTime
+    - Initiation
+  additionalProperties: false

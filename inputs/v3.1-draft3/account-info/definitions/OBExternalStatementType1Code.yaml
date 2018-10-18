@@ -1,0 +1,11 @@
+OBExternalStatementType1Code:
+  description: 'Statement type, in a coded form.'
+  type: string
+  example:
+    - UK.OBIE.AccountClosure
+    - UK.OBIE.AccountOpening
+    - UK.OBIE.Annual
+    - UK.OBIE.Interim
+    - UK.OBIE.RegularPeriodic
+  minLength: 1
+  maxLength: 40

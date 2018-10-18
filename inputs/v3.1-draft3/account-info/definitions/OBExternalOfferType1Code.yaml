@@ -1,0 +1,9 @@
+OBExternalOfferType1Code:
+  description: 'Offer type, in a coded form.'
+  type: string
+  enum:
+    - BalanceTransfer
+    - LimitIncrease
+    - MoneyTransfer
+    - Other
+    - PromotionalRate

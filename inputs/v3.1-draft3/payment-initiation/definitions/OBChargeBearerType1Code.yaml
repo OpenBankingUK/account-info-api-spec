@@ -1,0 +1,10 @@
+OBChargeBearerType1Code:
+  description: >-
+    Specifies which party/parties will bear the charges associated with the
+    processing of the payment transaction.
+  type: string
+  enum:
+    - BorneByCreditor
+    - BorneByDebtor
+    - FollowingServiceLevel
+    - Shared

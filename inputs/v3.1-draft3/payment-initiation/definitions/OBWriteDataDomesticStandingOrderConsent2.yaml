@@ -1,0 +1,13 @@
+OBWriteDataDomesticStandingOrderConsent2:
+  type: object
+  properties:
+    Permission:
+      $ref: '#/definitions/OBExternalPermissions2Code'
+    Initiation:
+      $ref: '#/definitions/OBDomesticStandingOrder2'
+    Authorisation:
+      $ref: '#/definitions/OBAuthorisation1'
+  required:
+    - Permission
+    - Initiation
+  additionalProperties: false

@@ -1,0 +1,21 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits";"Class, data type of a composition or attribute/MaxLength"
+"OBReadProduct2";"";"OBReadProduct2";"";"OBReadProduct2";"";"";"";"";""
+"Data";"1..1";"OBReadProduct2/Data";"";"OBReadDataProduct2";"";"";"";"";""
+"Product";"0..n";"OBReadProduct2/Data/Product";"";"OBProduct2";"";"";"";"";""
+"ProductName";"0..1";"OBReadProduct2/Data/Product/ProductName";"The name of the product used for marketing purposes from a customer perspective. I.e. what the customer would recognise.";"Max350Text";"";"";"";"";"350"
+"ProductId";"0..1";"OBReadProduct2/Data/Product/ProductId";"Identifier within the parent organisation for the product. Must be unique in the organisation.";"Max40Text";"";"";"";"";"40"
+"AccountId";"1..1";"OBReadProduct2/Data/Product/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";"";"40"
+"SecondaryProductId";"0..1";"OBReadProduct2/Data/Product/SecondaryProductId";"Identifier within the parent organisation for the product. Must be unique in the organisation.";"Max70Text";"";"";"";"";"70"
+"ProductType";"0..1";"OBReadProduct2/Data/Product/ProductType";"Descriptive code for the product category. 
+If ProductType - ""Other"" is chosen, the object OtherProductType must be populated with name, and description.";"OBExternalProductType1Code";"BusinessCurrentAccount
+CommercialCreditCard
+Other
+PersonalCurrentAccount
+SMELoan";"";"";"";"35"
+"MarketingStateId";"0..1";"OBReadProduct2/Data/Product/MarketingStateId";"Unique and unambiguous identification of a Product Marketing State.";"Max35Text";"";"";"";"";"35"
+"OtherProductType";"0..1";"OBReadProduct2/Data/Product/OtherProductType";"This field provides extension to the ProductType enumeration.
+If ProductType - ""Other"" is chosen, this field must be populated with name, and description for ASPSP specific product type.";"OBOtherProductType1";"";"";"";"";""
+"Name";"1..1";"OBReadProduct2/Data/Product/OtherProductType/Name";"Name of ""Other"" product type.";"Max350Text";"";"";"";"";"350"
+"Description";"1..1";"OBReadProduct2/Data/Product/OtherProductType/Description";"Description of ""Other"" product type.";"Max350Text";"";"";"";"";"350"
+"BCA";"0..1";"OBReadProduct2/Data/Product/BCA";"";"OBBCAData1";"";"";"";"";""
+"PCA";"0..1";"OBReadProduct2/Data/Product/PCA";"";"OBPCAData1";"";"";"";"";""

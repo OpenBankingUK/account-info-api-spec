@@ -1,0 +1,45 @@
+OBExchangeRate2:
+  description: >-
+    Further detailed information on the exchange rate that has been used in the
+    payment transaction.
+  type: object
+  properties:
+    UnitCurrency:
+      description: >-
+        Currency in which the rate of exchange is expressed in a currency
+        exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
+      type: string
+      pattern: '^[A-Z]{3,3}$'
+    ExchangeRate:
+      description: >-
+        The factor used for conversion of an amount from one currency to
+        another. This reflects the price at which one currency was bought with
+        another currency.
+      type: number
+    RateType:
+      $ref: '#/definitions/OBExchangeRateType2Code'
+    ContractIdentification:
+      description: >-
+        Unique and unambiguous reference to the foreign exchange contract agreed
+        between the initiating party/creditor and the debtor agent.
+      type: string
+      minLength: 1
+      maxLength: 256
+    ExpirationDateTime:
+      description: >-
+        Specified date and time the exchange rate agreement will expire.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+  required:
+    - UnitCurrency
+    - ExchangeRate
+    - RateType
+  additionalProperties: false
