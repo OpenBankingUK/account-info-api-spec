@@ -5,11 +5,11 @@
 "AccountId";"1..1";"OBReadStatement1/Data/Statement/AccountId";"A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.";"Max40Text";"";"";"";"";"40"
 "StatementId";"0..1";"OBReadStatement1/Data/Statement/StatementId";"Unique identifier for the statement resource within an servicing institution. This identifier is both unique and immutable.";"Max40Text";"";"";"";"";"40"
 "StatementReference";"0..1";"OBReadStatement1/Data/Statement/StatementReference";"Unique reference for the statement. This reference may be optionally populated if available.";"Max35Text";"";"";"";"";"35"
-"Type";"1..1";"OBReadStatement1/Data/Statement/Type";"Statement type, in a coded form.";"OBExternalStatementType1Code";"UK.OBIE.AccountClosure
-UK.OBIE.AccountOpening
-UK.OBIE.Annual
-UK.OBIE.Interim
-UK.OBIE.RegularPeriodic";"";"";"";"40"
+"Type";"1..1";"OBReadStatement1/Data/Statement/Type";"Statement type, in a coded form.";"OBExternalStatementType1Code";"AccountClosure
+AccountOpening
+Annual
+Interim
+RegularPeriodic";"";"";"";"40"
 "StartDateTime";"1..1";"OBReadStatement1/Data/Statement/StartDateTime";"Date and time at which the statement period starts.";"ISODateTime";"";"";"";"";""
 "EndDateTime";"1..1";"OBReadStatement1/Data/Statement/EndDateTime";"Date and time at which the statement period ends.";"ISODateTime";"";"";"";"";""
 "CreationDateTime";"1..1";"OBReadStatement1/Data/Statement/CreationDateTime";"Date and time at which the resource was created.";"ISODateTime";"";"";"";"";""
