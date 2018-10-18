@@ -1,0 +1,7 @@
+---
+  DomesticStandingOrderId: 
+    name: "DomesticStandingOrderId"
+    in: "path"
+    description: "DomesticStandingOrderId"
+    required: true
+    type: "string"

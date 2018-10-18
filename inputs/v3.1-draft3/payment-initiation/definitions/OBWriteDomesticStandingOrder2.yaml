@@ -1,0 +1,11 @@
+OBWriteDomesticStandingOrder2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataDomesticStandingOrder2'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

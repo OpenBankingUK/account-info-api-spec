@@ -151,6 +151,12 @@ const process = async (file, version, outputDir, permissionVariants) => {
     console.log(`\n=== Starting: ${apiName} ===\n`);
 
     const api = readYaml(file);
+    const versionMajorMinor = version.match(/v[0-9]+\.[0-9]+/);
+
+    // Copy new version number into base path (bespoke approach for OB)
+    if (api.basePath && !versionMajorMinor) throw new Error('Could not find version in version parameter');
+
+    api.basePath = api.basePath.replace(/v[0-9]+\.[0-9]+/, versionMajorMinor);
     importPaths(api, inputDir);
     importSection(api, inputDir, 'definitions');
     importSection(api, inputDir, 'parameters');

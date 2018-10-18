@@ -1,0 +1,14 @@
+OBExternalStatementValueType1Code:
+  description: Value associated with the statement value type.
+  type: string
+  example:
+    - UK.OBIE.AirMilesPoints
+    - UK.OBIE.AirMilesPointsBalance
+    - UK.OBIE.Credits
+    - UK.OBIE.Debits
+    - UK.OBIE.HotelPoints
+    - UK.OBIE.HotelPointsBalance
+    - UK.OBIE.RetailShoppingPoints
+    - UK.OBIE.RetailShoppingPointsBalance
+  minLength: 1
+  maxLength: 40

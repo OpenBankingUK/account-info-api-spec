@@ -1,0 +1,11 @@
+OBExternalStatementInterestType1Code:
+  description: 'Interest amount type, in a coded form.'
+  type: string
+  example:
+    - UK.OBIE.BalanceTransfer
+    - UK.OBIE.Cash
+    - UK.OBIE.EstimatedNext
+    - UK.OBIE.Purchase
+    - UK.OBIE.Total
+  minLength: 1
+  maxLength: 40

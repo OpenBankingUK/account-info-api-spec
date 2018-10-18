@@ -1,0 +1,8 @@
+OBFundsConfirmation1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBFundsConfirmationData1'
+  required:
+    - Data
+  additionalProperties: false

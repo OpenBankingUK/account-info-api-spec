@@ -1,0 +1,17 @@
+OBStatementRate1:
+  description: >-
+    Set of elements used to provide details of a generic rate related to the
+    statement resource.
+  type: object
+  properties:
+    Rate:
+      $ref: '#/definitions/OBExternalStatementRateType1Code'
+    Type:
+      description: 'Statement rate type, in a coded form.'
+      type: string
+      minLength: 1
+      maxLength: 40
+  required:
+    - Rate
+    - Type
+  additionalProperties: false

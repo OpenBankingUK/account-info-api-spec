@@ -1,0 +1,8 @@
+OBWriteFileConsent2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataFileConsent2'
+  required:
+    - Data
+  additionalProperties: false

@@ -1,0 +1,20 @@
+OBReadBeneficiary2:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        Beneficiary:
+          items:
+            $ref: '#/definitions/OBBeneficiary2'
+          type: array
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

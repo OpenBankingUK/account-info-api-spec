@@ -1,0 +1,11 @@
+OBWriteInternationalConsent2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataInternationalConsent2'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

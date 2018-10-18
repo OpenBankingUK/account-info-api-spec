@@ -1,0 +1,34 @@
+OBBeneficiary3:
+  type: object
+  properties:
+    AccountId:
+      $ref: '#/definitions/AccountId'
+    BeneficiaryId:
+      description: >-
+        A unique and immutable identifier used to identify the beneficiary
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40
+    Reference:
+      description: >-
+        Unique reference, as assigned by the creditor, to unambiguously refer to
+        the payment transaction.
+
+        Usage: If available, the initiating party should provide this reference
+        in the structured remittance information, to enable reconciliation by
+        the creditor upon receipt of the amount of money.
+
+        If the business context requires the use of a creditor reference or a
+        payment remit identification, and only one identifier can be passed
+        through the end-to-end chain, the creditor's reference or payment
+        remittance identification should be quoted in the end-to-end transaction
+        identification.
+      type: string
+      minLength: 1
+      maxLength: 35
+    CreditorAgent:
+      $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification6'
+    CreditorAccount:
+      $ref: '#/definitions/OBCashAccount5'
+  additionalProperties: false

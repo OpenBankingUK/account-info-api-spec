@@ -1,0 +1,7 @@
+---
+  x-fapi-customer-ip-address-Param: 
+    in: "header"
+    name: "x-fapi-customer-ip-address"
+    type: "string"
+    required: false
+    description: "The PSU's IP address if the PSU is currently logged in with the TPP."
