@@ -1,0 +1,18 @@
+OBTransaction4:
+  allOf:
+    - $ref: '#/definitions/OBTransaction4Basic'
+    - properties:
+        TransactionInformation:
+          $ref: '#/definitions/TransactionInformation'
+        Balance:
+          $ref: '#/definitions/OBTransactionCashBalance'
+        MerchantDetails:
+          $ref: '#/definitions/OBMerchantDetails1'
+        CreditorAgent:
+          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification6'
+        CreditorAccount:
+          $ref: '#/definitions/OBCashAccount6'
+        DebtorAgent:
+          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification6'
+        DebtorAccount:
+          $ref: '#/definitions/OBCashAccount6'

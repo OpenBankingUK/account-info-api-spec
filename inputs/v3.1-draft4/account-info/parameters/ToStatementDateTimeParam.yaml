@@ -1,0 +1,7 @@
+---
+  ToStatementDateTimeParam: 
+    in: "query"
+    name: "toStatementDateTime"
+    type: "string"
+    format: "date-time"
+    description: "The UTC ISO 8601 Date Time to filter statements TO\nNB Time component is optional - set to 00:00:00 for just Date.\nIf the Date Time contains a timezone, the ASPSP must ignore the timezone component."

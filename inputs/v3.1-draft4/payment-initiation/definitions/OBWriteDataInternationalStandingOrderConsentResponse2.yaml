@@ -1,0 +1,72 @@
+OBWriteDataInternationalStandingOrderConsentResponse2:
+  type: object
+  properties:
+    ConsentId:
+      description: >-
+        OB: Unique identification as assigned by the ASPSP to uniquely identify
+        the consent resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    CreationDateTime:
+      description: >-
+        Date and time at which the resource was created.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Status:
+      $ref: '#/definitions/OBExternalConsentStatus1Code'
+    StatusUpdateDateTime:
+      description: >-
+        Date and time at which the resource status was updated.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Permission:
+      $ref: '#/definitions/OBExternalPermissions2Code'
+    CutOffDateTime:
+      description: >-
+        Specified cut-off date and time for the payment consent.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    Charges:
+      items:
+        $ref: '#/definitions/OBCharge2'
+      type: array
+      description: >-
+        Set of elements used to provide details of a charge for the payment
+        initiation.
+    Initiation:
+      $ref: '#/definitions/OBInternationalStandingOrder2'
+    Authorisation:
+      $ref: '#/definitions/OBAuthorisation1'
+  required:
+    - ConsentId
+    - CreationDateTime
+    - Status
+    - StatusUpdateDateTime
+    - Permission
+    - Initiation
+  additionalProperties: false

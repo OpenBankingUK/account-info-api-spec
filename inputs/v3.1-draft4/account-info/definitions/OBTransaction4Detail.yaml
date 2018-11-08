@@ -1,0 +1,3 @@
+OBTransaction4Detail:
+  allOf:
+    - $ref: '#/definitions/OBTransaction4'

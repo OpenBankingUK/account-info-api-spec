@@ -1,0 +1,30 @@
+OBExternalStatementAmountType1Code:
+  description: 'Amount type, in a coded form.'
+  type: string
+  example:
+    - UK.OBIE.ArrearsClosingBalance
+    - UK.OBIE.AvailableBalance
+    - UK.OBIE.AverageBalanceWhenInCredit
+    - UK.OBIE.AverageBalanceWhenInDebit
+    - UK.OBIE.AverageDailyBalance
+    - UK.OBIE.BalanceTransferClosingBalance
+    - UK.OBIE.CashClosingBalance
+    - UK.OBIE.ClosingBalance
+    - UK.OBIE.CreditLimit
+    - UK.OBIE.CurrentPayment
+    - UK.OBIE.DirectDebitPaymentDue
+    - UK.OBIE.FSCSInsurance
+    - UK.OBIE.MinimumPaymentDue
+    - UK.OBIE.PendingTransactionsBalance
+    - UK.OBIE.PreviousClosingBalance
+    - UK.OBIE.PreviousPayment
+    - UK.OBIE.PurchaseClosingBalance
+    - UK.OBIE.StartingBalance
+    - UK.OBIE.TotalAdjustments
+    - UK.OBIE.TotalCashAdvances
+    - UK.OBIE.TotalCharges
+    - UK.OBIE.TotalCredits
+    - UK.OBIE.TotalDebits
+    - UK.OBIE.TotalPurchases
+  minLength: 1
+  maxLength: 40

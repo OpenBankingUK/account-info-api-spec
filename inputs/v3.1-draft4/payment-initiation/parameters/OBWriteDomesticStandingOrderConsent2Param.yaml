@@ -1,0 +1,8 @@
+---
+  OBWriteDomesticStandingOrderConsent2Param: 
+    name: "OBWriteDomesticStandingOrderConsent2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteDomesticStandingOrderConsent2"

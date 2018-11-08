@@ -1,0 +1,408 @@
+---
+  swagger: "2.0"
+  info: 
+    title: "Account and Transaction API Specification"
+    description: "Swagger for Account and Transaction API Specification"
+    termsOfService: "https://www.openbanking.org.uk/terms"
+    contact: 
+      name: "Service Desk"
+      email: "ServiceDesk@openbanking.org.uk"
+    license: 
+      name: "open-licence"
+      url: "https://www.openbanking.org.uk/open-licence"
+    version: "v3.0-draft-7"
+  basePath: "/open-banking/v3.0/aisp"
+  schemes: 
+    - "https"
+  consumes:
+    - "application/json; charset=utf-8"
+  produces: 
+    - "application/json; charset=utf-8"
+  paths: 
+    /account-access-consents: 
+      - 
+        $ref: "./paths/CreateAccountAccessConsents.yaml"
+    /account-access-consents/{ConsentId}: 
+      - 
+        $ref: "./paths/GetAccountAccessConsentsConsentId.yaml"
+      - 
+        $ref: "./paths/DeleteAccountAccessConsentsConsentId.yaml"
+    /accounts: 
+      - 
+        $ref: "./paths/GetAccounts.yaml"
+    /accounts/{AccountId}: 
+      - 
+        $ref: "./paths/GetAccountsAccountId.yaml"
+    /accounts/{AccountId}/balances: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdBalances.yaml"
+    /accounts/{AccountId}/beneficiaries: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdBeneficiaries.yaml"
+    /accounts/{AccountId}/direct-debits: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdDirectDebits.yaml"
+    /accounts/{AccountId}/offers: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdOffers.yaml"
+    /accounts/{AccountId}/party: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdParty.yaml"
+    /accounts/{AccountId}/product: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdProduct.yaml"
+    /accounts/{AccountId}/scheduled-payments: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdScheduledPayments.yaml"
+    /accounts/{AccountId}/standing-orders: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdStandingOrders.yaml"
+    /accounts/{AccountId}/statements: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdStatements.yaml"
+    /accounts/{AccountId}/statements/{StatementId}: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdStatementsStatementId.yaml"
+    /accounts/{AccountId}/statements/{StatementId}/file: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdStatementsStatementIdFile.yaml"
+    /accounts/{AccountId}/statements/{StatementId}/transactions: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdStatementsStatementIdTransactions.yaml"
+    /accounts/{AccountId}/transactions: 
+      - 
+        $ref: "./paths/GetAccountsAccountIdTransactions.yaml"
+    /balances: 
+      - 
+        $ref: "./paths/GetBalances.yaml"
+    /beneficiaries: 
+      - 
+        $ref: "./paths/GetBeneficiaries.yaml"
+    /direct-debits: 
+      - 
+        $ref: "./paths/GetDirectDebits.yaml"
+    /offers: 
+      - 
+        $ref: "./paths/GetOffers.yaml"
+    /party: 
+      - 
+        $ref: "./paths/GetParty.yaml"
+    /products: 
+      - 
+        $ref: "./paths/GetProducts.yaml"
+    /scheduled-payments: 
+      - 
+        $ref: "./paths/GetScheduledPayments.yaml"
+    /standing-orders: 
+      - 
+        $ref: "./paths/GetStandingOrders.yaml"
+    /statements: 
+      - 
+        $ref: "./paths/GetStatements.yaml"
+    /transactions: 
+      - 
+        $ref: "./paths/GetTransactions.yaml"
+  parameters: 
+    - 
+      $ref: "./parameters/FromBookingDateTimeParam.yaml"
+    - 
+      $ref: "./parameters/ToBookingDateTimeParam.yaml"
+    - 
+      $ref: "./parameters/FromStatementDateTimeParam.yaml"
+    - 
+      $ref: "./parameters/ToStatementDateTimeParam.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-financial-id-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-customer-ip-address-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-interaction-id-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-fapi-customer-last-logged-time-Param.yaml"
+    - 
+      $ref: "../readwrite/parameters/AuthorizationParam.yaml"
+    - 
+      $ref: "./parameters/AccountId.yaml"
+    - 
+      $ref: "./parameters/OBReadConsent1Param.yaml"
+    - 
+      $ref: "./parameters/ConsentId.yaml"
+    - 
+      $ref: "./parameters/StatementId.yaml"
+    - 
+      $ref: "../readwrite/parameters/x-customer-user-agent-Param.yaml"
+  responses: 
+    - 
+      $ref: "./responses/200AccountsAccountIdProductRead.yaml"
+    - 
+      $ref: "./responses/200ProductsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdScheduledPaymentsRead.yaml"
+    - 
+      $ref: "./responses/200ScheduledPaymentsRead.yaml"
+    - 
+      $ref: "./responses/201AccountAccessConsentsCreated.yaml"
+    - 
+      $ref: "./responses/200AccountAccessConsentsConsentIdRead.yaml"
+    - 
+      $ref: "./responses/204AccountAccessConsentsConsentIdDeleted.yaml"
+    - 
+      $ref: "./responses/200AccountsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdTransactionsRead.yaml"
+    - 
+      $ref: "./responses/200TransactionsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdDirectDebitsRead.yaml"
+    - 
+      $ref: "./responses/200DirectDebitsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsStatementIdRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsStatementIdFileRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStatementsStatementIdTransactionsRead.yaml"
+    - 
+      $ref: "./responses/200StatementsRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdPartyRead.yaml"
+    - 
+      $ref: "./responses/200PartyRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdStandingOrdersRead.yaml"
+    - 
+      $ref: "./responses/200StandingOrdersRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdBalancesRead.yaml"
+    - 
+      $ref: "./responses/200BalancesRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdBeneficiariesRead.yaml"
+    - 
+      $ref: "./responses/200BeneficiariesRead.yaml"
+    - 
+      $ref: "./responses/200AccountsAccountIdOffersRead.yaml"
+    - 
+      $ref: "./responses/200OffersRead.yaml"
+    - 
+      $ref: "../readwrite/responses/400ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/401ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/403ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/404ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/405ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/406ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/415ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/429ErrorResponse.yaml"
+    - 
+      $ref: "../readwrite/responses/500ErrorResponse.yaml"
+  securityDefinitions: 
+    - 
+      $ref: "./securityDefinitions/PSUOAuth2Security.yaml"
+    - 
+      $ref: "./securityDefinitions/TPPOAuth2Security.yaml"
+  definitions: 
+    - 
+      $ref: "./definitions/AccountId.yaml"
+    - 
+      $ref: "./definitions/OBAccount3.yaml"
+    - 
+      $ref: "./definitions/OBAccount3Basic.yaml"
+    - 
+      $ref: "./definitions/OBAccount3Detail.yaml"
+    - 
+      $ref: "./definitions/OBActiveCurrencyAndAmount_SimpleType.yaml"
+    - 
+      $ref: "./definitions/OBActiveOrHistoricCurrencyAndAmount.yaml"
+    - 
+      $ref: "./definitions/OBAddressTypeCode.yaml"
+    - 
+      $ref: "./definitions/OBBCAData1.yaml"
+    - 
+      $ref: "./definitions/OBBalanceType1Code.yaml"
+    - 
+      $ref: "./definitions/OBBankTransactionCodeStructure1.yaml"
+    - 
+      $ref: "./definitions/OBBeneficiary3.yaml"
+    - 
+      $ref: "./definitions/OBBeneficiary3Basic.yaml"
+    - 
+      $ref: "./definitions/OBBeneficiary3Detail.yaml"
+    - 
+      $ref: "./definitions/OBCashBalance1.yaml"
+    - 
+      $ref: "./definitions/OBCreditDebitCode.yaml"
+    - 
+      $ref: "./definitions/OBCreditLine1.yaml"
+    - 
+      $ref: "./definitions/OBCurrencyExchange5.yaml"
+    - 
+      $ref: "./definitions/OBDirectDebit1.yaml"
+    - 
+      $ref: "./definitions/OBEntryStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalAccountSubType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalAccountType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalCardAuthorisationType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalCardSchemeType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalDirectDebitStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalLimitType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalOfferType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalPartyType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalPermissions1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalProductType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalRequestStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalScheduleType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStandingOrderStatus1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementType1Code.yaml"
+    - 
+      $ref: "./definitions/OBMerchantDetails1.yaml"
+    - 
+      $ref: "./definitions/OBOffer1.yaml"
+    - 
+      $ref: "./definitions/OBPCAData1.yaml"
+    - 
+      $ref: "./definitions/OBParty1.yaml"
+    - 
+      $ref: "./definitions/OBPostalAddress6.yaml"
+    - 
+      $ref: "./definitions/OBPostalAddress8.yaml"
+    - 
+      $ref: "./definitions/OBProduct2.yaml"
+    - 
+      $ref: "./definitions/OBReadAccount3.yaml"
+    - 
+      $ref: "./definitions/OBReadBalance1.yaml"
+    - 
+      $ref: "./definitions/OBReadBeneficiary3.yaml"
+    - 
+      $ref: "./definitions/OBReadConsent1.yaml"
+    - 
+      $ref: "./definitions/OBReadConsentResponse1.yaml"
+    - 
+      $ref: "./definitions/OBReadData1.yaml"
+    - 
+      $ref: "./definitions/OBReadDirectDebit1.yaml"
+    - 
+      $ref: "./definitions/OBReadOffer1.yaml"
+    - 
+      $ref: "./definitions/OBReadParty1.yaml"
+    - 
+      $ref: "./definitions/OBReadProduct2.yaml"
+    - 
+      $ref: "./definitions/OBReadScheduledPayment2.yaml"
+    - 
+      $ref: "./definitions/OBReadStandingOrder4.yaml"
+    - 
+      $ref: "./definitions/OBReadStatement1.yaml"
+    - 
+      $ref: "./definitions/OBReadTransaction4.yaml"
+    - 
+      $ref: "./definitions/OBScheduledPayment2.yaml"
+    - 
+      $ref: "./definitions/OBScheduledPayment2Basic.yaml"
+    - 
+      $ref: "./definitions/OBScheduledPayment2Detail.yaml"
+    - 
+      $ref: "./definitions/OBStandingOrder4.yaml"
+    - 
+      $ref: "./definitions/OBStandingOrder4Basic.yaml"
+    - 
+      $ref: "./definitions/OBStandingOrder4Detail.yaml"
+    - 
+      $ref: "./definitions/OBStatement1.yaml"
+    - 
+      $ref: "./definitions/OBStatement1Basic.yaml"
+    - 
+      $ref: "./definitions/OBStatement1Detail.yaml"
+    - 
+      $ref: "./definitions/OBStatementAmount1.yaml"
+    - 
+      $ref: "./definitions/OBStatementBenefit1.yaml"
+    - 
+      $ref: "./definitions/OBStatementDateTime1.yaml"
+    - 
+      $ref: "./definitions/OBStatementFee1.yaml"
+    - 
+      $ref: "./definitions/OBStatementInterest1.yaml"
+    - 
+      $ref: "./definitions/OBStatementRate1.yaml"
+    - 
+      $ref: "./definitions/OBStatementValue1.yaml"
+    - 
+      $ref: "./definitions/OBTransaction4.yaml"
+    - 
+      $ref: "./definitions/OBTransaction4Basic.yaml"
+    - 
+      $ref: "./definitions/OBTransaction4Detail.yaml"
+    - 
+      $ref: "./definitions/OBTransactionCardInstrument1.yaml"
+    - 
+      $ref: "./definitions/OBTransactionCashBalance.yaml"
+    - 
+      $ref: "./definitions/TransactionInformation.yaml"
+    - 
+      $ref: "./definitions/OBOtherProductType1.yaml"
+    - 
+      $ref: "./definitions/OBSupplementaryData1.yaml"
+    - 
+      $ref: "./definitions/OBBranchAndFinancialInstitutionIdentification5.yaml"
+    - 
+      $ref: "./definitions/OBExternalFinancialInstitutionIdentification4Code.yaml"
+    - 
+      $ref: "./definitions/OBCashAccount5.yaml"
+    - 
+      $ref: "./definitions/OBCashAccount6.yaml"
+    - 
+      $ref: "./definitions/OBExternalAccountIdentification4Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementBenefitType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementFeeType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementInterestType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementDateTimeType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementRateType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementValueType1Code.yaml"
+    - 
+      $ref: "./definitions/OBExternalStatementAmountType1Code.yaml"
+    - 
+      $ref: "./definitions/OBBranchAndFinancialInstitutionIdentification6.yaml"
+    - 
+      $ref: "../readwrite/definitions/OBError1.yaml"
+    - 
+      $ref: "../readwrite/definitions/OBErrorResponse1.yaml"
+    - 
+      $ref: "../readwrite/definitions/ISODateTime.yaml"
+    - 
+      $ref: "../readwrite/definitions/Links.yaml"
+    - 
+      $ref: "../readwrite/definitions/Meta.yaml"
+    - 
+      $ref: "../readwrite/definitions/OBRisk2.yaml"

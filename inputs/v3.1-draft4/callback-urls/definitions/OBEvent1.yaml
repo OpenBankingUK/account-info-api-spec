@@ -1,0 +1,9 @@
+OBEvent1:
+  description: Events.
+  type: object
+  properties:
+    'urn:uk:org:openbanking:events:resource-update':
+      $ref: '#/definitions/OBEventResourceUpdate1'
+  required:
+    - 'urn:uk:org:openbanking:events:resource-update'
+  additionalProperties: false

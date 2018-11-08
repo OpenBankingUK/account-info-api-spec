@@ -1,0 +1,50 @@
+OBFundsConfirmationDataResponse1:
+  type: object
+  properties:
+    FundsConfirmationId:
+      description: >-
+        Unique identification as assigned by the ASPSP to uniquely identify the
+        funds confirmation resource.
+      type: string
+      minLength: 1
+      maxLength: 40
+    ConsentId:
+      description: >-
+        Unique identification as assigned by the ASPSP to uniquely identify the
+        funds confirmation consent resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    CreationDateTime:
+      description: >-
+        Date and time at which the resource was created.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    FundsAvailable:
+      description: Flag to indicate the result of a confirmation of funds check.
+      type: boolean
+    Reference:
+      description: >-
+        Unique reference, as assigned by the CBPII, to unambiguously refer to
+        the request related to the payment transaction.
+      type: string
+      minLength: 1
+      maxLength: 35
+    InstructedAmount:
+      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+  required:
+    - FundsConfirmationId
+    - ConsentId
+    - CreationDateTime
+    - FundsAvailable
+    - Reference
+    - InstructedAmount
+  additionalProperties: false

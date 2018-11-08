@@ -1,0 +1,5 @@
+"Composition or Attribute/Name";"Composition or Attribute/Occurrence";"Composition or Attribute/XPath";"Notes/EnhancedDefinition";"Class, data type of a composition or attribute/Name";"Class, data type of a composition or attribute/Codes";"Class, data type of a composition or attribute/Pattern";"Class, data type of a composition or attribute/TotalDigits";"Class, data type of a composition or attribute/FractionDigits"
+"OBCallbackUrl1";"";"OBCallbackUrl1";"";"OBCallbackUrl1";"";"";"";""
+"Data";"1..1";"OBCallbackUrl1/Data";"";"OBCallbackUrlData1";"";"";"";""
+"Url";"1..1";"OBCallbackUrl1/Data/Url";"Callback URL for a TPP hosted service. Will be used by ASPSPs, in conjunction with the resource name, to construct a URL to send event notifications to.";"xs:anyURI";"";"";"";""
+"Version";"1..1";"OBCallbackUrl1/Data/Version";"Version for the event notification.";"Max10Text";"";"";"";""

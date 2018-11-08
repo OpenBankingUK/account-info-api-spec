@@ -1,0 +1,17 @@
+OBMerchantDetails1:
+  description: Details of the merchant involved in the transaction.
+  type: object
+  properties:
+    MerchantName:
+      description: Name by which the merchant is known.
+      type: string
+      minLength: 1
+      maxLength: 350
+    MerchantCategoryCode:
+      description: >-
+        Category code conform to ISO 18245, related to the type of services or
+        goods the merchant provides for the transaction.
+      type: string
+      minLength: 3
+      maxLength: 4
+  additionalProperties: false

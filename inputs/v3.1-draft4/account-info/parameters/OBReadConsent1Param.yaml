@@ -1,0 +1,8 @@
+---
+  OBReadConsent1Param: 
+    name: "OBReadConsent1Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBReadConsent1"

@@ -1,0 +1,7 @@
+OBExternalPaymentChargeType1Code:
+  description: 'Charge type, in a coded form.'
+  type: string
+  example:
+    - UK.OBIE.CHAPSOut
+  minLength: 1
+  maxLength: 40

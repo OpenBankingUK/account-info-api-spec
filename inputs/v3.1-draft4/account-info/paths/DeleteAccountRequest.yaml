@@ -1,0 +1,31 @@
+delete:
+  tags:
+    - Account Requests
+  summary: Delete an account request
+  description: Delete an account request
+  operationId: DeleteAccountRequest
+  parameters:
+    - $ref: '#/parameters/AccountRequestIdParam'
+    - $ref: '#/parameters/x-fapi-financial-id-Param'
+    - $ref: '#/parameters/AuthorizationParam'
+    - $ref: '#/parameters/x-customer-user-agent-Param'
+  responses:
+    '204':
+      $ref: '#/responses/204AccountRequestDeleted'
+    '400':
+      $ref: '#/responses/400ErrorResponse'
+    '401':
+      $ref: '#/responses/401ErrorResponse'
+    '403':
+      $ref: '#/responses/403ErrorResponse'
+    '405':
+      $ref: '#/responses/405ErrorResponse'
+    '406':
+      $ref: '#/responses/406ErrorResponse'
+    '429':
+      $ref: '#/responses/429ErrorResponse'
+    '500':
+      $ref: '#/responses/500ErrorResponse'
+  security:
+    - TPPOAuth2Security:
+        - accounts

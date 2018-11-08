@@ -1,0 +1,5 @@
+OBAccount3Detail:
+  allOf:
+    - $ref: '#/definitions/OBAccount3'
+    - required:
+        - Account

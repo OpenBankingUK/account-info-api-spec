@@ -1,0 +1,8 @@
+OBStandingOrder4:
+  allOf:
+    - $ref: '#/definitions/OBStandingOrder4Basic'
+    - properties:
+        CreditorAgent:
+          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification5'
+        CreditorAccount:
+          $ref: '#/definitions/OBCashAccount5'

@@ -1,0 +1,8 @@
+---
+  OBWriteStandingOrder2Param: 
+    name: "OBWriteStandingOrder2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteStandingOrder2"

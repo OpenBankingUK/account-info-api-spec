@@ -1,0 +1,8 @@
+---
+  OBWriteInternationalStandingOrder2Param: 
+    name: "OBWriteInternationalStandingOrder2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteInternationalStandingOrder2"

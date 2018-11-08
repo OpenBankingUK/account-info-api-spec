@@ -1,0 +1,8 @@
+OBBeneficiary3:
+  allOf:
+    - $ref: '#/definitions/OBBeneficiary3Basic'
+    - properties:
+        CreditorAgent:
+          $ref: '#/definitions/OBBranchAndFinancialInstitutionIdentification6'
+        CreditorAccount:
+          $ref: '#/definitions/OBCashAccount5'

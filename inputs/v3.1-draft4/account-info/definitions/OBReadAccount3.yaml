@@ -1,0 +1,23 @@
+OBReadAccount3:
+  type: object
+  properties:
+    Data:
+      type: object
+      properties:
+        Account:
+          items:
+            $ref: '#/definitions/OBAccount3'
+          type: array
+          description: >-
+            Unambiguous identification of the account to which credit and debit
+            entries are made.
+      additionalProperties: false
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false

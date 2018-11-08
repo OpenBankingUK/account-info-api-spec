@@ -1,0 +1,19 @@
+OBCharge2:
+  description: >-
+    Set of elements used to provide details of a charge for the payment
+    initiation.
+  type: object
+  properties:
+    ChargeBearer:
+      $ref: '#/definitions/OBChargeBearerType1Code'
+    Type:
+      $ref: '#/definitions/OBExternalPaymentChargeType1Code'
+    Amount:
+      allOf:
+        - $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+        - description: Amount of money associated with the charge type.
+  required:
+    - ChargeBearer
+    - Type
+    - Amount
+  additionalProperties: false

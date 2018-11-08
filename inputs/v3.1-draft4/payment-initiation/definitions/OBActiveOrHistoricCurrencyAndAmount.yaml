@@ -1,0 +1,12 @@
+OBActiveOrHistoricCurrencyAndAmount:
+  type: object
+  properties:
+    Amount:
+      $ref: '#/definitions/OBActiveCurrencyAndAmount_SimpleType'
+    Currency:
+      type: string
+      pattern: '^[A-Z]{3,3}$'
+  required:
+    - Amount
+    - Currency
+  additionalProperties: false

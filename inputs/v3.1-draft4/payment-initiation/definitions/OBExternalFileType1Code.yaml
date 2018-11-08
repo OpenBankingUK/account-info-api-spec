@@ -1,0 +1,8 @@
+OBExternalFileType1Code:
+  description: Specifies the payment file type.
+  type: string
+  example:
+    - UK.OBIE.PaymentInitiation.3.1
+    - UK.OBIE.pain.001.001.08
+  minLength: 1
+  maxLength: 40

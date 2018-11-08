@@ -1,0 +1,5 @@
+OBScheduledPayment2Detail:
+  allOf:
+    - $ref: '#/definitions/OBScheduledPayment2'
+    - required:
+        - CreditorAccount

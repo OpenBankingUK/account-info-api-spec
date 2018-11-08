@@ -1,0 +1,5 @@
+OBExternalPermissions2Code:
+  description: Specifies the Open Banking service request types.
+  type: string
+  enum:
+    - Create

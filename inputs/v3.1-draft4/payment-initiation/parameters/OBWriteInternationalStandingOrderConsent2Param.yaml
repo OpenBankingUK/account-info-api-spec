@@ -1,0 +1,8 @@
+---
+  OBWriteInternationalStandingOrderConsent2Param: 
+    name: "OBWriteInternationalStandingOrderConsent2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteInternationalStandingOrderConsent2"

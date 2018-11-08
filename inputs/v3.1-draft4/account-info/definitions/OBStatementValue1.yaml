@@ -1,0 +1,16 @@
+OBStatementValue1:
+  description: >-
+    Set of elements used to provide details of a generic number value related to
+    the statement resource.
+  type: object
+  properties:
+    Value:
+      description: Value associated with the statement value type.
+      type: integer
+      format: int32
+    Type:
+      $ref: '#/definitions/OBExternalStatementValueType1Code'
+  required:
+    - Value
+    - Type
+  additionalProperties: false

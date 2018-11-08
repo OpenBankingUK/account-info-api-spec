@@ -1,0 +1,18 @@
+OBCallbackUrlData1:
+  type: object
+  properties:
+    Url:
+      description: >-
+        Callback URL for a TPP hosted service. Will be used by ASPSPs, in
+        conjunction with the resource name, to construct a URL to send event
+        notifications to.
+      type: string
+    Version:
+      description: Version for the event notification.
+      type: string
+      minLength: 1
+      maxLength: 10
+  required:
+    - Url
+    - Version
+  additionalProperties: false

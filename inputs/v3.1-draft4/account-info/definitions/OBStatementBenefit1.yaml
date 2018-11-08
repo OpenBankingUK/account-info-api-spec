@@ -1,0 +1,14 @@
+OBStatementBenefit1:
+  description: >-
+    Set of elements used to provide details of a benefit or reward amount for
+    the statement resource.
+  type: object
+  properties:
+    Type:
+      $ref: '#/definitions/OBExternalStatementBenefitType1Code'
+    Amount:
+      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+  required:
+    - Type
+    - Amount
+  additionalProperties: false

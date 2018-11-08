@@ -1,0 +1,8 @@
+OBCallbackUrlsResponseData1:
+  type: object
+  properties:
+    CallbackUrl:
+      items:
+        $ref: '#/definitions/OBCallbackUrlResponseData1'
+      type: array
+  additionalProperties: false
