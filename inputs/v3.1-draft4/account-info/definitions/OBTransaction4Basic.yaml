@@ -1,0 +1,123 @@
+OBTransaction4Basic:
+  description: Provides further details on an entry in the report.
+  type: object
+  properties:
+    AccountId:
+      $ref: '#/definitions/AccountId'
+    TransactionId:
+      description: >-
+        Unique identifier for the transaction within an servicing institution.
+        This identifier is both unique and immutable.
+      type: string
+      minLength: 1
+      maxLength: 40
+    TransactionReference:
+      description: >-
+        Unique reference for the transaction. This reference is optionally
+        populated, and may as an example be the FPID in the Faster Payments
+        context.
+      type: string
+      minLength: 1
+      maxLength: 35
+    StatementReference:
+      items:
+        type: string
+        minLength: 1
+        maxLength: 35
+      type: array
+      description: >-
+        Unique reference for the statement. This reference may be optionally
+        populated if available.
+    CreditDebitIndicator:
+      allOf:
+        - $ref: '#/definitions/OBCreditDebitCode'
+        - description: Indicates whether the transaction is a credit or a debit entry.
+    Status:
+      $ref: '#/definitions/OBEntryStatus1Code'
+    BookingDateTime:
+      description: >-
+        Date and time when a transaction entry is posted to an account on the
+        account servicer's books.
+
+        Usage: Booking date is the expected booking date, unless the status is
+        booked, in which case it is the actual booking date.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    ValueDateTime:
+      description: >-
+        Date and time at which assets become available to the account owner in
+        case of a credit entry, or cease to be available to the account owner in
+        case of a debit transaction entry.
+
+        Usage: If transaction entry status is pending and value date is present,
+        then the value date refers to an expected/requested value date.
+
+        For transaction entries subject to availability/float and for which
+        availability information is provided, the value date must not be used.
+        In this case the availability component identifies the number of
+        availability days.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    AddressLine:
+      description: >-
+        Information that locates and identifies a specific address for a
+        transaction entry, that is presented in free format text.
+      type: string
+      minLength: 1
+      maxLength: 70
+    Amount:
+      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+    ChargeAmount:
+      $ref: '#/definitions/OBActiveOrHistoricCurrencyAndAmount'
+    CurrencyExchange:
+      $ref: '#/definitions/OBCurrencyExchange5'
+    BankTransactionCode:
+      $ref: '#/definitions/OBBankTransactionCodeStructure1'
+    ProprietaryBankTransactionCode:
+      description: Set of elements to fully identify a proprietary bank transaction code.
+      type: object
+      properties:
+        Code:
+          description: >-
+            Proprietary bank transaction code to identify the underlying
+            transaction.
+          type: string
+          minLength: 1
+          maxLength: 35
+        Issuer:
+          description: >-
+            Identification of the issuer of the proprietary bank transaction
+            code.
+          type: string
+          minLength: 1
+          maxLength: 35
+      required:
+        - Code
+      additionalProperties: false
+    CardInstrument:
+      $ref: '#/definitions/OBTransactionCardInstrument1'
+    SupplementaryData:
+      $ref: '#/definitions/OBSupplementaryData1'
+  required:
+    - AccountId
+    - CreditDebitIndicator
+    - Status
+    - BookingDateTime
+    - Amount
+  additionalProperties: false

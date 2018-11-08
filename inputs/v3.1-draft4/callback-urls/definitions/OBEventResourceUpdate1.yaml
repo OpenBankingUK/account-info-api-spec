@@ -1,0 +1,9 @@
+OBEventResourceUpdate1:
+  description: Resource-Update Event.
+  type: object
+  properties:
+    subject:
+      $ref: '#/definitions/OBEventSubject1'
+  required:
+    - subject
+  additionalProperties: false

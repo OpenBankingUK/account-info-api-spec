@@ -1,0 +1,7 @@
+---
+  AccountId: 
+    name: "AccountId"
+    in: "path"
+    description: "AccountId"
+    required: true
+    type: "string"

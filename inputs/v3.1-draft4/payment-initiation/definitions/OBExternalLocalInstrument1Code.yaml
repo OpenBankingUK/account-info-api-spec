@@ -1,0 +1,22 @@
+OBExternalLocalInstrument1Code:
+  description: >-
+    User community specific instrument.
+
+    Usage: This element is used to specify a local instrument, local clearing
+    option and/or further qualify the service or service level.
+  type: string
+  example:
+    - UK.OBIE.BACS
+    - UK.OBIE.BalanceTransfer
+    - UK.OBIE.CHAPS
+    - UK.OBIE.Euro1
+    - UK.OBIE.FPS
+    - UK.OBIE.Link
+    - UK.OBIE.MoneyTransfer
+    - UK.OBIE.Paym
+    - UK.OBIE.SEPACreditTransfer
+    - UK.OBIE.SEPAInstantCreditTransfer
+    - UK.OBIE.SWIFT
+    - UK.OBIE.Target2
+  minLength: 1
+  maxLength: 50

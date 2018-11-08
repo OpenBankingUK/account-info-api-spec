@@ -1,0 +1,11 @@
+OBWriteInternationalScheduled2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataInternationalScheduled2'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+  required:
+    - Data
+    - Risk
+  additionalProperties: false

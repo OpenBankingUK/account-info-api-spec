@@ -1,0 +1,39 @@
+post:
+  tags:
+    - International Scheduled Payments
+  summary: Create International Scheduled Payment Consents
+  operationId: CreateInternationalScheduledPaymentConsents
+  parameters:
+    - $ref: '#/parameters/OBWriteInternationalScheduledConsent2Param'
+    - $ref: '#/parameters/x-fapi-financial-id-Param'
+    - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+    - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
+    - $ref: '#/parameters/x-fapi-interaction-id-Param'
+    - $ref: '#/parameters/AuthorizationParam'
+    - $ref: '#/parameters/x-idempotency-key'
+    - $ref: '#/parameters/x-jws-signature-Param'
+    - $ref: '#/parameters/x-customer-user-agent-Param'
+  responses:
+    '201':
+      $ref: '#/responses/201InternationalScheduledPaymentConsentsCreated'
+    '400':
+      $ref: '#/responses/400ErrorResponse'
+    '401':
+      $ref: '#/responses/401ErrorResponse'
+    '403':
+      $ref: '#/responses/403ErrorResponse'
+    '404':
+      $ref: '#/responses/404ErrorResponse'
+    '405':
+      $ref: '#/responses/405ErrorResponse'
+    '406':
+      $ref: '#/responses/406ErrorResponse'
+    '415':
+      $ref: '#/responses/415ErrorResponse'
+    '429':
+      $ref: '#/responses/429ErrorResponse'
+    '500':
+      $ref: '#/responses/500ErrorResponse'
+  security:
+    - TPPOAuth2Security:
+        - payments

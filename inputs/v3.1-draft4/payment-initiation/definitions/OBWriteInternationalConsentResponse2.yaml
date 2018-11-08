@@ -1,0 +1,17 @@
+OBWriteInternationalConsentResponse2:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBWriteDataInternationalConsentResponse2'
+    Risk:
+      $ref: '#/definitions/OBRisk1'
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Risk
+    - Links
+    - Meta
+  additionalProperties: false

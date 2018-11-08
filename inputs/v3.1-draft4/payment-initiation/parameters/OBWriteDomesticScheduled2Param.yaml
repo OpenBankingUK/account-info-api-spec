@@ -1,0 +1,8 @@
+---
+  OBWriteDomesticScheduled2Param: 
+    name: "OBWriteDomesticScheduled2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteDomesticScheduled2"

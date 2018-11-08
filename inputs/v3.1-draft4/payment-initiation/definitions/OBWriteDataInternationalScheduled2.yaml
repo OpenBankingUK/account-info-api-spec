@@ -1,0 +1,16 @@
+OBWriteDataInternationalScheduled2:
+  type: object
+  properties:
+    ConsentId:
+      description: >-
+        OB: Unique identification as assigned by the ASPSP to uniquely identify
+        the consent resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    Initiation:
+      $ref: '#/definitions/OBInternationalScheduled2'
+  required:
+    - ConsentId
+    - Initiation
+  additionalProperties: false

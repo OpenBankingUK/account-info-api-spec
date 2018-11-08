@@ -1,0 +1,22 @@
+OBOtherProductType1:
+  description: >-
+    This field provides extension to the ProductType enumeration.
+
+    If ProductType - "Other" is chosen, this field must be populated with name,
+    and description for ASPSP specific product type.
+  type: object
+  properties:
+    Name:
+      description: Name of "Other" product type.
+      type: string
+      minLength: 1
+      maxLength: 350
+    Description:
+      description: Description of "Other" product type.
+      type: string
+      minLength: 1
+      maxLength: 350
+  required:
+    - Name
+    - Description
+  additionalProperties: false

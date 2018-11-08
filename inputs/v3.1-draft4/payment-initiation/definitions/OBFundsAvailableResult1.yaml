@@ -1,0 +1,26 @@
+OBFundsAvailableResult1:
+  description: Result of a funds availability check.
+  type: object
+  properties:
+    FundsAvailableDateTime:
+      description: >-
+        Date and time at which the funds availability check was generated.
+
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2017-04-05T10:43:07+00:00
+      type: string
+      format: date-time
+    FundsAvailable:
+      description: >-
+        Flag to indicate the availability of funds given the Amount in the
+        consent request.
+      type: boolean
+  required:
+    - FundsAvailableDateTime
+    - FundsAvailable
+  additionalProperties: false

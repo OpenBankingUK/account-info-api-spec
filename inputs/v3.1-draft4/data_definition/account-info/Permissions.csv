@@ -1,0 +1,17 @@
+Permission (Detail);Name;Occurrence;XPath
+ReadAccountsDetail;Account;1..n;OBReadAccount3/Data/Account/Account
+ReadAccountsDetail;Servicer;0..1;OBReadAccount3/Data/Account/Servicer
+ReadBeneficiariesDetail;CreditorAgent;0..1;OBReadBeneficiary3/Data/Beneficiary/CreditorAgent
+ReadBeneficiariesDetail;CreditorAccount;1..1;OBReadBeneficiary3/Data/Beneficiary/CreditorAccount
+ReadStandingOrdersDetail;CreditorAgent;0..1;OBReadStandingOrder4/Data/StandingOrder/CreditorAgent
+ReadStandingOrdersDetail;CreditorAccount;1..1;OBReadStandingOrder4/Data/StandingOrder/CreditorAccount
+ReadTransactionsDetail;TransactionInformation;0..1;OBReadTransaction4/Data/Transaction/TransactionInformation
+ReadTransactionsDetail;Balance;0..1;OBReadTransaction4/Data/Transaction/Balance
+ReadTransactionsDetail;MerchantDetails;0..1;OBReadTransaction4/Data/Transaction/MerchantDetails
+ReadBeneficiariesDetail;CreditorAgent;0..1;OBReadTransaction4/Data/Transaction/CreditorAgent
+ReadTransactionsDetail;CreditorAccount;0..1;OBReadTransaction4/Data/Transaction/CreditorAccount
+ReadBeneficiariesDetail;DebtorAgent;0..1;OBReadTransaction4/Data/Transaction/DebtorAgent
+ReadTransactionsDetail;DebtorAccount;0..1;OBReadTransaction4/Data/Transaction/DebtorAccount
+ReadStatementsDetail;StatementAmount;0..n;OBReadStatement1/Data/Statement/StatementAmount
+ReadScheduledPaymentsDetail;CreditorAgent;0..1;OBReadScheduledPayment2/Data/ScheduledPayment/CreditorAgent
+ReadScheduledPaymentsDetail;CreditorAccount;1..1;OBReadScheduledPayment2/Data/ScheduledPayment/CreditorAccount

@@ -1,0 +1,88 @@
+OBCallbackUrl1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBCallbackUrlData1'
+  required:
+    - Data
+  additionalProperties: false
+OBCallbackUrlData1:
+  type: object
+  properties:
+    Url:
+      description: >-
+        Callback URL for a TPP hosted service. Will be used by ASPSPs, in
+        conjunction with the resource name, to construct a URL to send event
+        notifications to.
+      type: string
+    Version:
+      description: Version for the event notification.
+      type: string
+      minLength: 1
+      maxLength: 10
+  required:
+    - Url
+    - Version
+  additionalProperties: false
+OBCallbackUrlResponse1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBCallbackUrlResponseData1'
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false
+OBCallbackUrlResponseData1:
+  type: object
+  properties:
+    CallbackUrlId:
+      description: >-
+        Unique identification as assigned by the ASPSP to uniquely identify the
+        callback url resource.
+      type: string
+      minLength: 1
+      maxLength: 40
+    Url:
+      description: >-
+        Callback URL for a TPP hosted service. Will be used by ASPSPs, in
+        conjunction with the resource name, to construct a URL to send event
+        notifications to.
+      type: string
+    Version:
+      description: Version for the event notification.
+      type: string
+      minLength: 1
+      maxLength: 10
+  required:
+    - CallbackUrlId
+    - Url
+    - Version
+  additionalProperties: false
+OBCallbackUrlsResponse1:
+  type: object
+  properties:
+    Data:
+      $ref: '#/definitions/OBCallbackUrlsResponseData1'
+    Links:
+      $ref: '#/definitions/Links'
+    Meta:
+      $ref: '#/definitions/Meta'
+  required:
+    - Data
+    - Links
+    - Meta
+  additionalProperties: false
+OBCallbackUrlsResponseData1:
+  type: object
+  properties:
+    CallbackUrl:
+      items:
+        $ref: '#/definitions/OBCallbackUrlResponseData1'
+      type: array
+  additionalProperties: false

@@ -1,0 +1,8 @@
+---
+  OBWriteDomesticScheduledConsent2Param: 
+    name: "OBWriteDomesticScheduledConsent2Param"
+    in: "body"
+    description: "Default"
+    required: true
+    schema: 
+      $ref: "#/definitions/OBWriteDomesticScheduledConsent2"

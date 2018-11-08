@@ -1,0 +1,31 @@
+OBEventSubject1:
+  description: The resource-update event.
+  type: object
+  properties:
+    subject_type:
+      description: Subject type for the updated resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    rid:
+      description: Resource Id for the updated resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    rty:
+      description: Resource Type for the updated resource.
+      type: string
+      minLength: 1
+      maxLength: 128
+    rlk:
+      items:
+        $ref: '#/definitions/OBEventLink1'
+      type: array
+      description: Resource links to other available versions of the resource.
+      minItems: 1
+  required:
+    - subject_type
+    - rid
+    - rty
+    - rlk
+  additionalProperties: false

@@ -1,0 +1,10 @@
+OBWriteDataDomesticConsent2:
+  type: object
+  properties:
+    Initiation:
+      $ref: '#/definitions/OBDomestic2'
+    Authorisation:
+      $ref: '#/definitions/OBAuthorisation1'
+  required:
+    - Initiation
+  additionalProperties: false

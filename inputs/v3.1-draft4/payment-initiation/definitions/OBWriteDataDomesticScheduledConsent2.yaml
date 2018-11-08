@@ -1,0 +1,13 @@
+OBWriteDataDomesticScheduledConsent2:
+  type: object
+  properties:
+    Permission:
+      $ref: '#/definitions/OBExternalPermissions2Code'
+    Initiation:
+      $ref: '#/definitions/OBDomesticScheduled2'
+    Authorisation:
+      $ref: '#/definitions/OBAuthorisation1'
+  required:
+    - Permission
+    - Initiation
+  additionalProperties: false

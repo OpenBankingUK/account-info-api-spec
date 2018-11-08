@@ -1,0 +1,8 @@
+OBWriteDataFundsConfirmationResponse1:
+  type: object
+  properties:
+    FundsAvailableResult:
+      $ref: '#/definitions/OBFundsAvailableResult1'
+    SupplementaryData:
+      $ref: '#/definitions/OBSupplementaryData1'
+  additionalProperties: false
