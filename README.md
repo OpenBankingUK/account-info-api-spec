@@ -1,3 +1,7 @@
+# DEPRECATED
+New home for Swagger generation tool is - 
+https://bitbucket.org/openbankingteam/api-spec-builder/
+
 # Account and Transaction API Specification
 
 For more information see the [Open Banking Developer Zone](https://openbanking.atlassian.net/wiki/spaces/DZ/overview).
